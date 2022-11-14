@@ -1,0 +1,13 @@
+{
+  "name": "@gambit/eleventy-plugin",
+  "version": "0.0.1",
+  "description": "A plugin for eleventy for serving web components",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+  "license": "MIT"
+}

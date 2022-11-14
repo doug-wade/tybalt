@@ -1,0 +1,20 @@
+{
+  "name": "@gambit/test-utils",
+  "version": "0.0.1",
+  "description": "A set of utilities for unit testing web components",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rimraf dist/",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "js-convert-case": "^4.2.0",
+    "uuid": "^9.0.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+      "lib": ["es2021", "dom"],
+      "module": "commonjs",
+      "target": "es2021",
+      "outDir": "dist",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "moduleResolution": "node",
+      "declaration": true
+    },
+    "include": [
+      "src/**/*"
+    ],
+    "baseUrl": "."
+  }

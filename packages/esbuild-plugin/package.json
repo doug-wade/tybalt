@@ -1,0 +1,12 @@
+{
+  "name": "@gambit/esbuild-plugin",
+  "version": "0.0.1",
+  "description": "An esbuild plugin for compiling gambit web components",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+  "license": "MIT"
+}

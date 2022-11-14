@@ -1,0 +1,20 @@
+{
+    "name": "@gambit/validator",
+    "version": "0.0.1",
+    "description": "A library for performing asynchronous validations",
+    "main": "dist/index.js",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "clean": "rimraf dist/",
+        "debug": "node --experimental-vm-modules --inspect-brk ../../node_modules/.bin/jest --runInBand",
+        "test": "yarn node --experimental-vm-modules $(yarn bin jest)",
+        "watch": "tsc --watch"
+    },
+    "keywords": [],
+    "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "jest": "^29.3.1"
+    }
+}
