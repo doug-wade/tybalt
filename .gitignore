@@ -4,6 +4,8 @@ packages/**/node_modules/
 dist/
 packages/**/dist/
 
+coverage/
+
 .turbo/
 
 *.out
