@@ -22,5 +22,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn run build --filter=@gambit/cli
+      - run: chmod +x ./packages/cli/dist/index.js
       - run: ln ./packages/cli/dist/index.js ./packages/example/node_modules/.bin/gambit
       - run: yarn test
