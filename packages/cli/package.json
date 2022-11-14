@@ -9,7 +9,8 @@
     "build": "tsc",
     "clean": "rimraf dist/",
     "watch": "tsc --watch",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "prepare": "yarn run clean && yarn run build"
   },
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
