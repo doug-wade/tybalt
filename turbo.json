@@ -9,13 +9,6 @@
         "dependsOn": ["build"],
         "outputs": [],
         "inputs": ["src/**/*.ts", "tst/**/*.ts"]
-      },
-      "lint": {
-        "outputs": []
-      },
-      "deploy": {
-        "dependsOn": ["build", "test", "lint"],
-        "outputs": []
       }
     }
   }
