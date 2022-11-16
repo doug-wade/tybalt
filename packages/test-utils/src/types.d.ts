@@ -13,7 +13,7 @@ export interface Wrapper {
     attributes(attributeName?: T): NamedNodeMapOrString<T>;
     classes(className?: T): DOMTokenListOrBoolean<T>;
     exists(): boolean;
-    trigger(type: string): void;
+    trigger(type: string, payload?: any): void;
 };
 
 export type MountOptions = { 

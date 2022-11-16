@@ -18,7 +18,15 @@ export default class BaseWrapper implements Wrapper {
     }
 
     html() {
-        return this.element.outerHTML + this.element.getRootNode().textContent;
+        if (this.element.shadowRoot) {
+            const openTag = this.element.outerHTML.split('>')[0].slice(1);
+            const closeTagWithCloseBracket = this.element.outerHTML.split('<')[1];
+            const closeTag = closeTagWithCloseBracket.slice(0, closeTagWithCloseBracket.length - 1);
+
+            return `<${openTag}>${this.element.shadowRoot.innerHTML}</${closeTag}>`;
+        }
+
+        return this.element.outerHTML;
     }
 
     attributes(attributeName?: string) {
@@ -84,6 +92,6 @@ export default class BaseWrapper implements Wrapper {
     }
 
     trigger(type: string, payload: any): void {
-        this.element.dispatchEvent(new CustomEvent(eventName, payload));
+        this.element.dispatchEvent(new CustomEvent(type, payload));
     }
 };

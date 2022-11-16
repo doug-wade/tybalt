@@ -80,7 +80,7 @@ export default class WrapperArray implements Wrapper {
         throw new Error(`classes must be called on a single wrapper, use at(i) to access a wrapper`);
     }
 
-    trigger(type?: string): never {
+    trigger(type?: string, payload?: any): never {
         throw new Error(`trigger must be called on a single wrapper, use at(i) to access a wrapper`);
     }
 }

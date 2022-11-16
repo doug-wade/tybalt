@@ -1,15 +1,15 @@
-import { Observable } from 'core-js';
+import Observable from 'core-js/proposals/observable';
 
 import type { useObservableOptions } from '../types';
 
-const isFunction = (x: Function | undefined | never): x is Function => typeof x === 'function';
+const isFunction = (x: Function | undefined): x is Function => typeof x === 'function';
 
 export default ({ initialValue, subscriber }: useObservableOptions) => {
-    let handler;
+    let handler = (event: any): void => {};
 
-    const observer = new Observable((observer) => {
-        handler = (event) => { 
-            return observer.next(event) 
+    const observer = new Observable((observer: any) => {
+        handler = (event: any) => { 
+            return observer.next(event);
         };
     });
 

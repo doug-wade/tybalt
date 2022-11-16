@@ -11,10 +11,7 @@ const makeShadowDomComponent = ({ mode }: { mode: "open" | "closed" }) => {
         #shadow;
         constructor() {
             super();
-            this.#shadow = this.attachShadow({ mode })
-        }
-    
-        connectedCallback() {
+            this.#shadow = this.attachShadow({ mode });
             this.#shadow.innerHTML = SHADOW_DOM_TEMPLATE;
         }
     }

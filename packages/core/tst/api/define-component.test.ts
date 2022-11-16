@@ -1,9 +1,10 @@
-import { beforeEach, describe, it, expect } from '@jest/globals';
+import { describe, it, jest, expect } from '@jest/globals';
 import { mount } from '@gambit/test-utils';
 import defineComponent from '../../src/api/define-component';
 
 describe('defineComponent', () => {
     it('calls customElements.define', () => {
+        jest.spyOn(customElements, 'define');
         const name = 'calls-define';
         const component = defineComponent({ name });
 
