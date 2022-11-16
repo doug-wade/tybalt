@@ -5,7 +5,7 @@ describe('button', () => {
     it('renders a button', async () => {
         const wrapper = await mount(Button);
 
-        expect(wrapper.find('button')).toBeTruthy();
+        expect(wrapper.find('button').exists()).toBeTruthy();
     });
 
     it('should expose a slot', async () => {

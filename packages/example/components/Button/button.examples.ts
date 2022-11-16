@@ -19,7 +19,8 @@ export const Primary = defineExample(Button, {
         click() {
             console.log('primary button clicked!');
         }
-    }
+    },
+    slot: 'primary button'
 });
 
 export const Secondary = defineExample(Button, {
@@ -36,7 +37,8 @@ export const Secondary = defineExample(Button, {
         click() {
             console.log('secondary button clicked!');
         }
-    }
+    },
+    slot: 'secondary button'
 });
 
 export const Tertiary = defineExample(Button, {
@@ -53,5 +55,6 @@ export const Tertiary = defineExample(Button, {
         click() {
             console.log('tertiary button clicked!');
         }
-    }
+    },
+    slot: 'tertiary button'
 });

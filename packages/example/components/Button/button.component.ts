@@ -16,17 +16,18 @@ export default defineComponent({
             validator: compose(required(), string(), oneOf(Object.values(BUTTON_TYPES)))
         }
     },
+    template: '<button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>',
     setup(props, ctx) {
         const clickHandler = () => { ctx.emit('click') };
-        const [buttonHandler, buttonObservable] = useObservable(`button-${props.variant}`);
+        const { handler: setComputedClass, observer: computedClass } = useObservable(`button-${props.variant}`);
 
         props.variant.subscribe((value: string) => {
-            buttonHandler(`button-${props.variant}`);
+            setComputedClass(`button-${props.variant}`);
         });
 
         return {
             clickHandler,
-            buttonObservable
+            computedClass
         };
     }
 });

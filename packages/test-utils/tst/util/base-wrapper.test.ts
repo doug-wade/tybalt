@@ -1,11 +1,28 @@
-import {describe, expect, it, jest} from '@jest/globals';
+import { beforeAll, describe, expect, it } from '@jest/globals';
 import BaseWrapper from '../../src/util/base-wrapper';
 import render from '../../src/api/mount';
 
-class MockWebComponent extends HTMLElement {
+const OPEN_SHADOW_DOM_COMPONENT_NAME = 'open-shadow-dom';
+const CLOSED_SHADOW_DOM_COMPONENT_NAME = 'closed-shadow-dom';
+const SHADOW_DOM_TEMPLATE = `<div>hello world</div>`;
+
+const makeShadowDomComponent = ({ mode }: { mode: "open" | "closed" }) => {
+    return class extends HTMLElement {
+        #shadow;
+        constructor() {
+            super();
+            this.#shadow = this.attachShadow({ mode });
+            this.#shadow.innerHTML = SHADOW_DOM_TEMPLATE;
+        }
+    }
 }
 
 describe('base-wrapper', () => {
+    beforeAll(() => {
+        customElements.define(OPEN_SHADOW_DOM_COMPONENT_NAME, makeShadowDomComponent({ mode: 'open' }));
+        customElements.define(CLOSED_SHADOW_DOM_COMPONENT_NAME, makeShadowDomComponent({ mode: 'closed' }));
+    });
+
     it('should be able to be instantiated', () => {
         const element = document.createElement('div');
 
@@ -29,6 +46,22 @@ describe('base-wrapper', () => {
         const actual = new BaseWrapper({ element });
 
         expect(actual.html()).toBe(`<${mockElementName}>${mockInnerText}</${mockElementName}>`);
+    });
+
+    it('should include the shadow dom from the .html() method when the mode is open', () => {
+        const element = document.createElement(OPEN_SHADOW_DOM_COMPONENT_NAME);
+
+        const actual = new BaseWrapper({ element });
+
+        expect(actual.html()).toBe(`<${OPEN_SHADOW_DOM_COMPONENT_NAME}>${SHADOW_DOM_TEMPLATE}</${OPEN_SHADOW_DOM_COMPONENT_NAME}>`);
+    });
+
+    it('should not include the shadow dom from the .html() method when the mode is closed', () => {
+        const element = document.createElement(CLOSED_SHADOW_DOM_COMPONENT_NAME);
+
+        const actual = new BaseWrapper({ element });
+
+        expect(actual.html()).toBe(`<${CLOSED_SHADOW_DOM_COMPONENT_NAME}></${CLOSED_SHADOW_DOM_COMPONENT_NAME}>`);
     });
 
     it('should have a .text() method', () => {

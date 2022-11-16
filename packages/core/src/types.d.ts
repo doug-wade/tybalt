@@ -14,7 +14,9 @@ export type DefineComponentsOptions = {
     setup?: Function,
     connectedCallback?: Function,
     disconnectedCallback?: Function,
-    adoptedCallback?: Function
+    adoptedCallback?: Function,
+    template?: string | Function,
+    shadowMode?: "open" | "closed",
 };
 
 export type useObservableOptions = {
