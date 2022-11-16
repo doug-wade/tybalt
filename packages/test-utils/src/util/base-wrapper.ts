@@ -82,4 +82,8 @@ export default class BaseWrapper implements Wrapper {
 
         return new WrapperArray({ elements: Array.from(elements) });
     }
+
+    trigger(type: string, payload: any): void {
+        this.element.dispatchEvent(new CustomEvent(eventName, payload));
+    }
 };
