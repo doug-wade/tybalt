@@ -18,7 +18,7 @@ export default class BaseWrapper implements Wrapper {
     }
 
     html() {
-        return this.element.outerHTML;
+        return this.element.outerHTML + this.element.getRootNode().textContent;
     }
 
     attributes(attributeName?: string) {

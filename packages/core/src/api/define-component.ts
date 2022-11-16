@@ -5,17 +5,19 @@ import type { DefineComponentsOptions, PropsStateMap, SetupContext } from '../ty
 
 const nameValidator = shouldThrow(withMessage(compose(required(), matchesPattern(/.*-.*/)), `web component names are required and must contain a hyphen`));
 
-export default ({ name, emits, props = {}, setup, connectedCallback, disconnectedCallback, adoptedCallback } : DefineComponentsOptions) => {
+export default ({ name, emits, props = {}, setup, connectedCallback, disconnectedCallback, adoptedCallback, template, shadowMode = 'closed' } : DefineComponentsOptions) => {
     nameValidator.validate(name);
 
     const clazz = class extends HTMLElement {
 
         #context: SetupContext;
         #props: PropsStateMap;
+        #shadow: ShadowRoot;
 
         constructor() {
             super();
     
+            this.#shadow = this.attachShadow({ mode: shadowMode });
             this.#props = Object.entries(props).reduce((accumulator, [key, value]) => {
                 return { ...accumulator, key: useObservable({ initialValue: value.default, subscriber: value.validator }) };
             }, {});
@@ -35,7 +37,8 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
         connectedCallback() {
             connectedCallback?.apply(this);
 
-            setup?.call(this, this.#props, this.#context);
+            const closure = setup?.call(this, this.#props, this.#context);
+            this.#shadow.innerHTML = typeof template === 'function' ? template(closure) : template;
         }
 
         disconnectedCallback() {
