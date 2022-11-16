@@ -1,4 +1,4 @@
-import { describe, it, expect, mount } from '@gambit/test-utils';
+import { mount } from '@gambit/test-utils';
 import Button from './button.component';
 
 describe('button', () => {

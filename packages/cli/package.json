@@ -18,6 +18,8 @@
     "@gambit/esbuild-plugin": "^0.0.1",
     "@gambit/eslint-plugin": "^0.0.1",
     "commander": "^9.4.1",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
     "js-convert-case": "^4.2.0",
     "rimraf": "^3.0.2"
   }
