@@ -1,5 +1,5 @@
 {
-  "name": "@gambit/eleventy-plugin",
+  "name": "@tybalt/eleventy-plugin",
   "version": "0.0.1",
   "description": "A plugin for eleventy for serving web components",
   "main": "index.js",

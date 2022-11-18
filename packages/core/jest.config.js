@@ -11,7 +11,7 @@ export default {
   },
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: [
-    "../../node_modules/@gambit/test-utils/dist/setup.js",
+    "../../node_modules/@tybalt/test-utils/dist/setup.js",
     "<rootDir>/jest.setup.js",
   ],
 };

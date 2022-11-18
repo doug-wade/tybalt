@@ -1,9 +1,9 @@
 {
-  "name": "@gambit/cli",
+  "name": "@tybalt/cli",
   "version": "0.0.1",
-  "description": "A command-line application for getting started with gambit web components",
+  "description": "A command-line application for getting started with tybalt web components",
   "bin": {
-    "gambit": "dist/index.js"
+    "tybalt": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -15,8 +15,8 @@
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@gambit/esbuild-plugin": "^0.0.1",
-    "@gambit/eslint-plugin": "^0.0.1",
+    "@tybalt/esbuild-plugin": "^0.0.1",
+    "@tybalt/eslint-plugin": "^0.0.1",
     "commander": "^9.4.1",
     "js-convert-case": "^4.2.0",
     "rimraf": "^3.0.2"

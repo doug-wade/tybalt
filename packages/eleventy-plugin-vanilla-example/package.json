@@ -1,7 +1,7 @@
 {
-    "name": "@gambit/eleventy-plugin-vanilla-example",
+    "name": "@tybalt/eleventy-plugin-vanilla-example",
     "version": "0.0.1",
-    "description": "An example of using @gambit/eleventy-plugin with vanilla web components",
+    "description": "An example of using @tybalt/eleventy-plugin with vanilla web components",
     "main": "index.js",
     "private": true,
     "scripts": {

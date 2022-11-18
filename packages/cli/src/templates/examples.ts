@@ -2,7 +2,7 @@ import type { ScaffoldContext } from '../types';
 
 export default ({ pascalCaseName, implementationFileName } : ScaffoldContext) => {
     return `
-        import { defineExample } from '@gambit/core';
+        import { defineExample } from '@tybalt/core';
         import ${pascalCaseName} from '${implementationFileName}';
 
         export default {

@@ -482,65 +482,65 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gambit/cli@^0.0.1, @gambit/cli@workspace:packages/cli":
+"@tybalt/cli@^0.0.1, @tybalt/cli@workspace:packages/cli":
   version: 0.0.0-use.local
-  resolution: "@gambit/cli@workspace:packages/cli"
+  resolution: "@tybalt/cli@workspace:packages/cli"
   dependencies:
-    "@gambit/esbuild-plugin": ^0.0.1
-    "@gambit/eslint-plugin": ^0.0.1
+    "@tybalt/esbuild-plugin": ^0.0.1
+    "@tybalt/eslint-plugin": ^0.0.1
     commander: ^9.4.1
     js-convert-case: ^4.2.0
     rimraf: ^3.0.2
   bin:
-    gambit: dist/index.js
+    tybalt: dist/index.js
   languageName: unknown
   linkType: soft
 
-"@gambit/core@^0.0.1, @gambit/core@workspace:packages/core":
+"@tybalt/core@^0.0.1, @tybalt/core@workspace:packages/core":
   version: 0.0.0-use.local
-  resolution: "@gambit/core@workspace:packages/core"
+  resolution: "@tybalt/core@workspace:packages/core"
   dependencies:
-    "@gambit/validator": ^0.0.1
+    "@tybalt/validator": ^0.0.1
     "@types/core-js": ^2.5.5
     core-js: ^3.26.0
     jest: ^29.3.1
   languageName: unknown
   linkType: soft
 
-"@gambit/eleventy-plugin@^0.0.1, @gambit/eleventy-plugin@workspace:packages/eleventy-plugin":
+"@tybalt/eleventy-plugin@^0.0.1, @tybalt/eleventy-plugin@workspace:packages/eleventy-plugin":
   version: 0.0.0-use.local
-  resolution: "@gambit/eleventy-plugin@workspace:packages/eleventy-plugin"
+  resolution: "@tybalt/eleventy-plugin@workspace:packages/eleventy-plugin"
   languageName: unknown
   linkType: soft
 
-"@gambit/esbuild-plugin@^0.0.1, @gambit/esbuild-plugin@workspace:packages/esbuild-plugin":
+"@tybalt/esbuild-plugin@^0.0.1, @tybalt/esbuild-plugin@workspace:packages/esbuild-plugin":
   version: 0.0.0-use.local
-  resolution: "@gambit/esbuild-plugin@workspace:packages/esbuild-plugin"
+  resolution: "@tybalt/esbuild-plugin@workspace:packages/esbuild-plugin"
   languageName: unknown
   linkType: soft
 
-"@gambit/eslint-plugin@^0.0.1, @gambit/eslint-plugin@workspace:packages/eslint-plugin":
+"@tybalt/eslint-plugin@^0.0.1, @tybalt/eslint-plugin@workspace:packages/eslint-plugin":
   version: 0.0.0-use.local
-  resolution: "@gambit/eslint-plugin@workspace:packages/eslint-plugin"
+  resolution: "@tybalt/eslint-plugin@workspace:packages/eslint-plugin"
   languageName: unknown
   linkType: soft
 
-"@gambit/example@workspace:packages/example":
+"@tybalt/example@workspace:packages/example":
   version: 0.0.0-use.local
-  resolution: "@gambit/example@workspace:packages/example"
+  resolution: "@tybalt/example@workspace:packages/example"
   dependencies:
-    "@gambit/cli": ^0.0.1
-    "@gambit/core": ^0.0.1
-    "@gambit/test-utils": ^0.0.1
+    "@tybalt/cli": ^0.0.1
+    "@tybalt/core": ^0.0.1
+    "@tybalt/test-utils": ^0.0.1
     jest-environment-jsdom: ^29.3.1
   languageName: unknown
   linkType: soft
 
-"@gambit/test-utils-lit-example@workspace:packages/test-utils-lit-example":
+"@tybalt/test-utils-lit-example@workspace:packages/test-utils-lit-example":
   version: 0.0.0-use.local
-  resolution: "@gambit/test-utils-lit-example@workspace:packages/test-utils-lit-example"
+  resolution: "@tybalt/test-utils-lit-example@workspace:packages/test-utils-lit-example"
   dependencies:
-    "@gambit/test-utils": ^0.0.1
+    "@tybalt/test-utils": ^0.0.1
     "@types/jest": ^29.2.3
     jest: ^29.2.2
     jest-environment-jsdom: ^29.2.2
@@ -550,9 +550,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@gambit/test-utils@^0.0.1, @gambit/test-utils@workspace:packages/test-utils":
+"@tybalt/test-utils@^0.0.1, @tybalt/test-utils@workspace:packages/test-utils":
   version: 0.0.0-use.local
-  resolution: "@gambit/test-utils@workspace:packages/test-utils"
+  resolution: "@tybalt/test-utils@workspace:packages/test-utils"
   dependencies:
     jest: ^29.3.1
     js-convert-case: ^4.2.0
@@ -562,22 +562,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@gambit/validator@^0.0.1, @gambit/validator@workspace:packages/validator":
+"@tybalt/validator@^0.0.1, @tybalt/validator@workspace:packages/validator":
   version: 0.0.0-use.local
-  resolution: "@gambit/validator@workspace:packages/validator"
+  resolution: "@tybalt/validator@workspace:packages/validator"
   dependencies:
     jest: ^29.3.1
     rimraf: ^3.0.2
   languageName: unknown
   linkType: soft
 
-"@gambit/website@workspace:packages/website":
+"@tybalt/website@workspace:packages/website":
   version: 0.0.0-use.local
-  resolution: "@gambit/website@workspace:packages/website"
+  resolution: "@tybalt/website@workspace:packages/website"
   dependencies:
     "@11ty/eleventy": ^1.0.2
-    "@gambit/core": ^0.0.1
-    "@gambit/eleventy-plugin": ^0.0.1
+    "@tybalt/core": ^0.0.1
+    "@tybalt/eleventy-plugin": ^0.0.1
     rimraf: ^3.0.2
   languageName: unknown
   linkType: soft
@@ -3069,9 +3069,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gambit@workspace:.":
+"tybalt@workspace:.":
   version: 0.0.0-use.local
-  resolution: "gambit@workspace:."
+  resolution: "tybalt@workspace:."
   dependencies:
     "@jest/globals": ^29.3.1
     "@types/core-js": ^2.5.5

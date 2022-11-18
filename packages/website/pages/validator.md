@@ -1,1 +1,1 @@
-# @gambit/validator
+# @tybalt/validator

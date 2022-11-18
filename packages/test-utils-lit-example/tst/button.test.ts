@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { mount, flushPromises } from '@gambit/test-utils';
+import { mount, flushPromises } from '@tybalt/test-utils';
 import { Button } from '../src/button'
 
 describe('button', () => {

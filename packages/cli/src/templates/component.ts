@@ -2,7 +2,7 @@ import type { ScaffoldContext } from '../types';
 
 export default ({ kebabCaseName } : ScaffoldContext) => {
     return `
-        import { defineComponent, reactive } from '@gambit/core';
+        import { defineComponent, reactive } from '@tybalt/core';
 
         export default defineComponent({
             name: '${kebabCaseName}',

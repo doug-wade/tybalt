@@ -1,1 +1,1 @@
-# @gambit/core
+# @tybalt/core
