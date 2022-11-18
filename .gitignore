@@ -11,3 +11,6 @@ coverage/
 *.out
 
 .yarn/
+
+_site/
+packages/website/lib

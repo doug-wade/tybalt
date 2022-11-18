@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "clean": "turbo clean",
     "test": "turbo test",
     "combine-coverage": "istanbul-merge --out coverage-final.json 'packages/**/coverage/coverage-final.json'"
   },
@@ -14,12 +15,14 @@
   "workspaces": [
     "./packages/cli",
     "./packages/core",
+    "./packages/eleventy-plugin",
     "./packages/esbuild-plugin",
     "./packages/eslint-plugin",
     "./packages/example",
     "./packages/test-utils",
     "./packages/test-utils-lit-example",
-    "./packages/validator"
+    "./packages/validator",
+    "./packages/website"
   ],
   "devDependencies": {
     "@jest/globals": "^29.3.1",
@@ -27,6 +30,7 @@
     "@types/node": "^18.11.9",
     "@types/uuid": "^8.3.4",
     "chokidar": "^3.5.3",
+    "esbuild": "^0.15.14",
     "istanbul-merge": "^1.1.1",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
