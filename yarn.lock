@@ -501,7 +501,9 @@ __metadata:
   resolution: "@gambit/core@workspace:packages/core"
   dependencies:
     "@gambit/validator": ^0.0.1
+    "@types/core-js": ^2.5.5
     core-js: ^3.26.0
+    jest: ^29.3.1
   languageName: unknown
   linkType: soft
 

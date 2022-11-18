@@ -18,7 +18,7 @@ jobs:
         run: yarn install
 
       - name: build website
-        run: yarn run build --scope=@gambit/website
+        run: yarn build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

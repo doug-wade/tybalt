@@ -19,5 +19,9 @@
     "dependencies": {
         "@gambit/validator": "^0.0.1",
         "core-js": "^3.26.0"
+    },
+    "devDependencies": {
+        "@types/core-js": "^2.5.5",
+        "jest": "^29.3.1"
     }
 }
