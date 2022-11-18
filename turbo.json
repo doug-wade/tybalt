@@ -5,6 +5,9 @@
         "dependsOn": ["^build"],
         "outputs": ["dist/**"]
       },
+      "clean": {
+        "outputs": []
+      },
       "test": {
         "dependsOn": ["build"],
         "outputs": [],

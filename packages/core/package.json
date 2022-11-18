@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "type": "module",
     "scripts": {
-        "build": "tsc",
+        "build": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
         "clean": "rimraf dist/",
         "test": "yarn node --experimental-vm-modules $(yarn bin jest)",
         "watch": "tsc --watch"
@@ -19,9 +19,5 @@
     "dependencies": {
         "@gambit/validator": "^0.0.1",
         "core-js": "^3.26.0"
-    },
-    "devDependencies": {
-        "@types/core-js": "^2.5.5",
-        "jest": "^29.3.1"
     }
 }
