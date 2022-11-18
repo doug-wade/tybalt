@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "mkdir -p lib/ && cp -r ../core/dist lib/gambit-core",
+    "build": "mkdir -p lib/ && cp -r ../core/dist lib/gambit-core && eleventy",
     "clean": "rimraf lib/ _site/",
     "serve": "eleventy --serve --port 8081",
     "test": "echo \"Error: no test specified\" && exit 0"
@@ -14,7 +14,8 @@
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.2"
+    "@11ty/eleventy": "^1.0.2",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "@gambit/core": "^0.0.1",
