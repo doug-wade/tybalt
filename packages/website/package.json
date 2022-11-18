@@ -8,7 +8,7 @@
     "build": "mkdir -p lib/ && cp -r ../core/dist lib/gambit-core",
     "clean": "rimraf lib/ _site/",
     "serve": "eleventy --serve --port 8081",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
