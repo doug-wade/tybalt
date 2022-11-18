@@ -12,12 +12,12 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
 
         #context: SetupContext;
         #props: PropsStateMap;
-        #shadow: ShadowRoot;
+        #shadowRoot: ShadowRoot;
 
         constructor() {
             super();
     
-            this.#shadow = this.attachShadow({ mode: shadowMode });
+            this.#shadowRoot = this.attachShadow({ mode: shadowMode });
             this.#props = Object.entries(props).reduce((accumulator, [key, value]) => {
                 return { ...accumulator, key: useObservable({ initialValue: value.default, subscriber: value.validator }) };
             }, {});
@@ -38,7 +38,9 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
             connectedCallback?.apply(this);
 
             const closure = setup?.call(this, this.#props, this.#context);
-            this.#shadow.innerHTML = typeof template === 'function' ? template(closure) : template;
+            const templateElement = document.createElement('template');
+            templateElement.innerHTML = typeof template === 'function' ? template(closure) : template;
+            this.#shadowRoot.appendChild(templateElement.content.cloneNode(true));
         }
 
         disconnectedCallback() {

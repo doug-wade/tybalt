@@ -29,4 +29,17 @@ describe('defineComponent', () => {
 
         expect(wrapper.html()).toBe(`<${name}>${template}</${name}>`);
     });
+
+    it('renders named slotted content', async () => {
+        const name = 'renders-slot';
+        const message = 'Hello World';
+        const slotName = "content";
+        const template = `<div data-jest="${name}"><slot name="${slotName}"></slot></div>`;
+        const slot = `<span slot="${slotName}">${message}</span>`;
+        const component = defineComponent({ name, template, shadowMode: "open" });
+
+        const wrapper = await mount(component, { slot });
+
+        expect(wrapper.html()).toContain(message);
+    });
 });

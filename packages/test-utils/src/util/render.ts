@@ -15,7 +15,14 @@ export default async ({ elementName, attributes = new Map(), slot = '' }: { elem
     rootElement.setAttribute(ATTRIBUTE_NAME, id);
 
     const concatenatedAttributes = Object.entries(attributes).reduce((acc, [key, value]) => `${acc} ${toKebabCase(key)}="${value}"`, '').trim();
-    rootElement.innerHTML = `<${elementName} ${concatenatedAttributes}>${slot}</${elementName}>`;
+    // rootElement.innerHTML = `<${elementName} ${concatenatedAttributes}>${slot}</${elementName}>`;
+
+    rootElement.innerHTML = `<user-card>
+    <span slot="username">John Smith</span>
+    <span slot="birthday">01.01.2001</span>
+  </user-card>`
+
+    console.log('appending child to dom with innerHTML: ', rootElement.innerHTML);
 
     document.body.appendChild(rootElement);
 
