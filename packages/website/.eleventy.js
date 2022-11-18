@@ -6,4 +6,7 @@ module.exports = function (eleventyConfig) {
   //   eleventyConfig.addPlugin(gambitPlugin, {
   //     componentModules: ["./components/index.js"],
   //   });
+  return {
+    pathPrefix: "/gambit/",
+  };
 };
