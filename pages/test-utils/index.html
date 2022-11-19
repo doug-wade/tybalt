@@ -1,1 +1,69 @@
 <h1>@tybalt/test-utils</h1>
+<h2>Installation</h2>
+<pre><code class="language-shell">$ npm install --save-dev @tybalt/test-utils
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-javascript">import { mount } from &quot;@tybalt/test-utils&quot;;
+import MyComponent from &quot;./my-component&quot;;
+
+describe(&quot;component&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    const wrapper = await mount(MyComponent);
+
+    expect(wrapper.html()).toBe(`&lt;my-component&gt;&lt;/my-component&gt;`);
+  });
+});
+</code></pre>
+<h2>Api</h2>
+<h3>flushPromises</h3>
+<pre><code class="language-javascript">await flushPromises();
+</code></pre>
+<pre><code class="language-javascript">import { flushPromises, mount } from &quot;@tybalt/test-utils&quot;;
+import MyComponent from &quot;./my-component&quot;;
+
+describe(&quot;component&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    const wrapper = await mount(MyComponent);
+
+    // wait for asynchronous action, like a fetch request, that is performed when mounting to be completed
+    await flushPromises();
+
+    expect(wrapper.text()).toBe(`&lt;expected content&gt;`);
+  });
+});
+</code></pre>
+<h3>mount</h3>
+<p>Use <code>mount</code> to create an instance of a web component.</p>
+<p><code>mount</code> takes two arguments, the component definition, and an optional <code>options</code> object that can have
+an attributes and slot key on it. The attributes argument is an object in the shape
+<code>{ attributeKey: &quot;attributeValue&quot; }</code>, and the slot is a string of html that should be place inside the
+web component.</p>
+<pre><code class="language-javascript">import { mount } from &quot;@tybalt/test-utils&quot;;
+import MyComponent from &quot;./my-component&quot;;
+
+describe(&quot;component&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    const attributes = {};
+    const slot = &quot;this is slot content&quot;;
+    const wrapper = await mount(MyComponent, { attributes, slot });
+
+    expect(wrapper.html()).toBe(`&lt;my-component&gt;&lt;/my-component&gt;`);
+  });
+});
+</code></pre>
+<h3>wrapper</h3>
+<pre><code class="language-javascript">export interface Wrapper {
+  find(selector: string): Wrapper | never;
+  findAll(selector: string): Wrapper | never;
+  findComponent(definition: CustomElementConstructor): Wrapper | never;
+  findComponentAll(definition: CustomElementConstructor): Wrapper | never;
+  html(): string | never;
+  text(): string | null | never;
+  attributes(attributeName?: T): NamedNodeMapOrString&lt;T&gt;;
+  classes(className?: T): DOMTokenListOrBoolean&lt;T&gt;;
+  exists(): boolean;
+  trigger(type: string, payload?: any): void;
+}
+</code></pre>
+<pre><code class="language-javascript">
+</code></pre>
