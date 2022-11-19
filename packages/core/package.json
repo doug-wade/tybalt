@@ -7,7 +7,7 @@
     "scripts": {
         "build": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
         "clean": "rimraf dist/",
-        "test": "yarn node --experimental-vm-modules $(yarn bin jest)",
+        "test": "yarn node --experimental-vm-modules $(yarn bin jest) --coverage",
         "watch": "tsc --watch"
     },
     "keywords": [

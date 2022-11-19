@@ -6,6 +6,9 @@ import type { Wrapper } from '../types';
 
 export default class WrapperArray implements Wrapper {
     elements: Array<Element>;
+    get length(): Number {
+        return this.elements.length;
+    }
 
     constructor({ elements }: { elements: Array<Element> }) {
         this.elements = elements;
