@@ -1,4 +1,4 @@
-import { defineExample } from '@gambit/core';
+import { defineExample } from '@tybalt/core';
 import Button, { BUTTON_TYPES } from './button.component';
 
 export default {

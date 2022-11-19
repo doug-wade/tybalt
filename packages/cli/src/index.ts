@@ -11,8 +11,8 @@ import watch from './commands/watch';
 const program = new Command();
 
 program
-  .name('@gambit/cli')
-  .description('vli for building gambit components')
+  .name('@tybalt/cli')
+  .description('vli for building tybalt components')
   .version('0.0.1');
 
 [

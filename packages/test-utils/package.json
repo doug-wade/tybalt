@@ -1,5 +1,5 @@
 {
-  "name": "@gambit/test-utils",
+  "name": "@tybalt/test-utils",
   "version": "0.0.1",
   "description": "A set of utilities for unit testing web components",
   "main": "dist/index.js",

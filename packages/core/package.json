@@ -1,5 +1,5 @@
 {
-    "name": "@gambit/core",
+    "name": "@tybalt/core",
     "version": "0.0.1",
     "description": "A library for writing web components",
     "main": "dist/index.js",
@@ -11,13 +11,13 @@
         "watch": "tsc --watch"
     },
     "keywords": [
-        "gambit",
+        "tybalt",
         "web component"
     ],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "@gambit/validator": "^0.0.1",
+        "@tybalt/validator": "^0.0.1",
         "core-js": "^3.26.0"
     },
     "devDependencies": {

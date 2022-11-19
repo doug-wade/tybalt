@@ -1,5 +1,5 @@
 import useObservable from '../api/use-observable';
-import { compose, required, matchesPattern, shouldThrow, withMessage } from '@gambit/validator';
+import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
 
 import type { DefineComponentsOptions, PropsStateMap, SetupContext } from '../types';
 

@@ -1,5 +1,5 @@
-import { defineComponent, useObservable } from '@gambit/core';
-import { compose, oneOf, required, string } from '@gambit/validator';
+import { defineComponent, useObservable } from '@tybalt/core';
+import { compose, oneOf, required, string } from '@tybalt/validator';
 
 export const BUTTON_TYPES = Object.freeze({
     PRIMARY: 'primary',

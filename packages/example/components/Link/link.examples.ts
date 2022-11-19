@@ -1,4 +1,4 @@
-import { defineExample } from '@gambit/core';
+import { defineExample } from '@tybalt/core';
 import Link from './link.component';
 
 export default {

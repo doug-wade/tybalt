@@ -1,5 +1,5 @@
-import { defineComponent } from '@gambit/core';
-import { compose, url, required } from '@gambit/validator';
+import { defineComponent } from '@tybalt/core';
+import { compose, url, required } from '@tybalt/validator';
 
 export default defineComponent({
     name: 'ExampleLink',
