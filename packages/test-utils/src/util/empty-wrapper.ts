@@ -2,6 +2,9 @@ import type { Wrapper } from '../types';
 
 export default class EmptyWrapper implements Wrapper {
     #selector: string;
+    get length(): Number {
+        return 0;
+    }
 
     constructor({ selector } : { selector: string }) {
         this.#selector = selector;

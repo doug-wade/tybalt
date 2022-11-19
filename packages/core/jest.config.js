@@ -14,4 +14,5 @@ export default {
     "../../node_modules/@tybalt/test-utils/dist/setup.js",
     "<rootDir>/jest.setup.js",
   ],
+  collectCoverageFrom: ["src/**/*.ts"],
 };

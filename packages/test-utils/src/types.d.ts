@@ -1,9 +1,10 @@
 export type AttributeObject = Object<string, number | string>;
 
-type DOMTokenListOrBoolean<T> = T extends string ? boolean | null : DOMTokenList;
-type NamedNodeMapOrString<T> = T extends string ? string | null | never : NamedNodeMap;
+type DOMTokenListOrBoolean<T> = T extends string ? boolean | null : Array<string>;
+type NamedNodeMapOrString<T> = T extends string ? string | null | never : Object;
 
 export interface Wrapper {
+    length: Number;
     find(selector: string): Wrapper | never;
     findAll(selector: string): Wrapper | never;
     findComponent(definition: CustomElementConstructor): Wrapper | never;
