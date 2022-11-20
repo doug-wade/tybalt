@@ -1,1 +1,1 @@
-# @gambit/cli
+# @tybalt/cli

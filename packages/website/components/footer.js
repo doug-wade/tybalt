@@ -1,6 +1,6 @@
-import { defineComponent } from "../lib/gambit-core/index.js";
+import { defineComponent } from "../lib/tybalt-core/index.js";
 
 defineComponent({
-  name: "gambit-footer",
+  name: "tybalt-footer",
   template: "<footer>footer</footer>",
 });

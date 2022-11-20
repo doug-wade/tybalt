@@ -37,6 +37,14 @@ describe('base-wrapper', () => {
         expect(wrapper.exists()).toBeTruthy();
     });
 
+    it('should return a length of one', () => {
+        const element = document.createElement('div');
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.length).toBe(1);
+    });
+
     it('should have a .html() method', () => {
         const mockInnerText = 'hello world';
         const mockElementName = 'div';
@@ -96,25 +104,81 @@ describe('base-wrapper', () => {
         expect(actual.classes(mockClassName)).toBeTruthy();
     });
 
-    it('should return a hash of attributes when attributes is called without arguments', () => {
-        const mockAttributes = [{
-            name: 'foo',
-            value: 'bar'
-        }, {
-            name: 'baz',
-            value: 'quux'
-        }];
+    it('should have a classes method that returns an array of classes', () => {
+        const mockClassName = 'foo';
         const element = document.createElement('div');
-        mockAttributes.forEach(({ name, value }) => {
+        element.classList.add(mockClassName);
+
+        const actual = new BaseWrapper({ element });
+
+        expect(actual.classes()).toEqual([ mockClassName ]);
+    });
+
+    it('should return a hash of attributes when attributes is called without arguments', () => {
+        const mockAttributes = { 'foo': 'bar', 'baz': 'quux' };
+        const element = document.createElement('div');
+        Object.entries(mockAttributes).forEach(([ name, value ]) => {
             element.setAttribute(name, value);
         });
 
         const wrapper = new BaseWrapper({ element });
         const attributes = wrapper.attributes();
 
-        expect(attributes?.length).toBe(mockAttributes.length);
-        mockAttributes.forEach(mockAttribute => {
-            expect(wrapper.attributes(mockAttribute.name)).toBe(mockAttribute.value);
-        });
+        expect(attributes).toEqual(mockAttributes);
+    });
+
+    it('should have a find method that returns the first match of querySelector', () => {
+        const element = document.createElement('div');
+        const innerText = 'this is content'
+        element.innerHTML = `<span data-jest="my-element">${innerText}</span>`;
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.find('span[data-jest="my-element"]').text()).toBe(innerText);
+    });
+
+    it('should have a find method that returns an empty wrapper when the selector is not matched', () => {
+        const element = document.createElement('div');
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.find('span[data-jest="my-element"]').exists()).toBeFalsy();
+    });
+
+    it('should have a findAll method that returns all matches of querySelector', () => {
+        const element = document.createElement('div');
+        const mockChild = `<span data-jest="my-element"></span>`;
+        const times = 3;
+
+        for (let i = 0; i < times; i++) {
+            element.innerHTML += mockChild;
+        }
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.findAll('span[data-jest="my-element"]').length).toBe(times);
+    });
+
+    it('should have a findAll method that returns an empty wrapper when the selector is not matched', () => {
+        const element = document.createElement('div');
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.findAll('span[data-jest="my-element"]').exists()).toBeFalsy();
+    });
+
+    it('should trigger an event', async () => {
+        const mock = jest.fn();
+        const eventName = 'click';
+        const payload = { 'foo': 'bar' };
+        const element = document.createElement('button');
+        element.addEventListener(eventName, mock);
+
+        const wrapper = new BaseWrapper({ element });
+        wrapper.trigger(eventName, payload);
+
+        expect(mock).toHaveBeenCalledTimes(1);
+        expect(mock.mock.calls[0][0]).toBeInstanceOf(CustomEvent);
+        expect(mock.mock.calls[0][0].detail).toBe(payload);
     });
 });

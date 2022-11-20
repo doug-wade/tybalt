@@ -1,6 +1,6 @@
-# @gambit/test-utils-lit-example
+# @tybalt/test-utils-lit-example
 
-A example repository showing how to use [@gambit/test-utils](https://github.com/doug-wade/gambit/packages/test-utils)
+A example repository showing how to use [@tybalt/test-utils](https://github.com/doug-wade/tybalt/packages/test-utils)
 
 ## Getting Started
 

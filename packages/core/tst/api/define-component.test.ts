@@ -1,5 +1,5 @@
 import { describe, it, jest, expect } from '@jest/globals';
-import { mount } from '@gambit/test-utils';
+import { mount } from '@tybalt/test-utils';
 import defineComponent from '../../src/api/define-component';
 
 describe('defineComponent', () => {

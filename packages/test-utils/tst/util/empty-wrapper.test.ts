@@ -17,6 +17,12 @@ describe('empty-wrapper', () => {
         expect(wrapper.exists()).toBeFalsy();
     });
 
+    it('returns 0 from length', () => {
+        const wrapper = new EmptyWrapper({ selector: 'mock selector' });
+
+        expect(wrapper.length).toBe(0);
+    });
+
     it('throws when find is called', () => {
         const expectedMessage = getExpectedMessage({ method: 'find' });
 

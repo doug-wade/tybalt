@@ -1,5 +1,5 @@
 {
-    "name": "@gambit/validator",
+    "name": "@tybalt/validator",
     "version": "0.0.1",
     "description": "A library for performing asynchronous validations",
     "main": "dist/index.js",
@@ -8,7 +8,7 @@
         "build": "tsc",
         "clean": "rimraf dist/",
         "debug": "node --experimental-vm-modules --inspect-brk ../../node_modules/.bin/jest --runInBand",
-        "test": "yarn node --experimental-vm-modules $(yarn bin jest)",
+        "test": "yarn node --experimental-vm-modules $(yarn bin jest) --coverage",
         "watch": "tsc --watch"
     },
     "keywords": [],
