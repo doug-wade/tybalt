@@ -5,7 +5,7 @@ const uuidv4 = () => 'a1b2c3';
 
 import type { AttributeObject } from '../types'
 
-const ATTRIBUTE_NAME = 'data-wctu-id';
+const ATTRIBUTE_NAME = 'data-tybalt-id';
 const WRAPPER_ELEMENT_TAG = 'div';
 
 export default async ({ elementName, attributes = new Map(), slot = '' }: { elementName: string, attributes?: AttributeObject, slot?: string }): Promise<Element> => {
@@ -15,14 +15,7 @@ export default async ({ elementName, attributes = new Map(), slot = '' }: { elem
     rootElement.setAttribute(ATTRIBUTE_NAME, id);
 
     const concatenatedAttributes = Object.entries(attributes).reduce((acc, [key, value]) => `${acc} ${toKebabCase(key)}="${value}"`, '').trim();
-    // rootElement.innerHTML = `<${elementName} ${concatenatedAttributes}>${slot}</${elementName}>`;
-
-    rootElement.innerHTML = `<user-card>
-    <span slot="username">John Smith</span>
-    <span slot="birthday">01.01.2001</span>
-  </user-card>`
-
-    console.log('appending child to dom with innerHTML: ', rootElement.innerHTML);
+    rootElement.innerHTML = `<${elementName} ${concatenatedAttributes}>${slot}</${elementName}>`;
 
     document.body.appendChild(rootElement);
 
