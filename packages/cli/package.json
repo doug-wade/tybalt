@@ -15,10 +15,18 @@
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@swc/core": "^1.3.18",
     "@tybalt/esbuild-plugin": "^0.0.1",
     "@tybalt/eslint-plugin": "^0.0.1",
+    "@types/glob": "^8.0.0",
     "commander": "^9.4.1",
+    "glob": "^8.0.3",
     "js-convert-case": "^4.2.0",
-    "rimraf": "^3.0.2"
+    "mkdirp": "^1.0.4",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.3"
+  },
+  "devDependencies": {
+    "@types/mkdirp": "^1.0.2"
   }
 }
