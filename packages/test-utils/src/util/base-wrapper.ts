@@ -93,6 +93,8 @@ export default class BaseWrapper implements Wrapper {
 
         if (!elements.length) {
             return new EmptyWrapper({ selector: elementName });
+        } else if (elements.length === 1) {
+            return new BaseWrapper({ element: elements[0] });
         }
 
         return new WrapperArray({ elements: Array.from(elements) });

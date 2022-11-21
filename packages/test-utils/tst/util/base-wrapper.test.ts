@@ -167,6 +167,56 @@ describe('base-wrapper', () => {
         expect(wrapper.findAll('span[data-jest="my-element"]').exists()).toBeFalsy();
     });
 
+    it('should have a findComponent method that matches one element', () => {
+        const tagName = 'find-component';
+        const definition = class extends HTMLElement {};
+        global.customElementsReverseRegistry = new Map([[definition, tagName]]);
+        const element = document.createElement('div');
+        element.innerHTML = `<${tagName}></${tagName}>`;
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.findComponent(definition).exists()).toBeTruthy();
+    });
+
+    it('should have a findComponent method that matches no elements', () => {
+        const definition = class extends HTMLElement {};
+        global.customElementsReverseRegistry = new Map([[definition, 'find-component']]);
+        const element = document.createElement('div');
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.findComponent(definition).exists()).toBeFalsy();
+    });
+
+    it('should have a findComponentAll method that matches multiple elements', () => {
+        const tagName = 'find-component-all';
+        const definition = class extends HTMLElement {};
+        global.customElementsReverseRegistry = new Map([[definition, tagName]]);
+        const element = document.createElement('div');
+        const mockChild = `<${tagName}></${tagName}>`;
+        const times = 3;
+
+        for (let i = 0; i < times; i++) {
+            element.innerHTML += mockChild;
+        }
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.findComponentAll(definition).length).toBe(times);
+    });
+
+    it('should have a findComponentAll method that matches no elements', () => {
+        const tagName = 'find-component-all';
+        const definition = class extends HTMLElement {};
+        global.customElementsReverseRegistry = new Map([[definition, tagName]]);
+        const element = document.createElement('div');
+
+        const wrapper = new BaseWrapper({ element });
+
+        expect(wrapper.findComponentAll(definition).exists()).toBeFalsy();
+    });
+
     it('should trigger an event', async () => {
         const mock = jest.fn();
         const eventName = 'click';
