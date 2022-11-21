@@ -1,5 +1,5 @@
 import { describe, it, jest, expect } from '@jest/globals';
-import { mount } from '@tybalt/test-utils';
+import { flushPromises, mount } from '@tybalt/test-utils';
 import defineComponent from '../../src/api/define-component';
 
 describe('defineComponent', () => {
@@ -30,7 +30,19 @@ describe('defineComponent', () => {
         expect(wrapper.html()).toBe(`<${name}>${template}</${name}>`);
     });
 
-    it('renders named slotted content', async () => {
+    it('adds a style tag with css', async () => {
+        const name = 'style-tag';
+        const css = '.example { color: rebeccapurple; }';
+        const component = defineComponent({ name, css, shadowMode: "open" });
+
+        const wrapper = await mount(component);
+
+        const styleTag = wrapper.find('style');
+        expect(styleTag.exists()).toBeTruthy();
+        expect(styleTag.innerText()).toBe(css);
+    });
+
+    it.only('renders named slotted content', async () => {
         const name = 'renders-slot';
         const message = 'Hello World';
         const slotName = "content";
@@ -39,6 +51,8 @@ describe('defineComponent', () => {
         const component = defineComponent({ name, template, shadowMode: "open" });
 
         const wrapper = await mount(component, { slot });
+
+        await flushPromises();
 
         expect(wrapper.html()).toContain(message);
     });

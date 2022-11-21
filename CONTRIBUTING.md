@@ -35,6 +35,18 @@ caching, so you'll have to run `build` and `test` with `--force` to get things u
 
 ### Run a single unit test
 
+Update the test file to use `it.only`, then run just that file
+
 ```shell
-$ $(yarn bin jest) -- render -t
+$ $(yarn bin jest) -- render
 ```
+
+### Debug a unit test
+
+Most of the packages have a debug target
+
+```shell
+$ yarn run debug
+```
+
+Then navigate to [chrome://inspect/](chrome://inspect/)

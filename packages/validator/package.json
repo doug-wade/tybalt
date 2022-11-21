@@ -5,11 +5,11 @@
     "main": "dist/index.js",
     "type": "module",
     "scripts": {
-        "build": "tsc",
+        "build": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
         "clean": "rimraf dist/",
         "debug": "node --experimental-vm-modules --inspect-brk ../../node_modules/.bin/jest --runInBand",
         "test": "yarn node --experimental-vm-modules $(yarn bin jest) --coverage",
-        "watch": "tsc --watch"
+        "watch": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --watch"
     },
     "keywords": [],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
