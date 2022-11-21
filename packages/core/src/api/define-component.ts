@@ -18,7 +18,7 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
             super();
     
             this.#props = Object.entries(props).reduce((accumulator, [key, value]) => {
-                return { ...accumulator, key: useObservable({ initialValue: value.default, subscriber: value.validator }) };
+                return { ...accumulator, [key]: useObservable({ initialValue: value.default, subscriber: value.validator }) };
             }, {});
 
             const emit = (type: string, detail: any) => {

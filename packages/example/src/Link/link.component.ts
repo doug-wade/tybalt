@@ -2,7 +2,7 @@ import { defineComponent } from '@tybalt/core';
 import { compose, url, required } from '@tybalt/validator';
 
 export default defineComponent({
-    name: 'ExampleLink',
+    name: 'example-link',
     props: {
         href: {
             required: true,

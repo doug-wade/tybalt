@@ -1,6 +1,6 @@
 import { toKebabCase, toPascalCase } from 'js-convert-case';
-import componentTemplate from '../templates/component';
-import examplesTemplate from '../templates/examples';
+import componentTemplate from '../templates/component.js';
+import examplesTemplate from '../templates/examples.js';
 
 import { ScaffoldContext, ScaffoldCommandOptions, CommandContext } from '../types';
 

@@ -2,12 +2,12 @@
 
 import { Command } from 'commander';
 
-import build from './commands/build';
-import lint from './commands/lint';
-import scaffold from './commands/scaffold';
-import serve from './commands/serve';
-import test from './commands/test';
-import watch from './commands/watch';
+import build from './commands/build.js';
+import lint from './commands/lint.js';
+import scaffold from './commands/scaffold.js';
+import serve from './commands/serve.js';
+import test from './commands/test.js';
+import watch from './commands/watch.js';
 
 const program = new Command();
 

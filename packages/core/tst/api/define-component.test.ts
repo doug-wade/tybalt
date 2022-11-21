@@ -42,7 +42,7 @@ describe('defineComponent', () => {
         expect(styleTag.innerText()).toBe(css);
     });
 
-    it.only('renders named slotted content', async () => {
+    it('renders named slotted content', async () => {
         const name = 'renders-slot';
         const message = 'Hello World';
         const slotName = "content";
@@ -55,5 +55,18 @@ describe('defineComponent', () => {
         await flushPromises();
 
         expect(wrapper.html()).toContain(message);
+    });
+
+    it.only('converts all props to observables', async () => {
+        const name = "props-are-observables";
+        const props = { example: {} };
+
+        let underTest;
+        const component = defineComponent({ name, props, setup(setupProps) { underTest = setupProps } });
+        const wrapper = mount(component);
+
+        expect(underTest.example).toBeTruthy();
+        expect(typeof underTest.observable.subscribe === 'function').toBeTruthy();
+        expect(typeof underTest.handle === 'function').toBeTruthy();
     });
 });

@@ -9,7 +9,7 @@ export type PropDefinition = {
 
 export type DefineComponentsOptions = { 
     name: string, 
-    emits?: Array<string>, 
+    emits?: string[], 
     props?: Object, 
     setup?: Function,
     connectedCallback?: Function,
