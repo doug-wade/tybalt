@@ -25,10 +25,10 @@ export default ({ program }: CommandContext) => {
             }
 
             files.forEach(async (filename) => {
-              console.log(`compiling file ${filename}`);
+              const outFilename = filename.replace('src', options.directory).replace('.ts', '.js');
+              console.log(`compiling file ${filename} -> ${outFilename}`);
               const sourceCode = await fs.promises.readFile(filename);
               const output = await transform(String(sourceCode), { filename });
-              const outFilename = filename.replace('src', options.directory);
               await mkdirp(path.dirname(outFilename));
               fs.promises.writeFile(outFilename, output.code);
             });

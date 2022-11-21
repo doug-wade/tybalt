@@ -5,6 +5,7 @@ import { Command } from 'commander';
 import build from './commands/build';
 import lint from './commands/lint';
 import scaffold from './commands/scaffold';
+import serve from './commands/serve';
 import test from './commands/test';
 import watch from './commands/watch';
 
@@ -18,9 +19,10 @@ program
 [
     build,
     lint,
-    // scaffold,
+    scaffold,
+    serve,
     test,
-    // watch
+    watch,
 ].forEach(command => command({ program }));
 
 program.parse();

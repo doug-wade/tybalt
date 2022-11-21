@@ -1,3 +1,5 @@
+import bs from "browser-sync";
+
 import type { CommandContext } from '../types';
 
 export default ({ program }: CommandContext) => {
@@ -6,11 +8,12 @@ export default ({ program }: CommandContext) => {
         .option('-e, --examples', 'whether to serve the examples', true)
         .option('-w, --website', 'whether to serve the website', true)
         .action((options: { examples: boolean, website: boolean }) => {
-            if (options.examples) {
-                console.log(`serving examples...`);
-            }
-            if (options.website) {
-                console.log(`serving website...`);
-            }
+            const server = bs.create();
+
+            bs.init({
+                server: "./dist"
+            });
+
+            bs.reload("*.html");
         });
 };

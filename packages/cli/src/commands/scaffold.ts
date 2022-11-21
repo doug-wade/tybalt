@@ -38,7 +38,7 @@ const action = (componentName: string, options: ScaffoldCommandOptions) => {
 export default ({ program }: CommandContext) => {
     program.command('scaffold')
         .description('scaffold tybalt-related files')
-        .argument('<string>', 'target', 'component')
+        .argument('[string]', 'target', 'component')
         .option('-n, --name', 'tybalt-example')
         .option('-s, --styles', 'whether to generate a css module', true)
         .option('--template', 'whether to generate an html template', true)

@@ -19,6 +19,7 @@
     "@tybalt/esbuild-plugin": "^0.0.1",
     "@tybalt/eslint-plugin": "^0.0.1",
     "@types/glob": "^8.0.0",
+    "browser-sync": "^2.27.10",
     "commander": "^9.4.1",
     "glob": "^8.0.3",
     "js-convert-case": "^4.2.0",
@@ -27,6 +28,7 @@
     "typescript": "^4.9.3"
   },
   "devDependencies": {
+    "@types/browser-sync": "^2.26.3",
     "@types/mkdirp": "^1.0.2"
   }
 }
