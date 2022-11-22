@@ -14,3 +14,5 @@ coverage/
 
 _site/
 packages/website/lib
+
+coverage-final.json
