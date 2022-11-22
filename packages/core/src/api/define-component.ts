@@ -32,17 +32,28 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
                 emit
             };
 
-            const closure = setup?.call(this, this.#props, this.#context);
+            const setupResults = setup?.call(this, this.#props, this.#context);
+            const state = {};
+            Object.entries(setupResults).forEach(([key, value]) => {
+                if (typeof value?.observable?.subscribe === 'function') {
+                    value.observable.subscribe((val) => {
+                        state[key] = val;
+                        this.#shadowRoot.innerHTML = template(state);
+                    })
+                } else {
+                    state[key] = value;
+                }
+            });
 
             const templateElement = document.createElement('template');
-            templateElement.innerHTML = typeof template === 'function' ? template(closure) : template;
+            templateElement.innerHTML = typeof template === 'function' ? template(state) : template;
             const templateContent = templateElement.content;
 
             this.#shadowRoot = this.attachShadow({ mode: shadowMode });
 
             if (css) {
                 const styleElement = document.createElement('style');
-                styleElement.innerHTML = typeof css === 'function' ? css(closure) : css;
+                styleElement.innerHTML = typeof css === 'function' ? css(state) : css;
 
                 this.#shadowRoot.appendChild(styleElement);
             }
