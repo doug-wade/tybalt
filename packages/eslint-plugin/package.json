@@ -1,8 +1,9 @@
 {
-  "name": "@gambit/eslint-plugin",
+  "name": "@tybalt/eslint-plugin",
   "version": "0.0.1",
-  "description": "An eslint plugin for linting gambit web components",
+  "description": "An eslint plugin for linting tybalt web components",
   "main": "dist/index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
   },

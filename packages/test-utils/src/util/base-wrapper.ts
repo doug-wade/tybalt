@@ -8,6 +8,9 @@ const isString = (x: string | undefined): x is string => typeof x === 'string';
 
 export default class BaseWrapper implements Wrapper {
     element: Element;
+    get length(): Number {
+        return 1;
+    }
 
     constructor({ element }: { element: Element }) {
         this.element = element;
@@ -18,6 +21,14 @@ export default class BaseWrapper implements Wrapper {
     }
 
     html() {
+        if (this.element.shadowRoot) {
+            const openTag = this.element.outerHTML.split('>')[0].slice(1);
+            const closeTagWithCloseBracket = this.element.outerHTML.split('<')[1];
+            const closeTag = closeTagWithCloseBracket.slice(0, closeTagWithCloseBracket.length - 1);
+
+            return `<${openTag}>${this.element.shadowRoot.innerHTML}</${closeTag}>`;
+        }
+
         return this.element.outerHTML;
     }
 
@@ -25,7 +36,11 @@ export default class BaseWrapper implements Wrapper {
         if (isString(attributeName)) {
             return this.element.getAttribute(attributeName);
         } else {
-            return this.element.attributes;
+            const output: { [key: string]: any } = {};
+            for (const attr of this.element.attributes) {
+                output[attr.name] = attr.value;
+            }
+            return output;
         }
     }
 
@@ -37,7 +52,7 @@ export default class BaseWrapper implements Wrapper {
         if (isString(className)) {
             return this.element.classList.contains(className);
         } else {
-            return this.element.classList;
+            return [...this.element.classList];
         }
     }
 
@@ -78,8 +93,14 @@ export default class BaseWrapper implements Wrapper {
 
         if (!elements.length) {
             return new EmptyWrapper({ selector: elementName });
+        } else if (elements.length === 1) {
+            return new BaseWrapper({ element: elements[0] });
         }
 
         return new WrapperArray({ elements: Array.from(elements) });
+    }
+
+    trigger(type: string, payload: any): void {
+        this.element.dispatchEvent(new CustomEvent(type, { detail: payload }));
     }
 };

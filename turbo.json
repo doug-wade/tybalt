@@ -3,12 +3,39 @@
     "pipeline": {
       "build": {
         "dependsOn": ["^build"],
-        "outputs": ["dist/**"]
+        "outputs": [
+          "packages/website/_site", 
+          "packages/website/lib", 
+          "packages/test-utils/dist", 
+          "packages/core/dist"
+        ],
+        "inputs": [
+          "packages/cli/src/**/*.ts",
+          "packages/core/src/**/*.ts",
+          "packages/example/components/**/*.*",
+          "packages/test-utils/src/**/*.ts",
+          "packages/test-utils-lit-example/src/**/*.ts",
+          "packages/validator/src/**/*.ts",
+          "packages/website/components/*.*",
+          "packages/website/pages/**/*.*",
+          "packages/website/index.html"
+        ]
+      },
+      "clean": {
+        "outputs": []
       },
       "test": {
         "dependsOn": ["build"],
-        "outputs": [],
-        "inputs": ["src/**/*.ts", "tst/**/*.ts"]
+        "outputs": [
+          "packages/validator/coverage", 
+          "packages/test-utils-lit-example/coverage", 
+          "packages/test-utils/coverage", 
+          "packages/core/coverage"
+        ],
+        "inputs": [
+          "packages/**/src/**/*.ts", 
+          "packages/**/tst/**/*.ts"
+        ]
       }
     }
   }

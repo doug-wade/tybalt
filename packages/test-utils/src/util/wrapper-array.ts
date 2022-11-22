@@ -6,6 +6,9 @@ import type { Wrapper } from '../types';
 
 export default class WrapperArray implements Wrapper {
     elements: Array<Element>;
+    get length(): Number {
+        return this.elements.length;
+    }
 
     constructor({ elements }: { elements: Array<Element> }) {
         this.elements = elements;
@@ -78,5 +81,9 @@ export default class WrapperArray implements Wrapper {
 
     classes(className?: string): never {
         throw new Error(`classes must be called on a single wrapper, use at(i) to access a wrapper`);
+    }
+
+    trigger(type?: string, payload?: any): never {
+        throw new Error(`trigger must be called on a single wrapper, use at(i) to access a wrapper`);
     }
 }

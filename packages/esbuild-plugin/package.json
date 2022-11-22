@@ -1,8 +1,9 @@
 {
-  "name": "@gambit/esbuild-plugin",
+  "name": "@tybalt/esbuild-plugin",
   "version": "0.0.1",
-  "description": "An esbuild plugin for compiling gambit web components",
+  "description": "An esbuild plugin for compiling tybalt web components",
   "main": "dist/index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
   },

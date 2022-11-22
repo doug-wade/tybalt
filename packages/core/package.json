@@ -1,26 +1,30 @@
 {
-    "name": "@gambit/core",
+    "name": "@tybalt/core",
     "version": "0.0.1",
     "description": "A library for writing web components",
     "main": "dist/index.js",
     "type": "module",
     "scripts": {
-        "build": "tsc",
+        "build": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
         "clean": "rimraf dist/",
-        "test": "yarn node --experimental-vm-modules $(yarn bin jest)",
-        "watch": "tsc --watch"
+        "debug": "node --experimental-vm-modules --inspect-brk $(yarn bin jest) --runInBand",
+        "test": "yarn node --experimental-vm-modules $(yarn bin jest) --coverage",
+        "watch": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --watch"
     },
     "keywords": [
-        "gambit",
+        "tybalt",
         "web component"
     ],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "@gambit/validator": "^0.0.1",
+        "@tybalt/validator": "^0.0.1",
         "core-js": "^3.26.0"
     },
     "devDependencies": {
-        "jest": "^29.3.1"
+        "@types/core-js": "^2.5.5",
+        "esbuild": "^0.15.14",
+        "jest": "^29.3.1",
+        "rimraf": "^3.0.2"
     }
 }

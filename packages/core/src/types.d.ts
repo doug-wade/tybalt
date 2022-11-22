@@ -9,12 +9,15 @@ export type PropDefinition = {
 
 export type DefineComponentsOptions = { 
     name: string, 
-    emits?: Array<string>, 
+    emits?: string[], 
     props?: Object, 
     setup?: Function,
     connectedCallback?: Function,
     disconnectedCallback?: Function,
-    adoptedCallback?: Function
+    adoptedCallback?: Function,
+    template?: string | Function,
+    shadowMode?: "open" | "closed",
+    css?: string | Function
 };
 
 export type useObservableOptions = {

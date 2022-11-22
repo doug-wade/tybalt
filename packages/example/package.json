@@ -1,27 +1,27 @@
 {
-  "name": "@gambit/example",
+  "name": "@tybalt/example",
   "version": "0.0.1",
-  "description": "An example of how to use gambit components",
+  "description": "An example of how to use tybalt components",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "gambit build",
-    "examples": "gambit examples",
-    "lint": "gambit lint",
-    "scaffold": "gambit scaffold",
-    "test": "gambit test",
-    "watch": "gambit watch",
-    "serve": "gambit serve",
-    "prepare": "npm run build && npm run lint && npm run test && npm run examples"
+    "build": "tybalt build",
+    "examples": "tybalt examples",
+    "lint": "tybalt lint",
+    "scaffold": "tybalt scaffold",
+    "test": "tybalt test",
+    "watch": "tybalt watch",
+    "serve": "tybalt serve",
+    "prepare": "yarn run build && yarn run lint && yarn run test && yarn run examples"
   },
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@gambit/cli": "^0.0.1",
-    "@gambit/core": "^0.0.1"
+    "@tybalt/cli": "^0.0.1",
+    "@tybalt/core": "^0.0.1"
   },
   "devDependencies": {
-    "@gambit/test-utils": "^0.0.1"
+    "@tybalt/test-utils": "^0.0.1"
   }
 }

@@ -2,6 +2,9 @@ import type { Wrapper } from '../types';
 
 export default class EmptyWrapper implements Wrapper {
     #selector: string;
+    get length(): Number {
+        return 0;
+    }
 
     constructor({ selector } : { selector: string }) {
         this.#selector = selector;
@@ -45,5 +48,9 @@ export default class EmptyWrapper implements Wrapper {
 
     classes(): never {
         throw new Error(this.#makeErrorMessage({ method: 'classes' }));
+    }
+
+    trigger(type: string, payload?: any): never {
+        throw new Error(this.#makeErrorMessage({ method: 'trigger' }));
     }
 }

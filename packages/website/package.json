@@ -1,13 +1,24 @@
 {
-  "name": "@gambit/website",
+  "name": "@tybalt/website",
   "version": "0.0.1",
-  "description": "The gambit documentation website",
+  "description": "The tybalt documentation website",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "mkdir -p lib/ && cp -r ../core/dist lib/tybalt-core && cp -r ../validator/dist lib/tybalt-validator && eleventy",
+    "clean": "rimraf lib/ _site/",
+    "serve": "eleventy --serve --port 8081",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.2",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "@tybalt/core": "^0.0.1",
+    "@tybalt/eleventy-plugin": "^0.0.1"
+  }
 }
