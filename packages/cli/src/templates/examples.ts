@@ -2,6 +2,7 @@ import type { ScaffoldContext } from '../types';
 
 export default ({ pascalCaseName, implementationFileName } : ScaffoldContext) => {
     return `
+        import { number } from '@tybalt/validator';
         import { defineExample } from '@tybalt/core';
         import ${pascalCaseName} from '${implementationFileName}';
 
@@ -11,7 +12,7 @@ export default ({ pascalCaseName, implementationFileName } : ScaffoldContext) =>
 
         export const Default = defineExample({
             emits: ['increment'],
-            props: { value: String },
+            props: { value: { validator: number() } },
             setup(props, ctx) {
                 const count = reactive(0);
                 const clickHandler = () => { 

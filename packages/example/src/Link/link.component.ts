@@ -5,7 +5,6 @@ export default defineComponent({
     name: 'example-link',
     props: {
         href: {
-            required: true,
             validator: compose(required(), url())
         }
     },
