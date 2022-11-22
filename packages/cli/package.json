@@ -6,19 +6,32 @@
     "tybalt": "dist/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "esbuild src/**/*.ts --outdir=dist",
     "clean": "rimraf dist/",
-    "watch": "tsc --watch",
+    "watch": "esbuild src/**/*.ts --outdir=dist --watch",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
+  "type": "module",
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@chialab/esbuild-plugin-html": "^0.17.2",
+    "@swc/core": "^1.3.18",
     "@tybalt/esbuild-plugin": "^0.0.1",
     "@tybalt/eslint-plugin": "^0.0.1",
+    "@types/glob": "^8.0.0",
+    "browser-sync": "^2.27.10",
     "commander": "^9.4.1",
+    "esbuild": "^0.15.15",
+    "glob": "^8.0.3",
     "js-convert-case": "^4.2.0",
-    "rimraf": "^3.0.2"
+    "mkdirp": "^1.0.4",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.3"
+  },
+  "devDependencies": {
+    "@types/browser-sync": "^2.26.3",
+    "@types/mkdirp": "^1.0.2"
   }
 }

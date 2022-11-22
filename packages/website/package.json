@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "mkdir -p lib/ && cp -r ../core/dist lib/tybalt-core && eleventy",
+    "build": "mkdir -p lib/ && cp -r ../core/dist lib/tybalt-core && cp -r ../validator/dist lib/tybalt-validator && eleventy",
     "clean": "rimraf lib/ _site/",
     "serve": "eleventy --serve --port 8081",
     "test": "echo \"Error: no test specified\" && exit 0"

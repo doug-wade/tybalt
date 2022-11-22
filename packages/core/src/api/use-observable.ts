@@ -1,4 +1,4 @@
-import Observable from 'core-js/proposals/observable';
+import 'core-js/proposals/observable';
 
 import type { useObservableOptions } from '../types';
 
@@ -7,14 +7,14 @@ const isFunction = (x: Function | undefined): x is Function => typeof x === 'fun
 export default ({ initialValue, subscriber }: useObservableOptions) => {
     let handler = (event: any): void => {};
 
-    const observer = new Observable((observer: any) => {
+    const observable = new Observable((observer: any) => {
         handler = (event: any) => { 
             return observer.next(event);
         };
     });
 
     if (subscriber) {
-        observer.subscribe(subscriber);
+        observable.subscribe(subscriber);
     }
 
     if (initialValue) {
@@ -23,5 +23,5 @@ export default ({ initialValue, subscriber }: useObservableOptions) => {
         }
     }
 
-    return { handler, observer };
+    return { handler, observable };
 };

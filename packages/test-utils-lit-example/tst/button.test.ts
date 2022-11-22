@@ -1,9 +1,11 @@
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, jest, test } from '@jest/globals';
 import { mount, flushPromises } from '@tybalt/test-utils';
 import { Button } from '../src/button'
 
 describe('button', () => {
     test('renders with a slot', async () => {
+        jest.setTimeout(300000);
+
         const mockSlot = 'mock slot value'
         const mockAriaLabel = 'mock aria-label value'
 

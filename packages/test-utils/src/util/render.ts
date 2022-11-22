@@ -5,7 +5,7 @@ const uuidv4 = () => 'a1b2c3';
 
 import type { AttributeObject } from '../types'
 
-const ATTRIBUTE_NAME = 'data-wctu-id';
+const ATTRIBUTE_NAME = 'data-tybalt-id';
 const WRAPPER_ELEMENT_TAG = 'div';
 
 export default async ({ elementName, attributes = new Map(), slot = '' }: { elementName: string, attributes?: AttributeObject, slot?: string }): Promise<Element> => {

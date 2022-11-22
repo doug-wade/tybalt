@@ -12,7 +12,7 @@
     "test": "tybalt test",
     "watch": "tybalt watch",
     "serve": "tybalt serve",
-    "prepare": "npm run build && npm run lint && npm run test && npm run examples"
+    "prepare": "yarn run build && yarn run lint && yarn run test && yarn run examples"
   },
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
