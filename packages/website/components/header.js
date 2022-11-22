@@ -1,8 +1,8 @@
-import { defineComponent } from "../lib/tybalt-core/index.js";
+import { css, defineComponent, html } from "../lib/tybalt-core/index.js";
 
 defineComponent({
   name: "tybalt-header",
-  template: `
+  template: html`
     <nav>
       <span>Tybalt Web Components</span>
       <span>
@@ -10,7 +10,7 @@ defineComponent({
       </span>
     </nav>
   `,
-  css: `
+  css: css`
     nav {
       display: flex;
       justify-content: space-between;
