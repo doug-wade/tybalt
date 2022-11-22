@@ -1,1 +1,84 @@
 <h1>@tybalt/validator</h1>
+<h2>Getting Started</h2>
+<p>Install the package</p>
+<pre><code class="language-shell">$ npm install --save @tybalt/validator
+</code></pre>
+<h2>Concepts</h2>
+<h3>Validators</h3>
+<p>Validators are asynchronous functions that return a blob of data.</p>
+<p>A fully functioned validator might look like</p>
+<pre><code class="language-javascript">const myValidator = {
+  async validate(value) {
+    return value.includes(&quot;foo&quot;);
+  },
+  logLevel: &quot;warning&quot;,
+  message: 'must include substring &quot;foo&quot;',
+};
+</code></pre>
+<h2>API</h2>
+<h3>compose</h3>
+<p><code>compose</code> is a method for connecting multiple validators into a single validator.</p>
+<p>If you want to validate that a single value exists, and is a string that is a valid url,
+you can compose those validators into a single validator as follows:</p>
+<pre><code class="language-javascript">import { compose, required, string, url } from &quot;@tybalt/validator&quot;;
+
+const validator = compose(required(), string(), url());
+const result = await validator.validate(value);
+</code></pre>
+<h3>matchesPattern</h3>
+<p><code>matchesPattern</code> creates a validator that checks that a value matches a regex.</p>
+<pre><code class="language-javascript">import { matchesPattern } from '@tybalt/validator';
+
+const validator = matchesPattern({ pattern: \foo\ });
+</code></pre>
+<h3>oneOf</h3>
+<p><code>oneOf</code> creates a validator that checks if a value is member of values.</p>
+<pre><code class="language-javascript">import { oneOf } from &quot;@tybalt/validator&quot;;
+
+const validator = oneOF({ values: [&quot;foo&quot;, &quot;bar&quot;] });
+</code></pre>
+<h3>required</h3>
+<p><code>required</code> creates a validator that checks that a value is defined.</p>
+<pre><code class="language-javascript">import { required } from &quot;@tybalt/validator&quot;;
+
+const validator = required();
+</code></pre>
+<h3>shouldThrow</h3>
+<p><code>shouldThrow</code> wraps a validator, and throws an error if the validator fails.</p>
+<pre><code class="language-javascript">import { required, shouldThrow } from &quot;@tybalt/validator&quot;;
+
+const validator = shouldThrow(required());
+</code></pre>
+<h3>string</h3>
+<p><code>string</code> creates a validator that ensures a value is a string.</p>
+<pre><code class="language-javascript">import { string } from &quot;@tybalt/validator&quot;;
+
+const validator = string();
+</code></pre>
+<h3>url</h3>
+<p><code>url</code> creates a validator that ensures a value is a valid url.</p>
+<pre><code class="language-javascript">import { url } from &quot;@tybalt/validator&quot;;
+
+const validator = url();
+</code></pre>
+<h3>validator</h3>
+<p><code>validator</code> takes a callback that returns a ValidationResult or a boolean, and returns a callback. Use <code>validator</code>
+to create a custom validator.</p>
+<pre><code class="language-javascript">import { validator } from &quot;@tybalt/validator&quot;;
+
+const customValidator = validator((value) =&gt; {
+  value.includes(&quot;substring&quot;);
+});
+</code></pre>
+<h3>withLevel</h3>
+<p><code>withLevel</code> adds a logging and error level to a validation result.</p>
+<pre><code class="language-javascript">import { url, withLevel } from &quot;@tybalt/validator&quot;;
+
+const validator = withLevel(url(), &quot;warning&quot;);
+</code></pre>
+<h3>withMessage</h3>
+<p><code>withMessage</code> adds a custom message to a validation result.</p>
+<pre><code class="language-javascript">import { oneOf, withMessage } from &quot;@tybalt/validator&quot;;
+
+const validator = withMessage(oneOf([true, false]), &quot;must be a boolean&quot;);
+</code></pre>
