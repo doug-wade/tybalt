@@ -1,3 +1,3 @@
-import "./code-block.js";
+import "./link.js";
 import "./footer.js";
 import "./header.js";
