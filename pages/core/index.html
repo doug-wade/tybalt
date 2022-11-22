@@ -1,1 +1,103 @@
 <h1>@tybalt/core</h1>
+<h2>Getting started</h2>
+<p>Install the package</p>
+<pre><code class="language-shell">$ npm install --save @tybalt/core
+</code></pre>
+<h2>API</h2>
+<h3>defineCompnent</h3>
+<p><code>defineComponent</code> creates a new web component.</p>
+<h4>name</h4>
+<p>The name of the web component. This is used when creating a new instance of your web component.
+For instance, if you create a new component with the name <code>my-component</code></p>
+<pre><code class="language-javascript">defineComponent(
+    name: 'my-component'
+);
+</code></pre>
+<p>you can use it in your html with the same name</p>
+<pre><code class="language-html">&lt;my-component /&gt;
+</code></pre>
+<p>Note that component names have to contain the <code>-</code> character.</p>
+<h4>emits</h4>
+<p>emits is an array of strings, which are the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent#parameters">CustomEvent types</a> of all of the events this component might emit.
+This is used for static analysis purposes; if you emit an event that is not listed here or if you don't list an event here that you later emit it's totally fine.</p>
+<pre><code class="language-javascript">defineComponent({
+    name:
+});
+</code></pre>
+<h4>props</h4>
+<p>props is an object that determines how attributes are handled for your web component.</p>
+<pre><code class="language-javascript">import { required, string } from &quot;@tybalt/validator&quot;;
+
+defineComponent({
+  name: &quot;props-example&quot;,
+  props: {
+    example: {
+      default: &quot;foo&quot;,
+      validator: compose(required(), string()),
+    },
+  },
+});
+</code></pre>
+<h4>setup</h4>
+<p><code>setup</code> is a method that is called once a web component is connected to the DOM (it is called as part of
+<code>connectedCallback</code>, once all of the props has been supplied).</p>
+<pre><code class="language-javascript">defineComponent({
+  name: &quot;setup-script&quot;,
+  setup(props) {
+    return {
+      myValue: &quot;my-value&quot;,
+    };
+  },
+});
+</code></pre>
+<h4>connectedCallback</h4>
+<p>Called as part of the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks">web component life cycle</a>.</p>
+<pre><code class="language-javascript">defineComponent({
+  name: &quot;connected-callback&quot;,
+  connectedCallback() {
+    console.log(&quot;connected to the dom&quot;);
+  },
+});
+</code></pre>
+<h4>disconnectedCallback</h4>
+<p>Called as part of the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks">web component life cycle</a>.</p>
+<pre><code class="language-javascript">defineComponent({
+  name: &quot;disconnected-callback&quot;,
+  disconnectedCallback() {
+    console.log(&quot;disconnected from the dom&quot;);
+  },
+});
+</code></pre>
+<h4>adoptedCallback</h4>
+<p>Called as part of the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks">web component life cycle</a>.</p>
+<pre><code class="language-javascript">defineComponent({
+  name: &quot;adopted-callback&quot;,
+  adoptedCallback() {
+    console.log(&quot;adopted to the dom&quot;);
+  },
+});
+</code></pre>
+<h4>shadowMode</h4>
+<p>The mode that the <a href="https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/mode">shadow root mode</a>
+the dom should be attached in. One of: open, closed.</p>
+<pre><code class="language-javascript">defineComponent({
+  name: &quot;shadow-mode&quot;,
+  shadowMode: &quot;open&quot;,
+});
+</code></pre>
+<h3>useObservable</h3>
+<p>Creates a new core-js observable (tc39 stage 1)</p>
+<pre><code class="language-javascript">const { observable, handler } = useObservable();
+</code></pre>
+<h4>initialValue</h4>
+<p>Sets the initial value of the observable.</p>
+<pre><code class="language-javascript">const { observable, handler } = useObservable({ initialValue: 0 });
+</code></pre>
+<h4>subscriber</h4>
+<p>A subscriber to attach to the observable.</p>
+<pre><code class="language-javascript">const { observable, handler } = useObservable({
+  subscriber: (val) =&gt; {
+    console.log(val);
+  },
+});
+</code></pre>
