@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "debug": "node --inspect-brk $(yarn bin jest) --runInBand",
-    "test": "$(yarn bin jest) --coverage"
+    "test": "yarn node --experimental-vm-modules $(yarn bin jest) --coverage"
   },
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",

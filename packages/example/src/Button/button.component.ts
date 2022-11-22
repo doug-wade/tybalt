@@ -1,4 +1,4 @@
-import { defineComponent, useObservable } from '@tybalt/core';
+import { defineComponent, html, useObservable } from '@tybalt/core';
 import { compose, oneOf, required, string } from '@tybalt/validator';
 
 export const BUTTON_VARIANTS = Object.freeze({
@@ -16,7 +16,7 @@ export default defineComponent({
             validator: compose(required(), string(), oneOf(Object.values(BUTTON_VARIANTS)))
         }
     },
-    template: ({ computedClass }) => `<button class="button ${computedClass}" @click="{{clickHandler}}"><slot></slot></button>`,
+    template: html`<button class="button ${computedClass}" @click="{{clickHandler}}"><slot></slot></button>`,
     setup(props, ctx) {
         const clickHandler = () => { ctx.emit('click') };
         const { handler: setComputedClass, observable: computedClass } = useObservable(`button-${props.variant}`);

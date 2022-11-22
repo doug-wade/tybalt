@@ -63,10 +63,10 @@ describe('defineComponent', () => {
 
         let underTest;
         const component = defineComponent({ name, props, setup(setupProps) { underTest = setupProps } });
-        const wrapper = mount(component);
+        mount(component);
 
         expect(underTest.example).toBeTruthy();
-        expect(typeof underTest.observable.subscribe === 'function').toBeTruthy();
-        expect(typeof underTest.handle === 'function').toBeTruthy();
+        expect(typeof underTest.example.observable.subscribe === 'function').toBeTruthy();
+        expect(typeof underTest.example.handler === 'function').toBeTruthy();
     });
 });
