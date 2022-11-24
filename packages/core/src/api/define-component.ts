@@ -1,7 +1,7 @@
-import useObservable from '../api/use-observable';
 import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
+import Observable from 'zen-observable';
 
-import type { DefineComponentsOptions, PropsStateMap, SetupContext } from '../types';
+import type { DefineComponentsOptions, PropsStateMap, PropsStateItem, SetupContext } from '../types';
 
 const nameValidator = shouldThrow(withMessage(compose(required(), matchesPattern(/.*-.*/)), `web component names are required and must contain a hyphen`));
 
@@ -13,12 +13,25 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
         #context: SetupContext;
         #props: PropsStateMap;
         #shadowRoot: ShadowRoot;
+        #attributeListeners: Map<string, { element: Element, attributes: string[] }[]>;
 
         constructor() {
             super();
+            
+            this.#shadowRoot = this.attachShadow({ mode: shadowMode });
+
+            this.#attributeListeners = new Map();
     
             this.#props = Object.entries(props).reduce((accumulator, [key, value]) => {
-                return { ...accumulator, [key]: useObservable({ initialValue: value.default, subscriber: value.validator }) };
+                const prop: Partial<PropsStateItem> = {};
+                const props = { ...accumulator, [key]: prop };
+                prop.observable = new Observable(observer => {
+                    prop.observer = observer;
+                    if (value.default) {
+                        observer.next(value.default);
+                    }
+                });
+                return props;
             }, {});
 
             const emit = (type: string, detail: any) => {
@@ -51,8 +64,6 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
             templateElement.innerHTML = typeof template === 'function' ? template(state) : template;
             const templateContent = templateElement.content;
 
-            this.#shadowRoot = this.attachShadow({ mode: shadowMode });
-
             if (css) {
                 const styleElement = document.createElement('style');
                 styleElement.innerHTML = typeof css === 'function' ? css(state) : css;
@@ -62,7 +73,7 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
 
             this.#shadowRoot.appendChild(templateContent.cloneNode(true));
         }
-
+        
         connectedCallback() {
             connectedCallback?.apply(this);
         }
@@ -76,7 +87,16 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
         }
 
         attributeChangedCallback(name: string, oldValue: any, newValue: any) {
-            this.#props[name].handler(newValue);
+            this.#props[name].observer.next(newValue);
+        }
+
+        #updateAttributes(attributeName: string, attributeValue: any) {
+            const elementsToUpdate = this.#attributeListeners.get(attributeName);
+            elementsToUpdate?.forEach(element => {
+                element.attributes.forEach(attribute => {
+                    element.element.setAttribute(attribute, attributeValue);
+                });
+            });
         }
     };
 

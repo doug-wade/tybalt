@@ -9,4 +9,5 @@ module.exports = {
   },
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["../../node_modules/@tybalt/test-utils/dist/setup.js"],
+  transformIgnorePatterns: ["/node_modules/(?!lit).+\\.js$"],
 };

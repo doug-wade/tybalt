@@ -1,4 +1,4 @@
-import { defineComponent } from '@tybalt/core';
+import { defineComponent, html } from '@tybalt/core';
 import { compose, url, required } from '@tybalt/validator';
 
 export default defineComponent({
@@ -8,5 +8,7 @@ export default defineComponent({
             validator: compose(required(), url())
         }
     },
-    template: '<a class="example-link" href="${href}"><slot></slot></a>'
+    render({ href }) {
+        return html`<a class="example-link" href="${href}"><slot></slot></a>`;
+    }
 });

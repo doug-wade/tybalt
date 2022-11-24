@@ -1,5 +1,6 @@
 import { describe, it, jest, expect } from '@jest/globals';
 import { flushPromises, mount } from '@tybalt/test-utils';
+import Observable from 'zen-observable';
 import defineComponent from '../../src/api/define-component';
 
 describe('defineComponent', () => {
@@ -68,5 +69,28 @@ describe('defineComponent', () => {
         expect(underTest.example).toBeTruthy();
         expect(typeof underTest.example.observable.subscribe === 'function').toBeTruthy();
         expect(typeof underTest.example.handler === 'function').toBeTruthy();
+    });
+
+    it.only('sets the attributes', async () => {
+        const attribute = 'data-attribute';
+        const tag = 'div';
+        const value = 'value';
+        const name = "initial-render";
+        
+        const component = defineComponent({ 
+            name, 
+            setup() { 
+                return { 
+                    foo: Observable.of([value])
+                } 
+            }, 
+            template({ foo }) {
+                return `<${tag} ${attribute}="${foo}"></${tag}>`;
+            }
+        });
+        const wrapper = await mount(component);
+        const actual = await wrapper.find(tag);
+
+        expect(actual.attributes(attribute)).toBe(value);
     });
 });

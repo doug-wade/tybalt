@@ -44,6 +44,14 @@
           "packages/**/src/**/*.ts", 
           "packages/**/tst/**/*.ts"
         ]
+      },
+      "generate-types": {
+        "outputs": [
+          "packages/**/dist/**/*.d.ts"
+        ],
+        "inputs": [
+          "packages/**/src/**/*.ts"
+        ]
       }
     }
   }

@@ -111,7 +111,7 @@ export default class BaseWrapper implements Wrapper {
     }
 
     find(selector: string): Wrapper {
-        const element = this.element.querySelector(selector);
+        const element = this.element.querySelector(selector) ?? this.element.shadowRoot?.querySelector(selector);
 
         if (element) {
             return new BaseWrapper({ element });;

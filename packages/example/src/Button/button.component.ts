@@ -1,5 +1,6 @@
-import { defineComponent, html, useObservable } from '@tybalt/core';
+import { defineComponent, html } from '@tybalt/core';
 import { compose, oneOf, required, string } from '@tybalt/validator';
+import Observable from 'zen-observable';
 
 export const BUTTON_VARIANTS = Object.freeze({
     PRIMARY: 'primary',
@@ -16,13 +17,16 @@ export default defineComponent({
             validator: compose(required(), string(), oneOf(Object.values(BUTTON_VARIANTS)))
         }
     },
-    template: html`<button class="button ${computedClass}" @click="{{clickHandler}}"><slot></slot></button>`,
+    render({ computedClass, clickHandler }) { 
+        return html`<button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>` 
+    },
+    css: '.button-primary { background-color: red }; .button-secondary: { background-color: blue };',
     setup(props, ctx) {
         const clickHandler = () => { ctx.emit('click') };
-        const { handler: setComputedClass, observable: computedClass } = useObservable(`button-${props.variant}`);
-
-        props.variant.observable.subscribe(() => {
-            setComputedClass(`button-${props.variant}`);
+        const computedClass = new Observable(observer => {
+            props.variant.observable.subscribe(() => {
+                observer.next(`button-${props.variant}`);
+            });
         });
 
         return {

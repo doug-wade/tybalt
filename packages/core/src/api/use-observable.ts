@@ -1,16 +1,14 @@
-import 'core-js/proposals/observable';
+import Observable from 'zen-observable';
 
 import type { useObservableOptions } from '../types';
 
-const isFunction = (x: Function | undefined): x is Function => typeof x === 'function';
-
-export default ({ initialValue, subscriber }: useObservableOptions) => {
-    let handler = (event: any): void => {};
-
-    const observable = new Observable((observer: any) => {
-        handler = (event: any) => { 
-            return observer.next(event);
-        };
+export default async ({ initialValue, subscriber }: useObservableOptions) => {
+    const { observer, observable }: { observer:  ZenObservable.SubscriptionObserver<unknown>, observable: Observable<unknown> } = await new Promise((res) => {
+        console.log('instantiating new observable');
+        const observable = new Observable((observer) => {
+            console.log('foo');
+            res({ observer, observable });
+        });
     });
 
     if (subscriber) {
@@ -18,10 +16,8 @@ export default ({ initialValue, subscriber }: useObservableOptions) => {
     }
 
     if (initialValue) {
-        if (isFunction(handler)) {
-            handler(initialValue);
-        }
+        observer.next(initialValue);
     }
 
-    return { handler, observable };
+    return { observer, observable };
 };

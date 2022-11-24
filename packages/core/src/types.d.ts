@@ -12,7 +12,7 @@ export type DefineComponentsOptions = {
     emits?: string[], 
     props?: Object, 
     setup?: (props: PropStateMap, context: { emit: (type: string, detail: any) => void }) => { [key: string]: Observable | Subscriber } | undefined,
-    connectedCallback?: Function,
+    connectedCallback?: () => void,
     disconnectedCallback?: Function,
     adoptedCallback?: Function,
     template?: string | Function,
@@ -31,11 +31,13 @@ export type DefineExampleOptions = {
     listeners: Object,
 };
 
+export type PropsStateItem = {
+    observer: ZenObservable.SubscriptionObserver<unknown>,
+    observable: Observable
+};
+
 export type PropsStateMap = {
-    [Property: string]: {
-        handler: Function,
-        observable: Observable
-    }
+    [Property: string]: PropsStateItem
 };
 
 export type SetupContext = {
