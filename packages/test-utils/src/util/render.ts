@@ -1,7 +1,5 @@
 import { toKebabCase } from 'js-convert-case';
-// import { v4 as uuidv4 } from 'uuid';
-
-const uuidv4 = () => 'a1b2c3';
+import { v4 as uuidv4 } from 'uuid';
 
 import type { AttributeObject } from '../types'
 
