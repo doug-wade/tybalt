@@ -57,7 +57,7 @@ describe('defineComponent', () => {
         expect(wrapper.html()).toContain(message);
     });
 
-    it.only('converts all props to observables', async () => {
+    it('converts all props to observables', async () => {
         const name = "props-are-observables";
         const props = { example: {} };
 
