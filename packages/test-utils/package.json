@@ -7,6 +7,7 @@
     "build": "yarn run compile && yarn run generate-types",
     "clean": "rimraf dist/ coverage/",
     "compile": "esbuild src/**/*.ts src/*.ts --format=cjs --outdir=dist",
+    "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
     "generate-types": "tsc",
     "profile": "ndb $(yarn bin jest)",
     "test": "jest --coverage",

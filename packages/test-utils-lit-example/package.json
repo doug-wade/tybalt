@@ -5,8 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "debug": "$(yarn bin jest) --runInBand",
-    "test": "$(yarn bin jest) --coverage"
+    "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",

@@ -54,6 +54,8 @@ describe('defineComponent', () => {
 
         await flushPromises();
 
+        debugger;
+
         expect(wrapper.html()).toContain(message);
     });
 
