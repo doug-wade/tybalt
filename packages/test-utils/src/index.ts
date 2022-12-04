@@ -1,3 +1,4 @@
-export { default as mount } from './api/mount';
-export { default as flushPromises } from './api/flush-promises';
-export { describe, it, expect } from '@jest/globals';
+import mount from './api/mount';
+import flushPromises from './api/flush-promises';
+
+export { mount, flushPromises };

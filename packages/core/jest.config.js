@@ -2,7 +2,7 @@ export default {
   moduleFileExtensions: ["js", "ts"],
   extensionsToTreatAsEsm: [".ts"],
   transform: {
-    "^.+\\.ts$": ["@swc/jest"],
+    "^.+\\.tsx?$": "esbuild-jest",
   },
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: [
