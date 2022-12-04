@@ -1,4 +1,4 @@
-import failOnConsole from "jest-fail-on-console";
+const failOnConsole = require("jest-fail-on-console");
 
 failOnConsole({
   shouldFailOnLog: true,
