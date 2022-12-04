@@ -1,7 +1,5 @@
 import { toKebabCase } from 'js-convert-case';
-// import { v4 as uuidv4 } from 'uuid';
-
-const uuidv4 = () => 'a1b2c3';
+import { v4 as uuidV4 } from 'uuid';
 
 import type { AttributeObject } from '../types'
 
@@ -9,7 +7,7 @@ const ATTRIBUTE_NAME = 'data-tybalt-id';
 const WRAPPER_ELEMENT_TAG = 'div';
 
 export default async ({ elementName, attributes = new Map(), slot = '' }: { elementName: string, attributes?: AttributeObject, slot?: string }): Promise<Element> => {
-    const id = uuidv4();
+    const id = uuidV4();
 
     const rootElement = document.createElement(WRAPPER_ELEMENT_TAG);
     rootElement.setAttribute(ATTRIBUTE_NAME, id);

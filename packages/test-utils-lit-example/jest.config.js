@@ -1,8 +1,11 @@
-export default {
+module.exports = {
   moduleFileExtensions: ["js", "ts"],
   extensionsToTreatAsEsm: [".ts"],
+  transformIgnorePatterns: [
+    "node_modules/(?!(lit-html|lit-element|lit|@lit)/)",
+  ],
   transform: {
-    "^.+\\.ts$": ["@swc/jest"],
+    "^.+\\.(ts|js|jsx)$": ["@swc/jest"],
   },
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["../../node_modules/@tybalt/test-utils/dist/setup.js"],

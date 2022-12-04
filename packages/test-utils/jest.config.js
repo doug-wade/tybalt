@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   moduleFileExtensions: ["js", "ts"],
   extensionsToTreatAsEsm: [".ts"],
   transform: {

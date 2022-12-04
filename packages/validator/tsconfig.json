@@ -10,6 +10,7 @@
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
       "moduleResolution": "node",
+      "emitDeclarationOnly": true,
       "declaration": true
     },
     "include": [
