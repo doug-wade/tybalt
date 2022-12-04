@@ -39,7 +39,7 @@ describe('defineComponent', () => {
 
         const styleTag = wrapper.find('style');
         expect(styleTag.exists()).toBeTruthy();
-        expect(styleTag.innerText()).toBe(css);
+        expect(styleTag.text()).toBe(css);
     });
 
     it('renders named slotted content', async () => {

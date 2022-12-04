@@ -59,45 +59,49 @@ export default class BaseWrapper implements Wrapper {
     find(selector: string): Wrapper {
         const element = this.element.querySelector(selector);
 
-        if (!element) {
-            return new EmptyWrapper({ selector });
+        if (element) {
+            return new BaseWrapper({ element });;
         }
 
-        return new BaseWrapper({ element });
+        if (this.element.shadowRoot) {
+            const shadowElement = this.element.shadowRoot.querySelector(selector);
+
+            if (shadowElement) {
+                return new BaseWrapper({ element: shadowElement });
+            }
+        }
+
+        return new EmptyWrapper({ selector });
     }
 
     findAll(selector: string): Wrapper {
-        const elements = this.element.querySelectorAll(selector);
+        const elements = Array.from(this.element.querySelectorAll(selector));
+
+        if (this.element.shadowRoot) {
+            const shadowElements = Array.from(this.element.shadowRoot.querySelectorAll(selector));
+
+            if (shadowElements) {
+                elements.concat(shadowElements);
+            }
+        }
 
         if (!elements.length) {
             return new EmptyWrapper({ selector });
         }
 
-        return new WrapperArray({ elements: Array.from(elements) });
+        return new WrapperArray({ elements });
     }
 
     findComponent(definition: CustomElementConstructor): Wrapper {
         const elementName = getElementName({ definition });
-        const element = this.element.querySelector(elementName);
-
-        if (!element) {
-            return new EmptyWrapper({ selector: elementName });
-        }
-
-        return new BaseWrapper({ element });
+        
+        return this.find(elementName);
     }
 
     findComponentAll(definition: CustomElementConstructor): Wrapper {
         const elementName = getElementName({ definition });
-        const elements = this.element.querySelectorAll(elementName);
 
-        if (!elements.length) {
-            return new EmptyWrapper({ selector: elementName });
-        } else if (elements.length === 1) {
-            return new BaseWrapper({ element: elements[0] });
-        }
-
-        return new WrapperArray({ elements: Array.from(elements) });
+        return this.findAll(elementName);
     }
 
     trigger(type: string, payload: any): void {
