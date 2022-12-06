@@ -3,15 +3,41 @@
 <p>Install the package</p>
 <pre><code class="language-shell">$ npm install --save @tybalt/core
 </code></pre>
+<h2>Guide</h2>
+<h3>Slots</h3>
+<p>There are <code>slot</code> and <code>template</code> elements in javascript that work well with web components.</p>
+<pre><code class="language-javascript">defineComponent({
+  name: &quot;slot-example&quot;,
+  shadowMode: &quot;open&quot;,
+  template: `
+    &lt;div class=&quot;my-class&quot;&gt;
+      &lt;span&gt;Example: &lt;/span&gt;
+      &lt;slot name=&quot;content&quot;&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+  `,
+});
+</code></pre>
+<p>When you render a <code>slot-example</code> component, it will replace the <code>slot</code> element with the children
+of the <code>slot-example</code> component. A component rendered in the DOM as</p>
+<pre><code class="language-html">&lt;slot-example&gt;
+  &lt;div my-attribute=&quot;foo&quot;&gt;example content&lt;/div&gt;
+&lt;/slot-example&gt;
+</code></pre>
+<p>Would be rendered to the user as</p>
+<pre><code class="language-html">&lt;div class=&quot;my-class&quot;&gt;
+  &lt;span&gt;Example: &lt;/span&gt;
+  &lt;div my-attribute=&quot;foo&quot;&gt;example content&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
 <h2>API</h2>
-<h3>defineCompnent</h3>
+<h3>defineComponent</h3>
 <p><code>defineComponent</code> creates a new web component.</p>
 <h4>name</h4>
 <p>The name of the web component. This is used when creating a new instance of your web component.
 For instance, if you create a new component with the name <code>my-component</code></p>
-<pre><code class="language-javascript">defineComponent(
-    name: 'my-component'
-);
+<pre><code class="language-javascript">defineComponent({
+  name: &quot;my-component&quot;,
+});
 </code></pre>
 <p>you can use it in your html with the same name</p>
 <pre><code class="language-html">&lt;my-component /&gt;
@@ -21,7 +47,8 @@ For instance, if you create a new component with the name <code>my-component</co
 <p>emits is an array of strings, which are the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent#parameters">CustomEvent types</a> of all of the events this component might emit.
 This is used for static analysis purposes; if you emit an event that is not listed here or if you don't list an event here that you later emit it's totally fine.</p>
 <pre><code class="language-javascript">defineComponent({
-    name:
+  name: &quot;emits-example&quot;,
+  emits: [&quot;my-event&quot;],
 });
 </code></pre>
 <h4>props</h4>
