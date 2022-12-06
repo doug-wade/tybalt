@@ -6,7 +6,7 @@
     "scripts": {
         "build": "esbuild src/index.ts --bundle --format=cjs --outfile=dist/index.js",
         "clean": "rimraf coverage/ dist/",
-        "debug": "yarn node $(yarn bin jest) --runInBand",
+        "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
         "test": "jest --coverage",
         "watch": "esbuild src/index.ts --bundle --format=cjs --outfile=dist/index.js --watch"
     },

@@ -38,7 +38,7 @@ caching, so you'll have to run `build` and `test` with `--force` to get things u
 Update the test file to use `it.only`, then run just that file
 
 ```shell
-$ $(yarn bin jest) -- render
+$ jest -- render
 ```
 
 ### Debug a unit test

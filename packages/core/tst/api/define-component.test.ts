@@ -20,7 +20,7 @@ describe('defineComponent', () => {
         expect(wrapper.element).toBeInstanceOf(HTMLElement);
     });
 
-    it('renders a string template', async () => {
+    it.only('renders a string template', async () => {
         const name = 'renders-string-template';
         const template = `<div>hello world</div>`;
         const component = defineComponent({ name, template, shadowMode: "open" });
@@ -39,7 +39,7 @@ describe('defineComponent', () => {
 
         const styleTag = wrapper.find('style');
         expect(styleTag.exists()).toBeTruthy();
-        expect(styleTag.innerText()).toBe(css);
+        expect(styleTag.text()).toBe(css);
     });
 
     it('renders named slotted content', async () => {
@@ -57,7 +57,7 @@ describe('defineComponent', () => {
         expect(wrapper.html()).toContain(message);
     });
 
-    it.only('converts all props to observables', async () => {
+    it('converts all props to observables', async () => {
         const name = "props-are-observables";
         const props = { example: {} };
 
