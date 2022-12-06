@@ -7,8 +7,9 @@
     "scripts": {
         "build": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
         "clean": "rimraf dist/",
-        "debug": "node --inspect-brk $(yarn bin jest) --runInBand",
+        "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
         "test": "jest",
+        "clean-test": "yarn run clean && yarn run build && yarn run test",
         "watch": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --watch"
     },
     "keywords": [

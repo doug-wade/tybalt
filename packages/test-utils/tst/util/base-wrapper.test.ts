@@ -4,9 +4,13 @@ import render from '../../src/api/mount';
 
 const OPEN_SHADOW_DOM_COMPONENT_NAME = 'open-shadow-dom';
 const CLOSED_SHADOW_DOM_COMPONENT_NAME = 'closed-shadow-dom';
+const OPEN_TEMPLATE_COMPONENT_NAME = 'open-template';
+const CLOSED_TEMPLATE_COMPONENT_NAME = 'closed-template';
 const SHADOW_DOM_TEMPLATE_ID = 'abc123';
 const SHADOW_DOM_TEMPLATE_INNER_TEXT = 'hello world';
 const SHADOW_DOM_TEMPLATE = `<div id="${SHADOW_DOM_TEMPLATE_ID}">${SHADOW_DOM_TEMPLATE_INNER_TEXT}</div>`;
+const SLOT_NAME = 'matt-turner';
+const ADDITIONAL_SLOT_CONTENT = '<span>this is additional content</span>';
 
 const makeShadowDomComponent = ({ mode }: { mode: "open" | "closed" }) => {
     return class extends HTMLElement {
@@ -19,10 +23,26 @@ const makeShadowDomComponent = ({ mode }: { mode: "open" | "closed" }) => {
     }
 }
 
+const makeTemplateComponent = ({ mode }: { mode: "open" | "closed" }) => {
+    const templateElement = document.createElement('template');
+    templateElement.innerHTML = `<div><slot name="${SLOT_NAME}"></slot>${ADDITIONAL_SLOT_CONTENT}</div>`
+
+    return class extends HTMLElement {
+        #shadow;
+        constructor() {
+            super();
+            this.#shadow = this.attachShadow({ mode });
+            this.#shadow.appendChild(templateElement.content.cloneNode(true));
+        }
+    }
+}
+
 describe('base-wrapper', () => {
     beforeAll(() => {
         customElements.define(OPEN_SHADOW_DOM_COMPONENT_NAME, makeShadowDomComponent({ mode: 'open' }));
         customElements.define(CLOSED_SHADOW_DOM_COMPONENT_NAME, makeShadowDomComponent({ mode: 'closed' }));
+        customElements.define(OPEN_TEMPLATE_COMPONENT_NAME, makeTemplateComponent({ mode: 'open' }));
+        customElements.define(CLOSED_TEMPLATE_COMPONENT_NAME, makeTemplateComponent({ mode: 'closed' }));
     });
 
     it('should be able to be instantiated', () => {
@@ -53,22 +73,50 @@ describe('base-wrapper', () => {
 
     describe('html', () => {
         it('should return innerHTML', () => {
-            const mockInnerText = 'hello world';
+            const mockInnerHTML = '<span>hello world</span>';
             const mockElementName = 'div';
             const element = document.createElement(mockElementName);
-            element.innerHTML = mockInnerText;
+            element.innerHTML = mockInnerHTML;
 
             const actual = new BaseWrapper({ element });
 
-            expect(actual.html()).toBe(`<${mockElementName}>${mockInnerText}</${mockElementName}>`);
+            console.log(actual.html());
+
+            expect(actual.html()).toBe(`<${mockElementName}>${mockInnerHTML}</${mockElementName}>`);
         });
 
-        it('should include the shadow do the mode is open', () => {
+        it('should include the shadow dom when the mode is open', () => {
             const element = document.createElement(OPEN_SHADOW_DOM_COMPONENT_NAME);
 
             const actual = new BaseWrapper({ element });
 
             expect(actual.html()).toBe(`<${OPEN_SHADOW_DOM_COMPONENT_NAME}>${SHADOW_DOM_TEMPLATE}</${OPEN_SHADOW_DOM_COMPONENT_NAME}>`);
+        });
+
+        it.only('should include the slotted content for templates when the shadow dom is open', () => {
+            const innerHTML = '<span>this is content</span>';
+            const slotContent = `<div slot="${SLOT_NAME}">${innerHTML}</div>`;
+            const element = document.createElement(OPEN_TEMPLATE_COMPONENT_NAME);
+            element.innerHTML = slotContent;
+            document.body.appendChild(element);
+
+            const actual = new BaseWrapper({ element });
+
+            expect(actual.html()).toContain(innerHTML);
+            expect(actual.html()).toContain(ADDITIONAL_SLOT_CONTENT);
+        });
+
+        it('should not include the slotted content for templates when the shadow dom is closed', () => {
+            const innerHTML = '<span>this is content</span>';
+            const slotContent = `<div slot="${SLOT_NAME}">${innerHTML}</div>`;
+            const element = document.createElement(CLOSED_TEMPLATE_COMPONENT_NAME);
+            element.innerHTML = slotContent;
+            document.body.appendChild(element);
+
+            const actual = new BaseWrapper({ element });
+
+            expect(actual.html()).toContain(slotContent);
+            expect(actual.html()).not.toContain(ADDITIONAL_SLOT_CONTENT);
         });
 
         it('should not include the shadow dom from the .html() method when the mode is closed', () => {

@@ -6,6 +6,53 @@ import type { Wrapper } from '../types';
 
 const isString = (x: string | undefined): x is string => typeof x === 'string';
 
+const reassignSlot = (element: Element): Element => {
+    const slotName = element.getAttribute('name');
+    if (!slotName) {
+        console.warn('slot missing name');
+        return element;
+    }
+
+    const slotContent = document.querySelector(`[slot="${slotName}"]`);
+    if (!slotContent) {
+        console.warn(`no template found matching slot with name ${slotName}`);
+        return element;
+    }
+        
+    const clone = slotContent.cloneNode(true) as Element;
+    clone.removeAttribute('slot');
+
+    debugger;
+
+    return clone;
+}
+
+const stringifyElement = (element: Element): String => {
+    if (element.tagName === 'SLOT') {
+        element = reassignSlot(element);
+    }
+
+    const tagsOnly = element.outerHTML.replace(element.innerHTML, '');
+    const [openingTag, closingTag] = tagsOnly.split('>');
+
+    let children = '';
+    for (const child of element.childNodes) {
+        if (child instanceof Element) {
+            children += stringifyElement(child);
+        } else {
+            children += child.textContent;
+        }
+    }
+    
+    return `${openingTag}>${children}${closingTag}>`;
+}
+
+const stringifyShadowRoot = (shadowRoot: ShadowRoot): String => {
+    return Array.from(shadowRoot.children).reduce((acc, childElement) => {
+        return acc + stringifyElement(childElement);
+    }, '');
+}
+
 export default class BaseWrapper implements Wrapper {
     element: Element;
     get length(): Number {
@@ -22,11 +69,18 @@ export default class BaseWrapper implements Wrapper {
 
     html() {
         if (this.element.shadowRoot) {
-            const openTag = this.element.outerHTML.split('>')[0].slice(1);
-            const closeTagWithCloseBracket = this.element.outerHTML.split('<')[1];
+            const html = this.element.parentElement?.innerHTML || this.element.outerHTML;
+            const openTag = html.split('>')[0].slice(1);
+            const closeTagWithCloseBracket = html.split('<')[1];
             const closeTag = closeTagWithCloseBracket.slice(0, closeTagWithCloseBracket.length - 1);
 
-            return `<${openTag}>${this.element.shadowRoot.innerHTML}</${closeTag}>`;
+            if (this.element.shadowRoot.mode === 'closed') {
+                return `<${openTag}></${closeTag}>`
+            }
+
+            const results = stringifyShadowRoot(this.element.shadowRoot);
+
+            return `<${openTag}>${results}</${closeTag}>`;
         }
 
         return this.element.outerHTML;

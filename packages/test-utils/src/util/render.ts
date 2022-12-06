@@ -23,7 +23,6 @@ export default async ({ elementName, attributes = new Map(), slot = '' }: { elem
         const requestComponent = () => {
             const element = document.querySelector(selector);
             if (element) {
-                document.body.removeChild(rootElement);
                 resolve(element);
             } else {
                 window.requestAnimationFrame(requestComponent);

@@ -20,7 +20,7 @@ describe('defineComponent', () => {
         expect(wrapper.element).toBeInstanceOf(HTMLElement);
     });
 
-    it('renders a string template', async () => {
+    it.only('renders a string template', async () => {
         const name = 'renders-string-template';
         const template = `<div>hello world</div>`;
         const component = defineComponent({ name, template, shadowMode: "open" });
@@ -53,8 +53,6 @@ describe('defineComponent', () => {
         const wrapper = await mount(component, { slot });
 
         await flushPromises();
-
-        debugger;
 
         expect(wrapper.html()).toContain(message);
     });
