@@ -12,10 +12,10 @@ jobs:
       - uses: actions/setup-node@v3
 
         with:
-          node-version: '18.x'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "18.x"
+          registry-url: "https://registry.npmjs.org"
           # Defaults to the user or organization that owns the workflow file
-          scope: '@gambit'
+          scope: "@tybalt"
       - run: yarn
       - run: yarn workspaces foreach --no-private npm publish
         env:
