@@ -19,4 +19,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: yarn test
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
