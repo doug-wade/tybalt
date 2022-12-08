@@ -13,11 +13,8 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           scope: "@tybalt"
       - run: yarn
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: yarn build
+      - run: yarn config set npmAuthToken $NPM_TOKEN
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: yarn workspaces foreach --no-private npm publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

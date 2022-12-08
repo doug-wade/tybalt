@@ -25,18 +25,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Run the tests
         run: yarn test -- --coverage
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Merge code coverage
         run: yarn run combine-coverage
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
