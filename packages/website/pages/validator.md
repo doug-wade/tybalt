@@ -1,3 +1,8 @@
+---
+layout: layout.html
+title: Tybalt validator
+---
+
 # @tybalt/validator
 
 ## Getting Started
