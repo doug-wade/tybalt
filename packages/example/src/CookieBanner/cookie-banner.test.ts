@@ -1,11 +1,8 @@
-import { describe, it, expect, mount } from '@tybalt/test-utils';
+import { mount } from '@tybalt/test-utils';
 import CookieBanner from './cookie-banner.component';
 
 const mountCookieBanner = async () => {
-    const wrapper = await mount(Link, {
-        slot,
-        attributes: { href }
-    });
+    const wrapper = await mount(CookieBanner);
 
     return wrapper;
 }
