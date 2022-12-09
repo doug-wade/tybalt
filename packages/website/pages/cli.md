@@ -1,3 +1,8 @@
+---
+layout: layout.html
+title: Tybalt cli
+---
+
 # @tybalt/cli
 
 ## Getting Started

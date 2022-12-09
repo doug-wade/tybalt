@@ -1,3 +1,8 @@
+---
+layout: layout.html
+title: Tybalt core
+---
+
 # @tybalt/core
 
 ## Getting started
