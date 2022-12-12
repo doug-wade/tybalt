@@ -7,9 +7,8 @@
     <title>Tybalt test utils</title>
   </head>
   <body>
-    <div><h1>@tybalt/test-utils</h1>
-<h2>Installation</h2>
-<pre><code class="language-shell">$ npm install --save-dev @tybalt/test-utils
+    <div><h2>Installation</h2>
+<pre><code class="language-shell">npm install --save-dev @tybalt/test-utils
 </code></pre>
 <h2>Usage</h2>
 <pre><code class="language-javascript">import { mount } from &quot;@tybalt/test-utils&quot;;
@@ -61,20 +60,167 @@ describe(&quot;component&quot;, () =&gt; {
 });
 </code></pre>
 <h3>wrapper</h3>
-<pre><code class="language-javascript">export interface Wrapper {
-  find(selector: string): Wrapper | never;
-  findAll(selector: string): Wrapper | never;
-  findComponent(definition: CustomElementConstructor): Wrapper | never;
-  findComponentAll(definition: CustomElementConstructor): Wrapper | never;
-  html(): string | never;
-  text(): string | null | never;
-  attributes(attributeName?: T): NamedNodeMapOrString&lt;T&gt;;
-  classes(className?: T): DOMTokenListOrBoolean&lt;T&gt;;
-  exists(): boolean;
-  trigger(type: string, payload?: any): void;
-}
+<p>The wrapper is a convenience class for testing DOM elements. Wrapper is an interface that has multiple implemenetations,
+and is returned from methods like <code>find</code>, <code>mount</code> and <code>findComponentAll</code>.</p>
+<h4>attributes</h4>
+<p>The attributes method is used to get the value of attributes that are passed to an element. It takes a single, optional
+parameter, <code>attributeName</code>, the name of the attribute to get the value for.</p>
+<pre><code class="language-javascript">const attributeName = &quot;name&quot;;
+const attributeValue = &quot;value&quot;;
+
+const wrapper = mount(MyComponent, { [attributeName]: attributeValue });
+
+expect(wrapper.attributes(attributeName)).toBe(attributeValue);
 </code></pre>
-<pre><code class="language-javascript">
+<p>If the optional parameter is not provided, instead an object is returned where the keys are all of the attributes, and
+their corresponding values are the attribute values.</p>
+<pre><code class="language-javascript">const attributeName = &quot;name&quot;;
+const attributeValue = &quot;value&quot;;
+
+const wrapper = mount(MyComponent, { [attributeName]: attributeValue });
+
+expect(wrapper.attributes()).toBe({ [attributeName]: attributeValue });
+</code></pre>
+<h4>classes</h4>
+<p>The classes method is used to indicate the presence of classes that are present on an element. It takes a single,
+optional parameter, <code>className</code>, the name of the attribute to check for the presence of.</p>
+<pre><code class="language-javascript">const className = &quot;my-class&quot;;
+const MyComponent = defineComponent({
+  template: `&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`,
+});
+
+const wrapper = mount(MyComponent);
+
+expect(wrapper.classes(className)).toBeTruthy();
+</code></pre>
+<p>If the optional parameter is not provided, instead an object is returned where the keys are all of the attributes, and
+their corresponding values are the attribute values.</p>
+<pre><code class="language-javascript">const className = &quot;my-class&quot;;
+const MyComponent = defineComponent({
+  template: `&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`,
+});
+
+const wrapper = mount(MyComponent);
+
+expect(wrapper.classes()).toBe({ [className]: true });
+</code></pre>
+<h4>exists</h4>
+<p>Indicates whether an element exists or not.</p>
+<p>For example, if you call this method on the result of a <code>mount</code> call, it will return <code>true</code> because <code>mount</code> returns
+an element.</p>
+<pre><code class="language-javascript">const wrapper = mount(MyComponent);
+
+expect(wrapper.exists()).toBeTruthy();
+</code></pre>
+<p>If, instead, you query the result for a element that is not present, it will return <code>false</code>.</p>
+<pre><code class="language-javascript">const MyComponent = defineComponent({
+  template: `&lt;div&gt;Hello World&lt;/div&gt;`,
+});
+
+const wrapper = mount(MyComponent);
+const element = wrapper.find(&quot;button&quot;);
+
+expect(element.exists()).not.toBeTruthy();
+</code></pre>
+<h4>find</h4>
+<p>Finds an element that is a descendant of this wrapper that matches a
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">CSS selector string</a>.
+Only returns the first element matching the selector.</p>
+<pre><code class="language-javascript">const MyComponent = defineComponent({
+  template: `&lt;div&gt;Hello World&lt;/div&gt;`,
+});
+const wrapper = mount(MyComponent);
+const element = wrapper.find('div[data-jest=&quot;my-selector&quot;]');
+
+expect(element.exists()).toBeTruthy();
+</code></pre>
+<h4>findAll</h4>
+<p>Finds all elements that are descendants of this wrapper that match a
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">CSS selector string</a>.
+Returns all elements matching the selector.</p>
+<pre><code class="language-javascript">const MyComponent = defineComponent({
+  template: `&lt;ul&gt;&lt;li&gt;one&lt;/li&gt;&lt;li&gt;two&lt;/li&gt;&lt;li&gt;three&lt;/li&gt;&lt;/ul&gt;`,
+});
+const wrapper = mount(MyComponent);
+const elements = wrapper.findAll(&quot;li&quot;);
+
+expect(elements.length).toBe(3);
+</code></pre>
+<h4>findComponent</h4>
+<p>Finds an element that is a descendant of this wrapper that is an instance of the constructor provided as the first
+argument. Only returns the first element that is an instance of the constructor.</p>
+<pre><code class="language-javascript">const MyComponent = defineComponent({
+  template: `&lt;div&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/div&gt;`,
+});
+const wrapper = mount(MyComponent);
+const element = wrapper.findComponent(MyOtherComponent);
+
+expect(element.exists()).toBeTruthy();
+</code></pre>
+<h4>findComponentAll</h4>
+<p>Finds all elements that are descendants of this wrapper that are an instance of the constructor provided as the first
+argument. Returns all elements that is an instance of the constructor.</p>
+<pre><code class="language-javascript">const MyComponent = defineComponent({
+  template: `
+    &lt;ul&gt;
+      &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
+    &lt;/ul&gt;`,
+});
+const wrapper = mount(MyComponent);
+const elements = wrapper.findComponentAll(MyOtherComponent);
+
+expect(elements.length).toBe(3);
+</code></pre>
+<h4>html</h4>
+<p>Returns a string of the html of a wrapper.</p>
+<pre><code class="language-javascript">const template = `&lt;div&gt;&lt;span&gt;foo&lt;/span&gt;&lt;span&gt;bar&lt;/span&gt;&lt;span&gt;baz&lt;/span&gt;&lt;/div&gt;`;
+const MyComponent = defineComponent({ template });
+
+const wrapper = mount(MyComponent);
+
+expect(wrapper.html()).toBe(template);
+</code></pre>
+<p><code>html</code> returns the html <em>as it would be seen by a third-party script</em>. For instance, if you use the shadow DOM and you
+close it, the shadow DOM will not be returned from <code>html</code>.</p>
+<pre><code class="language-javascript">const template = `&lt;div&gt;my secret DOM&lt;/div&gt;`;
+const MyComponent = defineComponent({ template, shadowMode: &quot;closed&quot; });
+
+const wrapper = mount(MyComponent);
+
+expect(wrapper.html()).toBe(`&lt;my-component&gt;&lt;/my-component&gt;`);
+</code></pre>
+<p>If, instead, you have an open shadow DOM, it will be included in the returned <code>html</code>.</p>
+<pre><code class="language-javascript">const template = `&lt;div&gt;my open DOM&lt;/div&gt;`;
+const MyComponent = defineComponent({ template, shadowMode: &quot;open&quot; });
+
+const wrapper = mount(MyComponent);
+
+expect(wrapper.html()).toBe(`&lt;my-component&gt;${template}&lt;/my-component&gt;`);
+</code></pre>
+<h4>length</h4>
+<p>Returns the number of DOM elements that are wrapped by this wrapper.</p>
+<pre><code class="language-javascript">const wrapper = mount(MyComponent);
+
+expect(wrapper.length).toBe(1);
+</code></pre>
+<h4>text</h4>
+<p>Returns the innerText of an html element.</p>
+<pre><code class="language-javascript">const template = `&lt;div&gt;&lt;span&gt;foo&lt;/span&gt;&lt;span&gt;bar&lt;/span&gt;&lt;span&gt;baz&lt;/span&gt;&lt;/div&gt;`;
+const MyComponent = defineComponent({ template });
+
+const wrapper = mount(MyComponent);
+
+expect(wrapper.text()).toBe(`foo bar baz`);
+</code></pre>
+<h4>trigger</h4>
+<p>Fires a custom event from the wrapped element.</p>
+<pre><code class="language-javascript">const eventName = &quot;click&quot;;
+const payload = { foo: &quot;bar&quot; };
+
+const wrapper = mount(MyComponent);
+wrapper.trigger(eventName, payload);
 </code></pre>
 </div>
     <!-- Google tag (gtag.js) -->
