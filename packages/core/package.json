@@ -5,9 +5,11 @@
     "main": "dist/index.js",
     "type": "module",
     "scripts": {
-        "build": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
+        "build": "yarn run compile && yarn run generate-types",
         "clean": "rimraf dist/",
+        "compile": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
         "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
+        "generate-types": "tsc",
         "test": "jest",
         "clean-test": "yarn run clean && yarn run build && yarn run test",
         "watch": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --watch"

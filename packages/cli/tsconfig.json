@@ -10,7 +10,8 @@
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
       "moduleResolution": "node",
-      "declaration": true
+      "declaration": true,
+      "emitDeclarationOnly": true
     },
     "include": [
       "src/**/*"
