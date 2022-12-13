@@ -7,6 +7,7 @@
     "build": "turbo build",
     "clean": "turbo clean",
     "test": "turbo test",
+    "generate-types": "turbo generate-types",
     "combine-coverage": "istanbul-merge --out coverage-final.json 'packages/**/coverage/coverage-final.json'"
   },
   "keywords": [],

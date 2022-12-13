@@ -6,8 +6,10 @@
     "tybalt": "dist/index.js"
   },
   "scripts": {
-    "build": "esbuild src/**/*.ts --outdir=dist",
+    "build": "yarn run compile && yarn run generate-types",
     "clean": "rimraf dist/",
+    "compile": "esbuild src/**/*.ts --outdir=dist",
+    "generate-types": "tsc",
     "watch": "esbuild src/**/*.ts --outdir=dist --watch",
     "test": "jest"
   },

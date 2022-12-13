@@ -11,7 +11,7 @@ export type DefineComponentsOptions = {
     name: string, 
     emits?: string[], 
     props?: Object, 
-    setup?: Function,
+    setup?: (props: PropStateMap, context: { emit: (type: string, detail: any) => void }) => { [key: string]: Observable | Subscriber } | undefined,
     connectedCallback?: Function,
     disconnectedCallback?: Function,
     adoptedCallback?: Function,
