@@ -1,7 +1,8 @@
 import useObservable from '../api/use-observable';
 import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
+import Observable from 'zen-observable';
 
-import type { DefineComponentsOptions, PropsStateMap, SetupContext } from '../types';
+import type { DefineComponentsOptions, PropsStateMap, PropsStateItem, SetupContext } from '../types';
 
 const nameValidator = shouldThrow(withMessage(compose(required(), matchesPattern(/.*-.*/)), `web component names are required and must contain a hyphen`));
 
@@ -18,7 +19,15 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
             super();
     
             this.#props = Object.entries(props).reduce((accumulator, [key, value]) => {
-                return { ...accumulator, [key]: useObservable({ initialValue: value.default, subscriber: value.validator }) };
+                const prop: Partial<PropsStateItem> = {};
+                const props = { ...accumulator, [key]: prop };
+                prop.observable = new Observable(observer => {
+                    prop.observer = observer;
+                    if (value.default) {
+                        observer.next(value.default);
+                    }
+                });
+                return props;
             }, {});
 
             const emit = (type: string, detail: any) => {
