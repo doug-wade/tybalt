@@ -1,4 +1,4 @@
-import { describe, it, expect, mount } from '@tybalt/test-utils';
+import { mount } from '@tybalt/test-utils';
 import Link from './link.component';
 
 const href = 'http://www.example.com';
