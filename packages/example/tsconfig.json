@@ -16,6 +16,5 @@
     "include": [
       "src/**/*"
     ],
-    "baseUrl": ".",
     "module": "es2022"
   }

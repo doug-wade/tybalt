@@ -4,6 +4,7 @@
   "description": "An example of how to use tybalt components",
   "main": "index.js",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tybalt build",
     "examples": "tybalt examples",

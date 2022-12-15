@@ -1,4 +1,4 @@
-import { describe, it, expect, mount } from '@tybalt/test-utils';
+import { mount } from '@tybalt/test-utils';
 import Button from './button.component';
 
 describe('button', () => {
