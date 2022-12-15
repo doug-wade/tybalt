@@ -1,2 +1,2 @@
-declare const _default: (strings: string[], ...keys: any[]) => string;
+declare const _default: (strings: TemplateStringsArray, ...keys: any[]) => string;
 export default _default;
