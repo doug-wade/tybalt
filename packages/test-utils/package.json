@@ -1,6 +1,6 @@
 {
   "name": "@tybalt/test-utils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A set of utilities for unit testing web components",
   "main": "dist/index.js",
   "scripts": {

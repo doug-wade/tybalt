@@ -1,40 +1,40 @@
 {
-    "name": "@tybalt/core",
-    "version": "0.0.2",
-    "description": "A library for writing web components",
-    "main": "dist/index.js",
-    "type": "module",
-    "scripts": {
-        "build": "yarn run compile && yarn run generate-types",
-        "clean": "rimraf dist/",
-        "compile": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
-        "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
-        "generate-types": "tsc",
-        "test": "jest",
-        "clean-test": "yarn run clean && yarn run build && yarn run test",
-        "watch": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --watch"
-    },
-    "keywords": [
-        "tybalt",
-        "web component"
-    ],
-    "author": "Douglas Wade <douglas.b.wade@gmail.com>",
-    "license": "MIT",
-    "dependencies": {
-        "@tybalt/validator": "^0.0.2",
-        "core-js": "^3.26.0"
-    },
-    "devDependencies": {
-        "@types/core-js": "^2.5.5",
-        "esbuild": "^0.16.4",
-        "esbuild-jest": "^0.5.0",
-        "jest": "^29.3.1",
-        "rimraf": "^3.0.2",
-        "typescript": "^4.9.4"
-    },
-    "files": [
-        "dist/*",
-        "package.json",
-        "README.md"
-    ]
+  "name": "@tybalt/core",
+  "version": "0.0.3",
+  "description": "A library for writing web components",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "yarn run compile && yarn run generate-types",
+    "clean": "rimraf dist/",
+    "compile": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
+    "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
+    "generate-types": "tsc",
+    "test": "jest",
+    "clean-test": "yarn run clean && yarn run build && yarn run test",
+    "watch": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --watch"
+  },
+  "keywords": [
+    "tybalt",
+    "web component"
+  ],
+  "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@tybalt/validator": "^0.0.3",
+    "core-js": "^3.26.0"
+  },
+  "devDependencies": {
+    "@types/core-js": "^2.5.5",
+    "esbuild": "^0.16.4",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^29.3.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.4"
+  },
+  "files": [
+    "dist/*",
+    "package.json",
+    "README.md"
+  ]
 }
