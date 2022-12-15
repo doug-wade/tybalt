@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   moduleFileExtensions: ["js", "ts"],
   extensionsToTreatAsEsm: [".ts"],
   transform: {
@@ -6,7 +6,7 @@ export default {
   },
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: [
-    "../../node_modules/@tybalt/test-utils/dist/setup.js",
+    "../../node_modules/@tybalt/test-utils/dist/cjs/setup.js",
     "<rootDir>/jest.setup.js",
   ],
   collectCoverageFrom: ["src/**/*.ts"],
