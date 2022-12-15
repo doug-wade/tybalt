@@ -1,49 +1,43 @@
 {
-    "$schema": "https://turbo.build/schema.json",
-    "pipeline": {
-      "build": {
-        "dependsOn": ["^build"],
-        "outputs": [
-          "packages/website/_site", 
-          "packages/website/lib", 
-          "packages/test-utils/dist", 
-          "packages/core/dist"
-        ],
-        "inputs": [
-          "packages/cli/src/**/*.ts",
-          "packages/core/src/**/*.ts",
-          "packages/example/components/**/*.*",
-          "packages/test-utils/src/**/*.ts",
-          "packages/test-utils-lit-example/src/**/*.ts",
-          "packages/validator/src/**/*.ts",
-          "packages/website/components/*.*",
-          "packages/website/pages/**/*.*",
-          "packages/website/index.html"
-        ]
-      },
-      "clean": {
-        "outputs": []
-      },
-      "generate-types": {
-        "outputs": [
-          "packages/**/dist/**/*.d.ts"
-        ],
-        "inputs": [
-          "packages/**/src/**/*.ts"
-        ]
-      },
-      "test": {
-        "dependsOn": ["build"],
-        "outputs": [
-          "packages/validator/coverage", 
-          "packages/test-utils-lit-example/coverage", 
-          "packages/test-utils/coverage", 
-          "packages/core/coverage"
-        ],
-        "inputs": [
-          "packages/**/src/**/*.ts", 
-          "packages/**/tst/**/*.ts"
-        ]
-      }
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "packages/website/_site",
+        "packages/website/lib",
+        "packages/test-utils/dist",
+        "packages/core/dist",
+        "packages/validator/dist"
+      ],
+      "inputs": [
+        "packages/cli/src/**/*.ts",
+        "packages/core/src/**/*.ts",
+        "packages/example/components/**/*.*",
+        "packages/test-utils/src/**/*.ts",
+        "packages/test-utils-lit-example/src/**/*.ts",
+        "packages/validator/src/**/*.ts",
+        "packages/website/components/*.*",
+        "packages/website/pages/**/*.*",
+        "packages/website/index.html"
+      ]
+    },
+    "clean": {
+      "outputs": []
+    },
+    "generate-types": {
+      "outputs": ["packages/**/dist/**/*.d.ts"],
+      "inputs": ["packages/**/src/**/*.ts"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": [
+        "packages/validator/coverage",
+        "packages/test-utils-lit-example/coverage",
+        "packages/test-utils/coverage",
+        "packages/core/coverage"
+      ],
+      "inputs": ["packages/**/src/**/*.ts", "packages/**/tst/**/*.ts"]
     }
   }
+}
