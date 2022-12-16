@@ -9,12 +9,13 @@ export type PropDefinition = {
 };
 
 export type PropsDefinitionMap = {
+    [Property: string]: PropDefinition
 };
 
 export type DefineComponentsOptions = { 
     name: string, 
     emits?: string[], 
-    props?: PropDefinitionMap, 
+    props?: PropsDefinitionMap, 
     setup?: (props: PropStateMap, context: { emit: (type: string, detail: any) => void }) => { [key: string]: Observable | Subscriber } | undefined,
     connectedCallback?: Function,
     disconnectedCallback?: Function,
