@@ -25,7 +25,7 @@
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@tybalt/validator": "0.0.6",
+    "@tybalt/validator": "^0.0.6",
     "core-js": "^3.26.0"
   },
   "devDependencies": {

@@ -9,5 +9,4 @@ module.exports = {
     "../../node_modules/@tybalt/test-utils/dist/cjs/setup.js",
     "<rootDir>/jest.setup.js",
   ],
-  collectCoverageFrom: ["src/**/*.ts"],
 };
