@@ -34,12 +34,24 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
 
             const setupResults = setup?.call(this, this.#props, this.#context);
             const state: Map<string, any> = new Map();
+
+            console.log('got setupResults', setupResults);
+
             if (setupResults && typeof template === 'function') {
                 Object.entries(setupResults).forEach(([key, value]) => {
+                    console.log('key', key);
+                    
+                    console.log('typeof value.observable', value.observable);
+
                     if (typeof value?.observable?.subscribe === 'function') {
+                        console.log('value', value);
                         value.observable.subscribe((val: any) => {
                             state.set(key, val);
-                            this.#shadowRoot.innerHTML = template(state);
+                            const newHtml = template(state);
+
+                            console.log('newHtml', newHtml);
+
+                            this.#shadowRoot.innerHTML = newHtml;
                         })
                     } else {
                         state.set(key, value);

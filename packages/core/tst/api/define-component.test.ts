@@ -59,7 +59,7 @@ describe('defineComponent', () => {
 
     it('converts all props to observables', async () => {
         const name = "props-are-observables";
-        const props = { example: {} };
+        const props = { example: { } };
 
         let underTest;
         const component = defineComponent({ name, props, setup(setupProps) { underTest = setupProps } });

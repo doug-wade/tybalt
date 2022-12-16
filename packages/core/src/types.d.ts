@@ -3,8 +3,7 @@ import type { Observable, SubscriberFunction } from 'core-js/proposals/observabl
 export type PropType = String | Number | Object | Array<any>;
 
 export type PropDefinition = {
-    name: string,
-    default: any,
+    default?: any,
     validator?: Function
 };
 
@@ -16,7 +15,7 @@ export type DefineComponentsOptions = {
     name: string, 
     emits?: string[], 
     props?: PropsDefinitionMap, 
-    setup?: (props: PropStateMap, context: { emit: (type: string, detail: any) => void }) => { [key: string]: Observable | Subscriber } | undefined,
+    setup?: (props: PropStateMap, context: { emit: (type: string, detail: any) => void }) => { [key: string]: Observable | Subscriber } | void,
     connectedCallback?: Function,
     disconnectedCallback?: Function,
     adoptedCallback?: Function,
