@@ -44,7 +44,7 @@ const validator = matchesPattern({ pattern: \foo\ });
 <p><code>oneOf</code> creates a validator that checks if a value is member of values.</p>
 <pre><code class="language-javascript">import { oneOf } from &quot;@tybalt/validator&quot;;
 
-const validator = oneOF({ values: [&quot;foo&quot;, &quot;bar&quot;] });
+const validator = oneOf([&quot;foo&quot;, &quot;bar&quot;]);
 </code></pre>
 <h3>required</h3>
 <p><code>required</code> creates a validator that checks that a value is defined.</p>
