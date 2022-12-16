@@ -1,3 +1,8 @@
+---
+layout: layout.html
+title: Tybalt validator
+---
+
 # @tybalt/validator
 
 ## Getting Started
@@ -59,7 +64,7 @@ const validator = matchesPattern({ pattern: \foo\ });
 ```javascript
 import { oneOf } from "@tybalt/validator";
 
-const validator = oneOF({ values: ["foo", "bar"] });
+const validator = oneOf(["foo", "bar"]);
 ```
 
 ### required

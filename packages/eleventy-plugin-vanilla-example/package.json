@@ -1,14 +1,15 @@
 {
-    "name": "@tybalt/eleventy-plugin-vanilla-example",
-    "version": "0.0.1",
-    "description": "An example of using @tybalt/eleventy-plugin with vanilla web components",
-    "main": "index.js",
-    "private": true,
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 0"
-    },
-    "keywords": ["eleventy"],
-    "author": "Douglas Wade <douglas.b.wade@gmail.com>",
-    "license": "MIT"
-  }
-  
+  "name": "@tybalt/eleventy-plugin-vanilla-example",
+  "version": "0.0.6",
+  "description": "An example of using @tybalt/eleventy-plugin with vanilla web components",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [
+    "eleventy"
+  ],
+  "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+  "license": "MIT"
+}

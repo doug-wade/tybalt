@@ -33,16 +33,16 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
             };
 
             const setupResults = setup?.call(this, this.#props, this.#context);
-            const state = {};
-            if (setupResults) {
+            const state: Map<string, any> = new Map();
+            if (setupResults && typeof template === 'function') {
                 Object.entries(setupResults).forEach(([key, value]) => {
                     if (typeof value?.observable?.subscribe === 'function') {
-                        value.observable.subscribe((val) => {
-                            state[key] = val;
+                        value.observable.subscribe((val: any) => {
+                            state.set(key, val);
                             this.#shadowRoot.innerHTML = template(state);
                         })
                     } else {
-                        state[key] = value;
+                        state.set(key, value);
                     }
                 });
             }

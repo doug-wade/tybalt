@@ -8,5 +8,7 @@ module.exports = {
     "^.+\\.(ts|js|jsx)$": ["@swc/jest"],
   },
   testEnvironment: "jest-environment-jsdom",
-  setupFilesAfterEnv: ["../../node_modules/@tybalt/test-utils/dist/setup.js"],
+  setupFilesAfterEnv: [
+    "../../node_modules/@tybalt/test-utils/dist/cjs/setup.js",
+  ],
 };
