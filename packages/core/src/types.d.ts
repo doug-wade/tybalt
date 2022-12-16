@@ -4,13 +4,18 @@ export type PropType = String | Number | Object | Array<any>;
 
 export type PropDefinition = {
     name: string,
+    default: any,
     validator?: Function
+};
+
+export type PropsDefinitionMap = {
+    [Property: string]: PropDefinition
 };
 
 export type DefineComponentsOptions = { 
     name: string, 
     emits?: string[], 
-    props?: Object, 
+    props?: PropsDefinitionMap, 
     setup?: (props: PropStateMap, context: { emit: (type: string, detail: any) => void }) => { [key: string]: Observable | Subscriber } | undefined,
     connectedCallback?: Function,
     disconnectedCallback?: Function,
