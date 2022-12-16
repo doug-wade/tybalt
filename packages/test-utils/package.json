@@ -6,7 +6,7 @@
   "main": "dist/cjs/index.js",
   "scripts": {
     "build": "yarn run compile && yarn run generate-types",
-    "clean": "rimraf dist/ coverage/",
+    "clean": "rimraf dist/",
     "compile": "yarn run compile-esm && yarn run compile-commonjs",
     "compile-esm": "esbuild src/**/*.ts src/*.ts --format=esm --outdir=dist/mjs",
     "compile-commonjs": "esbuild src/**/*.ts src/*.ts --format=cjs --outdir=dist/cjs",
