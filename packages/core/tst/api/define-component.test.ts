@@ -20,7 +20,7 @@ describe('defineComponent', () => {
         expect(wrapper.element).toBeInstanceOf(HTMLElement);
     });
 
-    it.only('renders a string template', async () => {
+    it('renders a string template', async () => {
         const name = 'renders-string-template';
         const template = `<div>hello world</div>`;
         const component = defineComponent({ name, template, shadowMode: "open" });

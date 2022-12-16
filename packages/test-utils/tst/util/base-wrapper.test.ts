@@ -93,7 +93,7 @@ describe('base-wrapper', () => {
             expect(actual.html()).toBe(`<${OPEN_SHADOW_DOM_COMPONENT_NAME}>${SHADOW_DOM_TEMPLATE}</${OPEN_SHADOW_DOM_COMPONENT_NAME}>`);
         });
 
-        it.only('should include the slotted content for templates when the shadow dom is open', () => {
+        it('should include the slotted content for templates when the shadow dom is open', () => {
             const innerHTML = '<span>this is content</span>';
             const slotContent = `<div slot="${SLOT_NAME}">${innerHTML}</div>`;
             const element = document.createElement(OPEN_TEMPLATE_COMPONENT_NAME);
