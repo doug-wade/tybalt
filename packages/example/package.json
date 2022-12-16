@@ -1,6 +1,6 @@
 {
   "name": "@tybalt/example",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An example of how to use tybalt components",
   "main": "index.js",
   "private": true,
@@ -19,11 +19,11 @@
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@tybalt/cli": "^0.0.4",
-    "@tybalt/core": "^0.0.4"
+    "@tybalt/cli": "^0.0.5",
+    "@tybalt/core": "^0.0.5"
   },
   "devDependencies": {
-    "@tybalt/test-utils": "^0.0.4",
+    "@tybalt/test-utils": "^0.0.5",
     "jest-environment-jsdom": "^29.3.1"
   }
 }
