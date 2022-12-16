@@ -45,3 +45,8 @@ export type PropsStateMap = {
 export type SetupContext = {
     emit(type: string, detail: any): void
 };
+
+export type PropsStateItem = {
+    observer: ZenObservable.SubscriptionObserver<unknown>,
+    observable: Observable
+};
