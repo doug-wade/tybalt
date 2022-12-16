@@ -45,7 +45,7 @@
     "ts-node": "^10.9.1"
   },
   "files": [
-    "dist/*",
+    "dist/**/*",
     "package.json",
     "README.md"
   ]
