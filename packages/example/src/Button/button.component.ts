@@ -11,6 +11,7 @@ export const BUTTON_VARIANTS = Object.freeze({
 
 export default defineComponent({
     name: 'example-button',
+    shadowMode: 'open',
     emits: ['click'],
     props: {
         variant: {

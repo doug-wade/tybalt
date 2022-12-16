@@ -80,8 +80,6 @@ describe('base-wrapper', () => {
 
             const actual = new BaseWrapper({ element });
 
-            console.log(actual.html());
-
             expect(actual.html()).toBe(`<${mockElementName}>${mockInnerHTML}</${mockElementName}>`);
         });
 

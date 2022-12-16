@@ -5,5 +5,4 @@ module.exports = {
     "^.+\\.ts$": ["@swc/jest"],
   },
   setupFilesAfterEnv: ["./jest.setup.js"],
-  collectCoverageFrom: ["src/**/*.ts"],
 };

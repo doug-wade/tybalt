@@ -19,11 +19,12 @@
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@tybalt/cli": "0.0.6",
-    "@tybalt/core": "0.0.6"
+    "@tybalt/cli": "^0.0.6",
+    "@tybalt/core": "^0.0.6"
   },
   "devDependencies": {
-    "@tybalt/test-utils": "0.0.6",
+    "@tybalt/test-utils": "^0.0.6",
+    "esbuild-jest": "^0.5.0",
     "jest-environment-jsdom": "^29.3.1"
   }
 }

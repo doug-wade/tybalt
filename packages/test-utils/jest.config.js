@@ -8,5 +8,4 @@ module.exports = {
     "#src/(.*)": "<rootDir>/src/$1",
   },
   testEnvironment: "jest-environment-jsdom",
-  collectCoverageFrom: ["src/**/*.ts", "!src/**/*.d.ts"],
 };

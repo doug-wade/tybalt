@@ -28,16 +28,6 @@
     "generate-types": {
       "outputs": ["packages/**/dist/**/*.d.ts"],
       "inputs": ["packages/**/src/**/*.ts"]
-    },
-    "test": {
-      "dependsOn": ["build"],
-      "outputs": [
-        "packages/validator/coverage",
-        "packages/test-utils-lit-example/coverage",
-        "packages/test-utils/coverage",
-        "packages/core/coverage"
-      ],
-      "inputs": ["packages/**/src/**/*.ts", "packages/**/tst/**/*.ts"]
     }
   }
 }
