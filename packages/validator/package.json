@@ -1,6 +1,6 @@
 {
   "name": "@tybalt/validator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A library for performing asynchronous validations",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
