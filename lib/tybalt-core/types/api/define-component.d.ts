@@ -1,13 +1,23 @@
-import type { DefineComponentsOptions, PropsStateMap, SetupContext } from '../types';
-declare const _default: ({ name, emits, props, setup, connectedCallback, disconnectedCallback, adoptedCallback, template, shadowMode, css }: DefineComponentsOptions) => {
+import { BehaviorSubject } from 'rxjs';
+import type { DefineComponentsOptions, SetupContext } from '../types';
+declare const _default: ({ name, emits, props, setup, connectedCallback, disconnectedCallback, adoptedCallback, render, shadowMode, css }: DefineComponentsOptions) => {
     new (): {
         "__#1@#context": SetupContext;
-        "__#1@#props": PropsStateMap;
+        "__#1@#props": {
+            [Property: string]: BehaviorSubject<any>;
+        };
         "__#1@#shadowRoot": ShadowRoot;
+        "__#1@#setupResults": {
+            [Property: string]: BehaviorSubject<any>;
+        };
+        "__#1@#render": Function | undefined;
+        "__#1@#css": string | Function | undefined;
         connectedCallback(): void;
         disconnectedCallback(): void;
         adoptedCallback(): void;
         attributeChangedCallback(name: string, oldValue: any, newValue: any): void;
+        "__#1@#doRender"(): void;
+        "__#1@#updateProps"(): void;
         accessKey: string;
         readonly accessKeyLabel: string;
         autocapitalize: string;
