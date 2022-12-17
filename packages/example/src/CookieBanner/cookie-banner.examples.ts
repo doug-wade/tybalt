@@ -5,7 +5,7 @@ export default {
   component: CookieBanner,
 };
 
-export const Default = defineExample(Link, {
+export const Default = defineExample(CookieBanner, {
     attributes: {
         href: 'https://www.example.com'
     },

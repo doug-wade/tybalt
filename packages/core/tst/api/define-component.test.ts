@@ -1,5 +1,6 @@
 import { describe, it, jest, expect } from '@jest/globals';
 import { flushPromises, mount } from '@tybalt/test-utils';
+import { Observable } from 'rxjs';
 import defineComponent from '../../src/api/define-component';
 
 describe('defineComponent', () => {
@@ -20,19 +21,9 @@ describe('defineComponent', () => {
         expect(wrapper.element).toBeInstanceOf(HTMLElement);
     });
 
-    it('renders a string template', async () => {
-        const name = 'renders-string-template';
-        const template = `<div>hello world</div>`;
-        const component = defineComponent({ name, template, shadowMode: "open" });
-
-        const wrapper = await mount(component);
-
-        expect(wrapper.html()).toBe(`<${name}>${template}</${name}>`);
-    });
-
     it('adds a style tag with css', async () => {
         const name = 'style-tag';
-        const css = '.example { color: rebeccapurple; }';
+        const css = '.example { color: "rebeccapurple"; }';
         const component = defineComponent({ name, css, shadowMode: "open" });
 
         const wrapper = await mount(component);
@@ -48,7 +39,7 @@ describe('defineComponent', () => {
         const slotName = "content";
         const template = `<div data-jest="${name}"><slot name="${slotName}"></slot></div>`;
         const slot = `<span slot="${slotName}">${message}</span>`;
-        const component = defineComponent({ name, template, shadowMode: "open" });
+        const component = defineComponent({ name, render() { return template }, shadowMode: "open" });
 
         const wrapper = await mount(component, { slot });
 
@@ -57,16 +48,15 @@ describe('defineComponent', () => {
         expect(wrapper.html()).toContain(message);
     });
 
-    it('converts all props to observables', async () => {
+    it('converts all props to Observable', async () => {
         const name = "props-are-observables";
-        const props = { example: {} };
+        const props = { example: { } };
 
         let underTest;
         const component = defineComponent({ name, props, setup(setupProps) { underTest = setupProps } });
         mount(component);
 
         expect(underTest.example).toBeTruthy();
-        expect(typeof underTest.example.observable.subscribe === 'function').toBeTruthy();
-        expect(typeof underTest.example.handler === 'function').toBeTruthy();
+        expect(underTest.example instanceof Observable).toBeTruthy();
     });
 });

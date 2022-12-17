@@ -1,25 +1,29 @@
-import useObservable from '../api/use-observable';
 import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import type { DefineComponentsOptions, PropsStateMap, SetupContext } from '../types';
+import type { DefineComponentsOptions, SetupContext } from '../types';
 
 const nameValidator = shouldThrow(withMessage(compose(required(), matchesPattern(/.*-.*/)), `web component names are required and must contain a hyphen`));
 
-export default ({ name, emits, props = {}, setup, connectedCallback, disconnectedCallback, adoptedCallback, template, shadowMode = 'closed', css } : DefineComponentsOptions) => {
+export default ({ name, emits, props = {}, setup, connectedCallback, disconnectedCallback, adoptedCallback, render, shadowMode = 'closed', css } : DefineComponentsOptions) => {
     nameValidator.validate(name);
 
     const clazz = class extends HTMLElement {
 
         #context: SetupContext;
-        #props: PropsStateMap;
+        #props: { [Property: string]: BehaviorSubject<any> };
         #shadowRoot: ShadowRoot;
+        #setupResults: { [Property: string]: BehaviorSubject<any> };
+        #render = render;
+        #css = css;
 
         constructor() {
             super();
     
             this.#props = Object.entries(props).reduce((accumulator, [key, value]) => {
-                return { ...accumulator, [key]: useObservable({ initialValue: value.default, subscriber: value.validator }) };
-            }, {});
+                accumulator[key] = new BehaviorSubject(value.default || null);
+                return accumulator;
+            }, {} as { [Property: string]: BehaviorSubject<any> });
 
             const emit = (type: string, detail: any) => {
                 if (emits && !emits?.includes(type)) {
@@ -32,39 +36,25 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
                 emit
             };
 
-            const setupResults = setup?.call(this, this.#props, this.#context);
-            const state: Map<string, any> = new Map();
-            if (setupResults && typeof template === 'function') {
-                Object.entries(setupResults).forEach(([key, value]) => {
-                    if (typeof value?.observable?.subscribe === 'function') {
-                        value.observable.subscribe((val: any) => {
-                            state.set(key, val);
-                            this.#shadowRoot.innerHTML = template(state);
-                        })
-                    } else {
-                        state.set(key, value);
-                    }
-                });
-            }
+            this.#setupResults = setup?.call(this, this.#props, this.#context) || {};
 
-            const templateElement = document.createElement('template');
-            templateElement.innerHTML = typeof template === 'function' ? template(state) : template;
-            const templateContent = templateElement.content;
+            for (const [key, value] of Object.entries(this.#props)) {
+                if (!this.#setupResults[key]) {
+                    this.#setupResults[key] = value;
+                }
+            }
 
             this.#shadowRoot = this.attachShadow({ mode: shadowMode });
-
-            if (css) {
-                const styleElement = document.createElement('style');
-                styleElement.innerHTML = typeof css === 'function' ? css(state) : css;
-
-                this.#shadowRoot.appendChild(styleElement);
-            }
-
-            this.#shadowRoot.appendChild(templateContent.cloneNode(true));
+            
+            this.#doRender();
         }
 
         connectedCallback() {
             connectedCallback?.apply(this);
+
+            this.#updateProps();
+
+            this.#doRender();
         }
 
         disconnectedCallback() {
@@ -76,7 +66,50 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
         }
 
         attributeChangedCallback(name: string, oldValue: any, newValue: any) {
-            this.#props[name].handler(newValue);
+            this.#setupResults[name].next(newValue);
+
+            this.#doRender();
+        }
+
+        #doRender() {
+            // dbw 12/16/22: We'll definitely need something more sophisticated than this.
+            this.#shadowRoot.innerHTML = '';
+
+            const state : { [Property: string] : any } = {};
+            Object.entries(this.#setupResults).forEach(([key, value]) => {
+                const unwrappedValue = value.getValue ? value.getValue() : value;
+                if (!unwrappedValue) {
+                    state[key] = "";
+                } else {
+                    state[key] = unwrappedValue;
+                }
+            });
+            
+            if (this.#css) {
+                const styleElement = document.createElement('style');
+                styleElement.innerHTML = typeof css === 'function' ? css(state) : css;
+
+                this.#shadowRoot.appendChild(styleElement);
+            }
+
+            if (this.#render) {
+                const templateElement = document.createElement('template');
+                templateElement.innerHTML = this.#render(state);
+                const templateContent = templateElement.content;
+
+                this.#shadowRoot.appendChild(templateContent.cloneNode(true));
+            }
+        }
+
+        #updateProps() {
+            for (const [key, value] of Object.entries(this.#props)) {
+                const attributeValue = this.getAttribute(key);
+                const usingDefault = attributeValue === null && value.value;
+                const areDifferent = attributeValue !== value.getValue();
+                if (!usingDefault && areDifferent) {
+                    value.next(attributeValue);
+                }
+            }
         }
     };
 

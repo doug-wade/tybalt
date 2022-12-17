@@ -22,8 +22,6 @@ const reassignSlot = (element: Element): Element => {
     const clone = slotContent.cloneNode(true) as Element;
     clone.removeAttribute('slot');
 
-    debugger;
-
     return clone;
 }
 

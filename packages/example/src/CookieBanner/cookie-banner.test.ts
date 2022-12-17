@@ -7,8 +7,9 @@ const mountCookieBanner = async () => {
     return wrapper;
 }
 
-describe('cookie banner', () => {
-    it.skip('renders a link', async () => {
+// TODO: Enable as part of #64
+describe.skip('cookie banner', () => {
+    it('renders a link', async () => {
         const wrapper = await mountCookieBanner();
         
         const actual = wrapper.find('a');
@@ -16,17 +17,16 @@ describe('cookie banner', () => {
         expect(actual.attributes('href')).toBe('http://www.example.com');
     });
 
-    it.skip('emits a click event when the button is clicked', async () => {
+    it('emits a click event when the button is clicked', async () => {
         const wrapper = await mountCookieBanner();
 
         const actual = wrapper.find('button');
         actual.trigger('click');
 
-        // TODO: Enable as part of #64
-        // expect(wrapper.emitted('click')).toHaveLength(1);
+        expect(wrapper.emitted('click')).toHaveLength(1);
     });
 
-    it.skip('has a primary button', async () => {
+    it('has a primary button', async () => {
         const wrapper = await mountCookieBanner();
 
         const actual = wrapper.find('button.button-primary');

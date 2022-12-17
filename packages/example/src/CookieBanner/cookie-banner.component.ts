@@ -1,4 +1,4 @@
-import type { SubscriberFunction, Observable, SetupContext, PropsStateMap } from '@tybalt/core';
+import type { SetupContext, PropsStateMap } from '@tybalt/core';
 
 import { defineComponent, html } from '@tybalt/core';
 import Link from '../Link/link.component';
@@ -7,7 +7,7 @@ import Button, { BUTTON_VARIANTS } from '../Button/button.component';
 export default defineComponent({
     name: 'example-cookie-banner',
     components: [Link, Button],
-    template({ clickHandler, PRIMARY }: { clickHandler: SubscriberFunction, PRIMARY: Observable }) {
+    render({ clickHandler, PRIMARY }) {
         return html`
             <div class="cookie-banner">
                 <span>Please accept all cookies<span>

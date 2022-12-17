@@ -2,7 +2,7 @@ import { mount } from '@tybalt/test-utils';
 import Link from './link.component';
 
 const href = 'http://www.example.com';
-const slot = 'mock slot value';
+const slot = '<div slot="content">mock slot value</div>';
 
 const mountLink = async () => {
     const wrapper = await mount(Link, {
@@ -25,10 +25,10 @@ describe('link', () => {
     it('renders slotted content', async () => {
         const wrapper = await mountLink();
 
-        expect(wrapper.text()).toBe(slot);
+        expect(wrapper.html()).toContain('mock slot value');
     });
 
-    it.skip('has a prop for href', async () => {
+    it('has a prop for href', async () => {
         const wrapper = await mountLink();
 
         const actual = wrapper.find('a');

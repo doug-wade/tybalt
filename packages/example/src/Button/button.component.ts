@@ -1,7 +1,8 @@
-import type { Observable, SubscriberFunction, PropsStateMap, SetupContext } from '@tybalt/core';
+import type { PropsStateMap, SetupContext } from '@tybalt/core';
 
-import { defineComponent, html, useObservable } from '@tybalt/core';
+import { defineComponent, html } from '@tybalt/core';
 import { compose, oneOf, required, string } from '@tybalt/validator';
+import { map } from 'rxjs';
 
 export const BUTTON_VARIANTS = Object.freeze({
     PRIMARY: 'primary',
@@ -19,16 +20,12 @@ export default defineComponent({
             validator: compose(required(), string(), oneOf(Object.values(BUTTON_VARIANTS)))
         }
     },
-    template({ computedClass, clickHandler }: { computedClass: Observable, clickHandler: SubscriberFunction }) { 
+    render({ computedClass, clickHandler }) { 
         return html`<button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>` 
     },
     setup(props: PropsStateMap, ctx: SetupContext) {
         const clickHandler = () => { ctx.emit('click') };
-        const { handler: setComputedClass, observable: computedClass } = useObservable(`button-${props.variant}`);
-
-        props.variant.observable.subscribe(() => {
-            setComputedClass(`button-${props.variant}`);
-        });
+        const computedClass = props.variant.pipe(map((variant: string) => `button-${variant}`));
 
         return {
             clickHandler,
