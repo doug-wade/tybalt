@@ -8,9 +8,9 @@
   "scripts": {
     "build": "yarn run compile && yarn run generate-types",
     "clean": "rimraf dist/",
-    "compile": "esbuild src/**/*.ts --format=esm --outdir=dist",
+    "compile": "esbuild src/**/!(*.d).ts --format=esm --outdir=dist",
     "generate-types": "tsc",
-    "watch": "esbuild src/**/*.ts --format=esm --outdir=dist --watch",
+    "watch": "esbuild src/**/!(*.d).ts --format=esm --outdir=dist --watch",
     "test": "jest"
   },
   "type": "module",
