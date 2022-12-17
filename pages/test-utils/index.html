@@ -10,6 +10,18 @@
     <div><h2>Installation</h2>
 <pre><code class="language-shell">npm install --save-dev @tybalt/test-utils
 </code></pre>
+<h2>Setup</h2>
+<p>You'll need to add the setup script to your <code>jest.config.js</code>.</p>
+<p>In commonjs</p>
+<pre><code class="language-javascript">module.exports = {
+  setupFilesAfterEnv: [&quot;./node_modules/@tybalt/test-utils/dist/cjs/setup.js&quot;],
+};
+</code></pre>
+<p>In esm</p>
+<pre><code class="language-javascript">export default {
+  setupFilesAfterEnv: [&quot;./node_modules/@tybalt/test-utils/dist/mjs/setup.js&quot;],
+};
+</code></pre>
 <h2>Usage</h2>
 <pre><code class="language-javascript">import { mount } from &quot;@tybalt/test-utils&quot;;
 import MyComponent from &quot;./my-component&quot;;
