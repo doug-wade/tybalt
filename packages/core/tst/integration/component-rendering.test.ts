@@ -2,23 +2,39 @@ import { describe, it, jest, expect } from '@jest/globals';
 import { flushPromises, mount } from '@tybalt/test-utils';
 import defineComponent from '../../src/api/define-component';
 import html from '../../src/api/html';
-import useObservable from '../../src/api/use-observable'
+import { BehaviorSubject } from 'rxjs';
 
 describe('component rendering', () => {
     it('renders observables returned from setup', async () => {
         const name = "template-method";
-        const expected = 'corge';
+        const expected = 'bar';
 
         const component = defineComponent({ 
             name,
             shadowMode: 'open',
-            template({ expected }) { 
-                return html`<span>${expected}</span>`
-            },  
+            render({ expected }) {
+                return html`<span>${expected}</span>`;
+            },
             setup() { 
-                const { observable, handler } = useObservable({ initialValue: expected });
-                return { expected: observable };
+                return { expected: new BehaviorSubject(expected) };
             } 
+        });
+        const wrapper = await mount(component);
+
+        expect(wrapper.html()).toContain(expected);
+    });
+
+    it('passes props to template without going through setup', async () => {
+        const name = "template-props";
+        const expected = 'baz';
+
+        const component = defineComponent({ 
+            name,
+            shadowMode: 'open',
+            props: { example: { default: expected } },
+            render({ example }) {
+                return html`<span>${example}</span>`;
+            },
         });
         const wrapper = await mount(component);
 

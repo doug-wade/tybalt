@@ -80,11 +80,7 @@ derived value.
     name: { validator: string() }
   },
   setup({ name }) {
-    const { handler: setGreeting, observable: greeting } = useObservable(`Hello ${name}!`);
-
-    name.observable.subscribe(() => {
-        setComputedClass(`Hello ${name}!`);
-    });
+    const greeting = new BehaviorSubject(`hello ${name}`);
 
     return { greeting };
   }
@@ -245,33 +241,5 @@ the dom should be attached in. One of: open, closed.
 defineComponent({
   name: "shadow-mode",
   shadowMode: "open",
-});
-```
-
-### useObservable
-
-Creates a new core-js observable (tc39 stage 1)
-
-```javascript
-const { observable, handler } = useObservable();
-```
-
-#### initialValue
-
-Sets the initial value of the observable.
-
-```javascript
-const { observable, handler } = useObservable({ initialValue: 0 });
-```
-
-#### subscriber
-
-A subscriber to attach to the observable.
-
-```javascript
-const { observable, handler } = useObservable({
-  subscriber: (val) => {
-    console.log(val);
-  },
 });
 ```
