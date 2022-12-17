@@ -9,6 +9,26 @@ title: Tybalt test utils
 npm install --save-dev @tybalt/test-utils
 ```
 
+## Setup
+
+You'll need to add the setup script to your `jest.config.js`.
+
+In commonjs
+
+```javascript
+module.exports = {
+  setupFilesAfterEnv: ["./node_modules/@tybalt/test-utils/dist/cjs/setup.js"],
+};
+```
+
+In esm
+
+```javascript
+export default {
+  setupFilesAfterEnv: ["./node_modules/@tybalt/test-utils/dist/mjs/setup.js"],
+};
+```
+
 ## Usage
 
 ```javascript
