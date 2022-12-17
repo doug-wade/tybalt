@@ -70,6 +70,10 @@ export default class WrapperArray implements Wrapper {
         return `[\n${concatenated.trim()}\n]`;
     }
 
+    shadowHtml() {
+        return this.html();
+    }
+
     text() {
         const concatenated = this.elements.map((element: Element) => element.textContent);
         return `[\n${concatenated.join(',\n')}\n]`;

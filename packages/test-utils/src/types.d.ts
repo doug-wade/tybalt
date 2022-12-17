@@ -14,6 +14,7 @@ export interface Wrapper {
     attributes(attributeName?: T): NamedNodeMapOrString<T>;
     classes(className?: T): DOMTokenListOrBoolean<T>;
     exists(): boolean;
+    shadowHtml(): string | never;
     trigger(type: string, payload?: any): void;
 };
 

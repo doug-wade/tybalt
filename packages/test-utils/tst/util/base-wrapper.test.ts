@@ -1,6 +1,5 @@
 import { beforeAll, describe, expect, it } from '@jest/globals';
 import BaseWrapper from '../../src/util/base-wrapper';
-import render from '../../src/api/mount';
 
 const OPEN_SHADOW_DOM_COMPONENT_NAME = 'open-shadow-dom';
 const CLOSED_SHADOW_DOM_COMPONENT_NAME = 'closed-shadow-dom';
@@ -123,6 +122,50 @@ describe('base-wrapper', () => {
             const actual = new BaseWrapper({ element });
 
             expect(actual.html()).toBe(`<${CLOSED_SHADOW_DOM_COMPONENT_NAME}></${CLOSED_SHADOW_DOM_COMPONENT_NAME}>`);
+        });
+    });
+
+    describe('shadowHtml', () => {
+        it('should include the shadow dom when the mode is closed', () => {
+            const element = document.createElement(CLOSED_SHADOW_DOM_COMPONENT_NAME);
+
+            const actual = new BaseWrapper({ element });
+
+            expect(actual.shadowHtml()).toBe(`<${CLOSED_SHADOW_DOM_COMPONENT_NAME}>${SHADOW_DOM_TEMPLATE}</${CLOSED_SHADOW_DOM_COMPONENT_NAME}>`);
+        });
+
+        it('should include the slotted content for templates when the shadow dom is closed', () => {
+            const innerHTML = '<span>this is content</span>';
+            const slotContent = `<div slot="${SLOT_NAME}">${innerHTML}</div>`;
+            const element = document.createElement(CLOSED_TEMPLATE_COMPONENT_NAME);
+            element.innerHTML = slotContent;
+            document.body.appendChild(element);
+
+            const actual = new BaseWrapper({ element });
+
+            expect(actual.shadowHtml()).toContain(innerHTML);
+            expect(actual.shadowHtml()).toContain(ADDITIONAL_SLOT_CONTENT);
+        });
+
+        it('should include the slotted content for templates when the shadow dom is closed', () => {
+            const innerHTML = '<span>this is content</span>';
+            const slotContent = `<div slot="${SLOT_NAME}">${innerHTML}</div>`;
+            const element = document.createElement(CLOSED_TEMPLATE_COMPONENT_NAME);
+            element.innerHTML = slotContent;
+            document.body.appendChild(element);
+
+            const actual = new BaseWrapper({ element });
+
+            expect(actual.shadowHtml()).toContain(slotContent);
+            expect(actual.shadowHtml()).toContain(ADDITIONAL_SLOT_CONTENT);
+        });
+
+        it('should include the shadow dom when the mode is closed', () => {
+            const element = document.createElement(CLOSED_SHADOW_DOM_COMPONENT_NAME);
+
+            const actual = new BaseWrapper({ element });
+
+            expect(actual.shadowHtml()).toBe(`<${CLOSED_SHADOW_DOM_COMPONENT_NAME}>${SHADOW_DOM_TEMPLATE}</${CLOSED_SHADOW_DOM_COMPONENT_NAME}>`);
         });
     });
 
