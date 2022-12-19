@@ -29,6 +29,9 @@
       "outputs": ["packages/**/dist/**/*.d.ts"],
       "inputs": ["packages/**/src/**/*.ts"]
     },
+    "serve": {
+      "cache": false
+    },
     "watch": {
       "cache": false
     }

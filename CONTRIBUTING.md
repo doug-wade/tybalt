@@ -22,14 +22,27 @@ We use `turbo` for our monorepo scripts, which does a lot of caching for us.
 
 Run this command to compile and bundle all of the dependencies.
 
-### test
-
-Run this command to run all of the unit tests.
-
 ### clean
 
 Run this command to remove all built files. Note that if you run this command, you'll break turbo's
 caching, so you'll have to run `build` and `test` with `--force` to get things up and working again.
+
+### generate-types
+
+Run this command to generate all the typescript type definition files.
+
+## serve
+
+Run this command to start all the servers (currently, the website on 8081 and the example on 3001).
+
+### test
+
+Run this command to run all of the unit tests.
+
+### watch
+
+Run this command to start watchers for all of the packages in the monorepo. Note that the watcher
+doesn't trigger cascading builds.
 
 ## How-tos
 
@@ -50,3 +63,15 @@ $ yarn run debug
 ```
 
 Then navigate to [chrome://inspect/](chrome://inspect/)
+
+### Publish a new release
+
+Semantic versioning allows us to publish breaking changes in minor and patch versions before we
+hit 1.0.0, so currently we're versioning all of our packages in lockstep (that is, all of the
+version fields for all of the packages in the monorepo should have the same version). To update
+the version, do a find-and-replace of "version": "0.0.x" with the new version. We don't need to
+change the declared dependencies inside the monorepo because they declare a `workspace:^`
+dependency, so yarn does the updating for us. Then, draft a new release in the Github UI,
+creating a new tag called v0.0.x and publish it and the CI should do the rest! To sanity check
+the release, you can update [tybalt-client](https://github.com/doug-wade/tybalt-client) to the
+latest version and run the tests.
