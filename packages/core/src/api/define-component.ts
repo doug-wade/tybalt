@@ -77,13 +77,15 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
 
             const state : { [Property: string] : any } = {};
             Object.entries(this.#setupResults).forEach(([key, value]) => {
-                const unwrappedValue = value.getValue ? value.getValue() : value;
+                const unwrappedValue = value.value ? value.value : value;
                 if (!unwrappedValue) {
                     state[key] = "";
                 } else {
                     state[key] = unwrappedValue;
                 }
             });
+
+            console.log('setupResults', this.#setupResults);
             
             if (this.#css) {
                 const styleElement = document.createElement('style');

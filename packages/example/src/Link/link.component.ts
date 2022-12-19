@@ -10,6 +10,6 @@ export default defineComponent({
         }
     },
     render({ href }: { href: string }) {
-        return html`<a class="example-link" href="${href}"><slot name="content"></slot></a>` 
+        return html`<a class="example-link" href="${href}"><slot></slot></a>` 
     }
 });
