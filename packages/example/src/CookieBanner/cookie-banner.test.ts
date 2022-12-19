@@ -7,30 +7,30 @@ const mountCookieBanner = async () => {
     return wrapper;
 }
 
-// TODO: Enable as part of #64
-describe.skip('cookie banner', () => {
+describe('cookie banner', () => {
     it('renders a link', async () => {
         const wrapper = await mountCookieBanner();
         
-        const actual = wrapper.find('a');
+        const actual = wrapper.find('example-link');
 
         expect(actual.attributes('href')).toBe('http://www.example.com');
     });
 
-    it('emits a click event when the button is clicked', async () => {
+    it.skip('emits a click event when the button is clicked', async () => {
         const wrapper = await mountCookieBanner();
 
         const actual = wrapper.find('button');
         actual.trigger('click');
 
-        expect(wrapper.emitted('click')).toHaveLength(1);
+        // TODO: Enable as part of #64
+        // expect(wrapper.emitted('click')).toHaveLength(1);
     });
 
     it('has a primary button', async () => {
         const wrapper = await mountCookieBanner();
 
-        const actual = wrapper.find('button.button-primary');
+        const actual = wrapper.find('example-button');
 
-        expect(actual.exists()).toBeTruthy();
+        expect(actual.attributes('variant')).toBe('primary');
     });
 });

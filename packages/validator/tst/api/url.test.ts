@@ -5,7 +5,7 @@ describe('url', () => {
     it('should pass when passed an url', async () => {
         const validator = url();
 
-        const result = await validator.validate('https://www.google.com');
+        const result = await validator.validate('https://www.example.com');
 
         expect(result.passed).toBeTruthy();
     });
