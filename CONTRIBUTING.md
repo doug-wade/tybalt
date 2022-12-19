@@ -75,3 +75,8 @@ dependency, so yarn does the updating for us. Then, draft a new release in the G
 creating a new tag called v0.0.x and publish it and the CI should do the rest! To sanity check
 the release, you can update [tybalt-client](https://github.com/doug-wade/tybalt-client) to the
 latest version and run the tests.
+
+## Getting help
+
+The best place to get help is to come [join the discord](https://discord.gg/FHpfstT7Dw). There is
+a "contributors" channel dedicated to helping contributors.
