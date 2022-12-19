@@ -1,6 +1,6 @@
 {
   "name": "@tybalt/website",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The tybalt documentation website",
   "main": "index.js",
   "private": true,
@@ -18,7 +18,7 @@
     "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "@tybalt/core": "^0.0.6",
-    "@tybalt/eleventy-plugin": "^0.0.6"
+    "@tybalt/core": "workspace:^",
+    "@tybalt/eleventy-plugin": "workspace:^"
   }
 }
