@@ -5,4 +5,5 @@ export default {
   transform: {
     "^.+\\.tsx?$": "esbuild-jest",
   },
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 };
