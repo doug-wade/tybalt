@@ -10,5 +10,6 @@ module.exports = {
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: [
     "../../node_modules/@tybalt/test-utils/dist/cjs/setup.js",
+    "<rootDir>/jest.setup.js",
   ],
 };
