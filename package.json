@@ -6,8 +6,9 @@
   "scripts": {
     "build": "turbo build",
     "clean": "turbo clean",
-    "test": "jest",
     "generate-types": "turbo generate-types",
+    "serve": "turbo run serve --parallel",
+    "test": "jest",
     "watch": "turbo run watch --parallel"
   },
   "keywords": [],
