@@ -8,11 +8,14 @@ const isString = (x: string | undefined): x is string => typeof x === 'string';
 
 const reassignSlot = (element: Element): Element => {
     const slotName = element.getAttribute('name');
+    
+    let slotContent;
     if (!slotName) {
-        return element;
+        slotContent = document.querySelector(`[slot]`);
+    } else {
+        slotContent = document.querySelector(`[slot="${slotName}"]`);
     }
 
-    const slotContent = document.querySelector(`[slot="${slotName}"]`);
     if (!slotContent) {
         console.warn(`no template found matching slot with name ${slotName}`);
         return element;
