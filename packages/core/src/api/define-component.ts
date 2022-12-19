@@ -84,8 +84,6 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
                     state[key] = unwrappedValue;
                 }
             });
-
-            console.log('setupResults', this.#setupResults);
             
             if (this.#css) {
                 const styleElement = document.createElement('style');
