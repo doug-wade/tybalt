@@ -14,6 +14,29 @@ export default defineComponent({
     name: 'example-button',
     shadowMode: 'open',
     emits: ['click'],
+    css: `
+        button {
+            padding: 16px;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+        
+        button-primary {
+            background-color: rebeccapurple;
+        }
+        
+        button-secondary {
+            background-color: bisque;
+        }
+        
+        button-tertiary {
+            background: none;
+            border: none;
+            padding: 0;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    `,
     props: {
         variant: {
             default: BUTTON_VARIANTS.PRIMARY,
