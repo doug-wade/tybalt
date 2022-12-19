@@ -9,7 +9,6 @@ const isString = (x: string | undefined): x is string => typeof x === 'string';
 const reassignSlot = (element: Element): Element => {
     const slotName = element.getAttribute('name');
     if (!slotName) {
-        console.warn('slot missing name');
         return element;
     }
 
