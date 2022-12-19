@@ -28,6 +28,9 @@
     "generate-types": {
       "outputs": ["packages/**/dist/**/*.d.ts"],
       "inputs": ["packages/**/src/**/*.ts"]
+    },
+    "watch": {
+      "cache": false
     }
   }
 }

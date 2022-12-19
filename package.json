@@ -7,7 +7,8 @@
     "build": "turbo build",
     "clean": "turbo clean",
     "test": "jest",
-    "generate-types": "turbo generate-types"
+    "generate-types": "turbo generate-types",
+    "watch": "turbo run watch --parallel"
   },
   "keywords": [],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
