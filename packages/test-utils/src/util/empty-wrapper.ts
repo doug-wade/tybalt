@@ -38,6 +38,10 @@ export default class EmptyWrapper implements Wrapper {
         throw new Error(this.#makeErrorMessage({ method: 'html' }));
     }
 
+    shadowHtml(): never {
+        throw new Error(this.#makeErrorMessage({ method: 'shadowHtml' }));
+    }
+
     text(): never {
         throw new Error(this.#makeErrorMessage({ method: 'text' }));
     }
