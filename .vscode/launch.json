@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start example",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": ["workspace", "@tybalt/example", "serve"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start website",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": ["workspace", "@tybalt/website", "serve"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start all servers",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": ["run", "serve"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start watcher",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": ["run", "watch"]
+        }
+    ]
+}
