@@ -3,9 +3,14 @@
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./components");
   eleventyConfig.addPassthroughCopy("./lib");
+  eleventyConfig.setBrowserSyncConfig({
+    open: true,
+  });
+
   //   eleventyConfig.addPlugin(tybaltPlugin, {
   //     componentModules: ["./components/index.js"],
   //   });
+
   return {
     pathPrefix: "/tybalt/",
   };
