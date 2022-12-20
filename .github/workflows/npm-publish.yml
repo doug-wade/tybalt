@@ -6,15 +6,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
           node-version: "18.x"
           registry-url: "https://registry.npmjs.org"
           scope: "@tybalt"
-      - run: yarn
-      - run: yarn build
-      - run: yarn config set npmAuthToken "$NPM_TOKEN"
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build monorepo
+        run: yarn build
+
+      - name: Configure yarn client
+        run: yarn config set npmAuthToken "$NPM_TOKEN"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: yarn workspaces foreach --no-private npm publish
+
+      - name: Publish packages
+        run: yarn workspaces foreach --no-private npm publish
+
+      - name: Post to Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@0.3.2
+        with:
+          args: "A new version of Tybalt has been published."
