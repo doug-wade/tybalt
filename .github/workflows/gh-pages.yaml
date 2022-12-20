@@ -16,10 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: install dependencies
+      - name: Install dependencies
         run: yarn install
 
-      - name: build website
+      - name: Build website
         run: yarn build
 
       - name: Deploy
@@ -28,3 +28,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./packages/website/_site
+
+      - name: Post to Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@0.3.2
+        with:
+          args: "The Tybalt website has been deployed."
