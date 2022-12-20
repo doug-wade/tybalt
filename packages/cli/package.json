@@ -26,7 +26,7 @@
     "@tybalt/esbuild-plugin": "workspace:^",
     "@tybalt/eslint-plugin": "workspace:^",
     "@types/glob": "^8.0.0",
-    "browser-sync": "^2.27.10",
+    "browser-sync": "^2.27.11",
     "commander": "^9.4.1",
     "esbuild": "^0.16.10",
     "glob": "^8.0.3",
