@@ -1,0 +1,6 @@
+.example-circle {
+    width: 100px;
+    height: 100px;
+    background: rebeccapurple;
+    border-radius: 50%
+}

@@ -1,5 +1,6 @@
 import esbuild from "esbuild";
 import htmlPlugin from '@chialab/esbuild-plugin-html';
+import tybaltPlugin from '@tybalt/esbuild-plugin';
 
 import type { CommandContext } from '../types';
 
@@ -17,6 +18,7 @@ export default ({ program }: CommandContext) => {
               chunkNames: '[ext]/[name]-[hash]',
               plugins: [
                   htmlPlugin(),
+                  tybaltPlugin()
               ],
           });
         });
