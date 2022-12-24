@@ -40,4 +40,26 @@ describe('component rendering', () => {
 
         expect(wrapper.html()).toContain(expected);
     });
+
+    it('re-renders when props have changes', async () => {
+        const name = "re-render";
+        const firstRenderPropValue = 'foo';
+        const secondRenderPropValue = 'bar';
+
+        const component = defineComponent({
+            name,
+            shadowMode: 'open',
+            props: { example: { default: firstRenderPropValue } },
+            render({ example }) {
+                return html`<span>${example}</span>`;
+            },
+        });
+        const wrapper = await mount(component);
+
+        expect(wrapper.html()).toContain(firstRenderPropValue);
+
+        wrapper.setAttribute('example', secondRenderPropValue);
+
+        expect(wrapper.html()).toContain(secondRenderPropValue);
+    });
 });
