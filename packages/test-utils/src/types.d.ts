@@ -15,6 +15,7 @@ export interface Wrapper {
     classes(className?: T): DOMTokenListOrBoolean<T>;
     exists(): boolean;
     trigger(type: string, payload?: any): void;
+    setAttribute(name: string, value?: any): void;
 };
 
 export type MountOptions = { 

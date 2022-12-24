@@ -161,4 +161,8 @@ export default class BaseWrapper implements Wrapper {
     trigger(type: string, payload: any): void {
         this.element.dispatchEvent(new CustomEvent(type, { detail: payload }));
     }
+
+    setAttribute(name: string, value: any): void {
+        this.element.setAttribute(name, value);
+    }
 };

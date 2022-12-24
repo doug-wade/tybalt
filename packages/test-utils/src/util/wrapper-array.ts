@@ -75,6 +75,10 @@ export default class WrapperArray implements Wrapper {
         return `[\n${concatenated.join(',\n')}\n]`;
     }
 
+    setAttribute(name: string, value: any): void {
+        this.elements.forEach(element => { element.setAttribute(name, value); });
+    }
+
     attributes(attributeName?: string): never {
         throw new Error(`attributes must be called on a single wrapper, use at(i) to access a wrapper`);
     }
