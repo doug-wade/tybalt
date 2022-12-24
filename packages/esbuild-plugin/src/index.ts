@@ -1,9 +1,11 @@
-const fs = require("node:fs");
-const path = require("node:path");
+import type { PluginBuild } from 'esbuild';
 
-module.exports = () => ({
+import fs from "node:fs";
+import path from "node:path";
+
+export default () => ({
   name: "tybalt",
-  setup(build) {
+  setup(build: PluginBuild) {
     build.onResolve({ filter: /.*\.css$/ }, (args) => {
       return {
         path: path.resolve(args.resolveDir, args.path),
