@@ -2,11 +2,38 @@
   "name": "@tybalt/esbuild-plugin",
   "version": "0.0.8",
   "description": "An esbuild plugin for compiling tybalt web components",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/mjs/index.js"
+    }
   },
-  "keywords": [],
+  "types": "./dist/types/index.d.ts",
+  "module": "dist/mjs/index.js",
+  "main": "dist/cjs/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "yarn run compile && yarn run generate-types",
+    "clean": "rimraf dist/",
+    "compile": "yarn run compile-esm && yarn run compile-commonjs",
+    "compile-esm": "esbuild src/index.ts --platform=node --bundle --format=esm --outfile=dist/mjs/index.js",
+    "compile-commonjs": "esbuild src/index.ts --platform=node --bundle --format=cjs --outfile=dist/cjs/index.js",
+    "generate-types": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "watch": "concurrently 'yarn run watch-esm' 'yarn run watch-commonjs'",
+    "watch-esm": "esbuild src/index.ts --platform=node --bundle --format=esm --outfile=dist/mjs/index.js --watch",
+    "watch-commonjs": "esbuild src/index.ts --platform=node --bundle --format=cjs --outfile=dist/cjs/index.js --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.16.10",
+    "typescript": "^4.9.4"
+  },
+  "keywords": [
+    "tybalt",
+    "esbuild",
+    "web components"
+  ],
   "author": "Douglas Wade <douglas.b.wade@gmail.com>",
   "license": "MIT"
 }

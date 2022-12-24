@@ -23,6 +23,7 @@
     "@tybalt/core": "workspace:^"
   },
   "devDependencies": {
+    "@tybalt/esbuild-plugin": "workspace:^",
     "@tybalt/test-utils": "workspace:^",
     "esbuild": "^0.16.10",
     "esbuild-jest": "^0.5.0",
