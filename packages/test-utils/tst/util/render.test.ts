@@ -1,4 +1,4 @@
-import {describe, expect, it, jest} from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import render from '../../src/util/render';
 
 describe('render', () => {
@@ -9,7 +9,7 @@ describe('render', () => {
     });
 
     it('should add attributes correctly', async () => {
-        const actual = await render({ elementName: 'mock-web-component', attributes: { 'ariaLabel': 'bar' } });
+        const actual = await render({ elementName: 'mock-web-component', attributes: { ariaLabel: 'bar' } });
 
         expect(actual.outerHTML).toBe(`<mock-web-component aria-label="bar"></mock-web-component>`);
     });

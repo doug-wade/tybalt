@@ -23,11 +23,11 @@ A fully functioned validator might look like
 
 ```javascript
 const myValidator = {
-  async validate(value) {
-    return value.includes("foo");
-  },
-  logLevel: "warning",
-  message: 'must include substring "foo"',
+    async validate(value) {
+        return value.includes('foo');
+    },
+    logLevel: 'warning',
+    message: 'must include substring "foo"',
 };
 ```
 
@@ -41,7 +41,7 @@ If you want to validate that a single value exists, and is a string that is a va
 you can compose those validators into a single validator as follows:
 
 ```javascript
-import { compose, required, string, url } from "@tybalt/validator";
+import { compose, required, string, url } from '@tybalt/validator';
 
 const validator = compose(required(), string(), url());
 const result = await validator.validate(value);
@@ -62,9 +62,9 @@ const validator = matchesPattern({ pattern: \foo\ });
 `oneOf` creates a validator that checks if a value is member of values.
 
 ```javascript
-import { oneOf } from "@tybalt/validator";
+import { oneOf } from '@tybalt/validator';
 
-const validator = oneOf(["foo", "bar"]);
+const validator = oneOf(['foo', 'bar']);
 ```
 
 ### required
@@ -72,7 +72,7 @@ const validator = oneOf(["foo", "bar"]);
 `required` creates a validator that checks that a value is defined.
 
 ```javascript
-import { required } from "@tybalt/validator";
+import { required } from '@tybalt/validator';
 
 const validator = required();
 ```
@@ -82,7 +82,7 @@ const validator = required();
 `shouldThrow` wraps a validator, and throws an error if the validator fails.
 
 ```javascript
-import { required, shouldThrow } from "@tybalt/validator";
+import { required, shouldThrow } from '@tybalt/validator';
 
 const validator = shouldThrow(required());
 ```
@@ -92,7 +92,7 @@ const validator = shouldThrow(required());
 `string` creates a validator that ensures a value is a string.
 
 ```javascript
-import { string } from "@tybalt/validator";
+import { string } from '@tybalt/validator';
 
 const validator = string();
 ```
@@ -102,7 +102,7 @@ const validator = string();
 `url` creates a validator that ensures a value is a valid url.
 
 ```javascript
-import { url } from "@tybalt/validator";
+import { url } from '@tybalt/validator';
 
 const validator = url();
 ```
@@ -113,10 +113,10 @@ const validator = url();
 to create a custom validator.
 
 ```javascript
-import { validator } from "@tybalt/validator";
+import { validator } from '@tybalt/validator';
 
 const customValidator = validator((value) => {
-  value.includes("substring");
+    value.includes('substring');
 });
 ```
 
@@ -125,9 +125,9 @@ const customValidator = validator((value) => {
 `withLevel` adds a logging and error level to a validation result.
 
 ```javascript
-import { url, withLevel } from "@tybalt/validator";
+import { url, withLevel } from '@tybalt/validator';
 
-const validator = withLevel(url(), "warning");
+const validator = withLevel(url(), 'warning');
 ```
 
 ### withMessage
@@ -135,7 +135,7 @@ const validator = withLevel(url(), "warning");
 `withMessage` adds a custom message to a validation result.
 
 ```javascript
-import { oneOf, withMessage } from "@tybalt/validator";
+import { oneOf, withMessage } from '@tybalt/validator';
 
-const validator = withMessage(oneOf([true, false]), "must be a boolean");
+const validator = withMessage(oneOf([true, false]), 'must be a boolean');
 ```

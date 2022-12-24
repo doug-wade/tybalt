@@ -1,8 +1,8 @@
-import ValidationError from '../util/validation-error'
+import ValidationError from '../util/validation-error';
 
 import type { Validator } from '../types';
 
-const DEFAULT_MESSAGE = 'A validator with no associated message failed.'
+const DEFAULT_MESSAGE = 'A validator with no associated message failed.';
 
 export default (validator: Validator) => {
     return {
@@ -13,9 +13,9 @@ export default (validator: Validator) => {
                 return;
             }
 
-            if (('level' in result && result.level === 'error')) {
+            if ('level' in result && result.level === 'error') {
                 throw new ValidationError(result.message || DEFAULT_MESSAGE);
             }
-        }
-    }
+        },
+    };
 };

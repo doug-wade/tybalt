@@ -1,9 +1,9 @@
-import type { LogLevel, LoggerOptions } from '../types'
+import type { LogLevel, LoggerOptions } from '../types';
 
 class Logger {
     #level: LogLevel;
 
-    constructor({ level = 'warn' } : LoggerOptions) {
+    constructor({ level = 'warn' }: LoggerOptions) {
         this.#level = level;
     }
 

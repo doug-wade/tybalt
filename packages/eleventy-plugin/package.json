@@ -1,13 +1,13 @@
 {
-  "name": "@tybalt/eleventy-plugin",
-  "version": "0.0.8",
-  "description": "A plugin for eleventy for serving web components",
-  "main": "index.js",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
-  },
-  "keywords": [],
-  "author": "Douglas Wade <douglas.b.wade@gmail.com>",
-  "license": "MIT"
+    "name": "@tybalt/eleventy-plugin",
+    "version": "0.0.8",
+    "description": "A plugin for eleventy for serving web components",
+    "main": "index.js",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0"
+    },
+    "keywords": [],
+    "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+    "license": "MIT"
 }

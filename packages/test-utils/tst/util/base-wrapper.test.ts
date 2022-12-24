@@ -12,7 +12,7 @@ const SHADOW_DOM_TEMPLATE = `<div id="${SHADOW_DOM_TEMPLATE_ID}">${SHADOW_DOM_TE
 const SLOT_NAME = 'matt-turner';
 const ADDITIONAL_SLOT_CONTENT = '<span>this is additional content</span>';
 
-const makeShadowDomComponent = ({ mode }: { mode: "open" | "closed" }) => {
+const makeShadowDomComponent = ({ mode }: { mode: 'open' | 'closed' }) => {
     return class extends HTMLElement {
         #shadow;
         constructor() {
@@ -20,12 +20,12 @@ const makeShadowDomComponent = ({ mode }: { mode: "open" | "closed" }) => {
             this.#shadow = this.attachShadow({ mode });
             this.#shadow.innerHTML = SHADOW_DOM_TEMPLATE;
         }
-    }
-}
+    };
+};
 
-const makeTemplateComponent = ({ mode }: { mode: "open" | "closed" }) => {
+const makeTemplateComponent = ({ mode }: { mode: 'open' | 'closed' }) => {
     const templateElement = document.createElement('template');
-    templateElement.innerHTML = `<div><slot name="${SLOT_NAME}"></slot>${ADDITIONAL_SLOT_CONTENT}</div>`
+    templateElement.innerHTML = `<div><slot name="${SLOT_NAME}"></slot>${ADDITIONAL_SLOT_CONTENT}</div>`;
 
     return class extends HTMLElement {
         #shadow;
@@ -34,8 +34,8 @@ const makeTemplateComponent = ({ mode }: { mode: "open" | "closed" }) => {
             this.#shadow = this.attachShadow({ mode });
             this.#shadow.appendChild(templateElement.content.cloneNode(true));
         }
-    }
-}
+    };
+};
 
 describe('base-wrapper', () => {
     beforeAll(() => {
@@ -48,7 +48,9 @@ describe('base-wrapper', () => {
     it('should be able to be instantiated', () => {
         const element = document.createElement('div');
 
-        expect(() => { new BaseWrapper({ element }); }).not.toThrow();
+        expect(() => {
+            new BaseWrapper({ element });
+        }).not.toThrow();
     });
 
     describe('exists', () => {
@@ -88,7 +90,9 @@ describe('base-wrapper', () => {
 
             const actual = new BaseWrapper({ element });
 
-            expect(actual.html()).toBe(`<${OPEN_SHADOW_DOM_COMPONENT_NAME}>${SHADOW_DOM_TEMPLATE}</${OPEN_SHADOW_DOM_COMPONENT_NAME}>`);
+            expect(actual.html()).toBe(
+                `<${OPEN_SHADOW_DOM_COMPONENT_NAME}>${SHADOW_DOM_TEMPLATE}</${OPEN_SHADOW_DOM_COMPONENT_NAME}>`,
+            );
         });
 
         it('should include the slotted content for templates when the shadow dom is open', () => {
@@ -152,19 +156,19 @@ describe('base-wrapper', () => {
         });
 
         it('should return a hash of attributes when called without arguments', () => {
-            const mockAttributes = { 'foo': 'bar', 'baz': 'quux' };
+            const mockAttributes = { foo: 'bar', baz: 'quux' };
             const element = document.createElement('div');
-            Object.entries(mockAttributes).forEach(([ name, value ]) => {
+            Object.entries(mockAttributes).forEach(([name, value]) => {
                 element.setAttribute(name, value);
             });
-    
+
             const wrapper = new BaseWrapper({ element });
             const attributes = wrapper.attributes();
-    
+
             expect(attributes).toEqual(mockAttributes);
         });
     });
-    
+
     describe('classes', () => {
         it('should indicate whether a class is present', () => {
             const mockClassName = 'foo';
@@ -180,17 +184,17 @@ describe('base-wrapper', () => {
             const mockClassName = 'foo';
             const element = document.createElement('div');
             element.classList.add(mockClassName);
-    
+
             const actual = new BaseWrapper({ element });
-    
-            expect(actual.classes()).toEqual([ mockClassName ]);
+
+            expect(actual.classes()).toEqual([mockClassName]);
         });
     });
 
     describe('find', () => {
         it('should return the first match of querySelector', () => {
             const element = document.createElement('div');
-            const innerText = 'this is content'
+            const innerText = 'this is content';
             element.innerHTML = `<span data-jest="my-element">${innerText}</span>`;
 
             const wrapper = new BaseWrapper({ element });
@@ -297,7 +301,7 @@ describe('base-wrapper', () => {
         it('should trigger an event', async () => {
             const mock = jest.fn();
             const eventName = 'click';
-            const payload = { 'foo': 'bar' };
+            const payload = { foo: 'bar' };
             const element = document.createElement('button');
             element.addEventListener(eventName, mock);
 

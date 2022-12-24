@@ -24,7 +24,7 @@ describe('defineComponent', () => {
     it('adds a style tag with css', async () => {
         const name = 'style-tag';
         const css = '.example { color: "rebeccapurple"; }';
-        const component = defineComponent({ name, css, shadowMode: "open" });
+        const component = defineComponent({ name, css, shadowMode: 'open' });
 
         const wrapper = await mount(component);
 
@@ -36,10 +36,16 @@ describe('defineComponent', () => {
     it('renders named slotted content', async () => {
         const name = 'renders-slot';
         const message = 'Hello World';
-        const slotName = "content";
+        const slotName = 'content';
         const template = `<div data-jest="${name}"><slot name="${slotName}"></slot></div>`;
         const slot = `<span slot="${slotName}">${message}</span>`;
-        const component = defineComponent({ name, render() { return template }, shadowMode: "open" });
+        const component = defineComponent({
+            name,
+            render() {
+                return template;
+            },
+            shadowMode: 'open',
+        });
 
         const wrapper = await mount(component, { slot });
 
@@ -49,11 +55,17 @@ describe('defineComponent', () => {
     });
 
     it('converts all props to Observable', async () => {
-        const name = "props-are-observables";
-        const props = { example: { } };
+        const name = 'props-are-observables';
+        const props = { example: {} };
 
         let underTest;
-        const component = defineComponent({ name, props, setup(setupProps) { underTest = setupProps } });
+        const component = defineComponent({
+            name,
+            props,
+            setup(setupProps) {
+                underTest = setupProps;
+            },
+        });
         mount(component);
 
         expect(underTest.example).toBeTruthy();

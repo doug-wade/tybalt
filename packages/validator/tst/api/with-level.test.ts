@@ -5,15 +5,15 @@ import { ValidationResults } from '../../src/types';
 
 describe('withLevel', () => {
     it('adds a level to a validation result', async () => {
-        const mockLogLevel = "warn";
-        const mockValidator = { 
-            async validate(): Promise<ValidationResults> { 
+        const mockLogLevel = 'warn';
+        const mockValidator = {
+            async validate(): Promise<ValidationResults> {
                 return {
-                    level: "error", 
-                    passed: false, 
-                    message: 'mock message' 
-                } 
-            } 
+                    level: 'error',
+                    passed: false,
+                    message: 'mock message',
+                };
+            },
         };
 
         const validator = withLevel(mockValidator, mockLogLevel);

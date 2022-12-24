@@ -7,7 +7,7 @@ describe('withMessage', () => {
     it('should add a message to a validator that has not passed', async () => {
         const message = 'mock message';
         const validator = mockValidator({ passed: false });
-        
+
         const underTest = withMessage(validator, message);
         const results = await underTest.validate('foo');
 
@@ -17,7 +17,7 @@ describe('withMessage', () => {
     it('should not add a message to a validator that has passed', async () => {
         const message = 'mock message';
         const validator = mockValidator({ passed: true });
-        
+
         const underTest = withMessage(validator, message);
         const results = await underTest.validate('foo');
 

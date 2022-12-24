@@ -1,9 +1,9 @@
-import {describe, expect, it, jest} from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import WrapperArray from '../../src/util/wrapper-array';
 
-const getExpectedMessage = ({ method } : { method: string }) => {
+const getExpectedMessage = ({ method }: { method: string }) => {
     return `${method} must be called on a single wrapper, use at(i) to access a wrapper`;
-}
+};
 
 describe('empty-wrapper', () => {
     it('returns true from exists()', () => {

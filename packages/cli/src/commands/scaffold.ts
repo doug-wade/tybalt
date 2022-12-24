@@ -10,7 +10,7 @@ const validateName = ({ componentName }: { componentName: string }) => {
     if (!kebabCaseName.includes('-')) {
         throw new Error(`Web component names have to contain a '-' when converted to kebab case.`);
     }
-}
+};
 
 const makeContext = ({ componentName }: { componentName: string }): ScaffoldContext => {
     const kebabCaseName = toKebabCase(componentName);
@@ -19,7 +19,7 @@ const makeContext = ({ componentName }: { componentName: string }): ScaffoldCont
     return {
         kebabCaseName,
         pascalCaseName: toPascalCase(componentName),
-        implementationFileName
+        implementationFileName,
     };
 };
 
@@ -36,7 +36,8 @@ const action = (componentName: string, options: ScaffoldCommandOptions) => {
 };
 
 export default ({ program }: CommandContext) => {
-    program.command('scaffold')
+    program
+        .command('scaffold')
         .description('scaffold tybalt-related files')
         .argument('[string]', 'target', 'component')
         .option('-n, --name', 'tybalt-example')

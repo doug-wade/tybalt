@@ -2,9 +2,9 @@ import { describe, it, expect } from '@jest/globals';
 import oneOf from '../../src/api/one-of';
 
 const MOCK_VALUES = {
-    ONE: "one",
-    TWO: "two",
-    THREE: "three"
+    ONE: 'one',
+    TWO: 'two',
+    THREE: 'three',
 };
 
 describe('oneOf', () => {

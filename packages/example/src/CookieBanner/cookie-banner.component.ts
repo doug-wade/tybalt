@@ -13,16 +13,18 @@ export default defineComponent({
             <div class="cookie-banner">
                 <span>Please accept all cookies<span>
                 <example-link href="http://www.example.com">Find out more</example-link>
-                <example-button @click="${ clickHandler }" variant="${ PRIMARY }">Accept all cookies</example-button>
+                <example-button @click="${clickHandler}" variant="${PRIMARY}">Accept all cookies</example-button>
             </div>
-        `
+        `;
     },
     setup(_: PropsStateMap, ctx: SetupContext) {
-        const clickHandler = () => { ctx.emit('click'); };
+        const clickHandler = () => {
+            ctx.emit('click');
+        };
 
         return {
             clickHandler,
-            PRIMARY: BUTTON_VARIANTS.PRIMARY
-        }
-    }
-})
+            PRIMARY: BUTTON_VARIANTS.PRIMARY,
+        };
+    },
+});

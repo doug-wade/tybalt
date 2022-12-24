@@ -22,7 +22,7 @@ some data about it with the props config object passed to `defineComponent`.
 
 ```javascript
 defineComponent({
-  props: { example: {} },
+    props: { example: {} },
 });
 ```
 
@@ -31,12 +31,12 @@ is notified when the corresponding attribute changes.
 
 ```javascript
 defineComponent({
-  props: {
-    example: {},
-  },
-  setup({ example }) {
-    assert(example instanceof Observable);
-  },
+    props: {
+        example: {},
+    },
+    setup({ example }) {
+        assert(example instanceof Observable);
+    },
 });
 ```
 
@@ -44,11 +44,11 @@ Props can have a default value that is provided if the attribute is unset.
 
 ```javascript
 defineComponent({
-  props: {
-    example: {
-      default: "tybalt",
+    props: {
+        example: {
+            default: 'tybalt',
+        },
     },
-  },
 });
 ```
 
@@ -56,18 +56,18 @@ Props can also have a validator. Validation errors are pushed to the error strea
 
 ```javascript
 defineComponent({
-  props: {
-    example: {
-      validator: oneOf(["foo", "bar", "baz"]),
+    props: {
+        example: {
+            validator: oneOf(['foo', 'bar', 'baz']),
+        },
     },
-  },
-  setup({ example }) {
-    example.subscribe({
-      error(err) {
-        alert(err);
-      },
-    });
-  },
+    setup({ example }) {
+        example.subscribe({
+            error(err) {
+                alert(err);
+            },
+        });
+    },
 });
 ```
 
@@ -93,9 +93,9 @@ There are `slot` and `template` elements in javascript that work well with web c
 
 ```javascript
 defineComponent({
-  name: "slot-example",
-  shadowMode: "open",
-  template: `
+    name: 'slot-example',
+    shadowMode: 'open',
+    template: `
     <div class="my-class">
       <span>Example: </span>
       <slot name="content"></slot>
@@ -109,7 +109,7 @@ of the `slot-example` component. A component rendered in the DOM as
 
 ```html
 <slot-example>
-  <div my-attribute="foo">example content</div>
+    <div my-attribute="foo">example content</div>
 </slot-example>
 ```
 
@@ -117,8 +117,8 @@ Would be rendered to the user as
 
 ```html
 <div class="my-class">
-  <span>Example: </span>
-  <div my-attribute="foo">example content</div>
+    <span>Example: </span>
+    <div my-attribute="foo">example content</div>
 </div>
 ```
 
@@ -135,7 +135,7 @@ For instance, if you create a new component with the name `my-component`
 
 ```javascript
 defineComponent({
-  name: "my-component",
+    name: 'my-component',
 });
 ```
 
@@ -154,8 +154,8 @@ This is used for static analysis purposes; if you emit an event that is not list
 
 ```javascript
 defineComponent({
-  name: "emits-example",
-  emits: ["my-event"],
+    name: 'emits-example',
+    emits: ['my-event'],
 });
 ```
 
@@ -164,16 +164,16 @@ defineComponent({
 props is an object that determines how attributes are handled for your web component.
 
 ```javascript
-import { required, string } from "@tybalt/validator";
+import { required, string } from '@tybalt/validator';
 
 defineComponent({
-  name: "props-example",
-  props: {
-    example: {
-      default: "foo",
-      validator: compose(required(), string()),
+    name: 'props-example',
+    props: {
+        example: {
+            default: 'foo',
+            validator: compose(required(), string()),
+        },
     },
-  },
 });
 ```
 
@@ -184,12 +184,12 @@ defineComponent({
 
 ```javascript
 defineComponent({
-  name: "setup-script",
-  setup(props) {
-    return {
-      myValue: "my-value",
-    };
-  },
+    name: 'setup-script',
+    setup(props) {
+        return {
+            myValue: 'my-value',
+        };
+    },
 });
 ```
 
@@ -199,10 +199,10 @@ Called as part of the [web component life cycle](https://developer.mozilla.org/e
 
 ```javascript
 defineComponent({
-  name: "connected-callback",
-  connectedCallback() {
-    console.log("connected to the dom");
-  },
+    name: 'connected-callback',
+    connectedCallback() {
+        console.log('connected to the dom');
+    },
 });
 ```
 
@@ -212,10 +212,10 @@ Called as part of the [web component life cycle](https://developer.mozilla.org/e
 
 ```javascript
 defineComponent({
-  name: "disconnected-callback",
-  disconnectedCallback() {
-    console.log("disconnected from the dom");
-  },
+    name: 'disconnected-callback',
+    disconnectedCallback() {
+        console.log('disconnected from the dom');
+    },
 });
 ```
 
@@ -225,10 +225,10 @@ Called as part of the [web component life cycle](https://developer.mozilla.org/e
 
 ```javascript
 defineComponent({
-  name: "adopted-callback",
-  adoptedCallback() {
-    console.log("adopted to the dom");
-  },
+    name: 'adopted-callback',
+    adoptedCallback() {
+        console.log('adopted to the dom');
+    },
 });
 ```
 
@@ -239,7 +239,7 @@ the dom should be attached in. One of: open, closed.
 
 ```javascript
 defineComponent({
-  name: "shadow-mode",
-  shadowMode: "open",
+    name: 'shadow-mode',
+    shadowMode: 'open',
 });
 ```

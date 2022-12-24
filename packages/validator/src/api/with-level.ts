@@ -1,4 +1,4 @@
-import type { Validator, LogLevel } from '../types'
+import type { Validator, LogLevel } from '../types';
 
 export default (validator: Validator, level: LogLevel) => {
     return {
@@ -7,8 +7,8 @@ export default (validator: Validator, level: LogLevel) => {
 
             return {
                 ...result,
-                level
+                level,
             };
-        }
+        },
     };
-}
+};

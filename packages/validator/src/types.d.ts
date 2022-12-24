@@ -1,11 +1,11 @@
-export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'silent';
 export type LoggerOptions = {
-    level: LogLevel,
+    level: LogLevel;
 };
 export type ValidationResults = {
-    level?: LogLevel,
-    message?: string,
-    passed: boolean,
+    level?: LogLevel;
+    message?: string;
+    passed: boolean;
 };
 export type Validator = {
     validate: (value: any) => Promise<ValidationResults>;

@@ -16,13 +16,13 @@ export interface Wrapper {
     exists(): boolean;
     trigger(type: string, payload?: any): void;
     setAttribute(name: string, value?: any): void;
-};
+}
 
-export type MountOptions = { 
-    attributes?: AttributeObject, 
-    slot?: string 
+export type MountOptions = {
+    attributes?: AttributeObject;
+    slot?: string;
 };
 
 export type FlushPromisesOptions = {
-    interval?: number
+    interval?: number;
 };

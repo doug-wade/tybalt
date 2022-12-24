@@ -1,14 +1,13 @@
-import {describe, expect, it, jest} from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import EmptyWrapper from '../../src/util/empty-wrapper';
 
 const MOCK_SELECTOR = 'tybalt-button';
 
-class MockWebComponent extends HTMLElement {
-}
+class MockWebComponent extends HTMLElement {}
 
-const getExpectedMessage = ({ method } : { method: string }) => {
+const getExpectedMessage = ({ method }: { method: string }) => {
     return `find did not return ${MOCK_SELECTOR}, cannot call ${method}() on empty Wrapper`;
-}
+};
 
 describe('empty-wrapper', () => {
     it('returns false from exists()', () => {

@@ -1,1 +1,1 @@
-console.log("tybalt eleventy plugin loaded");
+console.log('tybalt eleventy plugin loaded');

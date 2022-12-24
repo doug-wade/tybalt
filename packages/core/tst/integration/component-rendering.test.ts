@@ -6,18 +6,18 @@ import { BehaviorSubject } from 'rxjs';
 
 describe('component rendering', () => {
     it('renders observables returned from setup', async () => {
-        const name = "template-method";
+        const name = 'template-method';
         const expected = 'bar';
 
-        const component = defineComponent({ 
+        const component = defineComponent({
             name,
             shadowMode: 'open',
             render({ expected }) {
                 return html`<span>${expected}</span>`;
             },
-            setup() { 
+            setup() {
                 return { expected: new BehaviorSubject(expected) };
-            } 
+            },
         });
         const wrapper = await mount(component);
 
@@ -25,10 +25,10 @@ describe('component rendering', () => {
     });
 
     it('passes props to template without going through setup', async () => {
-        const name = "template-props";
+        const name = 'template-props';
         const expected = 'baz';
 
-        const component = defineComponent({ 
+        const component = defineComponent({
             name,
             shadowMode: 'open',
             props: { example: { default: expected } },
@@ -42,7 +42,7 @@ describe('component rendering', () => {
     });
 
     it('re-renders when props have changes', async () => {
-        const name = "re-render";
+        const name = 're-render';
         const firstRenderPropValue = 'foo';
         const secondRenderPropValue = 'bar';
 

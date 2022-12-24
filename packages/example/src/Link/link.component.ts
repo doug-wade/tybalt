@@ -6,10 +6,10 @@ export default defineComponent({
     shadowMode: 'open',
     props: {
         href: {
-            validator: compose(required(), url())
-        }
+            validator: compose(required(), url()),
+        },
     },
     render({ href }: { href: string }) {
-        return html`<a class="example-link" href="${href}"><slot></slot></a>` 
-    }
+        return html`<a class="example-link" href="${href}"><slot></slot></a>`;
+    },
 });

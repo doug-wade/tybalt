@@ -1,6 +1,6 @@
 import type { ScaffoldContext } from '../types';
 
-export default ({ pascalCaseName, implementationFileName } : ScaffoldContext) => {
+export default ({ pascalCaseName, implementationFileName }: ScaffoldContext) => {
     return `
         import { number } from '@tybalt/validator';
         import { defineExample } from '@tybalt/core';
@@ -26,5 +26,5 @@ export default ({ pascalCaseName, implementationFileName } : ScaffoldContext) =>
                 };
             }
         });
-    `
+    `;
 };

@@ -8,4 +8,4 @@ export default (pattern: RegExp | string) => {
             return pattern.test(value);
         }
     });
-}
+};

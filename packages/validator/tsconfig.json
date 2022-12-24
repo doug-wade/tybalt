@@ -1,20 +1,18 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-      "lib": ["es2021"],
-      "module": "es6",
-      "target": "es2021",
-      "outDir": "dist/types",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "moduleResolution": "node",
-      "emitDeclarationOnly": true,
-      "declaration": true
+        "lib": ["es2021"],
+        "module": "es6",
+        "target": "es2021",
+        "outDir": "dist/types",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "emitDeclarationOnly": true,
+        "declaration": true
     },
-    "include": [
-      "src/**/*"
-    ],
+    "include": ["src/**/*"],
     "baseUrl": "."
-  }
+}

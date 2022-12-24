@@ -6,12 +6,12 @@ export default class EmptyWrapper implements Wrapper {
         return 0;
     }
 
-    constructor({ selector } : { selector: string }) {
+    constructor({ selector }: { selector: string }) {
         this.#selector = selector;
     }
 
-    #makeErrorMessage({ method } : { method: string}) {
-        return `find did not return ${this.#selector}, cannot call ${method}() on empty Wrapper`
+    #makeErrorMessage({ method }: { method: string }) {
+        return `find did not return ${this.#selector}, cannot call ${method}() on empty Wrapper`;
     }
 
     find(selector: string): never {
@@ -41,7 +41,7 @@ export default class EmptyWrapper implements Wrapper {
     text(): never {
         throw new Error(this.#makeErrorMessage({ method: 'text' }));
     }
-    
+
     attributes(): never {
         throw new Error(this.#makeErrorMessage({ method: 'attributes' }));
     }

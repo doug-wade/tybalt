@@ -1,4 +1,4 @@
-import {describe, expect, it, jest} from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import flushPromises from '../../src/api/flush-promises';
 
 describe('flush-promises', () => {
