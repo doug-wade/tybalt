@@ -7,4 +7,4 @@ global.customElements.define = (name, constructor, options) => {
     global.customElementsRegistry.set(name, constructor);
     global.customElementsReverseRegistry.set(constructor, name);
     originalDefine.apply(global.customElements, [name, constructor, options]);
-}
+};

@@ -1,38 +1,38 @@
 name: Code Coverage
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
+    push:
+        branches:
+            - master
+    pull_request:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
+        strategy:
+            matrix:
+                node-version: [18.x]
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+            - name: Set up Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: yarn install
+            - name: Install dependencies
+              run: yarn install
 
-      - name: Run the build
-        run: yarn build
+            - name: Run the build
+              run: yarn build
 
-      - name: Run the tests
-        run: yarn test --coverage
+            - name: Run the tests
+              run: yarn test --coverage
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage-final.json
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v3
+              with:
+                  files: ./coverage-final.json

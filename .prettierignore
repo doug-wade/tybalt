@@ -1,0 +1,7 @@
+# Ignore artifacts:
+packages/**/dist/
+coverage/
+.turbo/
+.yarn/
+_site/
+packages/website/lib

@@ -1,6 +1,4 @@
 {
-    "cSpell.words": [
-        "tybalt"
-    ],
+    "cSpell.words": ["tybalt"],
     "jest.jestCommandLine": "yarn test"
 }

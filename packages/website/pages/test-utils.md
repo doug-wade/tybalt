@@ -17,7 +17,7 @@ In commonjs
 
 ```javascript
 module.exports = {
-  setupFilesAfterEnv: ["./node_modules/@tybalt/test-utils/dist/cjs/setup.js"],
+    setupFilesAfterEnv: ['./node_modules/@tybalt/test-utils/dist/cjs/setup.js'],
 };
 ```
 
@@ -25,22 +25,22 @@ In esm
 
 ```javascript
 export default {
-  setupFilesAfterEnv: ["./node_modules/@tybalt/test-utils/dist/mjs/setup.js"],
+    setupFilesAfterEnv: ['./node_modules/@tybalt/test-utils/dist/mjs/setup.js'],
 };
 ```
 
 ## Usage
 
 ```javascript
-import { mount } from "@tybalt/test-utils";
-import MyComponent from "./my-component";
+import { mount } from '@tybalt/test-utils';
+import MyComponent from './my-component';
 
-describe("component", () => {
-  it("renders", async () => {
-    const wrapper = await mount(MyComponent);
+describe('component', () => {
+    it('renders', async () => {
+        const wrapper = await mount(MyComponent);
 
-    expect(wrapper.html()).toBe(`<my-component></my-component>`);
-  });
+        expect(wrapper.html()).toBe(`<my-component></my-component>`);
+    });
 });
 ```
 
@@ -53,18 +53,18 @@ await flushPromises();
 ```
 
 ```javascript
-import { flushPromises, mount } from "@tybalt/test-utils";
-import MyComponent from "./my-component";
+import { flushPromises, mount } from '@tybalt/test-utils';
+import MyComponent from './my-component';
 
-describe("component", () => {
-  it("renders", async () => {
-    const wrapper = await mount(MyComponent);
+describe('component', () => {
+    it('renders', async () => {
+        const wrapper = await mount(MyComponent);
 
-    // wait for asynchronous action, like a fetch request, that is performed when mounting to be completed
-    await flushPromises();
+        // wait for asynchronous action, like a fetch request, that is performed when mounting to be completed
+        await flushPromises();
 
-    expect(wrapper.text()).toBe(`<expected content>`);
-  });
+        expect(wrapper.text()).toBe(`<expected content>`);
+    });
 });
 ```
 
@@ -78,17 +78,17 @@ an attributes and slot key on it. The attributes argument is an object in the sh
 web component.
 
 ```javascript
-import { mount } from "@tybalt/test-utils";
-import MyComponent from "./my-component";
+import { mount } from '@tybalt/test-utils';
+import MyComponent from './my-component';
 
-describe("component", () => {
-  it("renders", async () => {
-    const attributes = {};
-    const slot = "this is slot content";
-    const wrapper = await mount(MyComponent, { attributes, slot });
+describe('component', () => {
+    it('renders', async () => {
+        const attributes = {};
+        const slot = 'this is slot content';
+        const wrapper = await mount(MyComponent, { attributes, slot });
 
-    expect(wrapper.html()).toBe(`<my-component></my-component>`);
-  });
+        expect(wrapper.html()).toBe(`<my-component></my-component>`);
+    });
 });
 ```
 
@@ -103,8 +103,8 @@ The attributes method is used to get the value of attributes that are passed to 
 parameter, `attributeName`, the name of the attribute to get the value for.
 
 ```javascript
-const attributeName = "name";
-const attributeValue = "value";
+const attributeName = 'name';
+const attributeValue = 'value';
 
 const wrapper = mount(MyComponent, { [attributeName]: attributeValue });
 
@@ -115,8 +115,8 @@ If the optional parameter is not provided, instead an object is returned where t
 their corresponding values are the attribute values.
 
 ```javascript
-const attributeName = "name";
-const attributeValue = "value";
+const attributeName = 'name';
+const attributeValue = 'value';
 
 const wrapper = mount(MyComponent, { [attributeName]: attributeValue });
 
@@ -129,9 +129,9 @@ The classes method is used to indicate the presence of classes that are present 
 optional parameter, `className`, the name of the attribute to check for the presence of.
 
 ```javascript
-const className = "my-class";
+const className = 'my-class';
 const MyComponent = defineComponent({
-  template: `<div class="${className}"></div>`,
+    template: `<div class="${className}"></div>`,
 });
 
 const wrapper = mount(MyComponent);
@@ -143,9 +143,9 @@ If the optional parameter is not provided, instead an object is returned where t
 their corresponding values are the attribute values.
 
 ```javascript
-const className = "my-class";
+const className = 'my-class';
 const MyComponent = defineComponent({
-  template: `<div class="${className}"></div>`,
+    template: `<div class="${className}"></div>`,
 });
 
 const wrapper = mount(MyComponent);
@@ -170,11 +170,11 @@ If, instead, you query the result for a element that is not present, it will ret
 
 ```javascript
 const MyComponent = defineComponent({
-  template: `<div>Hello World</div>`,
+    template: `<div>Hello World</div>`,
 });
 
 const wrapper = mount(MyComponent);
-const element = wrapper.find("button");
+const element = wrapper.find('button');
 
 expect(element.exists()).not.toBeTruthy();
 ```
@@ -187,7 +187,7 @@ Only returns the first element matching the selector.
 
 ```javascript
 const MyComponent = defineComponent({
-  template: `<div>Hello World</div>`,
+    template: `<div>Hello World</div>`,
 });
 const wrapper = mount(MyComponent);
 const element = wrapper.find('div[data-jest="my-selector"]');
@@ -203,10 +203,10 @@ Returns all elements matching the selector.
 
 ```javascript
 const MyComponent = defineComponent({
-  template: `<ul><li>one</li><li>two</li><li>three</li></ul>`,
+    template: `<ul><li>one</li><li>two</li><li>three</li></ul>`,
 });
 const wrapper = mount(MyComponent);
-const elements = wrapper.findAll("li");
+const elements = wrapper.findAll('li');
 
 expect(elements.length).toBe(3);
 ```
@@ -218,7 +218,7 @@ argument. Only returns the first element that is an instance of the constructor.
 
 ```javascript
 const MyComponent = defineComponent({
-  template: `<div><my-other-component></my-other-component></div>`,
+    template: `<div><my-other-component></my-other-component></div>`,
 });
 const wrapper = mount(MyComponent);
 const element = wrapper.findComponent(MyOtherComponent);
@@ -233,7 +233,7 @@ argument. Returns all elements that is an instance of the constructor.
 
 ```javascript
 const MyComponent = defineComponent({
-  template: `
+    template: `
     <ul>
       <li><my-other-component></my-other-component></li>
       <li><my-other-component></my-other-component></li>
@@ -264,7 +264,7 @@ close it, the shadow DOM will not be returned from `html`.
 
 ```javascript
 const template = `<div>my secret DOM</div>`;
-const MyComponent = defineComponent({ template, shadowMode: "closed" });
+const MyComponent = defineComponent({ template, shadowMode: 'closed' });
 
 const wrapper = mount(MyComponent);
 
@@ -275,7 +275,7 @@ If, instead, you have an open shadow DOM, it will be included in the returned `h
 
 ```javascript
 const template = `<div>my open DOM</div>`;
-const MyComponent = defineComponent({ template, shadowMode: "open" });
+const MyComponent = defineComponent({ template, shadowMode: 'open' });
 
 const wrapper = mount(MyComponent);
 
@@ -310,8 +310,8 @@ expect(wrapper.text()).toBe(`foo bar baz`);
 Fires a custom event from the wrapped element.
 
 ```javascript
-const eventName = "click";
-const payload = { foo: "bar" };
+const eventName = 'click';
+const payload = { foo: 'bar' };
 
 const wrapper = mount(MyComponent);
 wrapper.trigger(eventName, payload);

@@ -1,6 +1,6 @@
 import type { ScaffoldContext } from '../types';
 
-export default ({ kebabCaseName } : ScaffoldContext) => {
+export default ({ kebabCaseName }: ScaffoldContext) => {
     return `
         import { defineComponent, reactive } from '@tybalt/core';
         import { string } from '@tybalt/validator';
@@ -22,5 +22,5 @@ export default ({ kebabCaseName } : ScaffoldContext) => {
                 };
             }
         });
-    `
+    `;
 };

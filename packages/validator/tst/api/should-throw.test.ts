@@ -7,15 +7,17 @@ import mockValidator from '../../src/util/mock-validator';
 describe('shouldThrow', () => {
     it('should throw if the validation fails', () => {
         const message = 'mock error message';
-        const validator = mockValidator({ 
-            passed: false, 
-            level: "error",
+        const validator = mockValidator({
+            passed: false,
+            level: 'error',
             message,
         });
 
         const underTest = shouldThrow(validator);
 
-        expect(async () => { await underTest.validate(); }).rejects.toThrow(message);
+        expect(async () => {
+            await underTest.validate();
+        }).rejects.toThrow(message);
     });
 
     it('should not throw if the validation passes', () => {
@@ -23,6 +25,8 @@ describe('shouldThrow', () => {
 
         const underTest = shouldThrow(validator);
 
-        expect(async () => { await underTest.validate() }).not.toThrow();
+        expect(async () => {
+            await underTest.validate();
+        }).not.toThrow();
     });
 });

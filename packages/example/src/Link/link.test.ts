@@ -7,16 +7,16 @@ const slot = '<div slot="content">mock slot value</div>';
 const mountLink = async () => {
     const wrapper = await mount(Link, {
         slot,
-        attributes: { href }
+        attributes: { href },
     });
 
     return wrapper;
-}
+};
 
 describe('link', () => {
     it('renders an anchor tag', async () => {
         const wrapper = await mountLink();
-        
+
         const actual = wrapper.find('a');
 
         expect(actual.exists()).toBeTruthy();

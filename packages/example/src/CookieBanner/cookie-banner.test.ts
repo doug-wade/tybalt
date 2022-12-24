@@ -5,12 +5,12 @@ const mountCookieBanner = async () => {
     const wrapper = await mount(CookieBanner);
 
     return wrapper;
-}
+};
 
 describe('cookie banner', () => {
     it('renders a link', async () => {
         const wrapper = await mountCookieBanner();
-        
+
         const actual = wrapper.find('example-link');
 
         expect(actual.attributes('href')).toBe('http://www.example.com');

@@ -1,10 +1,9 @@
-import {describe, expect, it} from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import Wrapper from '../../src/util/base-wrapper';
 import mount from '../../src/api/mount';
 
 const mockWebComponentSelector = 'mock-web-component-name';
-class MockWebComponent extends HTMLElement {
-};
+class MockWebComponent extends HTMLElement {}
 
 describe('mount', () => {
     beforeEach(() => {

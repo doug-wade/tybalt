@@ -5,9 +5,9 @@ export default (cb: ValidatorFunction) => {
         async validate(value?: any): Promise<ValidationResults> {
             const result = await cb(value);
 
-            if (result === undefined || result === null || typeof result === 'boolean' && result === true) {
+            if (result === undefined || result === null || (typeof result === 'boolean' && result === true)) {
                 return {
-                    passed: true
+                    passed: true,
                 };
             }
 
@@ -15,18 +15,18 @@ export default (cb: ValidatorFunction) => {
                 return {
                     passed: false,
                     message: result,
-                    level: "error"
-                }
+                    level: 'error',
+                };
             }
 
             if (typeof result === 'boolean') {
                 return {
                     passed: result,
-                    level: "error"
-                }
+                    level: 'error',
+                };
             }
 
             return result;
-        }
+        },
     };
 };

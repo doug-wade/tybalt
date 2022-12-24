@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 export const BUTTON_VARIANTS = Object.freeze({
     PRIMARY: 'primary',
     SECONDARY: 'secondary',
-    TERTIARY: 'tertiary'
+    TERTIARY: 'tertiary',
 });
 
 export default defineComponent({
@@ -40,19 +40,21 @@ export default defineComponent({
     props: {
         variant: {
             default: BUTTON_VARIANTS.PRIMARY,
-            validator: compose(required(), string(), oneOf(Object.values(BUTTON_VARIANTS)))
-        }
+            validator: compose(required(), string(), oneOf(Object.values(BUTTON_VARIANTS))),
+        },
     },
-    render({ computedClass, clickHandler }) { 
-        return html`<button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>` 
+    render({ computedClass, clickHandler }) {
+        return html`<button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>`;
     },
     setup(props: PropsStateMap, ctx: SetupContext) {
-        const clickHandler = () => { ctx.emit('click') };
+        const clickHandler = () => {
+            ctx.emit('click');
+        };
         const computedClass = props.variant.pipe(map((variant: string) => `button-${variant}`));
 
         return {
             clickHandler,
-            computedClass
+            computedClass,
         };
-    }
+    },
 });

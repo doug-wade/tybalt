@@ -1,37 +1,37 @@
 name: GitHub Pages
 
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    deploy:
+        runs-on: ubuntu-22.04
+        permissions:
+            contents: write
+        concurrency:
+            group: ${{ github.workflow }}-${{ github.ref }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: yarn install
+            - name: Install dependencies
+              run: yarn install
 
-      - name: Build website
-        run: yarn build
+            - name: Build website
+              run: yarn build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/master' }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/website/_site
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v3
+              if: ${{ github.ref == 'refs/heads/master' }}
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./packages/website/_site
 
-      - name: Post to Discord
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@0.3.2
-        with:
-          args: "The Tybalt website has been deployed."
+            - name: Post to Discord
+              env:
+                  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+              uses: Ilshidur/action-discord@0.3.2
+              with:
+                  args: 'The Tybalt website has been deployed.'

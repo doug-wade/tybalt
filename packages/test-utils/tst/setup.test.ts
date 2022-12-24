@@ -1,9 +1,8 @@
-import {describe, expect, it, jest} from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import '../src/setup';
 
-class MockWebComponent extends HTMLElement {
-}
-const mockWebComponentTagName = 'mock-web-component';  
+class MockWebComponent extends HTMLElement {}
+const mockWebComponentTagName = 'mock-web-component';
 describe('setup', () => {
     it('should intercept customElements.define calls', async () => {
         customElements.define(mockWebComponentTagName, MockWebComponent);

@@ -15,8 +15,8 @@ export default (validator: Validator | ValidatorFunction, message: string) => {
 
             return {
                 ...result,
-                message
+                message,
             };
-        }
-    }
+        },
+    };
 };

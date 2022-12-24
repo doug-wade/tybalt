@@ -53,13 +53,13 @@ export default class WrapperArray implements Wrapper {
 
     findComponent(definition: CustomElementConstructor): Wrapper {
         const elementName = getElementName({ definition });
-        
+
         return this.find(elementName);
     }
 
     findComponentAll(definition: CustomElementConstructor): Wrapper {
         const elementName = getElementName({ definition });
-        
+
         return this.findAll(elementName);
     }
 
@@ -76,7 +76,9 @@ export default class WrapperArray implements Wrapper {
     }
 
     setAttribute(name: string, value: any): void {
-        this.elements.forEach(element => { element.setAttribute(name, value); });
+        this.elements.forEach((element) => {
+            element.setAttribute(name, value);
+        });
     }
 
     attributes(attributeName?: string): never {

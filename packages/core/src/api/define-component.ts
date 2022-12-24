@@ -3,13 +3,28 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import type { DefineComponentsOptions, SetupContext } from '../types';
 
-const nameValidator = shouldThrow(withMessage(compose(required(), matchesPattern(/.*-.*/)), `web component names are required and must contain a hyphen`));
+const nameValidator = shouldThrow(
+    withMessage(
+        compose(required(), matchesPattern(/.*-.*/)),
+        `web component names are required and must contain a hyphen`,
+    ),
+);
 
-export default ({ name, emits, props = {}, setup, connectedCallback, disconnectedCallback, adoptedCallback, render, shadowMode = 'closed', css } : DefineComponentsOptions) => {
+export default ({
+    name,
+    emits,
+    props = {},
+    setup,
+    connectedCallback,
+    disconnectedCallback,
+    adoptedCallback,
+    render,
+    shadowMode = 'closed',
+    css,
+}: DefineComponentsOptions) => {
     nameValidator.validate(name);
 
     const clazz = class extends HTMLElement {
-
         #context: SetupContext;
         #props: { [Property: string]: BehaviorSubject<any> };
         #shadowRoot: ShadowRoot;
@@ -19,7 +34,7 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
 
         constructor() {
             super();
-    
+
             this.#props = Object.entries(props).reduce((accumulator, [key, value]) => {
                 accumulator[key] = new BehaviorSubject(value.default || null);
                 return accumulator;
@@ -30,10 +45,10 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
                     console.warn(`unexpected event emitted with type ${type} and detail ${detail}`);
                 }
                 this.dispatchEvent(new CustomEvent(type, { detail }));
-            }
+            };
 
             this.#context = {
-                emit
+                emit,
             };
 
             this.#setupResults = setup?.call(this, this.#props, this.#context) || {};
@@ -45,7 +60,7 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
             }
 
             this.#shadowRoot = this.attachShadow({ mode: shadowMode });
-            
+
             this.#doRender();
         }
 
@@ -75,16 +90,16 @@ export default ({ name, emits, props = {}, setup, connectedCallback, disconnecte
             // dbw 12/16/22: We'll definitely need something more sophisticated than this.
             this.#shadowRoot.innerHTML = '';
 
-            const state : { [Property: string] : any } = {};
+            const state: { [Property: string]: any } = {};
             Object.entries(this.#setupResults).forEach(([key, value]) => {
                 const unwrappedValue = value.value ? value.value : value;
                 if (!unwrappedValue) {
-                    state[key] = "";
+                    state[key] = '';
                 } else {
                     state[key] = unwrappedValue;
                 }
             });
-            
+
             if (this.#css) {
                 const styleElement = document.createElement('style');
                 styleElement.innerHTML = typeof css === 'function' ? css(state) : css;

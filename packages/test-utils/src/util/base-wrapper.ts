@@ -8,7 +8,7 @@ const isString = (x: string | undefined): x is string => typeof x === 'string';
 
 const reassignSlot = (element: Element): Element => {
     const slotName = element.getAttribute('name');
-    
+
     let slotContent;
     if (!slotName) {
         slotContent = document.querySelector(`[slot]`);
@@ -20,12 +20,12 @@ const reassignSlot = (element: Element): Element => {
         console.warn(`no template found matching slot with name ${slotName}`);
         return element;
     }
-        
+
     const clone = slotContent.cloneNode(true) as Element;
     clone.removeAttribute('slot');
 
     return clone;
-}
+};
 
 const stringifyElement = (element: Element): String => {
     if (element.tagName === 'SLOT') {
@@ -43,15 +43,15 @@ const stringifyElement = (element: Element): String => {
             children += child.textContent;
         }
     }
-    
+
     return `${openingTag}>${children}${closingTag}>`;
-}
+};
 
 const stringifyShadowRoot = (shadowRoot: ShadowRoot): String => {
     return Array.from(shadowRoot.children).reduce((acc, childElement) => {
         return acc + stringifyElement(childElement);
     }, '');
-}
+};
 
 export default class BaseWrapper implements Wrapper {
     element: Element;
@@ -75,7 +75,7 @@ export default class BaseWrapper implements Wrapper {
             const closeTag = closeTagWithCloseBracket.slice(0, closeTagWithCloseBracket.length - 1);
 
             if (this.element.shadowRoot.mode === 'closed') {
-                return `<${openTag}></${closeTag}>`
+                return `<${openTag}></${closeTag}>`;
             }
 
             const results = stringifyShadowRoot(this.element.shadowRoot);
@@ -114,7 +114,7 @@ export default class BaseWrapper implements Wrapper {
         const element = this.element.querySelector(selector);
 
         if (element) {
-            return new BaseWrapper({ element });;
+            return new BaseWrapper({ element });
         }
 
         if (this.element.shadowRoot) {
@@ -148,7 +148,7 @@ export default class BaseWrapper implements Wrapper {
 
     findComponent(definition: CustomElementConstructor): Wrapper {
         const elementName = getElementName({ definition });
-        
+
         return this.find(elementName);
     }
 
@@ -165,4 +165,4 @@ export default class BaseWrapper implements Wrapper {
     setAttribute(name: string, value: any): void {
         this.element.setAttribute(name, value);
     }
-};
+}
