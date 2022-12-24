@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tybalt core</title>
-  </head>
-  <body>
-    <div><h1>@tybalt/core</h1>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tybalt core</title>
+    </head>
+    <body>
+        <div><h1>@tybalt/core</h1>
 <h2>Getting started</h2>
 <p>Install the package</p>
 <pre><code class="language-shell">$ npm install --save @tybalt/core
@@ -17,43 +17,43 @@
 <p>Dom elements can have attributes set on them. You can transform an attribute into a prop by specifying
 some data about it with the props config object passed to <code>defineComponent</code>.</p>
 <pre><code class="language-javascript">defineComponent({
-  props: { example: {} },
+    props: { example: {} },
 });
 </code></pre>
 <p>All props are passed as observables with the same name as the first argument to setup. Each observable
 is notified when the corresponding attribute changes.</p>
 <pre><code class="language-javascript">defineComponent({
-  props: {
-    example: {},
-  },
-  setup({ example }) {
-    assert(example instanceof Observable);
-  },
+    props: {
+        example: {},
+    },
+    setup({ example }) {
+        assert(example instanceof Observable);
+    },
 });
 </code></pre>
 <p>Props can have a default value that is provided if the attribute is unset.</p>
 <pre><code class="language-javascript">defineComponent({
-  props: {
-    example: {
-      default: &quot;tybalt&quot;,
+    props: {
+        example: {
+            default: 'tybalt',
+        },
     },
-  },
 });
 </code></pre>
 <p>Props can also have a validator. Validation errors are pushed to the error stream of the observable.</p>
 <pre><code class="language-javascript">defineComponent({
-  props: {
-    example: {
-      validator: oneOf([&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]),
+    props: {
+        example: {
+            validator: oneOf(['foo', 'bar', 'baz']),
+        },
     },
-  },
-  setup({ example }) {
-    example.subscribe({
-      error(err) {
-        alert(err);
-      },
-    });
-  },
+    setup({ example }) {
+        example.subscribe({
+            error(err) {
+                alert(err);
+            },
+        });
+    },
 });
 </code></pre>
 <p>To create derived state from a prop, you should create a new observable, and then update it with the
@@ -72,9 +72,9 @@ derived value.</p>
 <h3>Slots</h3>
 <p>There are <code>slot</code> and <code>template</code> elements in javascript that work well with web components.</p>
 <pre><code class="language-javascript">defineComponent({
-  name: &quot;slot-example&quot;,
-  shadowMode: &quot;open&quot;,
-  template: `
+    name: 'slot-example',
+    shadowMode: 'open',
+    template: `
     &lt;div class=&quot;my-class&quot;&gt;
       &lt;span&gt;Example: &lt;/span&gt;
       &lt;slot name=&quot;content&quot;&gt;&lt;/slot&gt;
@@ -85,13 +85,13 @@ derived value.</p>
 <p>When you render a <code>slot-example</code> component, it will replace the <code>slot</code> element with the children
 of the <code>slot-example</code> component. A component rendered in the DOM as</p>
 <pre><code class="language-html">&lt;slot-example&gt;
-  &lt;div my-attribute=&quot;foo&quot;&gt;example content&lt;/div&gt;
+    &lt;div my-attribute=&quot;foo&quot;&gt;example content&lt;/div&gt;
 &lt;/slot-example&gt;
 </code></pre>
 <p>Would be rendered to the user as</p>
 <pre><code class="language-html">&lt;div class=&quot;my-class&quot;&gt;
-  &lt;span&gt;Example: &lt;/span&gt;
-  &lt;div my-attribute=&quot;foo&quot;&gt;example content&lt;/div&gt;
+    &lt;span&gt;Example: &lt;/span&gt;
+    &lt;div my-attribute=&quot;foo&quot;&gt;example content&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
 <h2>API</h2>
@@ -101,7 +101,7 @@ of the <code>slot-example</code> component. A component rendered in the DOM as</
 <p>The name of the web component. This is used when creating a new instance of your web component.
 For instance, if you create a new component with the name <code>my-component</code></p>
 <pre><code class="language-javascript">defineComponent({
-  name: &quot;my-component&quot;,
+    name: 'my-component',
 });
 </code></pre>
 <p>you can use it in your html with the same name</p>
@@ -112,85 +112,82 @@ For instance, if you create a new component with the name <code>my-component</co
 <p>emits is an array of strings, which are the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent#parameters">CustomEvent types</a> of all of the events this component might emit.
 This is used for static analysis purposes; if you emit an event that is not listed here or if you don't list an event here that you later emit it's totally fine.</p>
 <pre><code class="language-javascript">defineComponent({
-  name: &quot;emits-example&quot;,
-  emits: [&quot;my-event&quot;],
+    name: 'emits-example',
+    emits: ['my-event'],
 });
 </code></pre>
 <h4>props</h4>
 <p>props is an object that determines how attributes are handled for your web component.</p>
-<pre><code class="language-javascript">import { required, string } from &quot;@tybalt/validator&quot;;
+<pre><code class="language-javascript">import { required, string } from '@tybalt/validator';
 
 defineComponent({
-  name: &quot;props-example&quot;,
-  props: {
-    example: {
-      default: &quot;foo&quot;,
-      validator: compose(required(), string()),
+    name: 'props-example',
+    props: {
+        example: {
+            default: 'foo',
+            validator: compose(required(), string()),
+        },
     },
-  },
 });
 </code></pre>
 <h4>setup</h4>
 <p><code>setup</code> is a method that is called once a web component is connected to the DOM (it is called as part of
 <code>connectedCallback</code>, once all of the props has been supplied).</p>
 <pre><code class="language-javascript">defineComponent({
-  name: &quot;setup-script&quot;,
-  setup(props) {
-    return {
-      myValue: &quot;my-value&quot;,
-    };
-  },
+    name: 'setup-script',
+    setup(props) {
+        return {
+            myValue: 'my-value',
+        };
+    },
 });
 </code></pre>
 <h4>connectedCallback</h4>
 <p>Called as part of the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks">web component life cycle</a>.</p>
 <pre><code class="language-javascript">defineComponent({
-  name: &quot;connected-callback&quot;,
-  connectedCallback() {
-    console.log(&quot;connected to the dom&quot;);
-  },
+    name: 'connected-callback',
+    connectedCallback() {
+        console.log('connected to the dom');
+    },
 });
 </code></pre>
 <h4>disconnectedCallback</h4>
 <p>Called as part of the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks">web component life cycle</a>.</p>
 <pre><code class="language-javascript">defineComponent({
-  name: &quot;disconnected-callback&quot;,
-  disconnectedCallback() {
-    console.log(&quot;disconnected from the dom&quot;);
-  },
+    name: 'disconnected-callback',
+    disconnectedCallback() {
+        console.log('disconnected from the dom');
+    },
 });
 </code></pre>
 <h4>adoptedCallback</h4>
 <p>Called as part of the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks">web component life cycle</a>.</p>
 <pre><code class="language-javascript">defineComponent({
-  name: &quot;adopted-callback&quot;,
-  adoptedCallback() {
-    console.log(&quot;adopted to the dom&quot;);
-  },
+    name: 'adopted-callback',
+    adoptedCallback() {
+        console.log('adopted to the dom');
+    },
 });
 </code></pre>
 <h4>shadowMode</h4>
 <p>The mode that the <a href="https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/mode">shadow root mode</a>
 the dom should be attached in. One of: open, closed.</p>
 <pre><code class="language-javascript">defineComponent({
-  name: &quot;shadow-mode&quot;,
-  shadowMode: &quot;open&quot;,
+    name: 'shadow-mode',
+    shadowMode: 'open',
 });
 </code></pre>
 </div>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-      gtag("config", "G-90R0R9Y7VG");
-    </script>
-  </body>
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    </body>
 </html>

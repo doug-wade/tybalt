@@ -1,55 +1,55 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tybalt test utils</title>
-  </head>
-  <body>
-    <div><h2>Installation</h2>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tybalt test utils</title>
+    </head>
+    <body>
+        <div><h2>Installation</h2>
 <pre><code class="language-shell">npm install --save-dev @tybalt/test-utils
 </code></pre>
 <h2>Setup</h2>
 <p>You'll need to add the setup script to your <code>jest.config.js</code>.</p>
 <p>In commonjs</p>
 <pre><code class="language-javascript">module.exports = {
-  setupFilesAfterEnv: [&quot;./node_modules/@tybalt/test-utils/dist/cjs/setup.js&quot;],
+    setupFilesAfterEnv: ['./node_modules/@tybalt/test-utils/dist/cjs/setup.js'],
 };
 </code></pre>
 <p>In esm</p>
 <pre><code class="language-javascript">export default {
-  setupFilesAfterEnv: [&quot;./node_modules/@tybalt/test-utils/dist/mjs/setup.js&quot;],
+    setupFilesAfterEnv: ['./node_modules/@tybalt/test-utils/dist/mjs/setup.js'],
 };
 </code></pre>
 <h2>Usage</h2>
-<pre><code class="language-javascript">import { mount } from &quot;@tybalt/test-utils&quot;;
-import MyComponent from &quot;./my-component&quot;;
+<pre><code class="language-javascript">import { mount } from '@tybalt/test-utils';
+import MyComponent from './my-component';
 
-describe(&quot;component&quot;, () =&gt; {
-  it(&quot;renders&quot;, async () =&gt; {
-    const wrapper = await mount(MyComponent);
+describe('component', () =&gt; {
+    it('renders', async () =&gt; {
+        const wrapper = await mount(MyComponent);
 
-    expect(wrapper.html()).toBe(`&lt;my-component&gt;&lt;/my-component&gt;`);
-  });
+        expect(wrapper.html()).toBe(`&lt;my-component&gt;&lt;/my-component&gt;`);
+    });
 });
 </code></pre>
 <h2>Api</h2>
 <h3>flushPromises</h3>
 <pre><code class="language-javascript">await flushPromises();
 </code></pre>
-<pre><code class="language-javascript">import { flushPromises, mount } from &quot;@tybalt/test-utils&quot;;
-import MyComponent from &quot;./my-component&quot;;
+<pre><code class="language-javascript">import { flushPromises, mount } from '@tybalt/test-utils';
+import MyComponent from './my-component';
 
-describe(&quot;component&quot;, () =&gt; {
-  it(&quot;renders&quot;, async () =&gt; {
-    const wrapper = await mount(MyComponent);
+describe('component', () =&gt; {
+    it('renders', async () =&gt; {
+        const wrapper = await mount(MyComponent);
 
-    // wait for asynchronous action, like a fetch request, that is performed when mounting to be completed
-    await flushPromises();
+        // wait for asynchronous action, like a fetch request, that is performed when mounting to be completed
+        await flushPromises();
 
-    expect(wrapper.text()).toBe(`&lt;expected content&gt;`);
-  });
+        expect(wrapper.text()).toBe(`&lt;expected content&gt;`);
+    });
 });
 </code></pre>
 <h3>mount</h3>
@@ -58,17 +58,17 @@ describe(&quot;component&quot;, () =&gt; {
 an attributes and slot key on it. The attributes argument is an object in the shape
 <code>{ attributeKey: &quot;attributeValue&quot; }</code>, and the slot is a string of html that should be place inside the
 web component.</p>
-<pre><code class="language-javascript">import { mount } from &quot;@tybalt/test-utils&quot;;
-import MyComponent from &quot;./my-component&quot;;
+<pre><code class="language-javascript">import { mount } from '@tybalt/test-utils';
+import MyComponent from './my-component';
 
-describe(&quot;component&quot;, () =&gt; {
-  it(&quot;renders&quot;, async () =&gt; {
-    const attributes = {};
-    const slot = &quot;this is slot content&quot;;
-    const wrapper = await mount(MyComponent, { attributes, slot });
+describe('component', () =&gt; {
+    it('renders', async () =&gt; {
+        const attributes = {};
+        const slot = 'this is slot content';
+        const wrapper = await mount(MyComponent, { attributes, slot });
 
-    expect(wrapper.html()).toBe(`&lt;my-component&gt;&lt;/my-component&gt;`);
-  });
+        expect(wrapper.html()).toBe(`&lt;my-component&gt;&lt;/my-component&gt;`);
+    });
 });
 </code></pre>
 <h3>wrapper</h3>
@@ -77,8 +77,8 @@ and is returned from methods like <code>find</code>, <code>mount</code> and <cod
 <h4>attributes</h4>
 <p>The attributes method is used to get the value of attributes that are passed to an element. It takes a single, optional
 parameter, <code>attributeName</code>, the name of the attribute to get the value for.</p>
-<pre><code class="language-javascript">const attributeName = &quot;name&quot;;
-const attributeValue = &quot;value&quot;;
+<pre><code class="language-javascript">const attributeName = 'name';
+const attributeValue = 'value';
 
 const wrapper = mount(MyComponent, { [attributeName]: attributeValue });
 
@@ -86,8 +86,8 @@ expect(wrapper.attributes(attributeName)).toBe(attributeValue);
 </code></pre>
 <p>If the optional parameter is not provided, instead an object is returned where the keys are all of the attributes, and
 their corresponding values are the attribute values.</p>
-<pre><code class="language-javascript">const attributeName = &quot;name&quot;;
-const attributeValue = &quot;value&quot;;
+<pre><code class="language-javascript">const attributeName = 'name';
+const attributeValue = 'value';
 
 const wrapper = mount(MyComponent, { [attributeName]: attributeValue });
 
@@ -96,9 +96,9 @@ expect(wrapper.attributes()).toBe({ [attributeName]: attributeValue });
 <h4>classes</h4>
 <p>The classes method is used to indicate the presence of classes that are present on an element. It takes a single,
 optional parameter, <code>className</code>, the name of the attribute to check for the presence of.</p>
-<pre><code class="language-javascript">const className = &quot;my-class&quot;;
+<pre><code class="language-javascript">const className = 'my-class';
 const MyComponent = defineComponent({
-  template: `&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`,
+    template: `&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`,
 });
 
 const wrapper = mount(MyComponent);
@@ -107,9 +107,9 @@ expect(wrapper.classes(className)).toBeTruthy();
 </code></pre>
 <p>If the optional parameter is not provided, instead an object is returned where the keys are all of the attributes, and
 their corresponding values are the attribute values.</p>
-<pre><code class="language-javascript">const className = &quot;my-class&quot;;
+<pre><code class="language-javascript">const className = 'my-class';
 const MyComponent = defineComponent({
-  template: `&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`,
+    template: `&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`,
 });
 
 const wrapper = mount(MyComponent);
@@ -126,11 +126,11 @@ expect(wrapper.exists()).toBeTruthy();
 </code></pre>
 <p>If, instead, you query the result for a element that is not present, it will return <code>false</code>.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-  template: `&lt;div&gt;Hello World&lt;/div&gt;`,
+    template: `&lt;div&gt;Hello World&lt;/div&gt;`,
 });
 
 const wrapper = mount(MyComponent);
-const element = wrapper.find(&quot;button&quot;);
+const element = wrapper.find('button');
 
 expect(element.exists()).not.toBeTruthy();
 </code></pre>
@@ -139,7 +139,7 @@ expect(element.exists()).not.toBeTruthy();
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">CSS selector string</a>.
 Only returns the first element matching the selector.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-  template: `&lt;div&gt;Hello World&lt;/div&gt;`,
+    template: `&lt;div&gt;Hello World&lt;/div&gt;`,
 });
 const wrapper = mount(MyComponent);
 const element = wrapper.find('div[data-jest=&quot;my-selector&quot;]');
@@ -151,10 +151,10 @@ expect(element.exists()).toBeTruthy();
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">CSS selector string</a>.
 Returns all elements matching the selector.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-  template: `&lt;ul&gt;&lt;li&gt;one&lt;/li&gt;&lt;li&gt;two&lt;/li&gt;&lt;li&gt;three&lt;/li&gt;&lt;/ul&gt;`,
+    template: `&lt;ul&gt;&lt;li&gt;one&lt;/li&gt;&lt;li&gt;two&lt;/li&gt;&lt;li&gt;three&lt;/li&gt;&lt;/ul&gt;`,
 });
 const wrapper = mount(MyComponent);
-const elements = wrapper.findAll(&quot;li&quot;);
+const elements = wrapper.findAll('li');
 
 expect(elements.length).toBe(3);
 </code></pre>
@@ -162,7 +162,7 @@ expect(elements.length).toBe(3);
 <p>Finds an element that is a descendant of this wrapper that is an instance of the constructor provided as the first
 argument. Only returns the first element that is an instance of the constructor.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-  template: `&lt;div&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/div&gt;`,
+    template: `&lt;div&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/div&gt;`,
 });
 const wrapper = mount(MyComponent);
 const element = wrapper.findComponent(MyOtherComponent);
@@ -173,7 +173,7 @@ expect(element.exists()).toBeTruthy();
 <p>Finds all elements that are descendants of this wrapper that are an instance of the constructor provided as the first
 argument. Returns all elements that is an instance of the constructor.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-  template: `
+    template: `
     &lt;ul&gt;
       &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
       &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
@@ -197,7 +197,7 @@ expect(wrapper.html()).toBe(template);
 <p><code>html</code> returns the html <em>as it would be seen by a third-party script</em>. For instance, if you use the shadow DOM and you
 close it, the shadow DOM will not be returned from <code>html</code>.</p>
 <pre><code class="language-javascript">const template = `&lt;div&gt;my secret DOM&lt;/div&gt;`;
-const MyComponent = defineComponent({ template, shadowMode: &quot;closed&quot; });
+const MyComponent = defineComponent({ template, shadowMode: 'closed' });
 
 const wrapper = mount(MyComponent);
 
@@ -205,7 +205,7 @@ expect(wrapper.html()).toBe(`&lt;my-component&gt;&lt;/my-component&gt;`);
 </code></pre>
 <p>If, instead, you have an open shadow DOM, it will be included in the returned <code>html</code>.</p>
 <pre><code class="language-javascript">const template = `&lt;div&gt;my open DOM&lt;/div&gt;`;
-const MyComponent = defineComponent({ template, shadowMode: &quot;open&quot; });
+const MyComponent = defineComponent({ template, shadowMode: 'open' });
 
 const wrapper = mount(MyComponent);
 
@@ -228,26 +228,23 @@ expect(wrapper.text()).toBe(`foo bar baz`);
 </code></pre>
 <h4>trigger</h4>
 <p>Fires a custom event from the wrapped element.</p>
-<pre><code class="language-javascript">const eventName = &quot;click&quot;;
-const payload = { foo: &quot;bar&quot; };
+<pre><code class="language-javascript">const eventName = 'click';
+const payload = { foo: 'bar' };
 
 const wrapper = mount(MyComponent);
 wrapper.trigger(eventName, payload);
 </code></pre>
 </div>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-      gtag("config", "G-90R0R9Y7VG");
-    </script>
-  </body>
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    </body>
 </html>

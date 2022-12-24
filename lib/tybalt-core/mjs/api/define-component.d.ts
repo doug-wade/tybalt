@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import type { DefineComponentsOptions, SetupContext } from '../types';
-declare const _default: ({ name, emits, props, setup, connectedCallback, disconnectedCallback, adoptedCallback, render, shadowMode, css }: DefineComponentsOptions) => {
+declare const _default: ({ name, emits, props, setup, connectedCallback, disconnectedCallback, adoptedCallback, render, shadowMode, css, }: DefineComponentsOptions) => {
     new (): {
         "__#1@#context": SetupContext;
         "__#1@#props": {
