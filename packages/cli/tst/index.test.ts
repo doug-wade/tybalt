@@ -5,7 +5,8 @@ import path from 'node:path';
 describe('cli', () => {
     it('should emit the version', () => {
         const binScriptPath = path.resolve(`${__dirname}/../src/index.ts`);
-        const results = child_process.execSync(`npx ts-node-esm ${binScriptPath} --version`);
+        const tsNodePath = path.resolve(`${__dirname}/../node_modules/.bin/ts-node-esm`);
+        const results = child_process.execSync(`node ${tsNodePath} ${binScriptPath} --version`);
 
         expect(results.toString()).toEqual('0.0.1\n');
     });

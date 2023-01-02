@@ -13,6 +13,7 @@
             "inputs": [
                 "packages/cli/src/**/*.ts",
                 "packages/core/src/**/*.ts",
+                "packages/eslint-plugin/src/**/*.ts",
                 "packages/example/components/**/*.*",
                 "packages/test-utils/src/**/*.ts",
                 "packages/test-utils-lit-example/src/**/*.ts",

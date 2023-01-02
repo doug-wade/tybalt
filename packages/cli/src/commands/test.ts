@@ -1,7 +1,5 @@
 import type { CommandContext } from '../types';
 
-import { resolve } from 'import-meta-resolve';
-
 import child_process from 'node:child_process';
 import path from 'node:path';
 import url from 'node:url';
@@ -16,8 +14,6 @@ export default ({ program }: CommandContext) => {
             const __filename = url.fileURLToPath(import.meta.url);
             const __dirname = path.dirname(__filename);
             const filePath = path.resolve(`${__dirname}../../../config/jest.config.js`);
-
-            console.log(filePath);
 
             const results = child_process.spawnSync(
                 'npx',
