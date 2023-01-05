@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/example",
-    "version": "0.0.9",
+    "version": "0.0.10"
     "description": "An example of how to use tybalt components",
     "main": "index.js",
     "private": true,
