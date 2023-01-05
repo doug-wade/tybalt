@@ -28,7 +28,7 @@
         "@types/glob": "^8.0.0",
         "browser-sync": "^2.27.11",
         "commander": "^9.4.1",
-        "esbuild": "^0.16.10",
+        "esbuild": "^0.16.14",
         "eslint": "^8.31.0",
         "glob": "^8.0.3",
         "import-meta-resolve": "^2.2.0",
