@@ -1,6 +1,7 @@
 import { describe, it, jest, expect } from '@jest/globals';
 import { flushPromises, mount } from '@tybalt/test-utils';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+
 import defineComponent from '../../src/api/define-component';
 
 describe('defineComponent', () => {
@@ -70,5 +71,45 @@ describe('defineComponent', () => {
 
         expect(underTest.example).toBeTruthy();
         expect(underTest.example instanceof Observable).toBeTruthy();
+    });
+
+    it('renders a template', async () => {
+        const name = 'template-option';
+        const template = '<div>hello world</div>';
+
+        const component = defineComponent({
+            name,
+            template,
+            shadowMode: 'open',
+        });
+
+        const wrapper = await mount(component);
+
+        expect(wrapper.html()).toBe(`<${name}>${template}</${name}>`);
+    });
+
+    it('renders derived state', async () => {
+        const name = 'renders-derived-state';
+        const value = 'foo';
+        const props = { example: { default: value } };
+        const deriveState = (x: string): string => `${x}bar`;
+
+        const component = defineComponent({
+            name,
+            props,
+            shadowMode: 'open',
+            render({ derived }) {
+                return `<div>${derived}</div>`;
+            },
+            setup({ example }) {
+                return {
+                    derived: example.pipe(map(deriveState))
+                }
+            }
+        });
+
+        const wrapper = await mount(component);
+
+        expect(wrapper.html()).toContain(deriveState(value));
     });
 });

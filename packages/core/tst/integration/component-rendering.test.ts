@@ -24,7 +24,7 @@ describe('component rendering', () => {
         expect(wrapper.html()).toContain(expected);
     });
 
-    it('passes props to template without going through setup', async () => {
+    it('passes props to render without going through setup', async () => {
         const name = 'template-props';
         const expected = 'baz';
 

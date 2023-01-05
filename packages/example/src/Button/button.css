@@ -1,18 +1,18 @@
-button {
+.button {
     padding: 16px;
     border: 1px solid black;
     border-radius: 4px;
 }
 
-button-primary {
+.button-primary {
     background-color: rebeccapurple;
 }
 
-button-secondary {
+.button-secondary {
     background-color: bisque;
 }
 
-button-tertiary {
+.button-tertiary {
     background: none;
     border: none;
     padding: 0;
