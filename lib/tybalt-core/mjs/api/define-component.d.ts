@@ -1,22 +1,31 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import type { DefineComponentsOptions, SetupContext } from '../types';
-declare const _default: ({ name, emits, props, setup, connectedCallback, disconnectedCallback, adoptedCallback, render, shadowMode, css, }: DefineComponentsOptions) => {
+declare const _default: ({ name, emits, props, setup, connectedCallback, disconnectedCallback, adoptedCallback, render, shadowMode, css, template, }: DefineComponentsOptions) => {
     new (): {
         "__#1@#context": SetupContext;
         "__#1@#props": {
             [Property: string]: BehaviorSubject<any>;
         };
         "__#1@#shadowRoot": ShadowRoot;
-        "__#1@#setupResults": {
-            [Property: string]: BehaviorSubject<any>;
+        "__#1@#renderObservables": {
+            [Property: string]: Observable<any>;
+        };
+        "__#1@#renderState": {
+            [Property: string]: any;
         };
         "__#1@#render": Function | undefined;
         "__#1@#css": string | Function | undefined;
+        "__#1@#template": string | undefined;
+        "__#1@#isConnected": boolean;
         connectedCallback(): void;
         disconnectedCallback(): void;
         adoptedCallback(): void;
         attributeChangedCallback(name: string, oldValue: any, newValue: any): void;
         "__#1@#doRender"(): void;
+        /**
+         * Pushes the current value of all props into their corresponding observables. Called
+         * on connectedCallback.
+         */
         "__#1@#updateProps"(): void;
         accessKey: string;
         readonly accessKeyLabel: string;

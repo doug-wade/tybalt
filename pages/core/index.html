@@ -74,12 +74,14 @@ derived value.</p>
 <pre><code class="language-javascript">defineComponent({
     name: 'slot-example',
     shadowMode: 'open',
-    template: `
-    &lt;div class=&quot;my-class&quot;&gt;
-      &lt;span&gt;Example: &lt;/span&gt;
-      &lt;slot name=&quot;content&quot;&gt;&lt;/slot&gt;
-    &lt;/div&gt;
-  `,
+    render() {
+        return html`
+            &lt;div class=&quot;my-class&quot;&gt;
+                &lt;span&gt;Example: &lt;/span&gt;
+                &lt;slot name=&quot;content&quot;&gt;&lt;/slot&gt;
+            &lt;/div&gt;
+        `;
+    },
 });
 </code></pre>
 <p>When you render a <code>slot-example</code> component, it will replace the <code>slot</code> element with the children

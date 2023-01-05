@@ -98,7 +98,9 @@ expect(wrapper.attributes()).toBe({ [attributeName]: attributeValue });
 optional parameter, <code>className</code>, the name of the attribute to check for the presence of.</p>
 <pre><code class="language-javascript">const className = 'my-class';
 const MyComponent = defineComponent({
-    template: `&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`,
+    render() {
+        return html`&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`;
+    },
 });
 
 const wrapper = mount(MyComponent);
@@ -109,7 +111,9 @@ expect(wrapper.classes(className)).toBeTruthy();
 their corresponding values are the attribute values.</p>
 <pre><code class="language-javascript">const className = 'my-class';
 const MyComponent = defineComponent({
-    template: `&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`,
+    render() {
+        return html`&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`;
+    },
 });
 
 const wrapper = mount(MyComponent);
@@ -126,7 +130,9 @@ expect(wrapper.exists()).toBeTruthy();
 </code></pre>
 <p>If, instead, you query the result for a element that is not present, it will return <code>false</code>.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-    template: `&lt;div&gt;Hello World&lt;/div&gt;`,
+    render() {
+        return html`&lt;div&gt;Hello World&lt;/div&gt;`;
+    },
 });
 
 const wrapper = mount(MyComponent);
@@ -139,7 +145,9 @@ expect(element.exists()).not.toBeTruthy();
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">CSS selector string</a>.
 Only returns the first element matching the selector.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-    template: `&lt;div&gt;Hello World&lt;/div&gt;`,
+    render() {
+        return html`&lt;div&gt;Hello World&lt;/div&gt;`;
+    },
 });
 const wrapper = mount(MyComponent);
 const element = wrapper.find('div[data-jest=&quot;my-selector&quot;]');
@@ -151,7 +159,13 @@ expect(element.exists()).toBeTruthy();
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">CSS selector string</a>.
 Returns all elements matching the selector.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-    template: `&lt;ul&gt;&lt;li&gt;one&lt;/li&gt;&lt;li&gt;two&lt;/li&gt;&lt;li&gt;three&lt;/li&gt;&lt;/ul&gt;`,
+    render() {
+        return html`&lt;ul&gt;
+            &lt;li&gt;one&lt;/li&gt;
+            &lt;li&gt;two&lt;/li&gt;
+            &lt;li&gt;three&lt;/li&gt;
+        &lt;/ul&gt;`;
+    },
 });
 const wrapper = mount(MyComponent);
 const elements = wrapper.findAll('li');
@@ -162,7 +176,9 @@ expect(elements.length).toBe(3);
 <p>Finds an element that is a descendant of this wrapper that is an instance of the constructor provided as the first
 argument. Only returns the first element that is an instance of the constructor.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-    template: `&lt;div&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/div&gt;`,
+    render() {
+        return html`&lt;div&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/div&gt;`;
+    },
 });
 const wrapper = mount(MyComponent);
 const element = wrapper.findComponent(MyOtherComponent);
@@ -173,12 +189,13 @@ expect(element.exists()).toBeTruthy();
 <p>Finds all elements that are descendants of this wrapper that are an instance of the constructor provided as the first
 argument. Returns all elements that is an instance of the constructor.</p>
 <pre><code class="language-javascript">const MyComponent = defineComponent({
-    template: `
-    &lt;ul&gt;
-      &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
-    &lt;/ul&gt;`,
+    render() {
+        return html` &lt;ul&gt;
+            &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;my-other-component&gt;&lt;/my-other-component&gt;&lt;/li&gt;
+        &lt;/ul&gt;`;
+    },
 });
 const wrapper = mount(MyComponent);
 const elements = wrapper.findComponentAll(MyOtherComponent);
