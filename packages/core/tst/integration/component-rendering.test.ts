@@ -62,4 +62,32 @@ describe('component rendering', () => {
 
         expect(wrapper.html()).toContain(secondRenderPropValue);
     });
+
+    it('passes props to children correctly', async () => {
+        const name = 'pass-props-to-children';
+        const childComponentName = 'child-component';
+        const expected = 'expected value';
+
+        let actual;
+        defineComponent({
+            name: childComponentName,
+            shadowMode: 'open',
+            props: { nested: {} },
+            setup({ nested }) {
+                actual = nested;
+            }
+        });
+        const parentComponent = defineComponent({
+            name,
+            shadowMode: 'open',
+            props: { example: {} },
+            render({ example }) {
+                return `<${childComponentName} nested="${example}"></${childComponentName}>`;
+            }
+        });
+
+        const wrapper = mount(parentComponent, { attributes: { example: expected } });
+
+        expect(actual.value).toBe(expected);
+    });
 });
