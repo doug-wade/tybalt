@@ -131,7 +131,9 @@ optional parameter, `className`, the name of the attribute to check for the pres
 ```javascript
 const className = 'my-class';
 const MyComponent = defineComponent({
-    template: `<div class="${className}"></div>`,
+    render() {
+        return html`<div class="${className}"></div>`;
+    },
 });
 
 const wrapper = mount(MyComponent);
@@ -145,7 +147,9 @@ their corresponding values are the attribute values.
 ```javascript
 const className = 'my-class';
 const MyComponent = defineComponent({
-    template: `<div class="${className}"></div>`,
+    render() {
+        return html`<div class="${className}"></div>`;
+    },
 });
 
 const wrapper = mount(MyComponent);
@@ -170,7 +174,9 @@ If, instead, you query the result for a element that is not present, it will ret
 
 ```javascript
 const MyComponent = defineComponent({
-    template: `<div>Hello World</div>`,
+    render() {
+        return html`<div>Hello World</div>`;
+    },
 });
 
 const wrapper = mount(MyComponent);
@@ -187,7 +193,9 @@ Only returns the first element matching the selector.
 
 ```javascript
 const MyComponent = defineComponent({
-    template: `<div>Hello World</div>`,
+    render() {
+        return html`<div>Hello World</div>`;
+    },
 });
 const wrapper = mount(MyComponent);
 const element = wrapper.find('div[data-jest="my-selector"]');
@@ -203,7 +211,13 @@ Returns all elements matching the selector.
 
 ```javascript
 const MyComponent = defineComponent({
-    template: `<ul><li>one</li><li>two</li><li>three</li></ul>`,
+    render() {
+        return html`<ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+        </ul>`;
+    },
 });
 const wrapper = mount(MyComponent);
 const elements = wrapper.findAll('li');
@@ -218,7 +232,9 @@ argument. Only returns the first element that is an instance of the constructor.
 
 ```javascript
 const MyComponent = defineComponent({
-    template: `<div><my-other-component></my-other-component></div>`,
+    render() {
+        return html`<div><my-other-component></my-other-component></div>`;
+    },
 });
 const wrapper = mount(MyComponent);
 const element = wrapper.findComponent(MyOtherComponent);
@@ -233,12 +249,13 @@ argument. Returns all elements that is an instance of the constructor.
 
 ```javascript
 const MyComponent = defineComponent({
-    template: `
-    <ul>
-      <li><my-other-component></my-other-component></li>
-      <li><my-other-component></my-other-component></li>
-      <li><my-other-component></my-other-component></li>
-    </ul>`,
+    render() {
+        return html` <ul>
+            <li><my-other-component></my-other-component></li>
+            <li><my-other-component></my-other-component></li>
+            <li><my-other-component></my-other-component></li>
+        </ul>`;
+    },
 });
 const wrapper = mount(MyComponent);
 const elements = wrapper.findComponentAll(MyOtherComponent);

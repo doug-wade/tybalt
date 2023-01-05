@@ -95,12 +95,14 @@ There are `slot` and `template` elements in javascript that work well with web c
 defineComponent({
     name: 'slot-example',
     shadowMode: 'open',
-    template: `
-    <div class="my-class">
-      <span>Example: </span>
-      <slot name="content"></slot>
-    </div>
-  `,
+    render() {
+        return html`
+            <div class="my-class">
+                <span>Example: </span>
+                <slot name="content"></slot>
+            </div>
+        `;
+    },
 });
 ```
 

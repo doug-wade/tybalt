@@ -25,6 +25,7 @@ export type DefineComponentsOptions = {
     render?: Function;
     shadowMode?: 'open' | 'closed';
     css?: string | Function;
+    template?: string;
 };
 
 export type UseObservableOptions =
