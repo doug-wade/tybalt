@@ -6,6 +6,6 @@ export default defineComponent({
     name: 'example-circle',
     css,
     render() {
-        return html`<div class="example-circle"></div> `;
+        return html`<div class="example-circle"></div>`;
     },
 });
