@@ -248,7 +248,9 @@ defineComponent({
 
 ## Components
 
-Tybalt exports a set of components for use for common templating tasks.
+Tybalt exports a set of components for use for common templating tasks. These components are
+registered as soon as you require the tybalt core library; there is no extra work needed to set
+them up.
 
 ### t-if
 
