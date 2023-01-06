@@ -1,5 +1,7 @@
 import type { SetupContext } from './types';
 
+import * as components from './components';
+
 export { SetupContext };
 
 export { default as defineExample } from './api/define-example';
