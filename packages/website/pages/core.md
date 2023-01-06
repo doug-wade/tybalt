@@ -245,3 +245,56 @@ defineComponent({
     shadowMode: 'open',
 });
 ```
+
+## Components
+
+Tybalt exports a set of components for use for common templating tasks.
+
+### t-if
+
+Allows you to render one template if a condition is true, and another if that condition
+is false.
+
+In the following example, on December 25th the component will render `It's Christmas!`,
+but on other days it will render `It's not Christmas`.
+
+```javascript
+defineComponent({
+    name: 'is-it-christmas',
+    render() {
+        const today = new Date();
+        const isChristmas = today.getMonth() === 11 && today.getDate() === '25';
+        return html`
+            <t-if condition="${isChristmas}">
+                <span slot="true">It's Christmas!</span>
+                <span slot="false">It's not Christmas.</span>
+            </t-if>
+        `;
+    },
+});
+```
+
+### t-switch
+
+Allows you to render a single template out of many that corresponds to a value.
+
+In the following example, when `getCity` returns Seattle, it will recommend you
+visit the Space Needle; when `getCity` returns Moscow, it will recommend you visit
+Red Square; and when `getCity` returns Madrid, it will recommend you visit the Reina
+Sofia.
+
+```javascript
+defineComponent({
+    name: 'city-switcher',
+    render() {
+        const city = getCity();
+        return html`
+            <t-switch condition="${city}">
+                <div slot="Seattle">You're in Seattle; go see the Space Needle!</div>
+                <div slot="Moscow">You're in Moscow; go see Krasnii Ploshad!</div>
+                <div slot="Madrid">You're in Madrid; go to the Reina Sofia</div>
+            </t-switch>
+        `;
+    },
+});
+```
