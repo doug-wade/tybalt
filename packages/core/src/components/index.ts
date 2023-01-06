@@ -1,1 +1,2 @@
+import './if';
 import './switch';
