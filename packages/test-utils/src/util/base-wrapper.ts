@@ -71,11 +71,11 @@ export default class BaseWrapper implements Wrapper {
         if (this.element.shadowRoot) {
             const html = this.element.parentElement?.innerHTML || this.element.outerHTML;
             const openTag = html.split('>')[0].slice(1);
-            const closeTagWithCloseBracket = html.split('<')[1];
-            const closeTag = closeTagWithCloseBracket.slice(0, closeTagWithCloseBracket.length - 1);
+            const closeTagWithCloseBracket = html.split('<')[2];
+            const closeTag = closeTagWithCloseBracket.slice(1, closeTagWithCloseBracket.length - 1);
 
             if (this.element.shadowRoot.mode === 'closed') {
-                return `<${openTag}></${closeTag}>`;
+                return `<${openTag}><${closeTag}>`;
             }
 
             const results = stringifyShadowRoot(this.element.shadowRoot);

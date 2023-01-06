@@ -1,5 +1,3 @@
-import type { PropsStateMap, SetupContext, RenderContext } from '@tybalt/core';
-
 import { defineComponent, html } from '@tybalt/core';
 import { compose, oneOf, required, string } from '@tybalt/validator';
 import { map } from 'rxjs';
@@ -34,7 +32,7 @@ export default defineComponent({
             </style>
             <button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>`;
     },
-    setup({ variant }: PropsStateMap, { emit }: SetupContext) {
+    setup({ variant }, { emit }) {
         const clickHandler = () => {
             emit('click');
         };

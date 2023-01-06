@@ -26,7 +26,7 @@ export type DefineComponentsOptions = {
     connectedCallback?: Function;
     disconnectedCallback?: Function;
     adoptedCallback?: Function;
-    render?: Function<{ toString() }>;
+    render?: (RenderContext) => string;
     shadowMode?: 'open' | 'closed';
     css?: string | Function;
     template?: string;

@@ -10,7 +10,7 @@ export default defineComponent({
             validator: compose(required(), url()),
         },
     },
-    render({ href }: RenderContext) {
+    render({ href }) {
         return html`<a class="example-link" href="${href}"><slot></slot></a>`;
     },
 });

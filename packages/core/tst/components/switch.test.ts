@@ -2,11 +2,12 @@ import { defineComponent, html } from '../..';
 import { mount } from '@tybalt/test-utils';
 
 describe('t-switch', () => {
-    it('renders the first option of three', () => {
+    it('renders the first option of three', async () => {
         const THREE_SPECIES = [ "tanar'ri", "yugoloth", "baatezu" ];
 
         const RuleOfThree = defineComponent({
             name: 'rule-of-three',
+            shadowMode: 'open',
             props: { species: {} },
             render({ species }) {
                 return html`
@@ -19,10 +20,10 @@ describe('t-switch', () => {
             }
         });
 
-        THREE_SPECIES.forEach(async (species) => {
+        await Promise.all(THREE_SPECIES.map(async (species) => {
             const wrapper = await mount(RuleOfThree, { attributes: { species } });
 
-            expect(wrapper.text()).toBe('');
-        });
+            expect(wrapper.text()).toBe(species);
+        }));
     });
 });
