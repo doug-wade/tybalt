@@ -1,6 +1,5 @@
 import { beforeAll, describe, expect, it } from '@jest/globals';
 import BaseWrapper from '../../src/util/base-wrapper';
-import render from '../../src/api/mount';
 
 const OPEN_SHADOW_DOM_COMPONENT_NAME = 'open-shadow-dom';
 const CLOSED_SHADOW_DOM_COMPONENT_NAME = 'closed-shadow-dom';

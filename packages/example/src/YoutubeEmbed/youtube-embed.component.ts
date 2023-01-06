@@ -10,7 +10,7 @@ export default defineComponent({
             default: '1RlI-JxwPNk',
         },
     },
-    render({ youtubeId }: { youtubeId: string }) {
+    render({ youtubeId }) {
         return html` <iframe
             width="560"
             height="315"
