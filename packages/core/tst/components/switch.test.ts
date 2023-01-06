@@ -1,7 +1,7 @@
 import { defineComponent, html } from '../..';
 import { mount } from '@tybalt/test-utils';
 
-import '../../src/components/switch';
+import '../..';
 
 describe('t-switch', () => {
     it('renders the first option of three', () => {
