@@ -22,7 +22,7 @@ export type DefineComponentsOptions = {
     connectedCallback?: Function;
     disconnectedCallback?: Function;
     adoptedCallback?: Function;
-    render?: Function;
+    render?: (RenderContext) => string;
     shadowMode?: 'open' | 'closed';
     css?: string | Function;
     template?: string;
@@ -53,4 +53,10 @@ export type SetupContext = {
 export type PropsStateItem = {
     observer: ZenObservable.SubscriptionObserver<unknown>;
     observable: Observable;
+};
+
+export type Serializable = string | number | boolean | null | undefined;
+
+export type RenderContext = {
+    [Property: string]: Serializable
 };

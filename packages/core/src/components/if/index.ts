@@ -2,8 +2,12 @@ import { defineComponent, html } from '../..';
 
 export default defineComponent({
     name: 't-if',
-    render({ condition }: { condition: any }) {
-        let slotName = condition ? 'then' : 'else';
-        return html`<slot name="${slotName}"></slot>`
+    shadowMode: 'open',
+    render({ condition }) {
+        let slotName = condition ? 'true' : 'false';
+        console.log('rendering slot with name', slotName);
+        const text = html`<slot name="${slotName}"></slot>`
+        console.log('rendered slot with content', text);
+        return text;
     }
 });

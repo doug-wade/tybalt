@@ -3,26 +3,28 @@ import { mount } from '@tybalt/test-utils';
 
 import '../..';
 
-describe('t-switch', () => {
-    it('renders the then and else options', () => {
+describe('t-if', () => {
+    it('renders the then and else options', async () => {
         const SIDES = [ 'heads', 'tails' ];
         const FlipACoin = defineComponent({
             name: 'flip-a-coin',
+            shadowMode: 'open',
             props: { side: {} },
             render({ side }) {
                 return html`
+                    <span>what</span>
                     <t-if condition="${side === SIDES[0]}">
-                        <div slot="then">${SIDES[0]}</div>
-                        <div slot="else">${SIDES[1]}</div>
+                        <div slot="true">${SIDES[0]}</div>
+                        <div slot="false">${SIDES[1]}</div>
                     </t-if>
                 `;
             }
         });
 
-        SIDES.forEach(async (side) => {
+        await Promise.all(SIDES.map(async (side) => {
             const wrapper = await mount(FlipACoin, { attributes: { side } });
 
             expect(wrapper.text()).toBe(side);
-        });
+        }));
     });
 });
