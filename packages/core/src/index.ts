@@ -1,6 +1,6 @@
 import type { SetupContext } from './types';
 
-import './components';
+import * as components from './components';
 
 export { SetupContext };
 

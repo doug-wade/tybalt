@@ -1,8 +1,6 @@
 import { defineComponent, html } from '../..';
 import { mount } from '@tybalt/test-utils';
 
-import '../..';
-
 describe('t-switch', () => {
     it('renders the first option of three', () => {
         const THREE_SPECIES = [ "tanar'ri", "yugoloth", "baatezu" ];
