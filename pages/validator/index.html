@@ -9,21 +9,10 @@
     </head>
     <body>
         <div><h1>@tybalt/validator</h1>
-<h2>Installation</h2>
-<h3>Bundlers</h3>
-<p>You can install the package from npm. For example, using the npm cli</p>
+<h2>Getting Started</h2>
+<p>Install the package</p>
 <pre><code class="language-shell">$ npm install --save @tybalt/validator
 </code></pre>
-<p>Alternatively, you can install using <code>pnpm</code> or <code>yarn</code>.</p>
-<p>Once you've installed the package you'll need to include it in your bundle.
-See the documentation from your bundler (webpack, swc, browserify, etc.) for
-details.</p>
-<h3>CDN</h3>
-<p>You can include Tybalt on your page directly by fetching it from a CDN. For example,
-using unpkg</p>
-<pre><code class="language-js">import { compose, required, string, url } from 'https://unpkg.com/@tybalt/validator@0.0.10/dist/mjs/index.js';
-</code></pre>
-<p>Alternatively, you can use <code>cdnjs</code>, or <code>jsDelivr</code>.</p>
 <h2>Concepts</h2>
 <h3>Validators</h3>
 <p>Validators are asynchronous functions that return a blob of data.</p>
@@ -35,28 +24,6 @@ using unpkg</p>
     logLevel: 'warning',
     message: 'must include substring &quot;foo&quot;',
 };
-</code></pre>
-<h3>Validator Factories</h3>
-<p>Functions that return validators. Many exports from <code>@tybalt/validator</code> are factories that you use
-as follows:</p>
-<pre><code class="language-js">import { required } from '@tybalt/validator';
-
-const myIsRequiredValidator = required();
-
-export default function myFunction(myArgument) {
-    myIsRequiredValidator(myArgument);
-}
-</code></pre>
-<p>To create your own validator factory, create a function that returns a validator</p>
-<pre><code class="language-js">export default function myValidatorFactory(substring) {
-    return {
-        async validate(value) {
-            return value.includes(substring);
-        },
-        logLevel: 'warning',
-        message: `must include substring ${substring}`,
-    };
-}
 </code></pre>
 <h2>API</h2>
 <h3>compose</h3>

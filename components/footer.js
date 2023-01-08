@@ -1,8 +1,6 @@
-import { defineComponent, html } from 'https://unpkg.com/@tybalt/core@0.0.10/dist/mjs/index.js';
+import { defineComponent, html } from '../lib/tybalt-core/index.js';
 
 defineComponent({
     name: 'tybalt-footer',
-    render() {
-        return html`<footer>Tybalt distributed under the MIT license</footer>`;
-    },
+    template: html`<footer>Tybalt distributed under the MIT license</footer>`,
 });
