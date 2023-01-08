@@ -1,16 +1,18 @@
-import { css, defineComponent, html } from '../lib/tybalt-core/index.js';
+import { defineComponent, html } from '@tybalt/core';
 
 defineComponent({
     name: 'tybalt-header',
-    template: html`
-        <nav>
-            <span>Tybalt Web Components</span>
-            <span>
-                <a href="https://github.com/doug-wade/tybalt">Github</a>
-            </span>
-        </nav>
-    `,
-    css: css`
+    render() {
+        return html`
+            <nav>
+                <span>Tybalt Web Components</span>
+                <span>
+                    <tybalt-link href="https://github.com/doug-wade/tybalt">Github</tybalt-link>
+                </span>
+            </nav>
+        `;
+    },
+    css: `
         nav {
             display: flex;
             justify-content: space-between;

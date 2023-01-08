@@ -2,12 +2,20 @@
     "name": "@tybalt/eleventy-plugin",
     "version": "0.0.10",
     "description": "A plugin for eleventy for serving web components",
-    "main": "index.js",
-    "private": true,
+    "main": ".eleventy.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 0"
     },
-    "keywords": [],
+    "dependencies": {
+        "@tybalt/esbuild-plugin": "workspace:^",
+        "esbuild": "^0.16.14",
+        "glob": "^8.0.3",
+        "jsdom": "^21.0.0"
+    },
+    "keywords": [
+        "eleventy",
+        "tybalt"
+    ],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT"
 }
