@@ -5,13 +5,32 @@ title: Tybalt core
 
 # @tybalt/core
 
-## Getting started
+## Installation
 
-Install the package
+### Bundlers
+
+You can install the package from npm. For example, using the npm cli
 
 ```shell
 $ npm install --save @tybalt/core
 ```
+
+Alternatively, you can install using `pnpm` or `yarn`.
+
+Once you've installed the package you'll need to include it in your bundle.
+See the documentation from your bundler (webpack, swc, browserify, etc.) for
+details.
+
+### CDN
+
+You can include Tybalt on your page directly by fetching it from a CDN. For example,
+using unpkg
+
+```html
+<script src="https://unpkg.com/@tybalt/core@0.x/dist/index.js" />
+```
+
+Alternatively, you can use `cdnjs`, or `jsDelivr`.
 
 ## Guide
 
