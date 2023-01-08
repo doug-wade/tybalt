@@ -3,7 +3,6 @@
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./components');
     eleventyConfig.addPassthroughCopy('./lib');
-    eleventyConfig.addPassthroughCopy('./css');
     eleventyConfig.setBrowserSyncConfig({
         open: true,
     });
@@ -14,6 +13,5 @@ module.exports = function (eleventyConfig) {
 
     return {
         pathPrefix: '/tybalt/',
-        passthroughFileCopy: true,
     };
 };
