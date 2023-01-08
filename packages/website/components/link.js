@@ -1,5 +1,5 @@
-import { defineComponent, html } from 'https://unpkg.com/@tybalt/core@0.0.10/dist/mjs/index.js';
-import { compose, required, string, url } from 'https://unpkg.com/@tybalt/validator@0.0.10/dist/mjs/index.js';
+import { defineComponent, html } from '@tybalt/core';
+import { compose, required, string, url } from '@tybalt/validator';
 
 defineComponent({
     name: 'tybalt-link',

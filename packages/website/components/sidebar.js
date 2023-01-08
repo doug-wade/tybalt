@@ -1,4 +1,4 @@
-import { defineComponent, html } from 'https://unpkg.com/@tybalt/core@0.0.10/dist/mjs/index.js';
+import { defineComponent, html } from '@tybalt/core';
 
 const PACKAGES = ['cli', 'core', 'test-utils', 'validator'];
 
