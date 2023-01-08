@@ -5,13 +5,25 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tybalt core</title>
+        <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet" />
     </head>
     <body>
         <div><h1>@tybalt/core</h1>
-<h2>Getting started</h2>
-<p>Install the package</p>
+<h2>Installation</h2>
+<h3>Bundlers</h3>
+<p>You can install the package from npm. For example, using the npm cli</p>
 <pre><code class="language-shell">$ npm install --save @tybalt/core
 </code></pre>
+<p>Alternatively, you can install using <code>pnpm</code> or <code>yarn</code>.</p>
+<p>Once you've installed the package you'll need to include it in your bundle.
+See the documentation from your bundler (webpack, swc, browserify, etc.) for
+details.</p>
+<h3>CDN</h3>
+<p>You can include Tybalt on your page directly by fetching it from a CDN. For example,
+using unpkg</p>
+<pre><code class="language-html">&lt;script src=&quot;https://unpkg.com/@tybalt/core@0.x/dist/index.js&quot; /&gt;
+</code></pre>
+<p>Alternatively, you can use <code>cdnjs</code>, or <code>jsDelivr</code>.</p>
 <h2>Guide</h2>
 <h3>Props</h3>
 <p>Dom elements can have attributes set on them. You can transform an attribute into a prop by specifying
@@ -180,6 +192,8 @@ the dom should be attached in. One of: open, closed.</p>
 });
 </code></pre>
 </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
         <script>
