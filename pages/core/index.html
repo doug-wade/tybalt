@@ -1,11 +1,11 @@
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tybalt core</title>
-        <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet" />
+        <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
     </head>
     <body>
         <div><h1>@tybalt/core</h1>
@@ -21,7 +21,7 @@ details.</p>
 <h3>CDN</h3>
 <p>You can include Tybalt on your page directly by fetching it from a CDN. For example,
 using unpkg</p>
-<pre><code class="language-html">&lt;script src=&quot;https://unpkg.com/@tybalt/core@0.x/dist/index.js&quot; /&gt;
+<pre><code class="language-js">import { defineComponent, html } from 'https://unpkg.com/@tybalt/core@0.0.10/dist/mjs/index.js';
 </code></pre>
 <p>Alternatively, you can use <code>cdnjs</code>, or <code>jsDelivr</code>.</p>
 <h2>Guide</h2>
@@ -88,9 +88,9 @@ derived value.</p>
     shadowMode: 'open',
     render() {
         return html`
-            &lt;div class=&quot;my-class&quot;&gt;
+            &lt;div class="my-class"&gt;
                 &lt;span&gt;Example: &lt;/span&gt;
-                &lt;slot name=&quot;content&quot;&gt;&lt;/slot&gt;
+                &lt;slot name="content"&gt;&lt;/slot&gt;
             &lt;/div&gt;
         `;
     },
@@ -99,13 +99,13 @@ derived value.</p>
 <p>When you render a <code>slot-example</code> component, it will replace the <code>slot</code> element with the children
 of the <code>slot-example</code> component. A component rendered in the DOM as</p>
 <pre><code class="language-html">&lt;slot-example&gt;
-    &lt;div my-attribute=&quot;foo&quot;&gt;example content&lt;/div&gt;
+    &lt;div my-attribute="foo"&gt;example content&lt;/div&gt;
 &lt;/slot-example&gt;
 </code></pre>
 <p>Would be rendered to the user as</p>
-<pre><code class="language-html">&lt;div class=&quot;my-class&quot;&gt;
+<pre><code class="language-html">&lt;div class="my-class"&gt;
     &lt;span&gt;Example: &lt;/span&gt;
-    &lt;div my-attribute=&quot;foo&quot;&gt;example content&lt;/div&gt;
+    &lt;div my-attribute="foo"&gt;example content&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
 <h2>API</h2>
@@ -195,7 +195,7 @@ the dom should be attached in. One of: open, closed.</p>
         <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
         <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() {
@@ -205,5 +205,6 @@ the dom should be attached in. One of: open, closed.</p>
 
             gtag('config', 'G-90R0R9Y7VG');
         </script>
-    </body>
-</html>
+    
+
+<script src="/tybalt/tybalt-out.js"></script></body></html>

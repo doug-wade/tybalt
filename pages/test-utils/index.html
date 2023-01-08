@@ -1,11 +1,11 @@
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tybalt test utils</title>
-        <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet" />
+        <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
     </head>
     <body>
         <div><h2>Installation</h2>
@@ -57,7 +57,7 @@ describe('component', () =&gt; {
 <p>Use <code>mount</code> to create an instance of a web component.</p>
 <p><code>mount</code> takes two arguments, the component definition, and an optional <code>options</code> object that can have
 an attributes and slot key on it. The attributes argument is an object in the shape
-<code>{ attributeKey: &quot;attributeValue&quot; }</code>, and the slot is a string of html that should be place inside the
+<code>{ attributeKey: "attributeValue" }</code>, and the slot is a string of html that should be place inside the
 web component.</p>
 <pre><code class="language-javascript">import { mount } from '@tybalt/test-utils';
 import MyComponent from './my-component';
@@ -100,7 +100,7 @@ optional parameter, <code>className</code>, the name of the attribute to check f
 <pre><code class="language-javascript">const className = 'my-class';
 const MyComponent = defineComponent({
     render() {
-        return html`&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`;
+        return html`&lt;div class="${className}"&gt;&lt;/div&gt;`;
     },
 });
 
@@ -113,7 +113,7 @@ their corresponding values are the attribute values.</p>
 <pre><code class="language-javascript">const className = 'my-class';
 const MyComponent = defineComponent({
     render() {
-        return html`&lt;div class=&quot;${className}&quot;&gt;&lt;/div&gt;`;
+        return html`&lt;div class="${className}"&gt;&lt;/div&gt;`;
     },
 });
 
@@ -151,7 +151,7 @@ Only returns the first element matching the selector.</p>
     },
 });
 const wrapper = mount(MyComponent);
-const element = wrapper.find('div[data-jest=&quot;my-selector&quot;]');
+const element = wrapper.find('div[data-jest="my-selector"]');
 
 expect(element.exists()).toBeTruthy();
 </code></pre>
@@ -256,7 +256,7 @@ wrapper.trigger(eventName, payload);
         <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
         <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() {
@@ -266,5 +266,6 @@ wrapper.trigger(eventName, payload);
 
             gtag('config', 'G-90R0R9Y7VG');
         </script>
-    </body>
-</html>
+    
+
+<script src="/tybalt/tybalt-out.js"></script></body></html>

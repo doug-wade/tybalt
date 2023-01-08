@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --dark-black: #141517;
+  --light-grey: #f8f8ff;
+}
+
+body {
+    padding: .75em;
+    margin: 0;
+    background-color: var(--dark-black);
+    font-color: var(--light-grey);
+    font-family: 'DM Sans', sans-serif;
+}
+
+#app {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+#content {
+    display: flex;
+}
+
+tybalt-main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+tybalt-header {
+    margin-bottom: .5em;
+    border-bottom: 1px solid black;
+}
+
+code {
+    font-family: 'DM Mono', monospace;
+}

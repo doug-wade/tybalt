@@ -1,36 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!doctype html><html><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tybalt</title>
-        <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet">
+        <link href="https://unpkg.com/prismjs@v1.x/themes/prism.css" rel="stylesheet">
+        <link href="/tybalt/css/index.css" rel="stylesheet">
     </head>
     <body>
-        <tybalt-header></tybalt-header>
-        <h2>See the docs for individual packages</h2>
-        <ul>
-            <li>
-                <a href="/tybalt/pages/core">@tybalt/core</a>
-            </li>
-            <li>
-                <a href="/tybalt/pages/test-utils">@tybalt/test-utils</a>
-            </li>
-            <li>
-                <a href="/tybalt/pages/validator"> @tybalt/validator </a>
-            </li>
-            <li>
-                <a href="/tybalt/pages/cli">@tybalt/cli</a>
-            </li>
-        </ul>
-        <a href="https://discord.gg/FHpfstT7Dw">Join the Discord server</a>
-        <tybalt-footer></tybalt-footer>
-    </body>
-    <script type="module" src="/tybalt/components/index.js"></script>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <tybalt-main></tybalt-main>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+    
     <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
@@ -40,4 +32,5 @@
 
         gtag('config', 'G-90R0R9Y7VG');
     </script>
-</html>
+
+<script src="/tybalt/tybalt-out.js"></script></body></html>
