@@ -5,32 +5,13 @@ title: Tybalt validator
 
 # @tybalt/validator
 
-## Installation
+## Getting Started
 
-### Bundlers
-
-You can install the package from npm. For example, using the npm cli
+Install the package
 
 ```shell
 $ npm install --save @tybalt/validator
 ```
-
-Alternatively, you can install using `pnpm` or `yarn`.
-
-Once you've installed the package you'll need to include it in your bundle.
-See the documentation from your bundler (webpack, swc, browserify, etc.) for
-details.
-
-### CDN
-
-You can include Tybalt on your page directly by fetching it from a CDN. For example,
-using unpkg
-
-```js
-import { compose, required, string, url } from 'https://unpkg.com/@tybalt/validator@0.0.10/dist/mjs/index.js';
-```
-
-Alternatively, you can use `cdnjs`, or `jsDelivr`.
 
 ## Concepts
 
@@ -48,35 +29,6 @@ const myValidator = {
     logLevel: 'warning',
     message: 'must include substring "foo"',
 };
-```
-
-### Validator Factories
-
-Functions that return validators. Many exports from `@tybalt/validator` are factories that you use
-as follows:
-
-```js
-import { required } from '@tybalt/validator';
-
-const myIsRequiredValidator = required();
-
-export default function myFunction(myArgument) {
-    myIsRequiredValidator(myArgument);
-}
-```
-
-To create your own validator factory, create a function that returns a validator
-
-```js
-export default function myValidatorFactory(substring) {
-    return {
-        async validate(value) {
-            return value.includes(substring);
-        },
-        logLevel: 'warning',
-        message: `must include substring ${substring}`,
-    };
-}
 ```
 
 ## API

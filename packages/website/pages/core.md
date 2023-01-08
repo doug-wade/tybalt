@@ -26,8 +26,8 @@ details.
 You can include Tybalt on your page directly by fetching it from a CDN. For example,
 using unpkg
 
-```js
-import { defineComponent, html } from 'https://unpkg.com/@tybalt/core@0.0.10/dist/mjs/index.js';
+```html
+<script src="https://unpkg.com/@tybalt/core@0.x/dist/index.js" />
 ```
 
 Alternatively, you can use `cdnjs`, or `jsDelivr`.

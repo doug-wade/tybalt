@@ -5,8 +5,8 @@
     "main": "index.js",
     "private": true,
     "scripts": {
-        "build": "eleventy",
-        "clean": "rimraf _site/",
+        "build": "mkdir -p lib/ && cp -r ../core/dist lib/tybalt-core && cp -r ../validator/dist lib/tybalt-validator && eleventy",
+        "clean": "rimraf lib/ _site/",
         "serve": "eleventy --serve --port 8081",
         "watch": "chokidar \"pages/*.md\" \"components/*.js\" -c \"yarn run build\""
     },
