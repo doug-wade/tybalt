@@ -1118,10 +1118,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lit/reactive-element@npm:^1.3.0, @lit/reactive-element@npm:^1.5.0":
+"@lit-labs/ssr-dom-shim@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@lit-labs/ssr-dom-shim@npm:1.0.0"
+  checksum: ccba6675ad631c6f7360af4e12e328e88d877a52ec992ae9254a1be9902ef699b7916d851b073803dd91244d0f709de2c0539a7db643889cfe341ff6e1a74eb5
+  languageName: node
+  linkType: hard
+
+"@lit/reactive-element@npm:^1.3.0":
   version: 1.5.0
   resolution: "@lit/reactive-element@npm:1.5.0"
   checksum: 8f87a2d9d7630c26ad0dd6b9a8ad46bb184fcec11e04ded3d487859a6cfebbe871d07a8271dfdf3f2d4b9688d27c17de0f8fa3fc690602f5b86d742f969a3ca4
+  languageName: node
+  linkType: hard
+
+"@lit/reactive-element@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@lit/reactive-element@npm:1.6.0"
+  dependencies:
+    "@lit-labs/ssr-dom-shim": ^1.0.0
+  checksum: 9e84d3fc3d68c6d396c25d75cd39b97833b72a9560f46bfd6478996edafd6823d5c84cc65828d8f28277fe60af6d498c3ef5254e82cff27f0db4f3d46d02de76
   languageName: node
   linkType: hard
 
@@ -1500,7 +1516,7 @@ __metadata:
     "@types/jest": ^29.2.5
     jest: ^29.2.2
     jest-environment-jsdom: ^29.2.2
-    lit: ^2.4.0
+    lit: ^2.6.0
     rimraf: ^3.0.2
     typescript: ^4.9.4
   languageName: unknown
@@ -6139,7 +6155,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit-html@npm:^2.2.0, lit-html@npm:^2.5.0":
+"lit-html@npm:^2.2.0":
   version: 2.5.0
   resolution: "lit-html@npm:2.5.0"
   dependencies:
@@ -6148,14 +6164,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit@npm:^2.4.0":
-  version: 2.5.0
-  resolution: "lit@npm:2.5.0"
+"lit-html@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "lit-html@npm:2.6.0"
   dependencies:
-    "@lit/reactive-element": ^1.5.0
+    "@types/trusted-types": ^2.0.2
+  checksum: 0ab14ae7ca47342494916998a68a884cc3275b1f27084dad538dcc081f67bead844dd88c556ffd3cc832d7faed127f3de5503787a78fd22e22d40d9ffe8f0e2c
+  languageName: node
+  linkType: hard
+
+"lit@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "lit@npm:2.6.0"
+  dependencies:
+    "@lit/reactive-element": ^1.6.0
     lit-element: ^3.2.0
-    lit-html: ^2.5.0
-  checksum: 7f62ef9da4b21d37f8b476d8425903a22ed9c1e5b26597c811cb38760d28baf6cd83865457c971d1ac77d6ad59ecc73cd1870fa3478a08d0beffa0b74b016bec
+    lit-html: ^2.6.0
+  checksum: 1c15e5f2d3c738f8f674990eeca819420db529ef6dced49f45a5b940ea4fa8eec77a2d31fbc5a3743119de75753144cca42a358ee2d79392306a4c4cb8a739b9
   languageName: node
   linkType: hard
 
