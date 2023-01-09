@@ -3,6 +3,7 @@ import { compose, required, string, url } from '@tybalt/validator';
 
 defineComponent({
     name: 'tybalt-link',
+    shadowMode: 'open',
     props: {
         href: {
             validator: compose(required(), string(), url()),

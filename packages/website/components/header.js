@@ -2,6 +2,7 @@ import { defineComponent, html } from '@tybalt/core';
 
 defineComponent({
     name: 'tybalt-header',
+    shadowMode: 'open',
     render() {
         return html`
             <nav>
