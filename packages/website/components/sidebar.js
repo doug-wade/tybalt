@@ -4,6 +4,7 @@ const PACKAGES = ['cli', 'core', 'test-utils', 'validator'];
 
 defineComponent({
     name: 'tybalt-sidebar',
+    shadowMode: 'open',
     render() {
         const lis = PACKAGES.map((pkg) => {
             return html`

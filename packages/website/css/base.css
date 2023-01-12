@@ -2,15 +2,27 @@
 
 :root {
   --dark-black: #141517;
-  --light-grey: #f8f8ff;
+  --light-blue: #52b1db;
+  --light-grey: #969799;
+  --orange: #ff7f11;
+  --purple: #944bbb;
+  --off-white: #f1f2ec;
 }
 
 body {
     padding: .75em;
     margin: 0;
     background-color: var(--dark-black);
-    font-color: var(--light-grey);
+    color: var(--off-white);
     font-family: 'DM Sans', sans-serif;
+}
+
+a {
+    color: var(--orange);
+}
+
+a:visited {
+    color: var(--light-grey);
 }
 
 #app {
