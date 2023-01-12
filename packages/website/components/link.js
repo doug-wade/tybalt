@@ -15,4 +15,9 @@ defineComponent({
     render({ ariaLabel, href }) {
         return html`<a href="${href}" aria-label="${ariaLabel}"><slot>link</slot></a>`;
     },
+    css: `
+            a {
+                color: var(--purple);
+            }
+        `,
 });
