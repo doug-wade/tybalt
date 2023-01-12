@@ -1123,6 +1123,7 @@ ${concatenatedMessages}
   var import_core = __toESM(require_cjs());
   (0, import_core.defineComponent)({
     name: "tybalt-footer",
+    shadowMode: "open",
     render() {
       return import_core.html`<footer>Tybalt distributed under the MIT license</footer>`;
     }
@@ -1132,6 +1133,7 @@ ${concatenatedMessages}
   var import_core2 = __toESM(require_cjs());
   (0, import_core2.defineComponent)({
     name: "tybalt-header",
+    shadowMode: "open",
     render() {
       return import_core2.html`
             <nav>
@@ -1264,6 +1266,7 @@ ${concatenatedMessages}
   // components/link.js
   (0, import_core3.defineComponent)({
     name: "tybalt-link",
+    shadowMode: "open",
     props: {
       href: {
         validator: compose_default(required_default(), string_default(), url_default())
@@ -1281,6 +1284,7 @@ ${concatenatedMessages}
   var import_core4 = __toESM(require_cjs());
   (0, import_core4.defineComponent)({
     name: "tybalt-main",
+    shadowMode: "open",
     render() {
       return import_core4.html`<div>Tutorial coming here soon!</div>`;
     }
@@ -1291,6 +1295,7 @@ ${concatenatedMessages}
   var PACKAGES = ["cli", "core", "test-utils", "validator"];
   (0, import_core5.defineComponent)({
     name: "tybalt-sidebar",
+    shadowMode: "open",
     render() {
       const lis = PACKAGES.map((pkg) => {
         return import_core5.html`
