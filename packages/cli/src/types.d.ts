@@ -6,9 +6,13 @@ export type ScaffoldContext = {
     implementationFileName: string;
 };
 
+export type ScaffoldTarget = 'component' | 'eleventy' | 'library';
+
 export type ScaffoldCommandOptions = {
-    component: boolean;
-    examples: boolean;
+    implementation: boolean;
+    tests: boolean;
+    styles: boolean;
+    name: string;
 };
 
 export type CommandContext = {

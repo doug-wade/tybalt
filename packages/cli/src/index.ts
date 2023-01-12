@@ -11,7 +11,7 @@ import watch from './commands/watch.js';
 
 const program = new Command();
 
-program.name('@tybalt/cli').description('vli for building tybalt components').version('0.0.1');
+program.name('@tybalt/cli').description('cli for building tybalt components').version('0.0.10');
 
 [build, lint, scaffold, serve, test, watch].forEach((command) => command({ program }));
 
