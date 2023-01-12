@@ -2,15 +2,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tybalt test utils</title>
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
         <link href="/tybalt/css/base.css" rel="stylesheet">
         <link href="/tybalt/css/page.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
-        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
     </head>
     <body>
-        <div><h2>Installation</h2>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h2>Installation</h2>
 <pre><code class="language-shell">npm install --save-dev @tybalt/test-utils
 </code></pre>
 <h2>Setup</h2>
@@ -255,6 +260,9 @@ const wrapper = mount(MyComponent);
 wrapper.trigger(eventName, payload);
 </code></pre>
 </div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
         <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
         <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
         <!-- Google tag (gtag.js) -->

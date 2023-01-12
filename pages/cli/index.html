@@ -2,15 +2,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tybalt cli</title>
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
         <link href="/tybalt/css/base.css" rel="stylesheet">
         <link href="/tybalt/css/page.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
-        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
     </head>
     <body>
-        <div><h1>@tybalt/cli</h1>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>@tybalt/cli</h1>
 <h2>Getting Started</h2>
 <p>Use <code>@tybalt/cli</code> with <code>npx</code></p>
 <pre><code class="language-shell">$ npx @tybalt/cli build
@@ -29,6 +34,9 @@
 <pre><code class="language-shell">$ npx @tybalt/cli serve
 </code></pre>
 </div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
         <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
         <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
         <!-- Google tag (gtag.js) -->

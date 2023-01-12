@@ -1277,7 +1277,12 @@ ${concatenatedMessages}
     },
     render({ ariaLabel, href }) {
       return import_core3.html`<a href="${href}" aria-label="${ariaLabel}"><slot>link</slot></a>`;
-    }
+    },
+    css: `
+            a {
+                color: var(--purple);
+            }
+        `
   });
 
   // components/main.js
