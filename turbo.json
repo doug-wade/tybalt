@@ -4,21 +4,29 @@
         "build": {
             "dependsOn": ["^build"],
             "outputs": [
-                "packages/website/_site",
-                "packages/website/lib",
-                "packages/test-utils/dist",
+                "packages/cli/dist",
                 "packages/core/dist",
-                "packages/validator/dist"
+                "packages/eleventy-plugin/dist",
+                "packages/esbuild-plugin/dist",
+                "packages/eslint-plugin/dist",
+                "packages/example/dist",
+                "packages/test-utils/dist",
+                "packages/validator/dist",
+                "packages/website/_site"
             ],
             "inputs": [
-                "packages/cli/src/**/*.ts",
-                "packages/core/src/**/*.ts",
-                "packages/eslint-plugin/src/**/*.ts",
-                "packages/example/components/**/*.*",
+                "packages/cli/src/**/*.*",
+                "packages/cli/config/**/*.*",
+                "packages/core/src/**/*.*",
+                "packages/eleventy-plugin/*.js",
+                "packages/esbuild-plugin/src/**/*.*",
+                "packages/eslint-plugin/src/**/*.*",
+                "packages/example/src/**/*.*",
                 "packages/test-utils/src/**/*.ts",
                 "packages/test-utils-lit-example/src/**/*.ts",
                 "packages/validator/src/**/*.ts",
                 "packages/website/components/*.*",
+                "packages/website/css/*.*",
                 "packages/website/pages/**/*.*",
                 "packages/website/index.html"
             ]
