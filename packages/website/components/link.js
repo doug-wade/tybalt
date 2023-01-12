@@ -3,6 +3,7 @@ import { compose, required, string, url } from '@tybalt/validator';
 
 defineComponent({
     name: 'tybalt-link',
+    shadowMode: 'open',
     props: {
         href: {
             validator: compose(required(), string(), url()),
@@ -14,4 +15,9 @@ defineComponent({
     render({ ariaLabel, href }) {
         return html`<a href="${href}" aria-label="${ariaLabel}"><slot>link</slot></a>`;
     },
+    css: `
+            a {
+                color: var(--purple);
+            }
+        `,
 });

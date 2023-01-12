@@ -1,15 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  --dark-black: #141517;
-  --light-grey: #f8f8ff;
+  --dark-blue: #010B14;
+  --light-blue: rgb(130, 170, 255);
+  --green: rgb(128, 203, 196);
+  --orange: rgb(247, 140, 108);
+  --purple: rgb(199, 146, 234);
+  --off-white: #f1f2ec;
+
+  --background-primary: var(--dark-blue);
 }
 
 body {
     padding: .75em;
     margin: 0;
-    background-color: var(--dark-black);
-    font-color: var(--light-grey);
+    background-color: var(--background-primary);
+    color: var(--off-white);
     font-family: 'DM Sans', sans-serif;
 }
 
