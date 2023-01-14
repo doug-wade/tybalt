@@ -1,5 +1,6 @@
 import { exec } from 'node:child_process';
 import fs from 'node:fs';
+import path from 'node:path';
 import { toKebabCase, toPascalCase } from 'js-convert-case';
 import mkdirp from 'mkdirp';
 import util from 'node:util';
@@ -12,6 +13,19 @@ import testsTemplate from '../templates/tests.js';
 import { ScaffoldContext, ScaffoldCommandOptions, CommandContext, ScaffoldTarget } from '../types';
 
 const execAsync = util.promisify(exec);
+
+// We want to run npm i as few times as possible so that npm spends as little time calculating
+// the ideal dependency closure as possible, and can parallelize as much as possible.
+const dependencies = [
+    '@tybalt/core',
+    '@tybalt/validator'
+];
+const devDependencies: string[] = [];
+
+const installDependencies = async () => {
+    await execAsync(`npm i -S ${dependencies.join(' ')}`);
+    await execAsync(`npm i -D ${devDependencies.join(' ')}`);
+};
 
 // Don't let the name confuse you, this is mostly about calculating warning messages to emit when we don't write files
 // (it also writes files).
@@ -57,35 +71,26 @@ const scaffoldProject = async ({ projectName, options }: { projectName: string, 
     await mkdirp(projectName);
     process.chdir(projectName);
 
-    // We use yarn as a dev team, but npm has a larger audience, so let's use that as the default.
+    // We use yarn as a dev team, but npm is installed with nodejs, so it's always available.
     await execAsync('npm init --yes');
-
-    // We want to run npm i as few times as possible so that npm spends as little time calculating
-    // the ideal dependency closure as possible, and can parallelize as much as possible.
-    const dependencies = [
-        '@tybalt/core',
-        '@tybalt/validator'
-    ];
-    const devDependencies: string[] = [];
 
     if (options.tests) {
         devDependencies.push('@tybalt/test-utils', 'jest', 'jest-environment-jsdom');
     }
-
-    await execAsync(`npm i -S ${dependencies.join(' ')}`);
-    await execAsync(`npm i -D ${devDependencies.join(' ')}`);
 };
 
 // Scaffolding steps specific for scaffolding an eleventy site
 const scaffoldEleventy = async ({ projectName, options }: { projectName: string, options: ScaffoldCommandOptions }) => {
-    await exec('npm i -D @tybalt/eleventy-plugin');
+    devDependencies.push('@tybalt/eleventy-plugin');
 };
 
 // Scaffolding steps specific to scaffolding a component
-const scaffoldComponent = ({ componentName, options }: { componentName: string, options: ScaffoldCommandOptions }): void => {
+const scaffoldComponent = async ({ componentName, options }: { componentName: string, options: ScaffoldCommandOptions }) => {
     validateName({ componentName });
     const context = makeScaffoldingContext({ componentName });
-    const componentDirectory = `components/${context.pascalCaseName}`;
+    const componentDirectory = path.resolve(`./components/${context.pascalCaseName}`);
+    console.log('mkdirp-ing', componentDirectory);
+    await mkdirp(componentDirectory);
 
     if (options.implementation) {
         writeFile({
@@ -112,20 +117,22 @@ const scaffoldComponent = ({ componentName, options }: { componentName: string, 
     }
 }
 
-const action = (target: ScaffoldTarget, options: ScaffoldCommandOptions) => {
-    console.log(target, options);
+const action = async (target: ScaffoldTarget, options: ScaffoldCommandOptions) => {
     if (target === 'library') {
-        scaffoldProject({ projectName: options.name, options });
-        scaffoldComponent({ componentName: 'HelloWorld', options });
+        await scaffoldProject({ projectName: options.name, options });
+        await scaffoldComponent({ componentName: 'HelloWorld', options });
     } else if (target === 'eleventy') {
-        scaffoldProject({ projectName: options.name, options });
-        scaffoldEleventy({ projectName: options.name, options });
-        scaffoldComponent({ componentName: 'HelloWorld', options });
+        await scaffoldProject({ projectName: options.name, options });
+        await scaffoldEleventy({ projectName: options.name, options });
+        await scaffoldComponent({ componentName: 'HelloWorld', options });
     } else if (target === 'component') {
-        scaffoldComponent({ componentName: options.name, options });
+        await scaffoldComponent({ componentName: options.name, options });
+    } else if (target === 'fastify') {
+        console.log('fastify scaffolding coming soon!');
     } else {
-        console.log('must choose one of project or component; got', target);
+        console.log('must choose one of library, eleventy or component; got', target);
     }
+    installDependencies();
 };
 
 export default ({ program }: CommandContext) => {
@@ -133,7 +140,7 @@ export default ({ program }: CommandContext) => {
         .command('scaffold')
         .description('scaffold tybalt-related files')
         .argument('[string]', 'whether to create a project or a component', 'component')
-        .option('-n, --name [string]', 'tybalt-example')
+        .option('-n, --name <string>', 'tybalt-example')
         .option('-s, --styles', 'whether to generate a separate css file', true)
         .option('-t, --tests', 'whether to generate unit tests', true)
         .option('-i, --implementation', 'whether to generate a component implementation file', true)
