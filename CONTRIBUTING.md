@@ -27,11 +27,15 @@ Run this command to compile and bundle all of the dependencies.
 Run this command to remove all built files. Note that if you run this command, you'll break turbo's
 caching, so you'll have to run `build` and `test` with `--force` to get things up and working again.
 
+### format
+
+Run this command to format the source code to match the style guide.
+
 ### generate-types
 
 Run this command to generate all the typescript type definition files.
 
-## serve
+### serve
 
 Run this command to start all the servers (currently, the website on 8081 and the example on 3001).
 
@@ -75,6 +79,16 @@ dependency, so yarn does the updating for us. Then, draft a new release in the G
 creating a new tag called v0.0.x and publish it and the CI should do the rest! To sanity check
 the release, you can update [tybalt-client](https://github.com/doug-wade/tybalt-client) to the
 latest version and run the tests.
+
+## Ports
+
+### 3000
+
+The example package listens on port 3000.
+
+### 8081
+
+The website listens on port 8081.
 
 ## Getting help
 
