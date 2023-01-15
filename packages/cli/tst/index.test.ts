@@ -8,6 +8,6 @@ describe('cli', () => {
         const tsNodePath = path.resolve(`${__dirname}/../node_modules/.bin/ts-node-esm`);
         const results = child_process.execSync(`node ${tsNodePath} ${binScriptPath} --version`);
 
-        expect(results.toString()).toEqual('0.0.1\n');
+        expect(results.toString()).toEqual('0.0.10\n');
     });
 });
