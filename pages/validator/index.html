@@ -75,11 +75,23 @@ you can compose those validators into a single validator as follows:</p>
 const validator = compose(required(), string(), url());
 const result = await validator.validate(value);
 </code></pre>
+<h3>integer</h3>
+<p><code>integer</code> creates a validator that checks whether a value is an integer.</p>
+<pre><code class="language-javascript">import { integer } from '@tybalt/validator';
+
+const validator = integer();
+</code></pre>
 <h3>matchesPattern</h3>
 <p><code>matchesPattern</code> creates a validator that checks that a value matches a regex.</p>
 <pre><code class="language-javascript">import { matchesPattern } from '@tybalt/validator';
 
 const validator = matchesPattern({ pattern: \foo\ });
+</code></pre>
+<h3>number</h3>
+<p><code>number</code> creates a validator that checks whether a value is a number.</p>
+<pre><code class="language-javascript">import { number } from '@tybalt/validator';
+
+const validator = number();
 </code></pre>
 <h3>oneOf</h3>
 <p><code>oneOf</code> creates a validator that checks if a value is member of values.</p>
