@@ -1,6 +1,6 @@
 import { defineComponent, html } from '@tybalt/core';
 
-const PACKAGES = ['cli', 'core', 'test-utils', 'validator'];
+const PACKAGES = ['cli', 'core', 'eleventy-plugin', 'test-utils', 'validator'];
 
 defineComponent({
     name: 'tybalt-sidebar',
