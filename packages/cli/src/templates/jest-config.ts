@@ -1,10 +1,11 @@
 import type { ScaffoldContext } from '../types';
 
-export default ({ kebabCaseName }: ScaffoldContext) => {
-    return `
-        module.exports = {
-            testEnvironment: 'jest-environment-jsdom',
-            setupFilesAfterEnv: ['@tybalt/test-utils/dist/cjs/setup.js'],
-        };
-    `;
+export default () => {
+    return `module.exports = {
+    transform: {
+        '^.+\\.tsx?$': 'esbuild-jest',
+    },
+    testEnvironment: 'jest-environment-jsdom',
+    setupFilesAfterEnv: ['@tybalt/test-utils/dist/cjs/setup.js'],
+};`;
 };

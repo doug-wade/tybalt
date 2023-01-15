@@ -6,7 +6,7 @@ export type ScaffoldContext = {
     implementationFileName: string;
 };
 
-export type ScaffoldTarget = 'component' | 'eleventy' | 'library';
+export type ScaffoldTarget = 'component' | 'eleventy' | 'library' | 'fastify';
 
 export type ScaffoldCommandOptions = {
     implementation: boolean;
