@@ -15,7 +15,7 @@ import {
     jestConfigTemplate,
     indexHtmlTemplate,
     eleventyConfigTemplate,
-} from '../templates';
+} from '../templates/index.js';
 
 import { ScaffoldContext, ScaffoldCommandOptions, CommandContext, ScaffoldTarget } from '../types';
 
