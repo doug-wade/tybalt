@@ -1,26 +1,15 @@
 import type { ScaffoldContext } from '../types';
 
 export default ({ kebabCaseName }: ScaffoldContext) => {
-    return `
-        import { defineComponent, reactive } from '@tybalt/core';
-        import { string } from '@tybalt/validator';
+    return `import { defineComponent, html } from '@tybalt/core';
+import { compose, string, required } from '@tybalt/validator';
 
-        export default defineComponent({
-            name: '${kebabCaseName}',
-            emits: ['increment'],
-            props: { validator: string() },
-            setup(props, ctx) {
-                const count = reactive(0);
-                const clickHandler = () => { 
-                    count.value += 1;
-                    this.emit('increment', count.value);
-                };
-
-                return {
-                    count,
-                    clickHandler
-                };
-            }
-        });
-    `;
+export default defineComponent({
+    name: '${kebabCaseName}',
+    shadowMode: 'open',
+    props: { name: { validator: compose(string(), required) } },
+    render({ name }, ctx) {
+        return html\`<div class="${kebabCaseName}">Hello $\{name\}</div>\`;
+    }
+});`;
 };
