@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tybalt eleventy plugin</title>
+        <title>Tybalt esbuild plugin</title>
         <link rel="shortcut icon" type="image/png" href="img/favico.png">
         <link href="/tybalt/css/base.css" rel="stylesheet">
         <link href="/tybalt/css/page.css" rel="stylesheet">
@@ -16,31 +16,16 @@
             <div id="content">
                 <tybalt-sidebar></tybalt-sidebar>
                 <div class="tybalt-main"><h2>Installation</h2>
-<p>Install the eleventy plugin with your favorite npm client</p>
-<pre><code class="language-shell">npm install --save-dev @tybalt/eleventy-plugin
+<p>Install the esbuild plugin with your favorite npm client</p>
+<pre><code class="language-shell">npm install --save-dev @tybalt/esbuild-plugin
 </code></pre>
 <h2>Getting Started</h2>
-<p>First, go through the <a href="https://www.11ty.dev/docs/getting-started/">11ty Getting Started guide</a>.</p>
-<p>Next, you'll need to configure the plugin in <code>.eleventy.js</code> with the location of your component definitions</p>
-<pre><code class="language-javascript">const tybaltPlugin = require('@tybalt/eleventy-plugin');
+<p>You can use the Tybalt esbuild plugin as follows</p>
+<pre><code class="language-typescript">import tybaltPlugin from '@tybalt/esbuild-plugin';
 
-module.exports = function (eleventyConfig) {
-    eleventyConfig.addPlugin(tybaltPlugin, {
-        components: ['./components'],
-    });
-};
-</code></pre>
-<h2>Usage</h2>
-<p>The plugin makes the components available for use on all of your pages. If you have a component defined like this</p>
-<pre><code class="language-javascript">defineComponent({
-    name: 'FooBarBaz',
-    props: {
-        value: {},
-    },
+esbuild.build({
+    plugins: [tybaltPlugin()],
 });
-</code></pre>
-<p>You can use it on your index.html or page.md like any other html element</p>
-<pre><code class="language-html">&lt;foo-bar-baz value="value"&gt;&lt;/foo-bar-baz&gt;
 </code></pre>
 </div>
             </div>

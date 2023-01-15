@@ -1297,7 +1297,7 @@ ${concatenatedMessages}
 
   // components/sidebar.js
   var import_core5 = __toESM(require_cjs());
-  var PACKAGES = ["cli", "core", "eleventy-plugin", "test-utils", "validator"];
+  var PACKAGES = ["cli", "core", "eleventy-plugin", "esbuild-plugin", "test-utils", "validator"];
   (0, import_core5.defineComponent)({
     name: "tybalt-sidebar",
     shadowMode: "open",
