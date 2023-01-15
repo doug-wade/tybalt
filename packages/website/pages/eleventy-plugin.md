@@ -3,6 +3,8 @@ layout: layout.html
 title: Tybalt eleventy plugin
 ---
 
+# @tybalt/eleventy-plugin
+
 ## Installation
 
 Install the eleventy plugin with your favorite npm client

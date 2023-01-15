@@ -95,6 +95,16 @@ const validator = compose(required(), string(), url());
 const result = await validator.validate(value);
 ```
 
+### integer
+
+`integer` creates a validator that checks whether a value is an integer.
+
+```javascript
+import { integer } from '@tybalt/validator';
+
+const validator = integer();
+```
+
 ### matchesPattern
 
 `matchesPattern` creates a validator that checks that a value matches a regex.
@@ -103,6 +113,16 @@ const result = await validator.validate(value);
 import { matchesPattern } from '@tybalt/validator';
 
 const validator = matchesPattern({ pattern: \foo\ });
+```
+
+### number
+
+`number` creates a validator that checks whether a value is a number.
+
+```javascript
+import { number } from '@tybalt/validator';
+
+const validator = number();
 ```
 
 ### oneOf
