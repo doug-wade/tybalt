@@ -1,6 +1,6 @@
 ---
 layout: layout.html
-title: Tybalt test utils
+title: Tybalt eleventy plugin
 ---
 
 ## Installation
