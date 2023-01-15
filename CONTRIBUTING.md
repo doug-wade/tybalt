@@ -86,6 +86,10 @@ latest version and run the tests.
 
 The example package listens on port 3000.
 
+### 3008
+
+The eleventy plugin "vanilla" (e.g. without Tybalt) example listens on port 3008.
+
 ### 8081
 
 The website listens on port 8081.
