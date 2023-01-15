@@ -3,6 +3,8 @@ layout: layout.html
 title: Tybalt esbuild plugin
 ---
 
+# @tybalt/esbuild-plugin
+
 ## Installation
 
 Install the esbuild plugin with your favorite npm client

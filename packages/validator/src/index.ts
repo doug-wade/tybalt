@@ -1,5 +1,7 @@
 export { default as compose } from './api/compose';
+export { default as integer } from './api/integer';
 export { default as matchesPattern } from './api/matches-pattern';
+export { default as number } from './api/number';
 export { default as oneOf } from './api/one-of';
 export { default as required } from './api/required';
 export { default as shouldThrow } from './api/should-throw';
