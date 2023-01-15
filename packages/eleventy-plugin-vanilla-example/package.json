@@ -2,14 +2,21 @@
     "name": "@tybalt/eleventy-plugin-vanilla-example",
     "version": "0.0.10",
     "description": "An example of using @tybalt/eleventy-plugin with vanilla web components",
-    "main": "index.js",
     "private": true,
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 0"
+        "build": "eleventy",
+        "clean": "rimraf _site/",
+        "serve": "eleventy --serve --port 3008"
     },
     "keywords": [
-        "eleventy"
+        "11ty",
+        "eleventy",
+        "tybalt"
     ],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
-    "license": "MIT"
+    "license": "MIT",
+    "devDependencies": {
+        "@11ty/eleventy": "^1.0.2",
+        "rimraf": "^4.0.6"
+    }
 }
