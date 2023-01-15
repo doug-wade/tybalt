@@ -1,6 +1,6 @@
 {
     "name": "tybalt",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "A toolkit for writing web components",
     "private": true,
     "scripts": {
@@ -20,6 +20,7 @@
         "./packages/cli",
         "./packages/core",
         "./packages/eleventy-plugin",
+        "./packages/eleventy-plugin-vanilla-example",
         "./packages/esbuild-plugin",
         "./packages/eslint-plugin",
         "./packages/example",

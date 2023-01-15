@@ -1419,6 +1419,7 @@ __metadata:
     "@types/mkdirp": ^1.0.2
     "@types/node": ^18.11.18
     browser-sync: ^2.27.11
+    chalk: ^5.2.0
     commander: ^9.4.1
     esbuild: ^0.16.14
     eslint: ^8.31.0
@@ -1448,6 +1449,16 @@ __metadata:
     rimraf: ^3.0.2
     rxjs: ^7.8.0
     typescript: ^4.9.4
+  languageName: unknown
+  linkType: soft
+
+"@tybalt/eleventy-plugin-vanilla-example@workspace:packages/eleventy-plugin-vanilla-example":
+  version: 0.0.0-use.local
+  resolution: "@tybalt/eleventy-plugin-vanilla-example@workspace:packages/eleventy-plugin-vanilla-example"
+  dependencies:
+    "@11ty/eleventy": ^1.0.2
+    "@tybalt/esbuild-plugin": "workspace:^"
+    rimraf: ^4.0.6
   languageName: unknown
   linkType: soft
 
@@ -2932,6 +2943,13 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "chalk@npm:5.2.0"
+  checksum: 03d8060277de6cf2fd567dc25fcf770593eb5bb85f460ce443e49255a30ff1242edd0c90a06a03803b0466ff0687a939b41db1757bec987113e83de89a003caa
   languageName: node
   linkType: hard
 
@@ -7753,6 +7771,15 @@ __metadata:
   bin:
     rimraf: bin.js
   checksum: 87f4164e396f0171b0a3386cc1877a817f572148ee13a7e113b238e48e8a9f2f31d009a92ec38a591ff1567d9662c6b67fd8818a2dbbaed74bc26a87a2a4a9a0
+  languageName: node
+  linkType: hard
+
+"rimraf@npm:^4.0.6":
+  version: 4.0.7
+  resolution: "rimraf@npm:4.0.7"
+  bin:
+    rimraf: dist/cjs/src/bin.js
+  checksum: 294ae526198eadac7b57e7b43782aaa0be5d5c2a606ee65c26d9cd2fdddc320d80cc43c3c1c0b9562e88aa265f67c4c00f70af2b4d065e76ce03d9d7a2a5c901
   languageName: node
   linkType: hard
 
