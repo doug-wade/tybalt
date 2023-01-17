@@ -1527,7 +1527,7 @@ __metadata:
     "@types/jest": ^29.2.5
     jest: ^29.2.2
     jest-environment-jsdom: ^29.2.2
-    lit: ^2.6.0
+    lit: ^2.6.1
     rimraf: ^3.0.2
     typescript: ^4.9.4
   languageName: unknown
@@ -6249,14 +6249,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "lit@npm:2.6.0"
+"lit@npm:^2.6.1":
+  version: 2.6.1
+  resolution: "lit@npm:2.6.1"
   dependencies:
     "@lit/reactive-element": ^1.6.0
     lit-element: ^3.2.0
     lit-html: ^2.6.0
-  checksum: 1c15e5f2d3c738f8f674990eeca819420db529ef6dced49f45a5b940ea4fa8eec77a2d31fbc5a3743119de75753144cca42a358ee2d79392306a4c4cb8a739b9
+  checksum: 74f2813152a48f195784f01b6b4ff7e4e7d8fa90ac272b725d1953fa3e1d6c9dca60b77da435f34144fcdd38705480889a8ea986835676932a8559c897cea517
   languageName: node
   linkType: hard
 
