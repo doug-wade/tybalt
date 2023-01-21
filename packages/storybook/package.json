@@ -1,0 +1,23 @@
+{
+  "name": "@tybalt/storybook",
+  "version": "0.0.10",
+  "description": "The storybook plugin for Tybalt",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build": "node ./scripts/watch-tsc.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "app/*",
+    "examples/*"
+  ],
+  "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "shelljs": "^0.8.3"
+  }
+}
