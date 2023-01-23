@@ -36,7 +36,7 @@
         "js-convert-case": "^4.2.0",
         "mkdirp": "^1.0.4",
         "rimraf": "^4.1.1",
-        "ts-jest": "^29.0.3",
+        "ts-jest": "^29.0.5",
         "typescript": "^4.9.4"
     },
     "devDependencies": {
