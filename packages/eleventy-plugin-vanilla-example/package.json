@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/eleventy-plugin-vanilla-example",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "description": "An example of using @tybalt/eleventy-plugin with vanilla web components",
     "private": true,
     "scripts": {
