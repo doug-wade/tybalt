@@ -79,7 +79,29 @@ export default function myValidatorFactory(substring) {
 }
 ```
 
+### Validation Results
+
+Validators return an object that includes information about whether a validator passed or not. The most important of the keys is `passed`, which is true when the input is valid and false when it is not.
+
+```javascript
+import { oneOf } from '@tybalt/validator';
+
+const validator = oneOf(['foo', 'bar']);
+validator.validate('foo'); // returns { passed: true }
+validator.validate('quux'); // returns { passed: false }
+```
+
 ## API
+
+### array
+
+`array` creates a validator that checks whether a value is an array.
+
+```javascript
+import { array } from '@tybalt/validator';
+
+const validator = array();
+```
 
 ### compose
 
@@ -144,6 +166,21 @@ import { required } from '@tybalt/validator';
 
 const validator = required();
 ```
+
+### shape
+
+`shape` creates a validator that checks that a value is an object with a given set of keys.
+
+```javascript
+import { compose, required, string, number } from '@tybalt/validator';
+
+const validator = shape({
+    foo: number(),
+    bar: compose(required(), string()),
+});
+```
+
+Note that shapes can always have more data than what is described by the shape validator.
 
 ### shouldThrow
 
