@@ -65,7 +65,21 @@ export default function myFunction(myArgument) {
     };
 }
 </code></pre>
+<h3>Validation Results</h3>
+<p>Validators return an object that includes information about whether a validator passed or not. The most important of the keys is <code>passed</code>, which is true when the input is valid and false when it is not.</p>
+<pre><code class="language-javascript">import { oneOf } from '@tybalt/validator';
+
+const validator = oneOf(['foo', 'bar']);
+validator.validate('foo'); // returns { passed: true }
+validator.validate('quux'); // returns { passed: false }
+</code></pre>
 <h2>API</h2>
+<h3>array</h3>
+<p><code>array</code> creates a validator that checks whether a value is an array.</p>
+<pre><code class="language-javascript">import { array } from '@tybalt/validator';
+
+const validator = array();
+</code></pre>
 <h3>compose</h3>
 <p><code>compose</code> is a method for connecting multiple validators into a single validator.</p>
 <p>If you want to validate that a single value exists, and is a string that is a valid url,
@@ -105,6 +119,16 @@ const validator = oneOf(['foo', 'bar']);
 
 const validator = required();
 </code></pre>
+<h3>shape</h3>
+<p><code>shape</code> creates a validator that checks that a value is an object with a given set of keys.</p>
+<pre><code class="language-javascript">import { compose, required, string, number } from '@tybalt/validator';
+
+const validator = shape({
+    foo: number(),
+    bar: compose(required(), string()),
+});
+</code></pre>
+<p>Note that shapes can always have more data than what is described by the shape validator.</p>
 <h3>shouldThrow</h3>
 <p><code>shouldThrow</code> wraps a validator, and throws an error if the validator fails.</p>
 <pre><code class="language-javascript">import { required, shouldThrow } from '@tybalt/validator';
