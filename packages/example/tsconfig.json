@@ -13,6 +13,6 @@
         "declaration": true,
         "emitDeclarationOnly": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "./declaration.d.ts"],
     "module": "es2022"
 }

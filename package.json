@@ -10,7 +10,7 @@
         "generate-types": "turbo generate-types",
         "lint": "eslint packages/**!(node_modules)/src/**/*.ts",
         "serve": "turbo run serve --parallel",
-        "test": "jest",
+        "test": "turbo test",
         "watch": "turbo run watch --parallel"
     },
     "keywords": [],
@@ -36,5 +36,5 @@
         "prettier": "^3.0.0",
         "turbo": "^1.7.0"
     },
-    "packageManager": "yarn@3.3.0"
+    "packageManager": "yarn@3.6.1"
 }

@@ -4,6 +4,8 @@ import { defineComponent, html } from '@tybalt/core';
 import { compose, oneOf, required, string } from '@tybalt/validator';
 import { map } from 'rxjs';
 
+import { theme } from '../contexts';
+
 import css from './button.css';
 
 export const BUTTON_VARIANTS = Object.freeze({
@@ -14,7 +16,6 @@ export const BUTTON_VARIANTS = Object.freeze({
 
 export default defineComponent({
     name: 'example-button',
-    shadowMode: 'open',
     emits: ['click'],
     css,
     props: {
@@ -23,8 +24,15 @@ export default defineComponent({
             validator: compose(required(), string(), oneOf(Object.values(BUTTON_VARIANTS))),
         },
     },
-    render({ computedClass, clickHandler }: RenderContext) {
-        return html`<button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>`;
+    render({ computedClass, clickHandler, theme }: RenderContext) {
+        return html`<style>
+                :root {
+                    --primary-color: ${theme.primaryColor};
+                    --secondary-color: ${theme.secondaryColor};
+                    --font-family: ${theme.fontFamily};
+                }
+            </style>
+            <button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>`;
     },
     setup({ variant }: PropsStateMap, { emit }: SetupContext) {
         const clickHandler = () => {
@@ -37,4 +45,5 @@ export default defineComponent({
             computedClass,
         };
     },
+    contexts: { theme },
 });

@@ -21,7 +21,12 @@ export default ({ program }: CommandContext) => {
                 {},
             );
 
+            const stdErr = results.stderr.toString();
+
             console.log(results.stdout.toString());
-            console.error(results.stderr.toString());
+            if (stdErr) {
+                console.error(stdErr);
+                process.exit(1);
+            }
         });
 };

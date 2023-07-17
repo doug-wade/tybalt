@@ -41,6 +41,9 @@
         "serve": {
             "cache": false
         },
+        "test": {
+            "dependsOn": ["build", "^test"]
+        },
         "watch": {
             "cache": false
         }

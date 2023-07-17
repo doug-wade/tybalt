@@ -10,7 +10,7 @@ module.exports = (eleventyConfig, options) => {
     let { outfile, pattern } = options || {};
 
     // Work around a bug: https://github.com/11ty/eleventy/issues/2729
-    const outdir = (directoriesConfig = eleventyConfig.dir || '_site');
+    const outdir = (directoriesConfig = eleventyConfig.dir.output || '_site');
     const pathPrefix = eleventyConfig.pathPrefix || '/tybalt/';
 
     outfile = outfile || `tybalt-out.js`;
