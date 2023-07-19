@@ -1,4 +1,4 @@
-import type { ScaffoldContext } from '../types';
+import type { ScaffoldContext } from '../types.js';
 
 export default ({ pascalCaseName }: ScaffoldContext) => {
     return `import { mount } from '@tybalt/test-utils';

@@ -1,4 +1,9 @@
 {
-    "cSpell.words": ["tybalt", "outdir"],
+    "cSpell.words": [
+        "autoload",
+        "fastify",
+        "outdir",
+        "tybalt"
+    ],
     "jest.jestCommandLine": "yarn test"
 }

@@ -30,7 +30,7 @@ export type DefineComponentsOptions = {
     shadowMode?: 'open' | 'closed';
     css?: string | Function;
     template?: string;
-    contexts: Context[];
+    contexts?: Context[];
 };
 
 export type UseObservableOptions =

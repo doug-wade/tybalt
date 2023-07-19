@@ -1,6 +1,5 @@
 import bs from 'browser-sync';
-
-import type { CommandContext } from '../types';
+import { CommandContext } from '../types.js';
 
 export default ({ program }: CommandContext) => {
     program

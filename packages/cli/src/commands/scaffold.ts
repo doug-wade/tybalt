@@ -16,8 +16,7 @@ import {
     indexHtmlTemplate,
     eleventyConfigTemplate,
 } from '../templates/index.js';
-
-import { ScaffoldContext, ScaffoldCommandOptions, CommandContext, ScaffoldTarget } from '../types';
+import { CommandContext, ScaffoldCommandOptions, ScaffoldContext, ScaffoldTarget } from '../types.js';
 
 const execAsync = async (command: string) => {
     const promisifiedExec = util.promisify(exec);

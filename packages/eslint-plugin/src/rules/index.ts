@@ -1,5 +1,9 @@
-import componentNamesAreMultiWord from './component-names-are-multi-word';
+// @ts-ignore
+import { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
+import componentNamesAreMultiWord from './component-names-are-multi-word.js';
 
-export default {
+const config = {
     'component-names-are-multi-word': componentNamesAreMultiWord,
-}
+};
+
+export default config;

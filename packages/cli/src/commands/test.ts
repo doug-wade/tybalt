@@ -1,4 +1,4 @@
-import type { CommandContext } from '../types';
+import type { CommandContext } from '../types.js';
 
 import child_process from 'node:child_process';
 import path from 'node:path';

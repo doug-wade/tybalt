@@ -24,7 +24,7 @@ export default ({
     shadowMode = 'closed',
     css,
     template,
-    contexts,
+    contexts = [],
 }: DefineComponentsOptions) => {
     nameValidator.validate(name);
 
@@ -59,6 +59,7 @@ export default ({
         // All of the contexts to connect to
         // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
         #contexts = new Map();
+        contextState: any;
 
         constructor() {
             super();
@@ -110,21 +111,23 @@ export default ({
                 this.dispatchEvent(
                     new ContextEvent(
                         context,
-                        (value: UnknownContext, unsubscribe: Function) => {
+                        (value, unsubscribe) => {
                             const contextState = this.#contexts.get(context);
 
                             // Call the old unsubscribe callback if the unsubscribe call has
                             // changed. This probably means we have a new provider.
                             if (unsubscribe !== contextState.unsubscribe) {
-                                contextState.unsubscribe.?();
+                                contextState.unsubscribe?.();
                             }
 
                             observable.next(value);
 
                             this.contextState.set(context, { value, unsubscribe, observable });
                         },
-                    true // we want this event multiple times (if the logger changes)
-                    )
+                        {
+                            subscribe: true,
+                        },
+                    ),
                 );
             }
 

@@ -1,4 +1,4 @@
-import type { ScaffoldContext } from '../types';
+import type { ScaffoldContext } from '../types.js';
 
 export default ({ kebabCaseName }: ScaffoldContext) => {
     return `.${kebabCaseName} {
