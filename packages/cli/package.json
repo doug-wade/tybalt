@@ -28,7 +28,7 @@
         "@types/glob": "^8.0.1",
         "browser-sync": "^2.27.11",
         "chalk": "^5.2.0",
-        "commander": "^10.0.0",
+        "commander": "^11.0.0",
         "esbuild": "^0.16.14",
         "eslint": "^8.34.0",
         "glob": "^10.3.3",
