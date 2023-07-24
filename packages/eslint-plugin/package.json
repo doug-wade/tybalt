@@ -19,7 +19,7 @@
     "devDependencies": {
         "@types/node": "^18.11.15",
         "@typescript-eslint/eslint-plugin": "^6.1.0",
-        "@typescript-eslint/parser": "^5.59.7",
+        "@typescript-eslint/parser": "^6.2.0",
         "@typescript-eslint/utils": "^6.1.0",
         "esbuild": "^0.16.14",
         "esbuild-jest": "^0.5.0",
