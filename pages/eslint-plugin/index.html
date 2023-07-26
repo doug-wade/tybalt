@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tybalt eslint plugin</title>
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/tybalt/css/base.css" rel="stylesheet">
+        <link href="/tybalt/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>@tybalt/eslint-plugin</h1>
+<h2>Installation</h2>
+<p>Install the plugin with your favorite package manager</p>
+<pre><code class="language-shell">npm i -D @tybalt/eslint-plugin
+</code></pre>
+<h2>Getting Started</h2>
+<p>The best way to get started is to extend our recommended rule set. For example, in <code>.eslintrc.cjs</code>:</p>
+<pre><code class="language-javascript">module.exports = {
+    extends: ['@tybalt/ts-recommended'],
+};
+</code></pre>
+<h2>Available rules</h2>
+<p>We currently only have one rule, but we plan to add more!</p>
+<h3>Component names are multi-word</h3>
+<p>Checks to make sure that your component has a multi-word name (a name that contains an en-dash <code>-</code>). This is a requirement <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name">from the spec</a>.</p>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt/tybalt-out.js"></script></body></html>
