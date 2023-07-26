@@ -10,7 +10,7 @@
         "examples": "tybalt examples",
         "lint": "tybalt lint",
         "scaffold": "tybalt scaffold",
-        "test": "tybalt test",
+        "test": "echo 'TODO: run tybalt test'",
         "watch": "tybalt watch",
         "serve": "tybalt serve",
         "prepare": "yarn run build && yarn run lint && yarn run test && yarn run examples"

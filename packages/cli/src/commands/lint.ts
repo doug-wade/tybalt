@@ -1,9 +1,9 @@
-import type { CommandContext } from '../types';
+import type { CommandContext } from '../types.js';
 
 import child_process from 'node:child_process';
 import path from 'node:path';
 import url from 'node:url';
-import { resolve } from 'import-meta-resolve'
+import { resolve } from 'import-meta-resolve';
 
 export default ({ program }: CommandContext) => {
     program
@@ -17,11 +17,7 @@ export default ({ program }: CommandContext) => {
             const eslintRootDirectory = url.fileURLToPath(await resolve(`eslint`, import.meta.url));
             const eslintBinPath = path.resolve(`${eslintRootDirectory}../../../bin/eslint.js`);
 
-            const results = child_process.spawnSync(
-                'node',
-                [eslintBinPath, `--config=${filePath}`, pattern],
-                {},
-            );
+            const results = child_process.spawnSync('node', [eslintBinPath, `--config=${filePath}`, pattern], {});
 
             console.log(results.stdout.toString());
             console.error(results.stderr.toString());

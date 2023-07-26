@@ -1,3 +1,10 @@
+<style>
+    :root {
+        --primary-color: ${theme.primaryColor};
+        --secondary-color: ${theme.secondaryColor};
+        --font-family: ${theme.fontFamily};
+    }
+</style>
 <button @click="${clickHandler}" class="button ${computedClass}">
     <slot></slot>
 </button>

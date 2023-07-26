@@ -1,4 +1,4 @@
-import type { CommandContext } from '../types';
+import type { CommandContext } from '../types.js';
 
 import child_process from 'node:child_process';
 import path from 'node:path';
@@ -21,7 +21,12 @@ export default ({ program }: CommandContext) => {
                 {},
             );
 
+            const stdErr = results.stderr.toString();
+
             console.log(results.stdout.toString());
-            console.error(results.stderr.toString());
+            if (stdErr) {
+                console.error(stdErr);
+                process.exit(1);
+            }
         });
 };

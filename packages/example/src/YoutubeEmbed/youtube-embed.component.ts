@@ -1,16 +1,17 @@
 import { defineComponent, html } from '@tybalt/core';
 import { compose, string, required } from '@tybalt/validator';
 
+import type { RenderContext } from '@tybalt/core';
+
 export default defineComponent({
     name: 'example-youtube-embed',
-    shadowMode: 'open',
     props: {
         youtubeId: {
             validator: compose(required(), string()),
             default: '1RlI-JxwPNk',
         },
     },
-    render({ youtubeId }: { youtubeId: string }) {
+    render({ youtubeId }: RenderContext) {
         return html`
             <iframe
                 width="560"

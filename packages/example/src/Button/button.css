@@ -2,14 +2,15 @@
     padding: 16px;
     border: 1px solid black;
     border-radius: 4px;
+    font-family: var(--font-family);
 }
 
 .button-primary {
-    background-color: rebeccapurple;
+    background-color: var(--primary-color);
 }
 
 .button-secondary {
-    background-color: bisque;
+    background-color: var(--secondary-color);
 }
 
 .button-tertiary {

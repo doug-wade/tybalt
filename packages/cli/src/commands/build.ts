@@ -2,7 +2,7 @@ import esbuild from 'esbuild';
 import htmlPlugin from '@chialab/esbuild-plugin-html';
 import tybaltPlugin from '@tybalt/esbuild-plugin';
 
-import type { CommandContext } from '../types';
+import type { CommandContext } from '../types.js';
 
 export default ({ program }: CommandContext) => {
     program
@@ -10,7 +10,7 @@ export default ({ program }: CommandContext) => {
         .description('build a component or components')
         .argument('[string]', 'pattern', 'src/index.html')
         .option('-o, --outdir <string>', 'the output directory', 'dist')
-        .action(async (pattern: string, options) => {
+        .action(async (pattern: string, options: { outdir: any }) => {
             esbuild.build({
                 bundle: true,
                 entryPoints: [pattern],

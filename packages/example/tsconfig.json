@@ -9,10 +9,10 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "moduleResolution": "node",
+        "moduleResolution": "node16",
         "declaration": true,
         "emitDeclarationOnly": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "./declaration.d.ts"],
     "module": "es2022"
 }

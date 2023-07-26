@@ -5,7 +5,7 @@
        "sourceMap": false,
        "outDir": "dist",
        "esModuleInterop": true,
-       "moduleResolution": "node",
+       "moduleResolution": "node16",
        "forceConsistentCasingInFileNames": true,
        "strict": true,
        "noUnusedLocals": true,

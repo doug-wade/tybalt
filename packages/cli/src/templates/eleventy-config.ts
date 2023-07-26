@@ -1,5 +1,3 @@
-import type { ScaffoldContext } from '../types';
-
 export default () => {
     return `const tybaltPlugin = require('@tybalt/eleventy-plugin');
 
