@@ -36,7 +36,7 @@ export default ({
         #props: { [Property: string]: BehaviorSubject<any> };
 
         // The browser's shadow root
-        #shadowRoot: ShadowRoot;
+        shadowRoot: ShadowRoot;
 
         // A hash from the render state key to its corresponding observable (returned from the setup method)
         #renderObservables: { [Property: string]: Observable<any> } = {};
@@ -160,7 +160,7 @@ export default ({
              * should. We would have to get away from the template tag method of rendering, and that is
              * contrary to the "use the platform" ethos we're building on.
              */
-            this.#shadowRoot = this.attachShadow({ mode: shadowMode });
+            this.attachShadow({ mode: shadowMode });
 
             this.#doRender();
         }
@@ -195,7 +195,7 @@ export default ({
             }
 
             // dbw 12/16/22: We'll definitely need something more sophisticated than this.
-            this.#shadowRoot.innerHTML = '';
+            this.shadowRoot.innerHTML = '';
 
             /**
              * Note that the order of the rendered template is always
@@ -224,7 +224,7 @@ export default ({
                 const calculatedCss = typeof css === 'function' ? css(this.#renderState) || '' : css;
                 styleElement.innerHTML = calculatedCss || '';
 
-                this.#shadowRoot.appendChild(styleElement);
+                this.shadowRoot.appendChild(styleElement);
             }
 
             if (this.#render) {
@@ -232,7 +232,7 @@ export default ({
                 templateElement.innerHTML = this.#render(this.#renderState);
                 const templateContent = templateElement.content;
 
-                this.#shadowRoot.appendChild(templateContent.cloneNode(true));
+                this.shadowRoot.appendChild(templateContent.cloneNode(true));
             }
 
             if (this.#template) {
@@ -240,7 +240,7 @@ export default ({
                 templateElement.innerHTML = this.#template;
                 const templateContent = templateElement.content;
 
-                this.#shadowRoot.appendChild(templateContent.cloneNode(true));
+                this.shadowRoot.appendChild(templateContent.cloneNode(true));
             }
         }
 
