@@ -1,0 +1,16 @@
+{
+    "name": "Tybalt Developer Documentation",
+    "short_name": "Tybalt",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#010b14",
+    "theme_color": "#c792ea",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/img/favico.png",
+            "type": "image/png",
+            "sizes": "32x32"
+        }
+    ]
+}
