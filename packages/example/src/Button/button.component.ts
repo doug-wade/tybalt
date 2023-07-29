@@ -21,7 +21,7 @@ export default defineComponent({
     props: {
         variant: {
             default: BUTTON_VARIANTS.PRIMARY,
-            validator: compose(required(), string(), oneOf(Object.values(BUTTON_VARIANTS))),
+            validator: compose(required(), oneOf(Object.values(BUTTON_VARIANTS))),
         },
     },
     render({ computedClass, clickHandler, theme }: RenderContext) {

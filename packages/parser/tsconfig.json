@@ -1,0 +1,18 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "lib": ["es2021", "dom"],
+        "module": "es2022",
+        "target": "es2021",
+        "outDir": "dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node16",
+        "declaration": true,
+        "emitDeclarationOnly": true
+    },
+    "include": ["src/**/*", "./declaration.d.ts"],
+    "module": "es2022"
+}

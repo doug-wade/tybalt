@@ -19,11 +19,7 @@ export default async ({
 
     const rootElement = document.createElement(WRAPPER_ELEMENT_TAG);
     rootElement.setAttribute(ATTRIBUTE_NAME, id);
-
-    const concatenatedAttributes = Object.entries(attributes)
-        .reduce((acc, [key, value]) => `${acc} ${toKebabCase(key)}="${value}"`, '')
-        .trim();
-    rootElement.innerHTML = `<${elementName} ${concatenatedAttributes}>${slot}</${elementName}>`;
+    rootElement.innerHTML = `<${elementName}>${slot}</${elementName}>`;
 
     document.body.appendChild(rootElement);
 
@@ -33,6 +29,9 @@ export default async ({
         const requestComponent = () => {
             const element = document.querySelector(selector);
             if (element) {
+                for (const [key, value] of Object.entries(attributes)) {
+                    element.setAttribute(toKebabCase(key), value as string);
+                }
                 resolve(element);
             } else {
                 window.requestAnimationFrame(requestComponent);
