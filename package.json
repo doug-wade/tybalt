@@ -26,6 +26,7 @@
         "./packages/esbuild-plugin",
         "./packages/eslint-plugin",
         "./packages/example",
+        "./packages/parser",
         "./packages/test-utils",
         "./packages/test-utils-lit-example",
         "./packages/validator",

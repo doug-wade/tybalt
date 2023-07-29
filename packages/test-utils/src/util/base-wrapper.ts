@@ -86,6 +86,10 @@ export default class BaseWrapper implements Wrapper {
         return this.element.outerHTML;
     }
 
+    shadowHtml() {
+        return global.shadowRootRegistry.get(this.element);
+    }
+
     attributes(attributeName?: string) {
         if (isString(attributeName)) {
             return this.element.getAttribute(attributeName);

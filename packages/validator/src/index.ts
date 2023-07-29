@@ -1,3 +1,4 @@
+export { default as boolean } from './api/boolean';
 export { default as compose } from './api/compose';
 export { default as integer } from './api/integer';
 export { default as matchesPattern } from './api/matches-pattern';

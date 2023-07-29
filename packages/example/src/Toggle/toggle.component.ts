@@ -7,14 +7,14 @@ import type { SetupContext, PropsStateMap, RenderContext } from '@tybalt/core';
 
 export default defineComponent({
     components: [Button],
+    shadowRoot: 'open',
     render({ clickHandler, isChecked, TERTIARY }: RenderContext) {
-        return html`<label>
-            <slot name="label"></slot>
-            <example-button @click="${clickHandler}" role="switch" aria-checked="${isChecked}" variant="${TERTIARY}">
-                <span aria-hidden="true"><slot name="left"></slot></span>
-                <span aria-hidden="true"><slot name="right"></slot></span>
-            </example-button>
-        </label>`;
+        return html`<t-if condition="${isChecked}">
+                <button onClick=${clickHandler}>☀️</button>
+            </t-if>
+            <t-else condition="${!isChecked}">
+                <button onClick=${clickHandler}>🌖</button>
+            </t-else>`;
     },
     setup(_: PropsStateMap, ctx: SetupContext) {
         const isChecked = new BehaviorSubject(false);

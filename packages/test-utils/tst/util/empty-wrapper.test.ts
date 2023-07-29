@@ -72,6 +72,16 @@ describe('empty-wrapper', () => {
         }).toThrow(expectedMessage);
     });
 
+    it('throws when shadowHtml is called', () => {
+        const expectedMessage = getExpectedMessage({ method: 'shadowHtml' });
+
+        const wrapper = new EmptyWrapper({ selector: MOCK_SELECTOR });
+
+        expect(() => {
+            wrapper.shadowHtml();
+        }).toThrow(expectedMessage);
+    });
+
     it('throws when text is called', () => {
         const expectedMessage = getExpectedMessage({ method: 'text' });
 

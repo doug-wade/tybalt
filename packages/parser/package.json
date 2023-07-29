@@ -1,0 +1,28 @@
+{
+    "name": "@tybalt/parser",
+    "version": "0.0.16",
+    "description": "An library for parsing strings into other types",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "yarn run compile && yarn run generate-types",
+        "clean": "rimraf dist/ coverage/",
+        "compile": "esbuild src/**/*.ts src/*.ts --format=cjs --outdir=dist",
+        "generate-types": "tsc",
+        "lint": "eslint src/**/*.ts",
+        "test": "jest --coverage",
+        "watch": "esbuild src/**/*.ts src/*.ts --format=cjs --outdir=dist --watch"
+    },
+    "keywords": [
+        "tybalt"
+    ],
+    "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+    "devDependencies": {
+        "esbuild": "^0.16.14",
+        "esbuild-jest": "^0.5.0",
+        "eslint": "^8.34.0",
+        "jest": "^29.4.3",
+        "rimraf": "^4.1.1",
+        "typescript": "^4.9.4"
+    },
+    "license": "MIT"
+}

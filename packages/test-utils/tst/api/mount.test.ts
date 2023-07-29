@@ -32,14 +32,25 @@ describe('mount', () => {
         expect(actual.element.outerHTML).toBe(`<${mockWebComponentSelector}>${slot}</${mockWebComponentSelector}>`);
     });
 
-    it('should set the innerHTML of the mounted component to the value of the slot', async () => {
+    it('should set the aria-label attribute', async () => {
         global.customElementsReverseRegistry = new Map([[MockWebComponent, 'mock-web-component-name']]);
-        const slot = '<span class="foo">hello world</span>';
         const mockAriaLabel = 'hello world';
         const attributes = { ariaLabel: mockAriaLabel };
 
         const actual = await mount(MockWebComponent, { attributes });
 
         expect(actual.element.getAttribute('aria-label')).toBe(mockAriaLabel);
+    });
+
+    it.each([[{ bar: 'baz' }], [123], [false], ['corge']])('should stringify attribute with type %s', async (prop) => {
+        const originalSetAttribute = HTMLElement.prototype.setAttribute;
+        const setAttributeSpy = jest.fn().mockImplementation(originalSetAttribute);
+        HTMLElement.prototype.setAttribute = setAttributeSpy;
+        global.customElementsReverseRegistry = new Map([[MockWebComponent, 'mock-web-component-name']]);
+
+        await mount(MockWebComponent, { attributes: { prop } });
+
+        expect(setAttributeSpy).toHaveBeenCalledTimes(2);
+        expect(setAttributeSpy).toHaveBeenCalledWith('prop', typeof prop === 'string' ? prop : JSON.stringify(prop));
     });
 });

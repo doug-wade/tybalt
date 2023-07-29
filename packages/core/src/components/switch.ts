@@ -1,4 +1,5 @@
-import { defineComponent, html } from '../..';
+import { defineComponent, html } from '..';
+import { string } from '@tybalt/parser';
 import { required } from '@tybalt/validator';
 
 export default defineComponent({
@@ -7,9 +8,10 @@ export default defineComponent({
     props: {
         value: {
             validator: required,
+            parser: string,
         },
     },
-    render({ value }: { value: any }) {
+    render({ value }) {
         return html`<slot name="${value}"></slot>`;
     },
 });

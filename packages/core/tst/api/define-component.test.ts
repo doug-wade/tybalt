@@ -1,8 +1,9 @@
 import { describe, it, jest, expect } from '@jest/globals';
 import { flushPromises, mount } from '@tybalt/test-utils';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 import defineComponent from '../../src/api/define-component';
+import { PropsStateMap } from '../../src/types';
 
 describe('defineComponent', () => {
     it('calls customElements.define', () => {
@@ -103,13 +104,56 @@ describe('defineComponent', () => {
             },
             setup({ example }) {
                 return {
-                    derived: example.pipe(map(deriveState))
-                }
-            }
+                    derived: example.pipe(map(deriveState)),
+                };
+            },
         });
 
         const wrapper = await mount(component);
 
         expect(wrapper.html()).toContain(deriveState(value));
+    });
+
+    it('parses props with a default parser', async () => {
+        const expected = { foo: 'bar' };
+
+        let actual: PropsStateMap = { observable: new BehaviorSubject(null), parse: () => {} };
+        const component = defineComponent({
+            name: 'uses-default-parser',
+            props: { example: {} },
+            shadowMode: 'open',
+            setup({ example }) {
+                actual = example;
+            },
+        });
+
+        await mount(component, { attributes: { example: expected } });
+
+        expect(actual.observable.getValue()).toStrictEqual(expected);
+    });
+
+    it('supports props with a custom parser', async () => {
+        const expected = 'marta';
+        const parser = {
+            parse(str: string | null) {
+                return expected;
+            },
+        };
+
+        let actual: PropsStateMap = { observable: new BehaviorSubject(null), parse: () => {} };
+        const component = defineComponent({
+            name: 'uses-custom-parser',
+            props: {
+                example: { parser },
+            },
+            shadowMode: 'open',
+            setup({ example }) {
+                actual = example;
+            },
+        });
+
+        await mount(component, { attributes: { example: 'true' } });
+
+        expect(actual.observable.getValue()).toBe(expected);
     });
 });

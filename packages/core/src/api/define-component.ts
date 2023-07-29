@@ -1,5 +1,6 @@
 import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { json } from '@tybalt/parser';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 import ContextEvent from './context-event';
 
@@ -32,11 +33,10 @@ export default ({
         // The context object passed to the component definition's setup method
         #setupContext: SetupContext;
 
-        // A hash from the attribute name to its corresponding observable
-        #props: { [Property: string]: BehaviorSubject<any> };
-
-        // The browser's shadow root
-        shadowRoot: ShadowRoot;
+        // A hash from the attribute name to its corresponding observable and parser
+        #props: {
+            [Property: string]: { observable: BehaviorSubject<any>; parser: { parse(str: string | null): any } };
+        } = {};
 
         // A hash from the render state key to its corresponding observable (returned from the setup method)
         #renderObservables: { [Property: string]: Observable<any> } = {};
@@ -73,10 +73,28 @@ export default ({
              */
             this.#props = Object.entries(props).reduce(
                 (accumulator, [key, value]) => {
-                    accumulator[key] = new BehaviorSubject(value.default || null);
+                    const parser = value.parser || json;
+
+                    let initialValue = null;
+                    try {
+                        initialValue = parser.parse(value.default);
+                    } catch (e) {
+                        initialValue = e;
+                    }
+
+                    accumulator[key] = {
+                        observable: new BehaviorSubject(initialValue),
+                        parser: value.parser || json,
+                    };
+
                     return accumulator;
                 },
-                {} as { [Property: string]: BehaviorSubject<any> },
+                {} as {
+                    [Property: string]: {
+                        observable: BehaviorSubject<any>;
+                        parser: { parse(str: string | null): any };
+                    };
+                },
             );
 
             // This is the method for clients to use to emit events
@@ -91,7 +109,12 @@ export default ({
                 emit,
             };
 
-            const setupResults = setup?.call(this, this.#props, this.#setupContext) || {};
+            const setupResults =
+                setup?.call(
+                    this,
+                    Object.entries(this.#props).map(([key, { observable }]) => observable),
+                    this.#setupContext,
+                ) || {};
 
             for (const [key, value] of Object.entries(setupResults)) {
                 if (value.subscribe) {
@@ -144,7 +167,11 @@ export default ({
 
             for (const [key, value] of Object.entries(this.#props)) {
                 if (!this.#renderObservables[key]) {
-                    this.#renderObservables[key] = value;
+                    // dbw 7/29/23: We convert the BehaviorSubject to an Observable here because its easier to use
+                    // pipes when working with observables, but they convert Subjects to Observables. The general
+                    // idea is to be strict in what we pass to clients, and permissive about what we accept, to
+                    // make the framework easier to work with.
+                    this.#renderObservables[key] = value.observable.pipe(map((value) => value.parser(value)));
                 }
             }
 
@@ -183,9 +210,9 @@ export default ({
             adoptedCallback?.apply(this);
         }
 
-        attributeChangedCallback(name: string, oldValue: any, newValue: any) {
-            this.#props[name].next(newValue);
-
+        attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+            const { observable, parser } = this.#props[name];
+            observable.next(parser.parse(newValue));
             this.#doRender();
         }
 
@@ -194,15 +221,23 @@ export default ({
                 return;
             }
 
-            // dbw 12/16/22: We'll definitely need something more sophisticated than this.
+            // @ts-ignore
             this.shadowRoot.innerHTML = '';
 
             /**
              * Note that the order of the rendered template is always
              *
              *   <shadow-root>
+             *     <!-- Our generated styles-->
              *     <style></style>
+             *
+             *     <!-- The user's styles -->
+             *     <style></style>
+             *
+             *     <!-- The user's template -->
              *     <render></render>
+             *
+             *     <!-- The user's template -->
              *     <template></template>
              *   </shadow-root>
              *
@@ -224,22 +259,31 @@ export default ({
                 const calculatedCss = typeof css === 'function' ? css(this.#renderState) || '' : css;
                 styleElement.innerHTML = calculatedCss || '';
 
+                // @ts-ignore
                 this.shadowRoot.appendChild(styleElement);
             }
 
             if (this.#render) {
                 const templateElement = document.createElement('template');
-                templateElement.innerHTML = this.#render(this.#renderState);
+                templateElement.innerHTML = this.#render(
+                    this.#renderState.map((value: { observable: any }) =>
+                        value.observable ? value.observable : value,
+                    ),
+                );
                 const templateContent = templateElement.content;
 
+                // @ts-ignore
                 this.shadowRoot.appendChild(templateContent.cloneNode(true));
             }
 
+            // dbw 7/27/23: shouldn't clients be rendering their templates in the render function?
+            // I'm not sure what the use case is for this.
             if (this.#template) {
                 const templateElement = document.createElement('template');
                 templateElement.innerHTML = this.#template;
                 const templateContent = templateElement.content;
 
+                // @ts-ignore
                 this.shadowRoot.appendChild(templateContent.cloneNode(true));
             }
         }
@@ -251,10 +295,10 @@ export default ({
         #updateProps() {
             for (const [key, value] of Object.entries(this.#props)) {
                 const attributeValue = this.getAttribute(key);
-                const usingDefault = attributeValue === null && value.value;
-                const areDifferent = attributeValue !== value.getValue();
+                const usingDefault = attributeValue === null && value.observable.value;
+                const areDifferent = attributeValue !== value.observable.getValue();
                 if (!usingDefault && areDifferent) {
-                    value.next(attributeValue);
+                    value.observable.next(value.parser.parse(attributeValue));
                 }
             }
         }
