@@ -5,6 +5,45 @@ title: Tybalt core
 
 # @tybalt/core
 
+Tybalt exports a set of utilities for making authoring web components easier. These are grouped together as `@tybalt/core`. A simple example of how to use this might be
+
+```js
+defineComponent({
+    name: 'flip-a-coin',
+    shadowMode: 'closed',
+    setup(): { return { rand: Math.random() } },
+    render({ rand }) {
+        return html`
+            <t-if condition="${rand >= .5}">
+                <p slot="true">Heads</p>
+                <p slot="false">Tails</p>
+            </t-if>
+        `;
+    },
+});
+```
+
+In this example, we create a new web component, `flip-a-coin`, that can be used as follows
+
+```html
+<flip-a-coin></flip-a-coin>
+```
+
+And will render, based on the value of a random number, one of the following two variants
+
+```html
+<flip-a-coin>
+    # Shadow Root
+    <p>Heads</p>
+</flip-a-coin>
+<flip-a-coin>
+    # Shadow Root
+    <p>Tails</p>
+</flip-a-coin>
+```
+
+To see the full specification for how to define a component, see the api section below.
+
 ## Installation
 
 ### Bundlers
