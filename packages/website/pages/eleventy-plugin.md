@@ -5,6 +5,8 @@ title: Tybalt eleventy plugin
 
 # @tybalt/eleventy-plugin
 
+Tybalt uses eleventy for static site generation.
+
 ## Installation
 
 Install the eleventy plugin with your favorite npm client

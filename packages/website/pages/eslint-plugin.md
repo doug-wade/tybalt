@@ -5,6 +5,8 @@ title: Tybalt eslint plugin
 
 # @tybalt/eslint-plugin
 
+Tybalt uses eslint for linting.
+
 ## Installation
 
 Install the plugin with your favorite package manager

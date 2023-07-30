@@ -3,6 +3,25 @@ layout: layout.html
 title: Tybalt test utils
 ---
 
+# @tybalt/test-utils
+
+The test-utils package is for unit testing web components. It's built specifically for Tybalt, but it works for most web component frameworks -- see our Lit example on GitHub.
+
+A simple test might look like
+
+```js
+it('emits a click event when the button is clicked', async () => {
+    const wrapper = await mountCookieBanner();
+
+    const actual = wrapper.find('button');
+    actual.trigger('click');
+
+    expect(wrapper.emitted('click')).toHaveLength(1);
+});
+```
+
+See the API section below for more examples.
+
 ## Installation
 
 ```shell
