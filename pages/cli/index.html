@@ -20,22 +20,79 @@
             <div id="content">
                 <tybalt-sidebar></tybalt-sidebar>
                 <div class="tybalt-main"><h1>@tybalt/cli</h1>
+<p>Tybalt ships with a command-line application that can be used to perform common tasks associated with Tybalt projects. For example, you can scaffold a new component library, lint the source code, build the components, run the unit tests, and start a development server without setting up jest, eslint, esbuild, or fastify yourself, by running the following commands:</p>
+<pre><code class="language-shell">$ npm i -g @tybalt/cli
+$ tybalt scaffold library
+$ tybalt lint
+$ tybalt build
+$ tybalt test
+$ tybalt serve
+</code></pre>
 <h2>Getting Started</h2>
-<p>Use <code>@tybalt/cli</code> with <code>npx</code></p>
+<h3>Recommended: Add as a dev dependency</h3>
+<pre><code class="language-shell">npm i -D @tybalt/cli
+</code></pre>
+<p>Then, add scripts to the <code>scripts</code> key of package.json with the options you want specified</p>
+<pre><code class="language-json">{
+    "scripts": {
+        "start": "tybalt serve",
+        "lint": "tybalt lint"
+    }
+}
+</code></pre>
+<h3>Use <code>@tybalt/cli</code> with <code>npx</code></h3>
+<p>This is the method we use in the documentation because it just works ™️, but it can be slow.</p>
 <pre><code class="language-shell">$ npx @tybalt/cli build
+</code></pre>
+<h3>Install the cli globally</h3>
+<p>This isn't very safe because it gives access to some global folders when installing.</p>
+<pre><code class="language-shell">$ npm i -g @tybalt/cli
 </code></pre>
 <h2>Commands</h2>
+<p>Each command responds to <code>--help</code> and returns an extended help message with all of the available options documented.</p>
+<p>For instance, the help message for scaffold is, at time of writing:</p>
+<pre><code class="language-shell">» npx @tybalt/cli scaffold --help
+Usage: @tybalt/cli scaffold [options] [string]
+
+scaffold tybalt-related files
+
+Arguments:
+  string                whether to create a project or a component (default: "component")
+
+Options:
+  -n, --name &lt;string&gt;   tybalt-example
+  -s, --styles          whether to generate a separate css file (default: true)
+  -t, --tests           whether to generate unit tests (default: true)
+  -i, --implementation  whether to generate a component implementation file (default: true)
+  -h, --help            display help for command                     
+</code></pre>
+<p>You can also run <code>--version</code> to get the current version number.</p>
 <h3>build</h3>
-<p>Builds an application</p>
+<p>Builds an application using esbuild.</p>
+<p>The first argument is the entrypoint to build (defaults to <code>src/index.html</code>)</p>
 <pre><code class="language-shell">$ npx @tybalt/cli build
 </code></pre>
+<h3>lint</h3>
+<p>Lints the project using eslint and some reasonable defaults.</p>
+<pre><code class="language-shell">$ npx @tybalt/cli lint
+</code></pre>
 <h3>scaffold</h3>
-<p>Scaffolds a new application</p>
-<pre><code class="language-shell">$ npx @tybalt/cli scaffold
+<p>Scaffolds a new project.</p>
+<p>Must be provided with a project type, one of: <code>eleventy</code>, <code>fastify</code>, <code>component</code> or <code>library</code>, as the first argument.</p>
+<p>Must also have a name, provided with the <code>-n, --name</code> flag.</p>
+<pre><code class="language-shell">$ npx @tybalt/cli scaffold eleventy -n tybalt-website
 </code></pre>
 <h3>serve</h3>
 <p>Serves an application</p>
 <pre><code class="language-shell">$ npx @tybalt/cli serve
+</code></pre>
+<h3>test</h3>
+<p>Runs the unit tests for a project.</p>
+<pre><code class="language-shell">$ npx @tybalt/cli test
+</code></pre>
+<h3>watch</h3>
+<p>Runs the build every time a change is detected.</p>
+<pre><code class="language-shell">$ npx @tybalt/cli watch
 </code></pre>
 </div>
             </div>

@@ -20,6 +20,35 @@
             <div id="content">
                 <tybalt-sidebar></tybalt-sidebar>
                 <div class="tybalt-main"><h1>@tybalt/core</h1>
+<p>Tybalt exports a set of utilities for making authoring web components easier. These are grouped together as <code>@tybalt/core</code>. A simple example of how to use this might be</p>
+<pre><code class="language-js">defineComponent({
+    name: 'flip-a-coin',
+    shadowMode: 'closed',
+    setup(): { return { rand: Math.random() } },
+    render({ rand }) {
+        return html`
+            &lt;t-if condition="${rand &gt;= .5}"&gt;
+                &lt;p slot="true"&gt;Heads&lt;/p&gt;
+                &lt;p slot="false"&gt;Tails&lt;/p&gt;
+            &lt;/t-if&gt;
+        `;
+    },
+});
+</code></pre>
+<p>In this example, we create a new web component, <code>flip-a-coin</code>, that can be used as follows</p>
+<pre><code class="language-html">&lt;flip-a-coin&gt;&lt;/flip-a-coin&gt;
+</code></pre>
+<p>And will render, based on the value of a random number, one of the following two variants</p>
+<pre><code class="language-html">&lt;flip-a-coin&gt;
+    # Shadow Root
+    &lt;p&gt;Heads&lt;/p&gt;
+&lt;/flip-a-coin&gt;
+&lt;flip-a-coin&gt;
+    # Shadow Root
+    &lt;p&gt;Tails&lt;/p&gt;
+&lt;/flip-a-coin&gt;
+</code></pre>
+<p>To see the full specification for how to define a component, see the api section below.</p>
 <h2>Installation</h2>
 <h3>Bundlers</h3>
 <p>You can install the package from npm. For example, using the npm cli</p>

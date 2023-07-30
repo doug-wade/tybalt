@@ -19,7 +19,20 @@
             <tybalt-header></tybalt-header>
             <div id="content">
                 <tybalt-sidebar></tybalt-sidebar>
-                <div class="tybalt-main"><h2>Installation</h2>
+                <div class="tybalt-main"><h1>@tybalt/test-utils</h1>
+<p>The test-utils package is for unit testing web components. It's built specifically for Tybalt, but it works for most web component frameworks -- see our Lit example on GitHub.</p>
+<p>A simple test might look like</p>
+<pre><code class="language-js">it('emits a click event when the button is clicked', async () =&gt; {
+    const wrapper = await mountCookieBanner();
+
+    const actual = wrapper.find('button');
+    actual.trigger('click');
+
+    expect(wrapper.emitted('click')).toHaveLength(1);
+});
+</code></pre>
+<p>See the API section below for more examples.</p>
+<h2>Installation</h2>
 <pre><code class="language-shell">npm install --save-dev @tybalt/test-utils
 </code></pre>
 <h2>Setup</h2>
