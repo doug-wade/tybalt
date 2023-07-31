@@ -1181,14 +1181,22 @@ ${concatenatedMessages}
 
   // components/sidebar.js
   var PACKAGES = ["cli", "core", "eleventy-plugin", "esbuild-plugin", "eslint-plugin", "test-utils", "validator"];
+  var GUIDES = ["new-website"];
   define_component_default({
     name: "tybalt-sidebar",
     shadowMode: "open",
     render() {
-      const lis = PACKAGES.map((pkg) => {
+      const packageLis = PACKAGES.map((pkg) => {
         return html_default`
                 <li>
                     <tybalt-link href="/tybalt/pages/${pkg}">@tybalt/${pkg}</tybalt-link>
+                </li>
+            `;
+      });
+      const guideLis = GUIDES.map((guide) => {
+        return html_default`
+                <li>
+                    <tybalt-link href="/tybalt/pages/${guide}-guide">${guide} guide</tybalt-link>
                 </li>
             `;
       });
@@ -1196,7 +1204,11 @@ ${concatenatedMessages}
             <aside>
                 <div>Individual Package Documentation</div>
                 <ul>
-                    ${lis.join("")}
+                    ${packageLis.join("")}
+                </ul>
+                <div>Guides</div>
+                <ul>
+                    ${guideLis.join("")}
                 </ul>
                 <tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link>
             </aside>

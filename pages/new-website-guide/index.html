@@ -1,0 +1,19 @@
+<!doctype html><html><head></head><body><h1>Creating a new website</h1>
+<p>First, run the scaffolding</p>
+<pre><code class="language-shell">$ npx @tybalt/cli scaffold eleventy --name my-website-name
+</code></pre>
+<p>The save the cli locally</p>
+<pre><code class="language-shell">$ npm i -D @tybalt/cli
+</code></pre>
+<p>And edit your package.json to set up a few basic tasks</p>
+<pre><code class="language-json">{
+  "scripts": {
+    "build": "tybalt build",
+    "lint": "tybalt lint",
+    "test": "tybalt test",
+    "serve": "tybalt serve",
+    "prepare": "npm run lint &amp;&amp; npm run build &amp;&amp; npm run test"
+  }
+}
+</code></pre>
+<script src="/tybalt/tybalt-out.js"></script></body></html>
