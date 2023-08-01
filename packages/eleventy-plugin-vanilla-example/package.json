@@ -18,6 +18,6 @@
     "devDependencies": {
         "@11ty/eleventy": "^2.0.1",
         "@tybalt/esbuild-plugin": "workspace:^",
-        "rimraf": "^4.1.1"
+        "rimraf": "^5.0.1"
     }
 }
