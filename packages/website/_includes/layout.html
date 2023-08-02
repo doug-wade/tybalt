@@ -12,6 +12,7 @@ title: Tybalt docs
         <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png" />
 
         <title>{{ title }}</title>
+        <link rel="manifest" href="manifest.json" />
         <link rel="shortcut icon" type="image/png" href="img/favico.png" />
         <link href="{{ '/css/base.css' | url }}" rel="stylesheet" />
         <link href="{{ '/css/page.css' | url }}" rel="stylesheet" />
@@ -22,6 +23,11 @@ title: Tybalt docs
             rel="stylesheet"
         />
         <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet" />
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
     </head>
     <body>
         <div id="app">
