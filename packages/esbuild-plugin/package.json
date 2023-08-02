@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/esbuild-plugin",
-    "version": "0.0.16",
+    "version": "0.0.17",
     "description": "An esbuild plugin for compiling tybalt web components",
     "exports": {
         ".": {

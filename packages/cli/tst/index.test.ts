@@ -7,7 +7,7 @@ describe('cli', () => {
         const binScriptPath = path.resolve(`${__dirname}/../src/index.ts`);
         const results = child_process.execSync(`npx ts-node-esm ${binScriptPath} --version`);
 
-        expect(results.toString()).toEqual('0.0.16\n');
+        expect(results.toString()).toEqual('0.0.17\n');
     });
 
     it('should not error when you forget a name when scaffolding', () => {
