@@ -303,3 +303,46 @@ defineComponent({
     shadowMode: 'open',
 });
 ```
+
+### createContext
+
+This method is used to [create a context](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md)
+for a web component or set of web components. This is a solution for how to share state between many web components, for example,
+when implementing theming.
+
+To create a new context, call `createContext`
+
+```javascript
+import { createContext } from '@tybalt/core';
+
+export const theme = createContext('theme', {
+    primaryColor: 'rebeccapurple',
+    secondaryColor: 'bisque',
+    fontFamily: 'Consolas',
+    linkColor: '#ffcc99',
+});
+```
+
+The import it into your component, and pass it to `contexts`
+
+```javascript
+import { theme } from '../contexts';
+
+export default defineComponent({
+    name: 'example-link',
+    props: { href: {} },
+    render({ href, theme }) {
+        return html`
+            <style>
+                .a {
+                    color: ${theme.linkColor};
+                }
+            </style>
+            <a href="${href}"><slot></slot></a>
+        `;
+    },
+    contexts: { theme },
+});
+```
+
+Now, every time there is a new theme context (say when switching from a light theme to a dark theme), we'll call render with the new `theme`.
