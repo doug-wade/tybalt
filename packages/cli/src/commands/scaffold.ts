@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import chalk from 'chalk';
 import { toKebabCase, toPascalCase } from 'js-convert-case';
-import mkdirp from 'mkdirp';
+import { mkdirp } from 'mkdirp';
 import util from 'node:util';
 
 import WARNINGS from '../config/scaffold-warnings.js';
