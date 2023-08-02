@@ -258,7 +258,7 @@ export default ({ program }: CommandContext) => {
         .command('scaffold')
         .description('scaffold tybalt-related files')
         .argument('[string]', 'whether to create a project or a component', 'component')
-        .option('-n, --name <string>', 'tybalt-example')
+        .requiredOption('-n, --name <string>')
         .option('-s, --styles', 'whether to generate a separate css file', true)
         .option('-t, --tests', 'whether to generate unit tests', true)
         .option('-i, --implementation', 'whether to generate a component implementation file', true)
