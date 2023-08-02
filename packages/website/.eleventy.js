@@ -15,7 +15,6 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginPWA);
 
     return {
-        pathPrefix: '/tybalt/',
         passthroughFileCopy: true,
     };
 };
