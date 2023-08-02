@@ -1,4 +1,5 @@
 const tybaltPlugin = require('@tybalt/eleventy-plugin');
+const pluginPWA = require('eleventy-plugin-pwa-v2');
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./css');
@@ -10,6 +11,8 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(tybaltPlugin, {
         components: ['./components'],
     });
+
+    eleventyConfig.addPlugin(pluginPWA);
 
     return {
         pathPrefix: '/tybalt/',
