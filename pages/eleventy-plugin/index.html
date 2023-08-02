@@ -6,6 +6,7 @@
         <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
 
         <title>Tybalt eleventy plugin</title>
+        <link rel="manifest" href="manifest.json">
         <link rel="shortcut icon" type="image/png" href="img/favico.png">
         <link href="/css/base.css" rel="stylesheet">
         <link href="/css/page.css" rel="stylesheet">
@@ -13,6 +14,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
         <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
     </head>
     <body>
         <div id="app">
