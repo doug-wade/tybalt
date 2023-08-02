@@ -1189,14 +1189,14 @@ ${concatenatedMessages}
       const packageLis = PACKAGES.map((pkg) => {
         return html_default`
                 <li>
-                    <tybalt-link href="/tybalt/pages/${pkg}">@tybalt/${pkg}</tybalt-link>
+                    <tybalt-link href="/pages/${pkg}">@tybalt/${pkg}</tybalt-link>
                 </li>
             `;
       });
       const guideLis = GUIDES.map((guide) => {
         return html_default`
                 <li>
-                    <tybalt-link href="/tybalt/pages/${guide}-guide">${guide} guide</tybalt-link>
+                    <tybalt-link href="/pages/${guide}-guide">${guide} guide</tybalt-link>
                 </li>
             `;
       });
