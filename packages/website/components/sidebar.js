@@ -32,6 +32,7 @@ defineComponent({
                     ${guideLis.join('')}
                 </ul>
                 <tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link>
+                <tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link>
             </aside>
         `;
     },
