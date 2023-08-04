@@ -14,6 +14,20 @@ $ yarn install
 
 This will also link the packages locally, so the work you do in one package is reflected in the others.
 
+Next, compile the project.
+
+```shell
+$ yarn run build
+```
+
+And you should be ready to go! To verify that everything is working as expected, start the servers and visit the example.
+
+```shell
+$ yarn run serve
+```
+
+and visit the example at localhost:3000.
+
 ## Top-level Scripts
 
 We use `turbo` for our monorepo scripts, which does a lot of caching for us.
@@ -98,3 +112,15 @@ The website listens on port 8081.
 
 The best place to get help is to come [join the discord](https://discord.gg/FHpfstT7Dw). There is
 a "contributors" channel dedicated to helping contributors.
+
+## Common errors
+
+We've seen a few errors in the past that you may encounter:
+
+### Error: Cannot find module '/path/to/tybalt/packages/cli/dist/index.js'
+
+This happens when you try to run a command like `serve` or `test` that requires the cli to have been compiled. Run `yarn run build` to compile the project.
+
+### /bin/sh: line 1: npm: command not found
+
+Although we use yarn, one of our dependencies, esbuild, assumes that npm is available at install time on your path. Make sure to add npm to your path or workspace.
