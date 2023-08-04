@@ -11,7 +11,7 @@ export default defineComponent({
             parser: boolean,
         },
     },
-    render({ condition }) {
+    render({ condition }: { condition: boolean }) {
         let slotName;
 
         if (condition) {

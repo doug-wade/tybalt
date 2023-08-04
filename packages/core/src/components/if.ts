@@ -11,7 +11,7 @@ export default defineComponent({
             parser: string,
         },
     },
-    render({ condition }) {
+    render({ condition }: { condition: string }) {
         return html`<slot name="${condition}"></slot>`;
     },
 });
