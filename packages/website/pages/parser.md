@@ -18,12 +18,13 @@ npm install --save @tybalt/parser
 ## Usage
 
 ```js
-import { objectParser } from '@tybalt/parser';
+import { object } from '@tybalt/parser';
 
 defineComponent({
   props: {
     option: {
-      parser: objectParser
+      validator: (obj) => !!obj.requiredKey
+      parser: object
     }
   }
 })
@@ -31,10 +32,60 @@ defineComponent({
 
 ## Api
 
-### objectParser
+There are four parsers currently: `boolean`, `json`, `number`, `string`.
 
-### booleanParser
+### object
 
-### arrayParser
+```js
+import { object } from '@tybalt/parser';
 
-### numberParser
+defineComponent({
+  props: {
+    option: {
+      parser: object
+    }
+  }
+})
+```
+
+### boolean
+
+```js
+import { boolean } from '@tybalt/parser';
+
+defineComponent({
+  props: {
+    option: {
+      parser: boolean
+    }
+  }
+})
+```
+
+### array
+
+```js
+import { array } from '@tybalt/array';
+
+defineComponent({
+  props: {
+    option: {
+      parser: array
+    }
+  }
+})
+```
+
+### number
+
+```js
+import { number } from '@tybalt/array';
+
+defineComponent({
+  props: {
+    option: {
+      parser: number
+    }
+  }
+})
+```

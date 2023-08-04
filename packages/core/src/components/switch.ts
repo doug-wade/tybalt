@@ -11,7 +11,7 @@ export default defineComponent({
             parser: string,
         },
     },
-    render({ value }) {
+    render({ value }: { value: string }) {
         return html`<slot name="${value}"></slot>`;
     },
 });
