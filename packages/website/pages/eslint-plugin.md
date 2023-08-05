@@ -21,7 +21,7 @@ The best way to get started is to extend our recommended rule set. For example, 
 
 ```javascript
 module.exports = {
-    extends: ['@tybalt/ts-recommended'],
+    extends: ['@tybalt/eslint-plugin/ts-recommended'],
 };
 ```
 

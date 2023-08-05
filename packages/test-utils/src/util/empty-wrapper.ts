@@ -1,8 +1,11 @@
+// Note: we take a bunch of vars here we don't use because it makes the type system happy.
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import type { Wrapper } from '../types';
 
 export default class EmptyWrapper implements Wrapper {
     #selector: string;
-    get length(): Number {
+    get length(): number {
         return 0;
     }
 

@@ -1,5 +1,3 @@
-import type { ScaffoldContext } from '../types.js';
-
 export default () => {
     return `module.exports = {
     transform: {
