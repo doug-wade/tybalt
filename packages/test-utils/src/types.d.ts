@@ -1,10 +1,10 @@
-export type AttributeObject = Object<string, number | string>;
+export type AttributeObject = NonNullable<string, number | string>;
 
 type DOMTokenListOrBoolean<T> = T extends string ? boolean | null : Array<string>;
-type NamedNodeMapOrString<T> = T extends string ? string | null | never : Object;
+type NamedNodeMapOrString<T> = T extends string ? string | null | never : NonNullable<unknown>;
 
 export interface Wrapper {
-    length: Number;
+    length: number;
     find(selector: string): Wrapper | never;
     findAll(selector: string): Wrapper | never;
     findComponent(definition: CustomElementConstructor): Wrapper | never;

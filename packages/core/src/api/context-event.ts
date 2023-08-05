@@ -32,10 +32,10 @@ class TybaltContextEvent<T> implements ContextEvent<T extends UnknownContext ? a
         this.#event = new CustomEvent('context-request', options);
     }
 
-    NONE: 0 = 0;
-    CAPTURING_PHASE: 1 = 1;
-    AT_TARGET: 2 = 2;
-    BUBBLING_PHASE: 3 = 3;
+    NONE: 0 = 0 as const;
+    CAPTURING_PHASE = 1 as const;
+    AT_TARGET: 2 = 2 as const;
+    BUBBLING_PHASE: 3 = 3 as const;
 
     get bubbles() {
         return this.#event.bubbles;
@@ -91,7 +91,7 @@ class TybaltContextEvent<T> implements ContextEvent<T extends UnknownContext ? a
         throw new Error('Method not implemented.');
     }
 
-    initEvent(type: string, bubbles?: boolean | undefined, cancelable?: boolean | undefined): void {
+    initEvent(): void {
         throw new Error('Method not implemented.');
     }
 

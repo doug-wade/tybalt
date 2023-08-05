@@ -27,7 +27,7 @@ const reassignSlot = (element: Element): Element => {
     return clone;
 };
 
-const stringifyElement = (element: Element): String => {
+const stringifyElement = (element: Element): string => {
     if (element.tagName === 'SLOT') {
         element = reassignSlot(element);
     }
@@ -47,7 +47,7 @@ const stringifyElement = (element: Element): String => {
     return `${openingTag}>${children}${closingTag}>`;
 };
 
-const stringifyShadowRoot = (shadowRoot: ShadowRoot): String => {
+const stringifyShadowRoot = (shadowRoot: ShadowRoot): string => {
     return Array.from(shadowRoot.children).reduce((acc, childElement) => {
         return acc + stringifyElement(childElement);
     }, '');
@@ -55,7 +55,7 @@ const stringifyShadowRoot = (shadowRoot: ShadowRoot): String => {
 
 export default class BaseWrapper implements Wrapper {
     element: Element;
-    get length(): Number {
+    get length(): number {
         return 1;
     }
 
