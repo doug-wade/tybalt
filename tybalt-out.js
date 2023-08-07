@@ -993,7 +993,7 @@ ${concatenatedMessages}
     composedPath() {
       throw new Error("Method not implemented.");
     }
-    initEvent(type, bubbles, cancelable) {
+    initEvent() {
       throw new Error("Method not implemented.");
     }
     preventDefault() {
@@ -1178,6 +1178,12 @@ ${concatenatedMessages}
       return `${prev}${curr}${keys[i] ? keys[i] : ""}`;
     }, "");
   };
+  var switch_default = define_component_default({
+    name: "t-switch",
+    render({ value }) {
+      return html_default`<slot name="${value}"></slot>`;
+    }
+  });
 
   // components/sidebar.js
   var PACKAGES = ["cli", "core", "eleventy-plugin", "esbuild-plugin", "eslint-plugin", "test-utils", "validator"];
@@ -1393,7 +1399,7 @@ ${concatenatedMessages}
       return typeof value === "string";
     });
   };
-  var urlPattern = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+  var urlPattern = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-/]))?/;
   var url_default = () => {
     return matches_pattern_default2(urlPattern);
   };
