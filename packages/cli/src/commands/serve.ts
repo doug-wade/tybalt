@@ -6,6 +6,7 @@ export default ({ program }: CommandContext) => {
         .command('serve')
         .description('watch a component or components')
         .option('-w, --website', 'whether to serve the website', true)
+        .option('-p, --port <value>', 'which port to serve', '3000')
         .action((options: { website: boolean }) => {
             if (options.website) {
                 bs.create();
