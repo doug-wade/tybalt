@@ -1,6 +1,7 @@
+/* eslint-disable */
 import type { Observer } from 'rxjs';
 
-export type PropType = String | Number | Object | Array<any>;
+export type PropType = string | number | Object | Array<any>;
 
 export type PropDefinition = {
     default?: any;

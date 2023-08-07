@@ -1,3 +1,6 @@
+// Note: we take a bunch of vars here we don't use because it makes the type system happy.
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import BaseWrapper from './base-wrapper';
 import EmptyWrapper from './empty-wrapper';
 import getElementName from './get-element-name';
@@ -6,7 +9,7 @@ import type { Wrapper } from '../types';
 
 export default class WrapperArray implements Wrapper {
     elements: Array<Element>;
-    get length(): Number {
+    get length(): number {
         return this.elements.length;
     }
 
@@ -21,7 +24,7 @@ export default class WrapperArray implements Wrapper {
     find(selector: string): Wrapper {
         let found;
 
-        for (let element of this.elements) {
+        for (const element of this.elements) {
             found = element.querySelector(selector);
             if (found) {
                 break;

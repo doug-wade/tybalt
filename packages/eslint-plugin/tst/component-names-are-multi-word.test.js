@@ -1,13 +1,15 @@
-import { RuleTester } from '@typescript-eslint/rule-tester';
-import rule, { MessageIds, RULE_NAME } from '../src/rules/component-names-are-multi-word';
+/* eslint-disable no-undef */
 
-const ruleTester: RuleTester = new RuleTester({
+const { RuleTester } = require('@typescript-eslint/rule-tester');
+const rule = require('../src/rules/component-names-are-multi-word');
+
+const ruleTester = new RuleTester({
     parser: require.resolve('@typescript-eslint/parser'),
 });
 
-const messageId: MessageIds = 'singleWordComponentName';
+const messageId = 'singleWordComponentName';
 
-ruleTester.run(RULE_NAME, rule, {
+ruleTester.run('component-names-are-multi-word', rule, {
     valid: [
         `
       export default defineComponent({

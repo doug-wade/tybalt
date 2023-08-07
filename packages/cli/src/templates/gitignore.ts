@@ -1,6 +1,4 @@
-import type { ScaffoldContext } from '../types.js';
-
-export default ({ pascalCaseName }: ScaffoldContext) => {
+export default () => {
     return `node_modules/
 _site/
 dist/

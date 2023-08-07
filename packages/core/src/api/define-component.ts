@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import ContextEvent from './context-event';
 
-import type { DefineComponentsOptions, SetupContext, Context, UnknownContext } from '../types';
+import type { DefineComponentsOptions, SetupContext } from '../types';
 
 const nameValidator = shouldThrow(
     withMessage(

@@ -132,7 +132,7 @@ const scaffoldProject = async ({ projectName, options }: { projectName: string; 
 };
 
 // Scaffolding steps specific for scaffolding an eleventy site
-const scaffoldEleventy = async ({ projectName, options }: { projectName: string; options: ScaffoldCommandOptions }) => {
+const scaffoldEleventy = async ({ projectName }: { projectName: string; options: ScaffoldCommandOptions }) => {
     devDependencies.push('@tybalt/eleventy-plugin');
     devDependencies.push('@11ty/eleventy');
 
@@ -154,7 +154,7 @@ const scaffoldEleventy = async ({ projectName, options }: { projectName: string;
 };
 
 // Scaffolding steps specific for scaffolding a fastify site
-const scaffoldFastify = async ({ projectName, options }: { projectName: string; options: ScaffoldCommandOptions }) => {
+const scaffoldFastify = async () => {
     dependencies.push(
         '@fastify/autoload',
         '@fastify/sensible',
@@ -244,7 +244,7 @@ const action = async (targetArg: string, options: ScaffoldCommandOptions) => {
         }
         case 'fastify': {
             await scaffoldProject({ projectName: options.name, options });
-            await scaffoldFastify({ projectName: options.name, options });
+            await scaffoldFastify();
             await scaffoldComponent({ componentName: 'HelloWorld', options });
             installDependencies();
             writeScripts();

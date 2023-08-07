@@ -1,6 +1,7 @@
-import { AST_NODE_TYPES, TSESTree } from '@typescript-eslint/utils';
+import type { TSESTree } from '@typescript-eslint/types';
+const { AST_NODE_TYPES } = require('@typescript-eslint/types');
 
-export default ({
+module.exports = ({
     key,
     node,
 }: {
@@ -13,8 +14,8 @@ export default ({
         }
 
         if (
-            (property.key.type === AST_NODE_TYPES.Literal && property.key.value === key) ||
-            (property.key.type === AST_NODE_TYPES.Identifier && property.key.name === key)
+            (property.key.type === AST_NODE_TYPES.Literal && (property.key as TSESTree.Literal).value === key) ||
+            (property.key.type === AST_NODE_TYPES.Identifier && (property.key as TSESTree.Identifier).name === key)
         ) {
             return property;
         }

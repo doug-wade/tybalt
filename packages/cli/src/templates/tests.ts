@@ -10,7 +10,7 @@ describe('${pascalCaseName}', () => {
         const mockName = 'World';
         const wrapper = await mount(${pascalCaseName}, { attributes: { name: mockName } });
         
-        expect(wrapper.html()).toContain(\`Hello $\{mockName\}\`);
+        expect(wrapper.html()).toContain(\`Hello $\{mockName}\`);
     });
 });`;
 };

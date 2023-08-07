@@ -9,7 +9,7 @@ export default defineComponent({
     shadowMode: 'open',
     props: { name: { validator: compose(string(), required) } },
     render({ name }, ctx) {
-        return html\`<div class="${kebabCaseName}">Hello $\{name\}</div>\`;
+        return html\`<div class="${kebabCaseName}">Hello $\{name}</div>\`;
     }
 });`;
 };
