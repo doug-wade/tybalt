@@ -18,7 +18,7 @@
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "devDependencies": {
         "@types/node": "^20.4.4",
-        "@typescript-eslint/eslint-plugin": "^6.2.1",
+        "@typescript-eslint/eslint-plugin": "^6.3.0",
         "@typescript-eslint/parser": "^6.2.0",
         "@typescript-eslint/rule-tester": "^6.2.1",
         "@typescript-eslint/utils": "^6.2.0",
