@@ -1,7 +1,7 @@
 import { defineComponent, html } from '@tybalt/core';
 
 const PACKAGES = ['cli', 'core', 'eleventy-plugin', 'esbuild-plugin', 'eslint-plugin', 'test-utils', 'validator'];
-const GUIDES = ['new-website'];
+const GUIDES = ['new-website', 'styling-your-component', 'writing-tests'];
 
 defineComponent({
     name: 'tybalt-sidebar',
