@@ -1,3 +1,8 @@
+---
+layout: layout.html
+title: Writing tests
+---
+
 # Writing tests
 
 Tybalt comes with a unit testing framework built on top of jest. Jest, along with jsdom, give us the ability to simulate realistic browser environments without a browser, and give us tools for making assertions.

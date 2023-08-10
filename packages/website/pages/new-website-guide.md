@@ -1,3 +1,8 @@
+---
+layout: layout.html
+title: Creating a new website
+---
+
 # Creating a new website
 
 First, you'll need to decide what kind of website you want to use. Tybalt works well both in CSR (client-side rendered) and SSG (static site generated) application, and we provide scaffolding for either, using fastify and eleventy respectively. If you want to serve your website from a static hosting solution, like netlify or s3, you'll want to use the `eleventy` scaffold; if you want to host a running process on a server, use the `fastify` scaffold.
