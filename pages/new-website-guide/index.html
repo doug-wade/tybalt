@@ -1,19 +1,89 @@
-<!doctype html><html><head></head><body><h1>Creating a new website</h1>
-<p>First, run the scaffolding</p>
-<pre><code class="language-shell">$ npx @tybalt/cli scaffold eleventy --name my-website-name
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Creating a new website</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>Creating a new website</h1>
+<p>First, you'll need to decide what kind of website you want to use. Tybalt works well both in CSR (client-side rendered) and SSG (static site generated) application, and we provide scaffolding for either, using fastify and eleventy respectively. If you want to serve your website from a static hosting solution, like netlify or s3, you'll want to use the <code>eleventy</code> scaffold; if you want to host a running process on a server, use the <code>fastify</code> scaffold.</p>
+<p>Once you've decided, run the scaffolding for the appropriate scaffold</p>
+<pre><code class="language-shell">npx @tybalt/cli scaffold eleventy --name my-website-name
+
+# OR
+
+npx @tybalt/cli scaffold fastify --name my-website-name
 </code></pre>
-<p>The save the cli locally</p>
-<pre><code class="language-shell">$ npm i -D @tybalt/cli
+<p>Luckily, both scaffolds are supported the same by the cli. Save it locally</p>
+<pre><code class="language-shell">npm i -D @tybalt/cli
 </code></pre>
 <p>And edit your package.json to set up a few basic tasks</p>
 <pre><code class="language-json">{
-  "scripts": {
-    "build": "tybalt build",
-    "lint": "tybalt lint",
-    "test": "tybalt test",
-    "serve": "tybalt serve",
-    "prepare": "npm run lint &amp;&amp; npm run build &amp;&amp; npm run test"
-  }
+    "scripts": {
+        "build": "tybalt build",
+        "lint": "tybalt lint",
+        "test": "tybalt test",
+        "start": "tybalt serve",
+        "watch": "tybalt watch",
+        "prepare": "npm run lint &amp;&amp; npm run build &amp;&amp; npm run test"
+    }
 }
 </code></pre>
+<p>To see your example site, run <code>npm run serve</code> and navigate to</p>
+<p>You can now run the following commands</p>
+<pre><code class="language-shell">npm test
+</code></pre>
+<p>This will run the unit tests, which are found in files with the extension <code>.test.ts</code>. For more details, see the "writing unit tests" guide.</p>
+<pre><code class="language-shell">npm start
+</code></pre>
+<p>This will start a local development server, and serve your application on port 3000. Generally, you want to run <code>npm run watch</code> while you have a server running with <code>npm start</code> so that you always get the latest version of your statics.</p>
+<pre><code class="language-shell">npm run build
+</code></pre>
+<p>This compiles your statics to make them ready to serve.</p>
+<pre><code class="language-shell">npm run lint
+</code></pre>
+<p>This will perform static analysis, which is checking your code for bugs.</p>
+<pre><code class="language-shell">npm run watch
+</code></pre>
+<p>This will start a watcher, which detects changes to your files and calls <code>npm run build</code> automatically.</p>
+<p>This will also set up a <code>prepare</code> script, which describes the steps necessary to get a package ready for use.</p>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
 <script src="/tybalt-out.js"></script></body></html>

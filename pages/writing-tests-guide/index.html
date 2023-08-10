@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Writing tests</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>Writing tests</h1>
+<p>Tybalt comes with a unit testing framework built on top of jest. Jest, along with jsdom, give us the ability to simulate realistic browser environments without a browser, and give us tools for making assertions.</p>
+<p>To write a test for a new component, first add a new file with a <code>describe</code> block</p>
+<pre><code class="language-js">import { describe } from '@jest/globals';
+
+describe('my component', () =&gt; {
+    // TODO
+});
+</code></pre>
+<p>Then add tests!</p>
+<p>To add a test to an existing file, add a new <code>test</code> block containing one or more <code>expect</code> statements</p>
+<pre><code class="language-js">import { describe, expect, test } from '@jest/globals';
+
+describe('my component', () =&gt; {
+    test('true is not false', () =&gt; {
+      expect(true).not.toBe(false);
+    })
+});
+</code></pre>
+<p>To render a Tybalt component into a real dom node, use <code>mount</code></p>
+<pre><code class="language-js">import { describe, expect, test } from '@jest/globals';
+import { mount } from '@tybalt/test-utils';
+import { MyComponent } from '../src/my-component';
+
+describe('my component', () =&gt; {
+    test('my component has aria-label', () =&gt; {
+        const mockAriaLabel = 'mock aria-label value';
+
+        const wrapper = await mount(MyComponent, {
+            attributes,
+        });
+
+        expect(wrapper.getAttribute('aria-label')).toBeTruthy();
+    });
+});
+</code></pre>
+<p>In this example, we can start to see that the wrapper that is returned from mount is a dom node, so we can use the dom methods to access things we need to access to make assertions about our components. The wrapper is super powered, and also has some extra methods, like <code>emitted()</code> and <code>shadowHtml()</code>, which give a history of every event emitted by this component and access to a web component's shadow root, respectively.</p>
+<p>For example, you can get access to the shadow root to make assertions about the state of the dom inside it and check the history of emitted events, even though those methods aren't usually on a web component</p>
+<pre><code class="language-js">import { describe, expect, test } from '@jest/globals';
+import { mount } from '@tybalt/test-utils';
+import { MyComponent } from '../src/my-component';
+
+describe('my component', () =&gt; {
+    test('my component has aria-label', () =&gt; {
+        const slot = '&lt;h1 slot="banner"&gt;&lt;/h1&gt;';
+        const wrapper = await mount(MyComponent, {
+            slot,
+        });
+        wrapper.click();
+
+        expect(wrapper.shadowHtml()).toContain('&lt;button');
+        expect(wrapper.emitted()).toHaveLength(1);
+    });
+});
+</code></pre>
+<p>You can find out more about the mount function and its associated wrapper in the @tybalt/test-utils docs.</p>
+<p>There is also a <code>flushPromises</code> method. This is used for resolving all promises that are currently in the event loop. If you need to wait for a mocked api call to resolve, for instance, call <code>flushPromises</code>.</p>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt-out.js"></script></body></html>
