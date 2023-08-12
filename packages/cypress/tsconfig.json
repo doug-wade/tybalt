@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "skipLibCheck": true,
+        "outDir": "dist",
+        "moduleResolution": "node16",
+        "emitDeclarationOnly": true,
+        "declaration": true
+    },
+    "include": ["src/**/*"]
+}

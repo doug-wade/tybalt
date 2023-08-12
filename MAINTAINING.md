@@ -9,7 +9,6 @@ Welcome to the team!
 There are, unfortunately, a few steps that need to take place when landing a pull request.
 
 1. Merge the pr. Prefer rebase merging when possible, but squash merge if there's one with a lotta chatty commits, or if it can't be rebased due to conflicts.
-2. Update the custom domain to be tybalt. This seems to be required every time the website is deployed.
 
 ### Publish a new release
 

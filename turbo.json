@@ -39,6 +39,7 @@
             "inputs": ["packages/**/src/**/*.ts"]
         },
         "serve": {
+            "dependsOn": ["build"],
             "cache": false
         },
         "test": {

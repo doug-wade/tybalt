@@ -1,0 +1,21 @@
+{
+    "name": "@tybalt/cypress",
+    "version": "0.0.1",
+    "description": "The end-to-end tests for the tybalt website",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "yarn run compile && yarn run generate-types",
+        "clean": "rimraf dist/",
+        "compile": "esbuild src/index.ts --format=cjs --outdir=dist",
+        "generate-types": "tsc"
+    },
+    "private": true,
+    "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "@cypress-audit/lighthouse": "^1.4.2",
+        "esbuild": "^0.19.1",
+        "rimraf": "^5.0.1",
+        "typescript": "^4.9.4"
+    }
+}
