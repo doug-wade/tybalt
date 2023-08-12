@@ -8,13 +8,14 @@
         "ci-test": "turbo ci-test",
         "clean": "turbo clean",
         "combine-coverage": "istanbul-merge --out coverage-final.json 'packages/**/coverage/coverage-final.json'",
+        "e2e": "cypress run --browser=chrome",
         "format": "prettier --write .",
+        "generate-scaffold": "cd ./packages/cli/out && yarn run exec-source scaffold eleventy --name my-example && cd ../../..",
         "generate-types": "turbo generate-types",
         "lint": "eslint packages/**!(node_modules)/src/**/*.ts",
         "serve": "turbo run serve --parallel",
         "test": "turbo test",
-        "watch": "turbo run watch --parallel",
-        "generate-scaffold": "cd ./packages/cli/out && yarn run exec-source scaffold eleventy --name my-example && cd ../../.."
+        "watch": "turbo run watch --parallel"
     },
     "keywords": [],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
@@ -22,6 +23,7 @@
     "workspaces": [
         "./packages/cli",
         "./packages/core",
+        "./packages/cypress",
         "./packages/eleventy-plugin",
         "./packages/eleventy-plugin-vanilla-example",
         "./packages/esbuild-plugin",
@@ -35,6 +37,7 @@
     ],
     "devDependencies": {
         "@tybalt/eslint-plugin": "workspace:^",
+        "cypress": "^12.17.3",
         "eslint": "^8.55.0",
         "istanbul-merge": "^1.1.1",
         "jest": "^29.7.0",

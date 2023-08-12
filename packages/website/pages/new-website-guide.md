@@ -38,8 +38,6 @@ And edit your package.json to set up a few basic tasks
 }
 ```
 
-To see your example site, run `npm run serve` and navigate to 
-
 You can now run the following commands
 
 ```shell
