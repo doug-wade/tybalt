@@ -1291,7 +1291,7 @@ ${concatenatedMessages}
             <code><pre>$ npx @tybalt/cli scaffold eleventy -n my-static-website</pre></code>
             <p>Then, you can start the development server</p>
             <code><pre>$ npx @11ty/eleventy --serve</pre></code>
-            <p>And open the site at <a href="http://localhost:8080/">http://localhost:8080/</a></p>
+            <p>And open the site at <tybalt-link href="http://localhost:8080/">http://localhost:8080/</tybalt-link></p>
         </div>`;
     }
   });
