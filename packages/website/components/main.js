@@ -27,7 +27,8 @@ defineComponent({
             <h2>Core Concepts</h2>
             <h3>Web Components</h3>
             <p>
-                Tybalt exports tools for building web components. It uses templates, slots, custom elements and the shadow dom to implement rendering.
+                Tybalt exports tools for building web components. It uses templates, slots, custom elements and the
+                shadow dom to implement rendering.
             </p>
             <pre><code class="language-javascript">
             import { defineComponent, html } from '@tybalt/core';
@@ -38,10 +39,11 @@ defineComponent({
                     return html\`<div>Hello World</div>\`;
                 },
             });
-            </pre></code>
+            </code></pre>
             <h3>Unit Testing</h3>
             <p>
-                Tybalt exports tools for testing web components. It uses Jest and JSDOM to render web components in a test environment.
+                Tybalt exports tools for testing web components. It uses Jest and JSDOM to render web components in a
+                test environment.
             </p>
             <pre><code class="language-javascript">
             import MyComponent from './my-component.js';
@@ -53,14 +55,16 @@ defineComponent({
                     expect(el.shadowHtml()).toContain('Hello World');
                 });
             });
-            </pre></code>
+            </code></pre>
             <h3>Compilation</h3>
             <p>
-                Tybalt exports a compiler for compiling web components. It uses esbuild to compile web components to a single file and a plugin called @tybalt/esbuild-plugin.
+                Tybalt exports a compiler for compiling web components. It uses esbuild to compile web components to a
+                single file and a plugin called @tybalt/esbuild-plugin.
             </p>
             <h3>Linting</h3>
             <p>
-                Tybalt exports a linter for linting web components. It uses eslint to lint web components and a plugin called @tybalt/eslint-plugin.
+                Tybalt exports a linter for linting web components. It uses eslint to lint web components and a plugin
+                called @tybalt/eslint-plugin.
             </p>
             <h2>Getting Started</h2>
             <p>The fastest way to get started is creating a static website</p>
