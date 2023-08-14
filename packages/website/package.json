@@ -22,5 +22,14 @@
     "dependencies": {
         "@tybalt/core": "workspace:^",
         "@tybalt/eleventy-plugin": "workspace:^"
+    },
+    "bugs": {
+        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Awebsite"
+    },
+    "homepage": "https://tybalt.org/pages/website",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/doug-wade/tybalt.git",
+        "directory": "packages/website"
     }
 }

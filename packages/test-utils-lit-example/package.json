@@ -23,5 +23,14 @@
     },
     "dependencies": {
         "lit": "^2.8.0"
+    },
+    "bugs": {
+        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Atest-utils-lit-example"
+    },
+    "homepage": "https://tybalt.org/pages/test-utils-lit-example",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/doug-wade/tybalt.git",
+        "directory": "packages/test-utils-lit-example"
     }
 }
