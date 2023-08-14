@@ -17,7 +17,7 @@ defineComponent({
         const guideLis = GUIDES.map((guide) => {
             return html`
                 <li>
-                    <tybalt-link href="/pages/${guide}-guide">${guide} guide</tybalt-link>
+                    <tybalt-link href="/pages/${guide}-guide">${guide.replaceAll('-', ' ')}</tybalt-link>
                 </li>
             `;
         });
