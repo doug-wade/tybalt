@@ -1,35 +1,32 @@
-/* eslint-disable */
 import type { Observer } from 'rxjs';
+import type { Validator } from '@tybalt/validator';
 
-export type PropType = string | number | Object | Array<any>;
+export type PropType = string | number | object | Array<any>;
 
 export type PropDefinition = {
     default?: any;
-    validator?: Function;
+    validator?: Validator;
 };
 
 export type PropsDefinitionMap = {
     [Property: string]: PropDefinition;
 };
 
-export type RenderContext = {};
+export type RenderContext = { [key: string]: BehaviorSubject | string };
 
-export type PropsStateMap = {};
+export type PropsStateMap = { [key: string]: Map };
 
 export type DefineComponentsOptions = {
     name: string;
     emits?: string[];
     props?: PropsDefinitionMap;
-    setup?: (
-        props: PropStateMap,
-        context: { emit: (type: string, detail: any) => void },
-    ) => { [key: string]: BehaviorSubject | string } | void;
-    connectedCallback?: Function;
-    disconnectedCallback?: Function;
-    adoptedCallback?: Function;
-    render?: Function<{ toString() }>;
+    setup?: (props: PropStateMap, context: { emit: (type: string, detail: any) => void }) => RenderContext | void;
+    connectedCallback?: () => void;
+    disconnectedCallback?: () => void;
+    adoptedCallback?: () => void;
+    render?: (RenderContext) => string;
     shadowMode?: 'open' | 'closed';
-    css?: string | Function;
+    css?: string | ((RenderContext) => string);
     template?: string;
     contexts?: Context[];
 };
@@ -47,18 +44,13 @@ export type UseObservableReturn = Promise<{
 }>;
 
 export type DefineExampleOptions = {
-    attributes: Object;
-    controls: Object;
-    listeners: Object;
+    attributes: object;
+    controls: object;
+    listeners: object;
 };
 
 export type SetupContext = {
     emit(type: string, detail: any): void;
-};
-
-export type PropsStateItem = {
-    observer: ZenObservable.SubscriptionObserver<unknown>;
-    observable: Observable;
 };
 
 // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
