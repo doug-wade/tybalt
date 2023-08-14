@@ -221,7 +221,8 @@ export default ({
                  * the shadow dom), but to use documentation to lean towards a "css in a separate file"
                  * approach that discourages its use.
                  */
-                styleElement.innerHTML = typeof css === 'function' ? css(this.#renderState) : css;
+                const calculatedCss = typeof css === 'function' ? css(this.#renderState) || '' : css;
+                styleElement.innerHTML = calculatedCss || '';
 
                 this.#shadowRoot.appendChild(styleElement);
             }
