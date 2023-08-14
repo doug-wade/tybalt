@@ -11,7 +11,7 @@
         "compile": "esbuild src/**/!(*.d).ts --format=esm --outdir=dist",
         "generate-types": "tsc",
         "watch": "esbuild src/**/!(*.d).ts --format=esm --outdir=dist --watch",
-        "exec-source": "ts-node-esm src/index.ts",
+        "cli": "node dist/index.js",
         "test": "jest"
     },
     "type": "module",
