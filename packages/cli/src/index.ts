@@ -3,7 +3,7 @@
 import fsPromises from 'node:fs/promises';
 
 import { Command } from 'commander';
-import findUp from 'find-up';
+import { findUp } from 'find-up';
 
 import build from './commands/build.js';
 import lint from './commands/lint.js';
