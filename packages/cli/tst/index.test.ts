@@ -1,22 +1,18 @@
 import { describe, it, expect } from '@jest/globals';
 import child_process from 'node:child_process';
-import path from 'node:path';
 import packageJson from '../package.json';
 
 describe('cli', () => {
     it('should emit the version', () => {
-        const binScriptPath = path.resolve(`${__dirname}/../src/index.ts`);
-        const results = child_process.execSync(`npx ts-node-esm ${binScriptPath} --version`);
+        const results = child_process.execSync(`yarn run cli --version`);
 
-        expect(results.toString()).toEqual(`${packageJson.version}\n`);
+        expect(results.toString()).toContain(packageJson.version);
     });
 
     it('should not error when you forget a name when scaffolding', () => {
-        const binScriptPath = path.resolve(`${__dirname}/../src/index.ts`);
-
         let caughtError;
         try {
-            child_process.execSync(`npx ts-node-esm ${binScriptPath} scaffold eleventy`);
+            child_process.execSync(`yarn run cli scaffold eleventy`);
         } catch (error) {
             // execSync throws an error when the command fails, but we expect the command to fail because
             // we're testing an error message, so we catch the error and continue

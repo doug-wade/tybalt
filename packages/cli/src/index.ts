@@ -13,7 +13,7 @@ import watch from './commands/watch.js';
 
 (async () => {
     const program = new Command();
-    const packageJsonFileContents = await fsPromises.readFile('./package.json', 'utf-8');
+    const packageJsonFileContents = await fsPromises.readFile('../package.json', 'utf-8');
     const packageJson = JSON.parse(packageJsonFileContents);
 
     program.name('@tybalt/cli').description('cli for building tybalt components').version(packageJson.version);
