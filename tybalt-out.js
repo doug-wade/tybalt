@@ -1145,7 +1145,8 @@ ${concatenatedMessages}
       __privateGet(this, _shadowRoot).innerHTML = "";
       if (__privateGet(this, _css)) {
         const styleElement = document.createElement("style");
-        styleElement.innerHTML = typeof css === "function" ? css(__privateGet(this, _renderState)) : css;
+        const calculatedCss = typeof css === "function" ? css(__privateGet(this, _renderState)) || "" : css;
+        styleElement.innerHTML = calculatedCss || "";
         __privateGet(this, _shadowRoot).appendChild(styleElement);
       }
       if (__privateGet(this, _render)) {
