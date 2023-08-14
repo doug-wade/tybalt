@@ -41,5 +41,14 @@
         "dist/**/*",
         "package.json",
         "README.md"
-    ]
+    ],
+    "bugs": {
+        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Avalidator"
+    },
+    "homepage": "https://tybalt.org/pages/validator",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/doug-wade/tybalt.git",
+        "directory": "packages/validator"
+    }
 }
