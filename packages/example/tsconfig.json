@@ -1,9 +1,11 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-        "lib": ["es2021", "dom"],
+        "allowJs": true,
+        "allowImportingTsExtensions": true,
+        "lib": ["es2022", "dom"],
         "module": "nodenext",
-        "target": "es2021",
+        "target": "es2022",
         "outDir": "dist",
         "strict": true,
         "esModuleInterop": true,

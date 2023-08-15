@@ -2,14 +2,22 @@
     "name": "@tybalt/core",
     "version": "0.1.4",
     "description": "A library for writing web components",
-    "module": "dist/mjs/index.js",
+    "module": "dist/mjs/index.mjs",
     "main": "dist/cjs/index.js",
+    "types": "dist/types/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/mjs/index.mjs",
+            "require": "./dist/cjs/index.js",
+            "types": "./dist/types/index.d.ts"
+        }
+    },
     "scripts": {
         "build": "yarn run compile && yarn run generate-types",
         "ci-test": "jest --coverage",
         "clean": "rimraf dist/",
         "compile": "yarn run compile-esm && yarn run compile-commonjs",
-        "compile-esm": "esbuild src/index.ts --bundle --format=esm --outfile=dist/mjs/index.js",
+        "compile-esm": "esbuild src/index.ts --bundle --format=esm --platform=browser --target=es2022 --outfile=dist/mjs/index.mjs",
         "compile-commonjs": "esbuild src/index.ts --bundle --format=cjs --outfile=dist/cjs/index.js",
         "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
         "generate-types": "tsc && rsync -a dist/types/ dist/mjs/ && rsync -a dist/types/ dist/cjs/",
