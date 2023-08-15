@@ -2,15 +2,21 @@
     "name": "@tybalt/test-utils",
     "version": "0.1.4",
     "description": "A set of utilities for unit testing web components",
-    "module": "dist/mjs/index.js",
+    "module": "dist/mjs/index.mjs",
     "main": "dist/cjs/index.js",
+    "types": "dist/types/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/mjs/index.mjs",
+            "require": "./dist/cjs/index.js",
+            "types": "./dist/types/index.d.ts"
+        }
+    },
     "scripts": {
         "build": "yarn run compile && yarn run generate-types",
         "ci-test": "jest --coverage",
         "clean": "rimraf dist/",
-        "compile": "yarn run compile-esm && yarn run compile-commonjs",
-        "compile-esm": "esbuild src/**/!(*.d).ts src/!(*.d).ts --format=esm --outdir=dist/mjs",
-        "compile-commonjs": "esbuild src/**/!(*.d).ts src/!(*.d).ts --format=cjs --outdir=dist/cjs",
+        "compile": "node scripts/compile.mjs",
         "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
         "generate-types": "tsc && rsync -a dist/types/ dist/mjs/ && rsync -a dist/types/ dist/cjs/",
         "profile": "ndb $(yarn bin jest)",

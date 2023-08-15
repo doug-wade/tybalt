@@ -13,6 +13,7 @@ export default ({ program }: CommandContext) => {
         .action(async (pattern: string) => {
             const __filename = url.fileURLToPath(import.meta.url);
             const __dirname = path.dirname(__filename);
+
             const filePath = path.resolve(`${__dirname}../../../config/jest.config.js`);
 
             const results = child_process.spawnSync(
@@ -21,12 +22,13 @@ export default ({ program }: CommandContext) => {
                 {},
             );
 
-            const stdErr = results.stderr.toString();
+            const stdErr = results.stderr?.toString();
 
-            console.log(results.stdout.toString());
+            console.log(results.stdout?.toString());
             if (stdErr) {
                 console.error(stdErr);
-                process.exit(1);
             }
+
+            process.exit(results.status || 0);
         });
 };

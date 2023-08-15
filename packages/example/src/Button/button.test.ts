@@ -1,5 +1,6 @@
 import { mount } from '@tybalt/test-utils';
-import Button from './button.component';
+
+import Button from './button.component.ts';
 
 describe('button', () => {
     it('renders a button', async () => {

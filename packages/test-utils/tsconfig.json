@@ -2,9 +2,9 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
         "baseUrl": ".",
-        "lib": ["es2021", "dom"],
+        "lib": ["es2022", "dom"],
         "module": "nodenext",
-        "target": "es2021",
+        "target": "es2022",
         "outDir": "dist/types",
         "strict": true,
         "esModuleInterop": true,

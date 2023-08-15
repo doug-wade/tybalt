@@ -1,5 +1,6 @@
 import { mount } from '@tybalt/test-utils';
-import Link from './link.component';
+
+import Link from './link.component.ts';
 
 const href = 'http://www.example.com';
 const slot = '<div slot="content">mock slot value</div>';

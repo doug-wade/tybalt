@@ -13,7 +13,7 @@ describe('events', () => {
                 return html`<div><button @click="${listener}"></button></div>`;
             },
             setup(_, { emit }) {
-                const listener = (evt) => {
+                const listener = (evt: Event) => {
                     evt.stopPropagation();
 
                     emit(eventName);

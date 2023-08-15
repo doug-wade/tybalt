@@ -7,14 +7,14 @@
     "type": "module",
     "scripts": {
         "build": "tybalt build",
-        "ci-test": "echo 'TODO: run tybalt test --integration'",
-        "examples": "tybalt examples",
+        "clean": "rimraf dist/",
+        "ci-test": "yarn run test",
         "lint": "tybalt lint",
         "scaffold": "tybalt scaffold",
-        "test": "echo 'TODO: run tybalt test'",
+        "test": "tybalt test",
         "watch": "tybalt watch 'src/**/*.*'",
         "serve": "tybalt serve",
-        "prepare": "yarn run build && yarn run lint && yarn run test && yarn run examples"
+        "prepare": "yarn run build && yarn run lint && yarn run test"
     },
     "keywords": [],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
@@ -29,7 +29,7 @@
         "browser-sync": "^3.0.2",
         "esbuild": "^0.19.10",
         "esbuild-jest": "^0.5.0",
-        "jest-environment-jsdom": "^29.7.0"
+        "rimraf": "^5.0.5"
     },
     "bugs": {
         "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aexample"

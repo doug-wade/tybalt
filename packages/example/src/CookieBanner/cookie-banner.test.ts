@@ -1,5 +1,6 @@
 import { mount } from '@tybalt/test-utils';
-import CookieBanner from './cookie-banner.component';
+
+import CookieBanner from './cookie-banner.component.ts';
 
 const mountCookieBanner = async () => {
     const wrapper = await mount(CookieBanner);
@@ -16,14 +17,13 @@ describe('cookie banner', () => {
         expect(actual.attributes('href')).toBe('http://www.example.com');
     });
 
-    it.skip('emits a click event when the button is clicked', async () => {
+    it('emits a click event when the button is clicked', async () => {
         const wrapper = await mountCookieBanner();
 
-        const actual = wrapper.find('button');
+        const actual = wrapper.find('example-button');
         actual.trigger('click');
 
-        // TODO: Enable as part of #64
-        // expect(wrapper.emitted('click')).toHaveLength(1);
+        expect(wrapper.emitted('click')).toHaveLength(1);
     });
 
     it('has a primary button', async () => {
