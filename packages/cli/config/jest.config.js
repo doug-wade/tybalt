@@ -1,4 +1,5 @@
 export default {
+    transformIgnorePatterns: ['/node_modules/(?!(rxjs)/)'],
     moduleFileExtensions: ['js', 'ts'],
     extensionsToTreatAsEsm: ['.ts'],
     transform: {
