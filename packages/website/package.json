@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/website",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "description": "The tybalt documentation website",
     "main": "index.js",
     "private": true,
