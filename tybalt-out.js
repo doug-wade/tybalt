@@ -1,5 +1,30 @@
 (() => {
   // ../core/dist/mjs/index.js
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
   var __accessCheck = (obj, member, msg) => {
     if (!member.has(obj))
       throw TypeError("Cannot " + msg);
@@ -21,6 +46,275 @@
   var __privateMethod = (obj, member, method) => {
     __accessCheck(obj, member, "access private method");
     return method;
+  };
+  var require_boolean = __commonJS({
+    "../parser/dist/api/boolean.js"(exports, module) {
+      "use strict";
+      var __defProp2 = Object.defineProperty;
+      var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames2 = Object.getOwnPropertyNames;
+      var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp2(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps2 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames2(from))
+            if (!__hasOwnProp2.call(to, key) && key !== except)
+              __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps2(__defProp2({}, "__esModule", { value: true }), mod);
+      var boolean_exports = {};
+      __export(boolean_exports, {
+        default: () => boolean_default
+      });
+      module.exports = __toCommonJS(boolean_exports);
+      var boolean_default = {
+        parse(str) {
+          if (str === "true") {
+            return true;
+          }
+          if (str === "false") {
+            return false;
+          }
+          return null;
+        }
+      };
+    }
+  });
+  var require_json = __commonJS({
+    "../parser/dist/api/json.js"(exports, module) {
+      "use strict";
+      var __defProp2 = Object.defineProperty;
+      var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames2 = Object.getOwnPropertyNames;
+      var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp2(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps2 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames2(from))
+            if (!__hasOwnProp2.call(to, key) && key !== except)
+              __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps2(__defProp2({}, "__esModule", { value: true }), mod);
+      var json_exports = {};
+      __export(json_exports, {
+        default: () => json_default
+      });
+      module.exports = __toCommonJS(json_exports);
+      var json_default = {
+        parse(str) {
+          return JSON.parse(str);
+        }
+      };
+    }
+  });
+  var require_string = __commonJS({
+    "../parser/dist/api/string.js"(exports, module) {
+      "use strict";
+      var __defProp2 = Object.defineProperty;
+      var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames2 = Object.getOwnPropertyNames;
+      var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp2(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps2 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames2(from))
+            if (!__hasOwnProp2.call(to, key) && key !== except)
+              __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps2(__defProp2({}, "__esModule", { value: true }), mod);
+      var string_exports = {};
+      __export(string_exports, {
+        default: () => string_default2
+      });
+      module.exports = __toCommonJS(string_exports);
+      var string_default2 = {
+        parse(str) {
+          if (str instanceof String) {
+            return str;
+          }
+          return `${str}`;
+        }
+      };
+    }
+  });
+  var require_number = __commonJS({
+    "../parser/dist/api/number.js"(exports, module) {
+      "use strict";
+      var __defProp2 = Object.defineProperty;
+      var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames2 = Object.getOwnPropertyNames;
+      var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp2(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps2 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames2(from))
+            if (!__hasOwnProp2.call(to, key) && key !== except)
+              __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps2(__defProp2({}, "__esModule", { value: true }), mod);
+      var number_exports = {};
+      __export(number_exports, {
+        default: () => number_default
+      });
+      module.exports = __toCommonJS(number_exports);
+      var number_default = {
+        parse(str) {
+          return Number(str);
+        }
+      };
+    }
+  });
+  var require_standard = __commonJS({
+    "../parser/dist/api/standard.js"(exports, module) {
+      "use strict";
+      var __defProp2 = Object.defineProperty;
+      var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames2 = Object.getOwnPropertyNames;
+      var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp2(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps2 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames2(from))
+            if (!__hasOwnProp2.call(to, key) && key !== except)
+              __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps2(__defProp2({}, "__esModule", { value: true }), mod);
+      var standard_exports = {};
+      __export(standard_exports, {
+        default: () => standard_default
+      });
+      module.exports = __toCommonJS(standard_exports);
+      var standard_default = {
+        parse(str) {
+          if (str === void 0 || str === "undefined") {
+            return void 0;
+          }
+          if (str === null || str === "null") {
+            return null;
+          }
+          if (str === "true" || str === true) {
+            return true;
+          }
+          if (str === "false" || str === false) {
+            return false;
+          }
+          if (Array.isArray(str) || typeof str === "object") {
+            return str;
+          }
+          if (str[0] === "{" || str[0] === "[") {
+            try {
+              return JSON.parse(str);
+            } catch (e) {
+            }
+          }
+          try {
+            const parsed = Number(str);
+            if (!Number.isNaN(parsed)) {
+              return parsed;
+            }
+          } catch (e) {
+          }
+          return str;
+        }
+      };
+    }
+  });
+  var require_dist = __commonJS({
+    "../parser/dist/index.js"(exports, module) {
+      "use strict";
+      var __create2 = Object.create;
+      var __defProp2 = Object.defineProperty;
+      var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames2 = Object.getOwnPropertyNames;
+      var __getProtoOf2 = Object.getPrototypeOf;
+      var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp2(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps2 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames2(from))
+            if (!__hasOwnProp2.call(to, key) && key !== except)
+              __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toESM2 = (mod, isNodeMode, target) => (target = mod != null ? __create2(__getProtoOf2(mod)) : {}, __copyProps2(
+        // If the importer is in node compatibility mode or this is not an ESM
+        // file that has been converted to a CommonJS file using a Babel-
+        // compatible transform (i.e. "__esModule" has not been set), then set
+        // "default" to the CommonJS "module.exports" for node compatibility.
+        isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target,
+        mod
+      ));
+      var __toCommonJS = (mod) => __copyProps2(__defProp2({}, "__esModule", { value: true }), mod);
+      var src_exports = {};
+      __export(src_exports, {
+        boolean: () => import_boolean.default,
+        json: () => import_json.default,
+        number: () => import_number.default,
+        standard: () => import_standard.default,
+        string: () => import_string.default
+      });
+      module.exports = __toCommonJS(src_exports);
+      var import_boolean = __toESM2(require_boolean());
+      var import_json = __toESM2(require_json());
+      var import_string = __toESM2(require_string());
+      var import_number = __toESM2(require_number());
+      var import_standard = __toESM2(require_standard());
+    }
+  });
+  var validator_default = (cb) => {
+    return {
+      async validate(value) {
+        const result = await cb(value);
+        if (result === void 0 || result === null || typeof result === "boolean" && result === true) {
+          return {
+            passed: true
+          };
+        }
+        if (typeof result === "string") {
+          return {
+            passed: false,
+            message: result,
+            level: "error"
+          };
+        }
+        if (typeof result === "boolean") {
+          return {
+            passed: result,
+            level: "error"
+          };
+        }
+        return result;
+      }
+    };
   };
   var levelNumbers = {
     error: 4,
@@ -79,32 +373,6 @@ ${concatenatedMessages}
       }
     };
   };
-  var validator_default = (cb) => {
-    return {
-      async validate(value) {
-        const result = await cb(value);
-        if (result === void 0 || result === null || typeof result === "boolean" && result === true) {
-          return {
-            passed: true
-          };
-        }
-        if (typeof result === "string") {
-          return {
-            passed: false,
-            message: result,
-            level: "error"
-          };
-        }
-        if (typeof result === "boolean") {
-          return {
-            passed: result,
-            level: "error"
-          };
-        }
-        return result;
-      }
-    };
-  };
   var matches_pattern_default = (pattern) => {
     return validator_default(async (value) => {
       if (typeof pattern === "string") {
@@ -112,6 +380,11 @@ ${concatenatedMessages}
       } else {
         return pattern.test(value);
       }
+    });
+  };
+  var one_of_default = (values) => {
+    return validator_default(async (value) => {
+      return values.includes(value);
     });
   };
   var required_default = () => {
@@ -158,6 +431,7 @@ ${concatenatedMessages}
       }
     };
   };
+  var import_parser = __toESM(require_dist());
   var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
       d2.__proto__ = b2;
@@ -737,6 +1011,69 @@ ${concatenatedMessages}
   function isSubscriber(value) {
     return value && value instanceof Subscriber || isObserver(value) && isSubscription(value);
   }
+  function hasLift(source) {
+    return isFunction(source === null || source === void 0 ? void 0 : source.lift);
+  }
+  function operate(init) {
+    return function(source) {
+      if (hasLift(source)) {
+        return source.lift(function(liftedSource) {
+          try {
+            return init(liftedSource, this);
+          } catch (err) {
+            this.error(err);
+          }
+        });
+      }
+      throw new TypeError("Unable to lift unknown Observable type");
+    };
+  }
+  function createOperatorSubscriber(destination, onNext, onComplete, onError, onFinalize) {
+    return new OperatorSubscriber(destination, onNext, onComplete, onError, onFinalize);
+  }
+  var OperatorSubscriber = function(_super) {
+    __extends(OperatorSubscriber2, _super);
+    function OperatorSubscriber2(destination, onNext, onComplete, onError, onFinalize, shouldUnsubscribe) {
+      var _this = _super.call(this, destination) || this;
+      _this.onFinalize = onFinalize;
+      _this.shouldUnsubscribe = shouldUnsubscribe;
+      _this._next = onNext ? function(value) {
+        try {
+          onNext(value);
+        } catch (err) {
+          destination.error(err);
+        }
+      } : _super.prototype._next;
+      _this._error = onError ? function(err) {
+        try {
+          onError(err);
+        } catch (err2) {
+          destination.error(err2);
+        } finally {
+          this.unsubscribe();
+        }
+      } : _super.prototype._error;
+      _this._complete = onComplete ? function() {
+        try {
+          onComplete();
+        } catch (err) {
+          destination.error(err);
+        } finally {
+          this.unsubscribe();
+        }
+      } : _super.prototype._complete;
+      return _this;
+    }
+    OperatorSubscriber2.prototype.unsubscribe = function() {
+      var _a;
+      if (!this.shouldUnsubscribe || this.shouldUnsubscribe()) {
+        var closed_1 = this.closed;
+        _super.prototype.unsubscribe.call(this);
+        !closed_1 && ((_a = this.onFinalize) === null || _a === void 0 ? void 0 : _a.call(this));
+      }
+    };
+    return OperatorSubscriber2;
+  }(Subscriber);
   var ObjectUnsubscribedError = createErrorClass(function(_super) {
     return function ObjectUnsubscribedErrorImpl() {
       _super(this);
@@ -931,6 +1268,14 @@ ${concatenatedMessages}
     };
     return BehaviorSubject2;
   }(Subject);
+  function map(project, thisArg) {
+    return operate(function(source, subscriber) {
+      var index = 0;
+      source.subscribe(createOperatorSubscriber(subscriber, function(value) {
+        subscriber.next(project.call(thisArg, value, index++));
+      }));
+    });
+  }
   var _context;
   var _callback;
   var _subscribe;
@@ -1035,12 +1380,12 @@ ${concatenatedMessages}
     disconnectedCallback,
     adoptedCallback,
     render,
-    shadowMode = "closed",
+    shadowMode = "open",
     css,
     template,
     contexts = []
   }) => {
-    var _setupContext, _props, _shadowRoot, _renderObservables, _renderState, _render, _css, _template, _isConnected, _contexts, _doRender, doRender_fn, _updateProps, updateProps_fn, _a;
+    var _setupContext, _props, _renderObservables, _renderState, _render, _css, _template, _isConnected, _contexts, _doRender, doRender_fn, _updateProps, updateProps_fn, _a;
     nameValidator.validate(name);
     const clazz = (_a = class extends HTMLElement {
       constructor() {
@@ -1048,8 +1393,7 @@ ${concatenatedMessages}
         __privateAdd(this, _doRender);
         __privateAdd(this, _updateProps);
         __privateAdd(this, _setupContext, void 0);
-        __privateAdd(this, _props, void 0);
-        __privateAdd(this, _shadowRoot, void 0);
+        __privateAdd(this, _props, {});
         __privateAdd(this, _renderObservables, {});
         __privateAdd(this, _renderState, {});
         __privateAdd(this, _render, render);
@@ -1059,7 +1403,18 @@ ${concatenatedMessages}
         __privateAdd(this, _contexts, /* @__PURE__ */ new Map());
         __privateSet(this, _props, Object.entries(props).reduce(
           (accumulator, [key, value]) => {
-            accumulator[key] = new BehaviorSubject(value.default || null);
+            const parser = value.parser || import_parser.standard;
+            let initialValue = null;
+            try {
+              initialValue = parser.parse(value.default);
+              __privateGet(this, _renderState)[key] = initialValue;
+            } catch (e) {
+              initialValue = e;
+            }
+            accumulator[key] = {
+              observable: new BehaviorSubject(initialValue),
+              parser: value.parser || import_parser.standard
+            };
             return accumulator;
           },
           {}
@@ -1073,10 +1428,29 @@ ${concatenatedMessages}
         __privateSet(this, _setupContext, {
           emit
         });
-        const setupResults = setup?.call(this, __privateGet(this, _props), __privateGet(this, _setupContext)) || {};
-        for (const [key, value] of Object.entries(setupResults)) {
+        const getProxy = (value) => {
+          return new Proxy(value, {
+            get(target, prop, receiver) {
+              if (prop === "value") {
+                return target.observable.getValue();
+              }
+              return Reflect.get(target, prop, receiver);
+            }
+          });
+        };
+        const propsForSetup = Object.fromEntries(
+          Object.entries(__privateGet(this, _props)).map(([key, value]) => [key, getProxy(value)])
+        );
+        const setupResults = setup?.call(
+          this,
+          propsForSetup,
+          __privateGet(this, _setupContext)
+        ) || {};
+        for (const [key, value] of Object.entries({ ...propsForSetup, ...setupResults })) {
           if (value.subscribe) {
             __privateGet(this, _renderObservables)[key] = value;
+          } else if (value.observable) {
+            __privateGet(this, _renderObservables)[key] = value.observable;
           } else {
             __privateGet(this, _renderState)[key] = value;
           }
@@ -1109,7 +1483,7 @@ ${concatenatedMessages}
         }
         for (const [key, value] of Object.entries(__privateGet(this, _props))) {
           if (!__privateGet(this, _renderObservables)[key]) {
-            __privateGet(this, _renderObservables)[key] = value;
+            __privateGet(this, _renderObservables)[key] = value.observable.pipe(map((value2) => value2.parser(value2)));
           }
         }
         for (const [key, observable2] of Object.entries(__privateGet(this, _renderObservables))) {
@@ -1118,7 +1492,7 @@ ${concatenatedMessages}
             __privateMethod(this, _doRender, doRender_fn).call(this);
           });
         }
-        __privateSet(this, _shadowRoot, this.attachShadow({ mode: shadowMode }));
+        this.attachShadow({ mode: shadowMode });
         __privateMethod(this, _doRender, doRender_fn).call(this);
       }
       connectedCallback() {
@@ -1135,43 +1509,53 @@ ${concatenatedMessages}
         adoptedCallback?.apply(this);
       }
       attributeChangedCallback(name2, oldValue, newValue) {
-        __privateGet(this, _props)[name2].next(newValue);
+        const { observable: observable2, parser } = __privateGet(this, _props)[name2];
+        const parsed = parser.parse(newValue);
+        observable2.next(parsed);
         __privateMethod(this, _doRender, doRender_fn).call(this);
       }
-    }, _setupContext = /* @__PURE__ */ new WeakMap(), _props = /* @__PURE__ */ new WeakMap(), _shadowRoot = /* @__PURE__ */ new WeakMap(), _renderObservables = /* @__PURE__ */ new WeakMap(), _renderState = /* @__PURE__ */ new WeakMap(), _render = /* @__PURE__ */ new WeakMap(), _css = /* @__PURE__ */ new WeakMap(), _template = /* @__PURE__ */ new WeakMap(), _isConnected = /* @__PURE__ */ new WeakMap(), _contexts = /* @__PURE__ */ new WeakMap(), _doRender = /* @__PURE__ */ new WeakSet(), doRender_fn = function() {
-      if (!__privateGet(this, _isConnected)) {
+    }, _setupContext = /* @__PURE__ */ new WeakMap(), _props = /* @__PURE__ */ new WeakMap(), _renderObservables = /* @__PURE__ */ new WeakMap(), _renderState = /* @__PURE__ */ new WeakMap(), _render = /* @__PURE__ */ new WeakMap(), _css = /* @__PURE__ */ new WeakMap(), _template = /* @__PURE__ */ new WeakMap(), _isConnected = /* @__PURE__ */ new WeakMap(), _contexts = /* @__PURE__ */ new WeakMap(), _doRender = /* @__PURE__ */ new WeakSet(), doRender_fn = function() {
+      if (!__privateGet(this, _isConnected) || !this.shadowRoot) {
         return;
       }
-      __privateGet(this, _shadowRoot).innerHTML = "";
+      this.shadowRoot.innerHTML = "";
       if (__privateGet(this, _css)) {
         const styleElement = document.createElement("style");
         const calculatedCss = typeof css === "function" ? css(__privateGet(this, _renderState)) || "" : css;
         styleElement.innerHTML = calculatedCss || "";
-        __privateGet(this, _shadowRoot).appendChild(styleElement);
+        this.shadowRoot?.appendChild(styleElement);
       }
       if (__privateGet(this, _render)) {
         const templateElement = document.createElement("template");
-        templateElement.innerHTML = __privateGet(this, _render).call(this, __privateGet(this, _renderState));
+        const newEntries = Object.entries(__privateGet(this, _renderState)).map(
+          ([key, value]) => [key, value?.observable ? value.observable : value]
+        );
+        templateElement.innerHTML = __privateGet(this, _render).call(this, Object.fromEntries(newEntries));
         const templateContent = templateElement.content;
-        __privateGet(this, _shadowRoot).appendChild(templateContent.cloneNode(true));
+        this.shadowRoot?.appendChild(templateContent.cloneNode(true));
       }
       if (__privateGet(this, _template)) {
         const templateElement = document.createElement("template");
         templateElement.innerHTML = __privateGet(this, _template);
         const templateContent = templateElement.content;
-        __privateGet(this, _shadowRoot).appendChild(templateContent.cloneNode(true));
+        this.shadowRoot?.appendChild(templateContent.cloneNode(true));
       }
     }, _updateProps = /* @__PURE__ */ new WeakSet(), updateProps_fn = function() {
       for (const [key, value] of Object.entries(__privateGet(this, _props))) {
         const attributeValue = this.getAttribute(key);
-        const usingDefault = attributeValue === null && value.value;
-        const areDifferent = attributeValue !== value.getValue();
+        const usingDefault = attributeValue === null && value.observable.value;
+        const areDifferent = attributeValue !== value.observable.getValue();
         if (!usingDefault && areDifferent) {
-          value.next(attributeValue);
+          const nextValue = value.parser.parse(attributeValue);
+          value.observable.next(nextValue);
         }
       }
     }, _a);
-    customElements.define(name, clazz);
+    try {
+      customElements.define(name, clazz);
+    } catch (e) {
+      console.warn(`failed to define component ${name}`, e);
+    }
     return clazz;
   };
   var html_default = (strings, ...keys) => {
@@ -1179,10 +1563,54 @@ ${concatenatedMessages}
       return `${prev}${curr}${keys[i] ? keys[i] : ""}`;
     }, "");
   };
+  var import_parser2 = __toESM(require_dist());
   var switch_default = define_component_default({
     name: "t-switch",
+    props: {
+      value: {
+        validator: required_default,
+        parser: import_parser2.string
+      }
+    },
     render({ value }) {
       return html_default`<slot name="${value}"></slot>`;
+    }
+  });
+  var getSlotName = (condition) => {
+    if (condition === "true" || condition === true) {
+      return "true";
+    }
+    return "false";
+  };
+  var if_default = define_component_default({
+    name: "t-if",
+    props: {
+      condition: {
+        validator: one_of_default(["true", "false", true, false])
+      }
+    },
+    render({ condition }) {
+      const slotName = getSlotName(condition);
+      return html_default`<div><slot name="${slotName}"></slot></div>`;
+    }
+  });
+  var import_parser3 = __toESM(require_dist());
+  var else_default = define_component_default({
+    name: "t-if",
+    props: {
+      condition: {
+        validator: one_of_default(["true", "false"]),
+        parser: import_parser3.boolean
+      }
+    },
+    render({ condition }) {
+      let slotName;
+      if (condition) {
+        slotName = "false";
+      } else {
+        slotName = "true";
+      }
+      return html_default`<div><slot name="${slotName}"></slot></div>`;
     }
   });
 
@@ -1302,6 +1730,32 @@ ${concatenatedMessages}
   });
 
   // ../validator/dist/index.mjs
+  var validator_default2 = (cb) => {
+    return {
+      async validate(value) {
+        const result = await cb(value);
+        if (result === void 0 || result === null || typeof result === "boolean" && result === true) {
+          return {
+            passed: true
+          };
+        }
+        if (typeof result === "string") {
+          return {
+            passed: false,
+            message: result,
+            level: "error"
+          };
+        }
+        if (typeof result === "boolean") {
+          return {
+            passed: result,
+            level: "error"
+          };
+        }
+        return result;
+      }
+    };
+  };
   var levelNumbers2 = {
     error: 4,
     warn: 3,
@@ -1356,32 +1810,6 @@ ${concatenatedMessages}
           message,
           passed
         };
-      }
-    };
-  };
-  var validator_default2 = (cb) => {
-    return {
-      async validate(value) {
-        const result = await cb(value);
-        if (result === void 0 || result === null || typeof result === "boolean" && result === true) {
-          return {
-            passed: true
-          };
-        }
-        if (typeof result === "string") {
-          return {
-            passed: false,
-            message: result,
-            level: "error"
-          };
-        }
-        if (typeof result === "boolean") {
-          return {
-            passed: result,
-            level: "error"
-          };
-        }
-        return result;
       }
     };
   };

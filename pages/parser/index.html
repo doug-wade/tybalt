@@ -32,21 +32,63 @@
 <pre><code class="language-shell">npm install --save @tybalt/parser
 </code></pre>
 <h2>Usage</h2>
-<pre><code class="language-js">import { objectParser } from '@tybalt/parser';
+<pre><code class="language-js">import { object } from '@tybalt/parser';
 
 defineComponent({
   props: {
     option: {
-      parser: objectParser
+      validator: (obj) =&gt; !!obj.requiredKey
+      parser: object
     }
   }
 })
 </code></pre>
 <h2>Api</h2>
-<h3>objectParser</h3>
-<h3>booleanParser</h3>
-<h3>arrayParser</h3>
-<h3>numberParser</h3>
+<p>There are four parsers currently: <code>boolean</code>, <code>json</code>, <code>number</code>, <code>string</code>.</p>
+<h3>object</h3>
+<pre><code class="language-js">import { object } from '@tybalt/parser';
+
+defineComponent({
+  props: {
+    option: {
+      parser: object
+    }
+  }
+})
+</code></pre>
+<h3>boolean</h3>
+<pre><code class="language-js">import { boolean } from '@tybalt/parser';
+
+defineComponent({
+  props: {
+    option: {
+      parser: boolean
+    }
+  }
+})
+</code></pre>
+<h3>array</h3>
+<pre><code class="language-js">import { array } from '@tybalt/array';
+
+defineComponent({
+  props: {
+    option: {
+      parser: array
+    }
+  }
+})
+</code></pre>
+<h3>number</h3>
+<pre><code class="language-js">import { number } from '@tybalt/array';
+
+defineComponent({
+  props: {
+    option: {
+      parser: number
+    }
+  }
+})
+</code></pre>
 </div>
             </div>
             <tybalt-footer></tybalt-footer>

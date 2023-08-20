@@ -58,7 +58,7 @@
 <h2>Installation</h2>
 <h3>Bundlers</h3>
 <p>You can install the package from npm. For example, using the npm cli</p>
-<pre><code class="language-shell">$ npm install --save @tybalt/core
+<pre><code class="language-shell">npm install --save @tybalt/core
 </code></pre>
 <p>Alternatively, you can install using <code>pnpm</code> or <code>yarn</code>.</p>
 <p>Once you've installed the package you'll need to include it in your bundle.
@@ -202,6 +202,26 @@ defineComponent({
     },
 });
 </code></pre>
+<p><code>setup</code> functions take two arguments. The first argument are the <code>props</code>, as specified in the <code>props</code> key on the argument to <code>defineComponent</code>.</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'setup-props',
+    props: {
+        one: { default: 'one' },
+        two: { default: 'two' }
+    },
+    setup({ one, two }) {
+        console.log(`one ${one.value} two ${two.value}`);
+    },
+});
+</code></pre>
+<p>The second argument is the <code>context</code>. Currently, it has the <code>emit</code> function on it, which you can use to emit an event.</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'setup-context',
+    setup({}, { emit }): {
+        emit('mounted');
+    }
+});
+</code></pre>
 <h4>connectedCallback</h4>
 <p>Called as part of the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks">web component life cycle</a>.</p>
 <pre><code class="language-javascript">defineComponent({
@@ -271,6 +291,49 @@ export default defineComponent({
 });
 </code></pre>
 <p>Now, every time there is a new theme context (say when switching from a light theme to a dark theme), we'll call render with the new <code>theme</code>.</p>
+<h2>Components</h2>
+<p>Tybalt exports a set of components for use for common templating tasks. These components are
+registered as soon as you require the tybalt core library; there is no extra work needed to set
+them up.</p>
+<h3>t-if</h3>
+<p>Allows you to render one template if a condition is true, and another if that condition
+is false.</p>
+<p>In the following example, on December 25th the component will render <code>It's Christmas!</code>,
+but on other days it will render <code>It's not Christmas</code>.</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'is-it-christmas',
+    render() {
+        const today = new Date();
+        const isChristmas = today.getMonth() === 11 &amp;&amp; today.getDate() === '25';
+        return html`
+            &lt;t-if condition="${isChristmas}"&gt;
+                &lt;span slot="true"&gt;It's Christmas!&lt;/span&gt;
+                &lt;span slot="false"&gt;It's not Christmas.&lt;/span&gt;
+            &lt;/t-if&gt;
+        `;
+    },
+});
+</code></pre>
+<h3>t-switch</h3>
+<p>Allows you to render a single template out of many that corresponds to a value.</p>
+<p>In the following example, when <code>getCity</code> returns Seattle, it will recommend you
+visit the Space Needle; when <code>getCity</code> returns Moscow, it will recommend you visit
+Red Square; and when <code>getCity</code> returns Madrid, it will recommend you visit the Reina
+Sofia.</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'city-switcher',
+    render() {
+        const city = getCity();
+        return html`
+            &lt;t-switch condition="${city}"&gt;
+                &lt;div slot="Seattle"&gt;You're in Seattle; go see the Space Needle!&lt;/div&gt;
+                &lt;div slot="Moscow"&gt;You're in Moscow; go see Krasnii Ploshad!&lt;/div&gt;
+                &lt;div slot="Madrid"&gt;You're in Madrid; go to the Reina Sofia&lt;/div&gt;
+            &lt;/t-switch&gt;
+        `;
+    },
+});
+</code></pre>
 </div>
             </div>
             <tybalt-footer></tybalt-footer>
