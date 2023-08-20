@@ -26,7 +26,7 @@
     "bugs": {
         "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Awebsite"
     },
-    "homepage": "https://tybalt.org/pages/website",
+    "homepage": "https://tybalt.org",
     "repository": {
         "type": "git",
         "url": "https://github.com/doug-wade/tybalt.git",
