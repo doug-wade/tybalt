@@ -1,7 +1,7 @@
 import type { PropsStateMap, SetupContext, RenderContext } from '@tybalt/core';
 
 import { defineComponent, html } from '@tybalt/core';
-import { compose, oneOf, required, string } from '@tybalt/validator';
+import { compose, oneOf, required } from '@tybalt/validator';
 import { map } from 'rxjs';
 
 import { theme } from '../contexts';

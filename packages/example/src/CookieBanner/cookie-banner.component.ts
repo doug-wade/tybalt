@@ -1,14 +1,11 @@
 import { defineComponent, html } from '@tybalt/core';
-
-import Link from '../Link/link.component';
-import Button, { BUTTON_VARIANTS } from '../Button/button.component';
+import { BUTTON_VARIANTS } from '../Button/button.component';
 import { theme } from '../contexts';
 
 import type { SetupContext, PropsStateMap, RenderContext } from '@tybalt/core';
 
 export default defineComponent({
     name: 'example-cookie-banner',
-    components: [Link, Button],
     render({ clickHandler, PRIMARY, theme }: RenderContext) {
         return html`
             <style>

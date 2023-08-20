@@ -1,5 +1,5 @@
-import { describe, it, jest, expect } from '@jest/globals';
-import { flushPromises, mount } from '@tybalt/test-utils';
+import { describe, it, expect } from '@jest/globals';
+import { mount } from '@tybalt/test-utils';
 import defineComponent from '../../src/api/define-component';
 import html from '../../src/api/html';
 import { BehaviorSubject } from 'rxjs';
@@ -11,7 +11,7 @@ describe('component rendering', () => {
 
         const component = defineComponent({
             name,
-            shadowMode: 'open',
+            
             render({ expected }) {
                 return html`<span>${expected}</span>`;
             },
@@ -30,7 +30,6 @@ describe('component rendering', () => {
 
         const component = defineComponent({
             name,
-            shadowMode: 'open',
             props: { example: { default: expected } },
             render({ example }) {
                 return html`<span>${example}</span>`;
@@ -38,7 +37,7 @@ describe('component rendering', () => {
         });
         const wrapper = await mount(component);
 
-        expect(wrapper.html()).toContain(expected);
+        expect(wrapper.shadowHtml()?.textContent).toContain(expected);
     });
 
     it('re-renders when props have changes', async () => {
@@ -48,7 +47,7 @@ describe('component rendering', () => {
 
         const component = defineComponent({
             name,
-            shadowMode: 'open',
+            
             props: { example: { default: firstRenderPropValue } },
             render({ example }) {
                 return html`<span>${example}</span>`;
@@ -71,7 +70,6 @@ describe('component rendering', () => {
         let actual;
         defineComponent({
             name: childComponentName,
-            shadowMode: 'open',
             props: { nested: {} },
             setup({ nested }) {
                 actual = nested;
@@ -79,14 +77,13 @@ describe('component rendering', () => {
         });
         const parentComponent = defineComponent({
             name,
-            shadowMode: 'open',
             props: { example: {} },
             render({ example }) {
-                return `<${childComponentName} nested="${example}"></${childComponentName}>`;
+                return html`<${childComponentName} nested="${example}"></${childComponentName}>`;
             }
         });
 
-        const wrapper = mount(parentComponent, { attributes: { example: expected } });
+        await mount(parentComponent, { attributes: { example: expected } });
 
         expect(actual.value).toBe(expected);
     });

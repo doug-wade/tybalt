@@ -4,7 +4,7 @@ import { oneOf } from '@tybalt/validator';
 
 export default defineComponent({
     name: 't-if',
-    shadowMode: 'open',
+    
     props: {
         condition: {
             validator: oneOf(['true', 'false']),
@@ -20,6 +20,6 @@ export default defineComponent({
             slotName = 'true';
         }
 
-        return html`<slot name="${slotName}"></slot>`;
+        return html`<div><slot name="${slotName}"></slot></div>`;
     },
 });

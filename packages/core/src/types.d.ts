@@ -1,4 +1,5 @@
 import type { Observer } from 'rxjs';
+import type { Parser } from '@tybalt/parser';
 import type { Validator } from '@tybalt/validator';
 
 export type PropType = string | number | object | Array<any>;
@@ -6,6 +7,7 @@ export type PropType = string | number | object | Array<any>;
 export type PropDefinition = {
     default?: any;
     validator?: Validator;
+    parser?: Parser;
 };
 
 export type PropsDefinitionMap = {
