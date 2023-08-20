@@ -1,10 +1,11 @@
-import { AST_NODE_TYPES } from '@typescript-eslint/utils';
-import { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
+import type { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
 import type { TSESTree } from '@typescript-eslint/utils';
 
-import { TYBALT_COMPONENT_DEFINITION } from '../utils/selectors';
-import createEslintRule from '../utils/create-eslint-rule';
-import getDefinitionKey from '../utils/get-definition-key';
+const { AST_NODE_TYPES } = require('@typescript-eslint/utils');
+
+const { TYBALT_COMPONENT_DEFINITION } = require('../utils/selectors');
+const createEslintRule = require('../utils/create-eslint-rule');
+const getDefinitionKey = require('../utils/get-definition-key');
 
 export const RULE_NAME = 'template-variables-are-exported';
 export type MessageIds = 'renderVariableNotExported';
@@ -15,16 +16,16 @@ const rule: RuleModule<'renderVariableNotExported', never[], RuleListener> = cre
     meta: {
         type: 'problem',
         docs: {
-            description: 'check that all template variables have been exported from the setup method',
+            description: 'check that all template variables have been exported = require(the setup method',
             recommended: 'strict',
         },
         schema: [],
         messages: {
-            renderVariableNotExported: 'The template variable used has not been exported from the setup method.',
+            renderVariableNotExported: 'The template variable used has not been exported = require(the setup method.',
         },
     },
     defaultOptions: [],
-    create: (context) => {
+    create: (context: { report: (arg0: { messageId: string; loc: any }) => void }) => {
         return {
             [TYBALT_COMPONENT_DEFINITION](node: TSESTree.CallExpression) {
                 const definition = node.arguments[0];
@@ -50,14 +51,14 @@ const rule: RuleModule<'renderVariableNotExported', never[], RuleListener> = cre
                 }
 
                 const renderFunctionArgs = firstRenderArg.properties
-                    .map((prop) => {
+                    .map((prop: { type: any; key: any; }) => {
                         const property = prop.type === AST_NODE_TYPES.Property ? prop.key : null;
                         if (property?.type !== AST_NODE_TYPES.Identifier) {
                             return;
                         }
                         return property.name;
                     })
-                    .filter((prop) => !!prop);
+                    .filter((prop: any) => !!prop);
 
                 if (renderFunctionArgs.length < 1) {
                     return;
@@ -88,25 +89,25 @@ const rule: RuleModule<'renderVariableNotExported', never[], RuleListener> = cre
                         });
                     }
 
-                    const returnedProps = returnStatement.argument.properties
+                    const returnedProps = (returnStatement.argument as TSESTree.ObjectExpression).properties
                         .map((prop) => {
-                            if (prop.type !== AST_NODE_TYPES.Property || prop.key.type !== AST_NODE_TYPES.Identifier) {
+                            if (prop.type !== AST_NODE_TYPES.Property || (prop as TSESTree.Property).key.type !== AST_NODE_TYPES.Identifier) {
                                 return undefined;
                             }
-                            return prop.key.name;
+                            return ((prop as TSESTree.Property).key as TSESTree.Identifier).name;
                         })
-                        .filter((prop) => !!prop);
+                        .filter((prop: any) => !!prop);
 
-                    return renderFunctionArgs.find((prop) => {
+                    return renderFunctionArgs.find((prop: any) => {
                         return !returnedProps.includes(prop);
                     });
                 }
 
                 const returnStatements = setupProperty.value.body.body.filter(
-                    (statement: { type: AST_NODE_TYPES }) => statement.type === AST_NODE_TYPES.ReturnStatement,
+                    (statement: { type: any; }) => statement.type === AST_NODE_TYPES.ReturnStatement,
                 ) as TSESTree.ReturnStatement[];
 
-                for (let returnStatement of returnStatements) {
+                for (const returnStatement of returnStatements) {
                     if (hasMissingVariables(returnStatement)) {
                         return context.report({
                             messageId: 'renderVariableNotExported',

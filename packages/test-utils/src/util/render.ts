@@ -17,9 +17,15 @@ export default async ({
 }): Promise<Element> => {
     const id = uuidV4();
 
+    let attributeString = '';
+    for (const [key, value] of Object.entries(attributes)) {
+        const stringifiedValue = typeof value === 'string' ? value : JSON.stringify(value);
+        attributeString += `${toKebabCase(key)}="${stringifiedValue.replace(/"/g, '&quot;')}"`;
+    }
+
     const rootElement = document.createElement(WRAPPER_ELEMENT_TAG);
     rootElement.setAttribute(ATTRIBUTE_NAME, id);
-    rootElement.innerHTML = `<${elementName}>${slot}</${elementName}>`;
+    rootElement.innerHTML = `<${elementName} ${attributeString}>${slot}</${elementName}>`;
 
     document.body.appendChild(rootElement);
 
@@ -29,14 +35,13 @@ export default async ({
         const requestComponent = () => {
             const element = document.querySelector(selector);
             if (element) {
-                for (const [key, value] of Object.entries(attributes)) {
-                    element.setAttribute(toKebabCase(key), value as string);
-                }
+                
                 resolve(element);
             } else {
                 window.requestAnimationFrame(requestComponent);
             }
         };
+
         requestComponent();
     });
 };

@@ -1,5 +1,5 @@
 import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
-import { json } from '@tybalt/parser';
+import { standard } from '@tybalt/parser';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
 import ContextEvent from './context-event';
@@ -22,7 +22,7 @@ export default ({
     disconnectedCallback,
     adoptedCallback,
     render,
-    shadowMode = 'closed',
+    shadowMode = 'open',
     css,
     template,
     contexts = [],
@@ -73,18 +73,19 @@ export default ({
              */
             this.#props = Object.entries(props).reduce(
                 (accumulator, [key, value]) => {
-                    const parser = value.parser || json;
+                    const parser = value.parser || standard;
 
                     let initialValue = null;
                     try {
                         initialValue = parser.parse(value.default);
+                        this.#renderState[key] = initialValue;
                     } catch (e) {
                         initialValue = e;
                     }
 
                     accumulator[key] = {
                         observable: new BehaviorSubject(initialValue),
-                        parser: value.parser || json,
+                        parser: value.parser || standard,
                     };
 
                     return accumulator;
@@ -109,16 +110,33 @@ export default ({
                 emit,
             };
 
+            const getProxy = (value: { observable: BehaviorSubject<any>; parser: { parse(str: string | null): any; }; }) => {
+                return new Proxy(value, {
+                    get(target, prop, receiver) {
+                        if (prop === 'value') {
+                            return target.observable.getValue();
+                        }
+
+                        return Reflect.get(target, prop, receiver);
+                    }
+                });
+            };
+            const propsForSetup = Object.fromEntries(
+                Object.entries(this.#props).map(([key, value]) => [key, getProxy(value)]),
+            )
+
             const setupResults =
                 setup?.call(
                     this,
-                    Object.entries(this.#props).map(([key, { observable }]) => observable),
+                    propsForSetup,
                     this.#setupContext,
                 ) || {};
 
-            for (const [key, value] of Object.entries(setupResults)) {
+            for (const [key, value] of Object.entries({ ...propsForSetup, ...setupResults })) {
                 if (value.subscribe) {
                     this.#renderObservables[key] = value;
+                } else if (value.observable) {
+                    this.#renderObservables[key] = value.observable;
                 } else {
                     // We don't ever need to access this a second time, so we can cache it on the
                     // current render state and not have a corresponding render observable.
@@ -212,16 +230,16 @@ export default ({
 
         attributeChangedCallback(name: string, oldValue: string, newValue: string) {
             const { observable, parser } = this.#props[name];
-            observable.next(parser.parse(newValue));
+            const parsed = parser.parse(newValue);
+            observable.next(parsed);
             this.#doRender();
         }
 
         #doRender() {
-            if (!this.#isConnected) {
+            if (!this.#isConnected || !this.shadowRoot) {
                 return;
             }
 
-            // @ts-ignore
             this.shadowRoot.innerHTML = '';
 
             /**
@@ -259,32 +277,28 @@ export default ({
                 const calculatedCss = typeof css === 'function' ? css(this.#renderState) || '' : css;
                 styleElement.innerHTML = calculatedCss || '';
 
-                // @ts-ignore
-                this.shadowRoot.appendChild(styleElement);
+                this.shadowRoot?.appendChild(styleElement);
             }
 
             if (this.#render) {
                 const templateElement = document.createElement('template');
+                const newEntries = Object.entries(this.#renderState).map(([key, value]) =>
+                    [key, value?.observable ? value.observable : value]
+                );
                 templateElement.innerHTML = this.#render(
-                    this.#renderState.map((value: { observable: any }) =>
-                        value.observable ? value.observable : value,
-                    ),
+                    Object.fromEntries(newEntries),
                 );
                 const templateContent = templateElement.content;
 
-                // @ts-ignore
-                this.shadowRoot.appendChild(templateContent.cloneNode(true));
+                this.shadowRoot?.appendChild(templateContent.cloneNode(true));
             }
 
-            // dbw 7/27/23: shouldn't clients be rendering their templates in the render function?
-            // I'm not sure what the use case is for this.
             if (this.#template) {
                 const templateElement = document.createElement('template');
                 templateElement.innerHTML = this.#template;
                 const templateContent = templateElement.content;
 
-                // @ts-ignore
-                this.shadowRoot.appendChild(templateContent.cloneNode(true));
+                this.shadowRoot?.appendChild(templateContent.cloneNode(true));
             }
         }
 
@@ -298,13 +312,18 @@ export default ({
                 const usingDefault = attributeValue === null && value.observable.value;
                 const areDifferent = attributeValue !== value.observable.getValue();
                 if (!usingDefault && areDifferent) {
-                    value.observable.next(value.parser.parse(attributeValue));
+                    const nextValue = value.parser.parse(attributeValue);
+                    value.observable.next(nextValue);
                 }
             }
         }
     };
 
-    customElements.define(name, clazz);
+    try {
+        customElements.define(name, clazz);
+    } catch (e) {
+        console.warn(`failed to define component ${name}`, e);
+    }
 
     return clazz;
 };

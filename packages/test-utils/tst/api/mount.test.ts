@@ -43,14 +43,10 @@ describe('mount', () => {
     });
 
     it.each([[{ bar: 'baz' }], [123], [false], ['corge']])('should stringify attribute with type %s', async (prop) => {
-        const originalSetAttribute = HTMLElement.prototype.setAttribute;
-        const setAttributeSpy = jest.fn().mockImplementation(originalSetAttribute);
-        HTMLElement.prototype.setAttribute = setAttributeSpy;
         global.customElementsReverseRegistry = new Map([[MockWebComponent, 'mock-web-component-name']]);
 
-        await mount(MockWebComponent, { attributes: { prop } });
+        const wrapper = await mount(MockWebComponent, { attributes: { prop } });
 
-        expect(setAttributeSpy).toHaveBeenCalledTimes(2);
-        expect(setAttributeSpy).toHaveBeenCalledWith('prop', typeof prop === 'string' ? prop : JSON.stringify(prop));
+        expect(wrapper.attributes('prop')).toBe(typeof prop === 'string' ? prop : JSON.stringify(prop));
     });
 });

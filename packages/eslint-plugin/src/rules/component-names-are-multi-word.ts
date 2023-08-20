@@ -1,19 +1,16 @@
 import type { TSESTree } from '@typescript-eslint/types';
 import type { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
 
-const { AST_NODE_TYPES, ESLintUtils } = require('@typescript-eslint/utils');
+const { AST_NODE_TYPES } = require('@typescript-eslint/utils');
 const { toKebabCase } = require('js-convert-case');
 
 const getDefinitionKey = require('../utils/get-definition-key');
+const createEslintRule = require('../utils/create-eslint-rule');
 const { TYBALT_COMPONENT_DEFINITION } = require('../utils/selectors');
 
 const RULE_NAME = 'component-names-are-multi-word';
 export type MessageIds = 'singleWordComponentName';
 export type Options = [];
-
-const createEslintRule = ESLintUtils.RuleCreator(
-    (name: string) => `https://doug-wade.github.io/tybalt/eslint-plugin/rule/${name}`,
-);
 
 const rule: RuleModule<'singleWordComponentName', never[], RuleListener> = createEslintRule({
     name: RULE_NAME,

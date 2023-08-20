@@ -51,7 +51,7 @@ To see the full specification for how to define a component, see the api section
 You can install the package from npm. For example, using the npm cli
 
 ```shell
-$ npm install --save @tybalt/core
+npm install --save @tybalt/core
 ```
 
 Alternatively, you can install using `pnpm` or `yarn`.
@@ -250,6 +250,32 @@ defineComponent({
             myValue: 'my-value',
         };
     },
+});
+```
+
+`setup` functions take two arguments. The first argument are the `props`, as specified in the `props` key on the argument to `defineComponent`.
+
+```javascript
+defineComponent({
+    name: 'setup-props',
+    props: {
+        one: { default: 'one' },
+        two: { default: 'two' }
+    },
+    setup({ one, two }) {
+        console.log(`one ${one.value} two ${two.value}`);
+    },
+});
+```
+
+The second argument is the `context`. Currently, it has the `emit` function on it, which you can use to emit an event.
+
+```javascript
+defineComponent({
+    name: 'setup-context',
+    setup({}, { emit }): {
+        emit('mounted');
+    }
 });
 ```
 

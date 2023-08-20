@@ -1,9 +1,7 @@
-// @ts-ignore
-import { RuleListener, RuleModule } from '@typescript-eslint/utils/ts-eslint';
-import { ESLintUtils } from '@typescript-eslint/utils';
+const { ESLintUtils } = require('@typescript-eslint/utils');
 
 const createEslintRule = ESLintUtils.RuleCreator(
-    (name) => `https://doug-wade.github.io/tybalt/eslint-plugin/rule/${name}`,
+    (name: string) => `https://doug-wade.github.io/tybalt/eslint-plugin/rule/${name}`,
 );
 
-export default createEslintRule;
+module.exports = createEslintRule;

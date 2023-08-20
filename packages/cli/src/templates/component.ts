@@ -6,7 +6,7 @@ import { compose, string, required } from '@tybalt/validator';
 
 export default defineComponent({
     name: '${kebabCaseName}',
-    shadowMode: 'open',
+    
     props: { name: { validator: compose(string(), required) } },
     render({ name }, ctx) {
         return html\`<div class="${kebabCaseName}">Hello $\{name}</div>\`;
