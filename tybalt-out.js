@@ -1615,7 +1615,7 @@ ${concatenatedMessages}
   });
 
   // components/sidebar.js
-  var PACKAGES = ["cli", "core", "eleventy-plugin", "esbuild-plugin", "eslint-plugin", "test-utils", "validator"];
+  var PACKAGES = ["cli", "core", "eleventy-plugin", "esbuild-plugin", "eslint-plugin", "parser", "test-utils", "validator"];
   var GUIDES = ["new-website", "styling-your-component", "writing-tests"];
   define_component_default({
     name: "tybalt-sidebar",
