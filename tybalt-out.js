@@ -25,28 +25,6 @@
     isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
     mod
   ));
-  var __accessCheck = (obj, member, msg) => {
-    if (!member.has(obj))
-      throw TypeError("Cannot " + msg);
-  };
-  var __privateGet = (obj, member, getter) => {
-    __accessCheck(obj, member, "read from private field");
-    return getter ? getter.call(obj) : member.get(obj);
-  };
-  var __privateAdd = (obj, member, value) => {
-    if (member.has(obj))
-      throw TypeError("Cannot add the same private member more than once");
-    member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-  };
-  var __privateSet = (obj, member, value, setter) => {
-    __accessCheck(obj, member, "write to private field");
-    setter ? setter.call(obj, value) : member.set(obj, value);
-    return value;
-  };
-  var __privateMethod = (obj, member, method) => {
-    __accessCheck(obj, member, "access private method");
-    return method;
-  };
   var require_boolean = __commonJS({
     "../parser/dist/api/boolean.js"(exports, module) {
       "use strict";
@@ -1276,64 +1254,60 @@ ${concatenatedMessages}
       }));
     });
   }
-  var _context;
-  var _callback;
-  var _subscribe;
-  var _event;
   var TybaltContextEvent = class {
     constructor(context2, callback, options) {
-      __privateAdd(this, _context, void 0);
-      __privateAdd(this, _callback, void 0);
-      __privateAdd(this, _subscribe, void 0);
-      __privateAdd(this, _event, void 0);
       this.NONE = 0;
       this.CAPTURING_PHASE = 1;
       this.AT_TARGET = 2;
       this.BUBBLING_PHASE = 3;
-      __privateSet(this, _context, context2);
-      __privateSet(this, _callback, callback);
-      __privateSet(this, _subscribe, options.subscribe || false);
-      __privateSet(this, _event, new CustomEvent("context-request", options));
+      this.#context = context2;
+      this.#callback = callback;
+      this.#subscribe = options.subscribe || false;
+      this.#event = new CustomEvent("context-request", options);
     }
+    #context;
+    #callback;
+    #subscribe;
+    #event;
     get bubbles() {
-      return __privateGet(this, _event).bubbles;
+      return this.#event.bubbles;
     }
     // deprecated
     get cancelBubble() {
-      return __privateGet(this, _event).cancelBubble;
+      return this.#event.cancelBubble;
     }
     get cancelable() {
-      return __privateGet(this, _event).cancelable;
+      return this.#event.cancelable;
     }
     get composed() {
-      return __privateGet(this, _event).bubbles;
+      return this.#event.bubbles;
     }
     get currentTarget() {
-      return __privateGet(this, _event).currentTarget;
+      return this.#event.currentTarget;
     }
     get defaultPrevented() {
-      return __privateGet(this, _event).defaultPrevented;
+      return this.#event.defaultPrevented;
     }
     get eventPhase() {
-      return __privateGet(this, _event).eventPhase;
+      return this.#event.eventPhase;
     }
     get isTrusted() {
-      return __privateGet(this, _event).isTrusted;
+      return this.#event.isTrusted;
     }
     get returnValue() {
-      return __privateGet(this, _event).returnValue;
+      return this.#event.returnValue;
     }
     get srcElement() {
-      return __privateGet(this, _event).srcElement;
+      return this.#event.srcElement;
     }
     get target() {
-      return __privateGet(this, _event).target;
+      return this.#event.target;
     }
     get timeStamp() {
-      return __privateGet(this, _event).timeStamp;
+      return this.#event.timeStamp;
     }
     get type() {
-      return __privateGet(this, _event).type;
+      return this.#event.type;
     }
     composedPath() {
       throw new Error("Method not implemented.");
@@ -1351,19 +1325,15 @@ ${concatenatedMessages}
       throw new Error("Method not implemented.");
     }
     get context() {
-      return __privateGet(this, _context);
+      return this.#context;
     }
     get callback() {
-      return __privateGet(this, _callback);
+      return this.#callback;
     }
     get subscribe() {
-      return __privateGet(this, _subscribe);
+      return this.#subscribe;
     }
   };
-  _context = /* @__PURE__ */ new WeakMap();
-  _callback = /* @__PURE__ */ new WeakMap();
-  _subscribe = /* @__PURE__ */ new WeakMap();
-  _event = /* @__PURE__ */ new WeakMap();
   var context_event_default = TybaltContextEvent;
   var nameValidator = should_throw_default(
     with_message_default(
@@ -1385,29 +1355,25 @@ ${concatenatedMessages}
     template,
     contexts = []
   }) => {
-    var _setupContext, _props, _renderObservables, _renderState, _render, _css, _template, _isConnected, _contexts, _doRender, doRender_fn, _updateProps, updateProps_fn, _a;
     nameValidator.validate(name);
-    const clazz = (_a = class extends HTMLElement {
+    const clazz = class extends HTMLElement {
       constructor() {
         super();
-        __privateAdd(this, _doRender);
-        __privateAdd(this, _updateProps);
-        __privateAdd(this, _setupContext, void 0);
-        __privateAdd(this, _props, {});
-        __privateAdd(this, _renderObservables, {});
-        __privateAdd(this, _renderState, {});
-        __privateAdd(this, _render, render);
-        __privateAdd(this, _css, css);
-        __privateAdd(this, _template, template);
-        __privateAdd(this, _isConnected, false);
-        __privateAdd(this, _contexts, /* @__PURE__ */ new Map());
-        __privateSet(this, _props, Object.entries(props).reduce(
+        this.#props = {};
+        this.#renderObservables = {};
+        this.#renderState = {};
+        this.#render = render;
+        this.#css = css;
+        this.#template = template;
+        this.#isConnected = false;
+        this.#contexts = /* @__PURE__ */ new Map();
+        this.#props = Object.entries(props).reduce(
           (accumulator, [key, value]) => {
             const parser = value.parser || import_parser.standard;
             let initialValue = null;
             try {
               initialValue = parser.parse(value.default);
-              __privateGet(this, _renderState)[key] = initialValue;
+              this.#renderState[key] = initialValue;
             } catch (e) {
               initialValue = e;
             }
@@ -1418,16 +1384,16 @@ ${concatenatedMessages}
             return accumulator;
           },
           {}
-        ));
+        );
         const emit = (type, detail) => {
           if (emits && !emits?.includes(type)) {
             console.warn(`unexpected event emitted with type ${type} and detail ${detail}`);
           }
           this.dispatchEvent(new CustomEvent(type, { detail }));
         };
-        __privateSet(this, _setupContext, {
+        this.#setupContext = {
           emit
-        });
+        };
         const getProxy = (value) => {
           return new Proxy(value, {
             get(target, prop, receiver) {
@@ -1439,31 +1405,31 @@ ${concatenatedMessages}
           });
         };
         const propsForSetup = Object.fromEntries(
-          Object.entries(__privateGet(this, _props)).map(([key, value]) => [key, getProxy(value)])
+          Object.entries(this.#props).map(([key, value]) => [key, getProxy(value)])
         );
         const setupResults = setup?.call(
           this,
           propsForSetup,
-          __privateGet(this, _setupContext)
+          this.#setupContext
         ) || {};
         for (const [key, value] of Object.entries({ ...propsForSetup, ...setupResults })) {
           if (value.subscribe) {
-            __privateGet(this, _renderObservables)[key] = value;
+            this.#renderObservables[key] = value;
           } else if (value.observable) {
-            __privateGet(this, _renderObservables)[key] = value.observable;
+            this.#renderObservables[key] = value.observable;
           } else {
-            __privateGet(this, _renderState)[key] = value;
+            this.#renderState[key] = value;
           }
         }
         for (const context2 of contexts) {
-          __privateGet(this, _contexts).set(context2, { value: {}, unsubscribe: () => {
+          this.#contexts.set(context2, { value: {}, unsubscribe: () => {
           } });
           const observable2 = new BehaviorSubject(context2.initialValue || null);
           this.dispatchEvent(
             new context_event_default(
               context2,
               (value, unsubscribe) => {
-                const contextState = __privateGet(this, _contexts).get(context2);
+                const contextState = this.#contexts.get(context2);
                 if (unsubscribe !== contextState.unsubscribe) {
                   contextState.unsubscribe?.();
                 }
@@ -1476,81 +1442,99 @@ ${concatenatedMessages}
             )
           );
         }
-        for (const [key, value] of Object.entries(__privateGet(this, _contexts))) {
-          if (!__privateGet(this, _renderObservables)[key]) {
-            __privateGet(this, _renderObservables)[key] = value.observable;
+        for (const [key, value] of Object.entries(this.#contexts)) {
+          if (!this.#renderObservables[key]) {
+            this.#renderObservables[key] = value.observable;
           }
         }
-        for (const [key, value] of Object.entries(__privateGet(this, _props))) {
-          if (!__privateGet(this, _renderObservables)[key]) {
-            __privateGet(this, _renderObservables)[key] = value.observable.pipe(map((value2) => value2.parser(value2)));
+        for (const [key, value] of Object.entries(this.#props)) {
+          if (!this.#renderObservables[key]) {
+            this.#renderObservables[key] = value.observable.pipe(map((value2) => value2.parser(value2)));
           }
         }
-        for (const [key, observable2] of Object.entries(__privateGet(this, _renderObservables))) {
+        for (const [key, observable2] of Object.entries(this.#renderObservables)) {
           observable2.subscribe((value) => {
-            __privateGet(this, _renderState)[key] = value;
-            __privateMethod(this, _doRender, doRender_fn).call(this);
+            this.#renderState[key] = value;
+            this.#doRender();
           });
         }
         this.attachShadow({ mode: shadowMode });
-        __privateMethod(this, _doRender, doRender_fn).call(this);
+        this.#doRender();
       }
+      // The context object passed to the component definition's setup method
+      #setupContext;
+      #props;
+      #renderObservables;
+      #renderState;
+      #render;
+      #css;
+      #template;
+      #isConnected;
+      #contexts;
       connectedCallback() {
-        __privateSet(this, _isConnected, true);
+        this.#isConnected = true;
         connectedCallback?.apply(this);
-        __privateMethod(this, _updateProps, updateProps_fn).call(this);
-        __privateMethod(this, _doRender, doRender_fn).call(this);
+        this.#updateProps();
+        this.#doRender();
       }
       disconnectedCallback() {
-        __privateSet(this, _isConnected, false);
+        this.#isConnected = false;
         disconnectedCallback?.apply(this);
       }
       adoptedCallback() {
         adoptedCallback?.apply(this);
       }
       attributeChangedCallback(name2, oldValue, newValue) {
-        const { observable: observable2, parser } = __privateGet(this, _props)[name2];
+        const { observable: observable2, parser } = this.#props[name2];
         const parsed = parser.parse(newValue);
         observable2.next(parsed);
-        __privateMethod(this, _doRender, doRender_fn).call(this);
+        this.#doRender();
       }
-    }, _setupContext = /* @__PURE__ */ new WeakMap(), _props = /* @__PURE__ */ new WeakMap(), _renderObservables = /* @__PURE__ */ new WeakMap(), _renderState = /* @__PURE__ */ new WeakMap(), _render = /* @__PURE__ */ new WeakMap(), _css = /* @__PURE__ */ new WeakMap(), _template = /* @__PURE__ */ new WeakMap(), _isConnected = /* @__PURE__ */ new WeakMap(), _contexts = /* @__PURE__ */ new WeakMap(), _doRender = /* @__PURE__ */ new WeakSet(), doRender_fn = function() {
-      if (!__privateGet(this, _isConnected) || !this.shadowRoot) {
-        return;
-      }
-      this.shadowRoot.innerHTML = "";
-      if (__privateGet(this, _css)) {
-        const styleElement = document.createElement("style");
-        const calculatedCss = typeof css === "function" ? css(__privateGet(this, _renderState)) || "" : css;
-        styleElement.innerHTML = calculatedCss || "";
-        this.shadowRoot?.appendChild(styleElement);
-      }
-      if (__privateGet(this, _render)) {
-        const templateElement = document.createElement("template");
-        const newEntries = Object.entries(__privateGet(this, _renderState)).map(
-          ([key, value]) => [key, value?.observable ? value.observable : value]
-        );
-        templateElement.innerHTML = __privateGet(this, _render).call(this, Object.fromEntries(newEntries));
-        const templateContent = templateElement.content;
-        this.shadowRoot?.appendChild(templateContent.cloneNode(true));
-      }
-      if (__privateGet(this, _template)) {
-        const templateElement = document.createElement("template");
-        templateElement.innerHTML = __privateGet(this, _template);
-        const templateContent = templateElement.content;
-        this.shadowRoot?.appendChild(templateContent.cloneNode(true));
-      }
-    }, _updateProps = /* @__PURE__ */ new WeakSet(), updateProps_fn = function() {
-      for (const [key, value] of Object.entries(__privateGet(this, _props))) {
-        const attributeValue = this.getAttribute(key);
-        const usingDefault = attributeValue === null && value.observable.value;
-        const areDifferent = attributeValue !== value.observable.getValue();
-        if (!usingDefault && areDifferent) {
-          const nextValue = value.parser.parse(attributeValue);
-          value.observable.next(nextValue);
+      #doRender() {
+        if (!this.#isConnected || !this.shadowRoot) {
+          return;
+        }
+        this.shadowRoot.innerHTML = "";
+        if (this.#css) {
+          const styleElement = document.createElement("style");
+          const calculatedCss = typeof css === "function" ? css(this.#renderState) || "" : css;
+          styleElement.innerHTML = calculatedCss || "";
+          this.shadowRoot?.appendChild(styleElement);
+        }
+        if (this.#render) {
+          const templateElement = document.createElement("template");
+          const newEntries = Object.entries(this.#renderState).map(
+            ([key, value]) => [key, value?.observable ? value.observable : value]
+          );
+          templateElement.innerHTML = this.#render(
+            Object.fromEntries(newEntries)
+          );
+          const templateContent = templateElement.content;
+          this.shadowRoot?.appendChild(templateContent.cloneNode(true));
+        }
+        if (this.#template) {
+          const templateElement = document.createElement("template");
+          templateElement.innerHTML = this.#template;
+          const templateContent = templateElement.content;
+          this.shadowRoot?.appendChild(templateContent.cloneNode(true));
         }
       }
-    }, _a);
+      /**
+       * Pushes the current value of all props into their corresponding observables. Called
+       * on connectedCallback.
+       */
+      #updateProps() {
+        for (const [key, value] of Object.entries(this.#props)) {
+          const attributeValue = this.getAttribute(key);
+          const usingDefault = attributeValue === null && value.observable.value;
+          const areDifferent = attributeValue !== value.observable.getValue();
+          if (!usingDefault && areDifferent) {
+            const nextValue = value.parser.parse(attributeValue);
+            value.observable.next(nextValue);
+          }
+        }
+      }
+    };
     try {
       customElements.define(name, clazz);
     } catch (e) {
