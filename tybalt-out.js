@@ -1600,7 +1600,7 @@ ${concatenatedMessages}
 
   // components/sidebar.js
   var PACKAGES = ["cli", "core", "eleventy-plugin", "esbuild-plugin", "eslint-plugin", "parser", "test-utils", "validator"];
-  var GUIDES = ["new-website", "styling-your-component", "writing-tests"];
+  var GUIDES = ["new-website", "styling-your-component", "writing-tests", "custom-validator"];
   define_component_default({
     name: "tybalt-sidebar",
     shadowMode: "open",

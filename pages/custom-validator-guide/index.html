@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Custom Validator Guide</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><p>To enforce constraints in Tybalt, we have validators. A validator is a plain-old javascript object with a method called <code>validate</code> that takes a string. For example, you can have a validator that allows all values as follows</p>
+<pre><code class="language-js">{ validate() { return true; } }
+</code></pre>
+<p>For our example, we want to check the value is divisible by 8</p>
+<pre><code class="language-js">{ validate(val) { return val % 8 === 0; } }
+</code></pre>
+<p>You can also return other metadata on a validator by with the with* methods, like <code>withMessage</code> and <code>withLevel</code>. For instance, to set our log level to warn and add a message, we would wrap our validator as follows</p>
+<pre><code class="language-js">withMessage(
+  withLevel({
+    validate(val) { return val % 8 === 0; }
+  }, 'warning'),
+  'value must be divisible by 8'
+)
+</code></pre>
+<p>This ends up creating a validator which looks like this</p>
+<pre><code class="language-json">{
+  validate(val) { return val % 8 === 0; },
+  message: 'value must be divisible by 8',
+  level: 'warn'
+}
+</code></pre>
+<p>But please use the <code>with*</code> methods so we can move the message and level to a symbol or different key if we need in the future.</p>
+<p>Finally, if you find yourself creating many similar validators, you can create a factory. Say, for instance, we now need to support divisible by 10 too. We could create a factory</p>
+<pre><code class="language-js">const divisibleBy = (divisor) =&gt; {
+  return withMessage(
+    withLevel({
+      validate(val) { return val % divisor === 0; }
+    }, 'warning'),
+  `value must be divisible by ${divisor}`
+)
+</code></pre>
+<p>Which can be used as follows</p>
+<pre><code class="language-js">defineComponent({
+  props: {
+    size: {
+      validator: compose(number(), divisibleBy(10))
+    }
+  }
+})
+</code></pre>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt-out.js"></script></body></html>
