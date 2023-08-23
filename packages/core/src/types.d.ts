@@ -45,12 +45,6 @@ export type UseObservableReturn = Promise<{
     observable: Observable<any>;
 }>;
 
-export type DefineExampleOptions = {
-    attributes: object;
-    controls: object;
-    listeners: object;
-};
-
 export type SetupContext = {
     emit(type: string, detail: any): void;
 };
