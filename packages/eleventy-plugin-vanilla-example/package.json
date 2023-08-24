@@ -21,7 +21,7 @@
         "rimraf": "^5.0.1"
     },
     "bugs": {
-        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aeleventy-plugin-vanilla-example"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aeleventy-plugin-vanilla-example"
     },
     "homepage": "https://tybalt.org/pages/eleventy-plugin",
     "repository": {

@@ -39,7 +39,7 @@
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT",
     "bugs": {
-        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aesbuild-plugin"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aesbuild-plugin"
     },
     "homepage": "https://tybalt.org/pages/esbuild-plugin",
     "repository": {
