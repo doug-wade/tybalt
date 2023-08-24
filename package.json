@@ -31,6 +31,8 @@
         "./packages/example",
         "./packages/parser",
         "./packages/reactive",
+        "./packages/storybook-framework-tybalt",
+        "./packages/storybook-framework-tybalt-example",
         "./packages/test-utils",
         "./packages/test-utils-lit-example",
         "./packages/validator",
