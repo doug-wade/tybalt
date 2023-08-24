@@ -31,7 +31,7 @@
         "jest-environment-jsdom": "^29.6.1"
     },
     "bugs": {
-        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aexample"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aexample"
     },
     "homepage": "https://tybalt.org",
     "repository": {

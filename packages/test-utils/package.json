@@ -18,7 +18,12 @@
         "watch-esm": "esbuild src/**/!(*.d).ts src/!(*.d).ts --format=esm --outdir=dist/mjs",
         "watch-commonjs": "esbuild src/**/!(*.d).ts src/!(*.d).ts --format=cjs --outdir=dist/cjs"
     },
-    "keywords": [],
+    "keywords": [
+        "jest",
+        "testing",
+        "web components",
+        "tybalt"
+    ],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT",
     "dependencies": {
@@ -40,7 +45,7 @@
         "README.md"
     ],
     "bugs": {
-        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Atest-utils"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Atest-utils"
     },
     "homepage": "https://tybalt.org/pages/test-utils",
     "repository": {

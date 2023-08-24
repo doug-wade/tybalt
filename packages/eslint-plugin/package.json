@@ -32,7 +32,7 @@
     },
     "license": "MIT",
     "bugs": {
-        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aeslint-plugin"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aeslint-plugin"
     },
     "homepage": "https://tybalt.org/pages/eslint-plugin",
     "repository": {

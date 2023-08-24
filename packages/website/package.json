@@ -24,7 +24,7 @@
         "@tybalt/eleventy-plugin": "workspace:^"
     },
     "bugs": {
-        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Awebsite"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Awebsite"
     },
     "homepage": "https://tybalt.org",
     "repository": {

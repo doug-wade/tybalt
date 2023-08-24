@@ -43,7 +43,7 @@
         "README.md"
     ],
     "bugs": {
-        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Avalidator"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Avalidator"
     },
     "homepage": "https://tybalt.org/pages/validator",
     "repository": {

@@ -56,7 +56,7 @@
         "README.md"
     ],
     "bugs": {
-        "url" : "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Acli"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Acli"
     },
     "homepage": "https://tybalt.org/pages/cli",
     "repository": {
