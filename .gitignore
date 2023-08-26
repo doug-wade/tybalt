@@ -5,6 +5,7 @@ dist/
 packages/**/dist/
 packages/cli/out/
 coverage/
+coverage-final.json
 .turbo/
 *.out
 .yarn/
