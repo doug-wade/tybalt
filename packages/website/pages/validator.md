@@ -12,7 +12,7 @@ title: Tybalt validator
 You can install the package from npm. For example, using the npm cli
 
 ```shell
-$ npm install --save @tybalt/validator
+npm install --save @tybalt/validator
 ```
 
 Alternatively, you can install using `pnpm` or `yarn`.
@@ -95,7 +95,7 @@ validator.validate('quux'); // returns { passed: false }
 
 ### array
 
-`array` creates a validator that checks whether a value is an array.
+`array` creates a validator that checks whether a value is an array. It will return true if the object is either an array or a string that parses to an array.
 
 ```javascript
 import { array } from '@tybalt/validator';
