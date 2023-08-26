@@ -1,38 +1,25 @@
 import { defineComponent, html } from '@tybalt/core';
 
-const PACKAGES = ['cli', 'core', 'eleventy-plugin', 'esbuild-plugin', 'eslint-plugin', 'parser', 'test-utils', 'validator'];
-const GUIDES = ['new-website', 'styling-your-component', 'writing-tests', 'custom-validator'];
+const packages = ['cli', 'core', 'eleventy-plugin', 'esbuild-plugin', 'eslint-plugin', 'parser', 'test-utils', 'validator'];
+const guides = ['new-website', 'styling-your-component', 'writing-tests', 'custom-validator'];
 
 defineComponent({
     name: 'tybalt-sidebar',
     shadowMode: 'open',
     render() {
-        const packageLis = PACKAGES.map((pkg) => {
-            return html`
-                <li>
-                    <tybalt-link href="/pages/${pkg}">@tybalt/${pkg}</tybalt-link>
-                </li>
-            `;
-        });
-        const guideLis = GUIDES.map((guide) => {
-            return html`
-                <li>
-                    <tybalt-link href="/pages/${guide}-guide">${guide.replaceAll('-', ' ')}</tybalt-link>
-                </li>
-            `;
-        });
         return html`
             <aside>
-                <div>Individual Package Documentation</div>
-                <ul>
-                    ${packageLis.join('')}
-                </ul>
-                <div>Guides</div>
-                <ul>
-                    ${guideLis.join('')}
-                </ul>
-                <tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link>
-                <tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link>
+                <link-list links="${packages}" formatter="/pages/{}">
+                    <h4>Individual Package Documentation</h4>
+                </link-list>
+                <link-list links="${guides}" formatter="/pages/{}-guide">
+                    <h4>Guides</h4>
+                </link-list>
+                <link-list>
+                    <h4>Additional Resources</h4>
+                    <tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link>
+                    <tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link>
+                </link-list>
             </aside>
         `;
     },
