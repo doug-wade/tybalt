@@ -34,6 +34,9 @@
         "clean": {
             "outputs": []
         },
+        "ci-test": {
+            "dependsOn": ["build", "^test"]
+        },
         "generate-types": {
             "outputs": ["packages/**/dist/**/*.d.ts"],
             "inputs": ["packages/**/src/**/*.ts"]

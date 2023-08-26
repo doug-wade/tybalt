@@ -7,6 +7,7 @@
     "type": "module",
     "scripts": {
         "build": "tybalt build",
+        "ci-test": "echo 'TODO: run tybalt test --integration'",
         "examples": "tybalt examples",
         "lint": "tybalt lint",
         "scaffold": "tybalt scaffold",

@@ -5,6 +5,7 @@
     "private": true,
     "scripts": {
         "build": "turbo build",
+        "ci-test": "turbo ci-test",
         "clean": "turbo clean",
         "combine-coverage": "istanbul-merge --out coverage-final.json 'packages/**/coverage/coverage-final.json'",
         "format": "prettier --write .",

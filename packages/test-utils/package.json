@@ -6,6 +6,7 @@
     "main": "dist/cjs/index.js",
     "scripts": {
         "build": "yarn run compile && yarn run generate-types",
+        "ci-test": "jest --coverage",
         "clean": "rimraf dist/",
         "compile": "yarn run compile-esm && yarn run compile-commonjs",
         "compile-esm": "esbuild src/**/!(*.d).ts src/!(*.d).ts --format=esm --outdir=dist/mjs",
@@ -13,7 +14,7 @@
         "debug": "yarn node --inspect-brk $(yarn bin jest) --runInBand",
         "generate-types": "tsc && rsync -a dist/types/ dist/mjs/ && rsync -a dist/types/ dist/cjs/",
         "profile": "ndb $(yarn bin jest)",
-        "test": "jest --coverage",
+        "test": "jest",
         "watch": "concurrently 'yarn run watch-esm' 'yarn run watch-commonjs'",
         "watch-esm": "esbuild src/**/!(*.d).ts src/!(*.d).ts --format=esm --outdir=dist/mjs",
         "watch-commonjs": "esbuild src/**/!(*.d).ts src/!(*.d).ts --format=cjs --outdir=dist/cjs"
