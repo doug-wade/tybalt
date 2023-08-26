@@ -370,6 +370,14 @@ ${concatenatedMessages}
       return !!value;
     });
   };
+  var isValidatorFunction = (x) => typeof x === "function";
+  var ensure_validator_default = (maybeValidator) => {
+    if (isValidatorFunction(maybeValidator)) {
+      return validator_default(maybeValidator);
+    } else {
+      return maybeValidator;
+    }
+  };
   var ValidationError = class extends Error {
   };
   var DEFAULT_MESSAGE = "A validator with no associated message failed.";
@@ -385,14 +393,6 @@ ${concatenatedMessages}
         }
       }
     };
-  };
-  var isValidatorFunction = (x) => typeof x === "function";
-  var ensure_validator_default = (maybeValidator) => {
-    if (isValidatorFunction(maybeValidator)) {
-      return validator_default(maybeValidator);
-    } else {
-      return maybeValidator;
-    }
   };
   var with_message_default = (validator, message) => {
     const definitelyValidator = ensure_validator_default(validator);

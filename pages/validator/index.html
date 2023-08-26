@@ -29,7 +29,7 @@
 <h2>Installation</h2>
 <h3>Bundlers</h3>
 <p>You can install the package from npm. For example, using the npm cli</p>
-<pre><code class="language-shell">$ npm install --save @tybalt/validator
+<pre><code class="language-shell">npm install --save @tybalt/validator
 </code></pre>
 <p>Alternatively, you can install using <code>pnpm</code> or <code>yarn</code>.</p>
 <p>Once you've installed the package you'll need to include it in your bundle.
@@ -85,7 +85,7 @@ validator.validate('quux'); // returns { passed: false }
 </code></pre>
 <h2>API</h2>
 <h3>array</h3>
-<p><code>array</code> creates a validator that checks whether a value is an array.</p>
+<p><code>array</code> creates a validator that checks whether a value is an array. It will return true if the object is either an array or a string that parses to an array.</p>
 <pre><code class="language-javascript">import { array } from '@tybalt/validator';
 
 const validator = array();
