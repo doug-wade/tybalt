@@ -30,8 +30,8 @@ jobs:
               run: yarn build
 
             - name: Run the tests
-              run: yarn test -- --coverage
-
+              run: yarn ci-test
+              
             - name: Merge code coverage
               run: yarn run combine-coverage
 
