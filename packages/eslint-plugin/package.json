@@ -5,11 +5,12 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "yarn run compile && yarn run generate-types",
+        "ci-test": "jest --coverage",
         "clean": "rimraf dist/ coverage/",
         "compile": "esbuild src/**/*.ts src/*.ts --format=cjs --outdir=dist",
         "generate-types": "tsc",
         "lint": "eslint src/**/*.ts",
-        "test": "jest --coverage",
+        "test": "jest",
         "watch": "esbuild src/**/*.ts src/*.ts --format=cjs --outdir=dist --watch"
     },
     "keywords": [
