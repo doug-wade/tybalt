@@ -1,3 +1,4 @@
+export { default as array } from './api/array';
 export { default as boolean } from './api/boolean';
 export { default as compose } from './api/compose';
 export { default as integer } from './api/integer';
@@ -5,6 +6,7 @@ export { default as matchesPattern } from './api/matches-pattern';
 export { default as number } from './api/number';
 export { default as oneOf } from './api/one-of';
 export { default as required } from './api/required';
+export { default as shape } from './api/shape';
 export { default as shouldThrow } from './api/should-throw';
 export { default as string } from './api/string';
 export { default as url } from './api/url';

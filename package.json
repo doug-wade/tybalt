@@ -42,7 +42,9 @@
         "turbo": "^1.7.0"
     },
     "packageManager": "yarn@3.6.1",
-    "bugs": { "url" : "https://github.com/doug-wade/tybalt/issues" },
+    "bugs": {
+        "url": "https://github.com/doug-wade/tybalt/issues"
+    },
     "homepage": "https://tybalt.org",
     "repository": {
         "type": "git",
