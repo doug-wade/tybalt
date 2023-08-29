@@ -2603,7 +2603,7 @@ __metadata:
     "@types/node": ^20.4.4
     "@typescript-eslint/eslint-plugin": ^6.3.0
     "@typescript-eslint/parser": ^6.4.1
-    "@typescript-eslint/rule-tester": ^6.4.1
+    "@typescript-eslint/rule-tester": ^6.5.0
     "@typescript-eslint/utils": ^6.5.0
     esbuild: ^0.19.2
     esbuild-jest: ^0.5.0
@@ -3048,19 +3048,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/rule-tester@npm:^6.4.1":
-  version: 6.4.1
-  resolution: "@typescript-eslint/rule-tester@npm:6.4.1"
+"@typescript-eslint/rule-tester@npm:^6.5.0":
+  version: 6.5.0
+  resolution: "@typescript-eslint/rule-tester@npm:6.5.0"
   dependencies:
-    "@typescript-eslint/typescript-estree": 6.4.1
-    "@typescript-eslint/utils": 6.4.1
+    "@typescript-eslint/typescript-estree": 6.5.0
+    "@typescript-eslint/utils": 6.5.0
     ajv: ^6.10.0
     lodash.merge: 4.6.2
     semver: ^7.5.4
   peerDependencies:
     "@eslint/eslintrc": ">=2"
     eslint: ">=8"
-  checksum: cb1eeb9e2b9c02e9e4a7516bdb4fbadae6d728781b672858340f7acc109c3eb8c77fbb31d2ca5def999b016e71d5b4814f95418a0ea714cbff6cd73117cb48f5
+  checksum: ea61f47668ce5819f051e02b124e2a35d76ac1c83d099ab518072208f1c1bec0552d4c1a4184d64362a70bf969106fb2de0165e5a71d7774b2d1c5058509b2bb
   languageName: node
   linkType: hard
 
@@ -3203,24 +3203,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.4.1":
-  version: 6.4.1
-  resolution: "@typescript-eslint/utils@npm:6.4.1"
-  dependencies:
-    "@eslint-community/eslint-utils": ^4.4.0
-    "@types/json-schema": ^7.0.12
-    "@types/semver": ^7.5.0
-    "@typescript-eslint/scope-manager": 6.4.1
-    "@typescript-eslint/types": 6.4.1
-    "@typescript-eslint/typescript-estree": 6.4.1
-    semver: ^7.5.4
-  peerDependencies:
-    eslint: ^7.0.0 || ^8.0.0
-  checksum: 54e642a345790f912393a6f2821495e2359eff0f874a94cbe6fb3ef4411702983ed54fe88ca3ea9d28f2e93800a74dee22b7888838154bc1afd57c7e119e17ec
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/utils@npm:^6.5.0":
+"@typescript-eslint/utils@npm:6.5.0, @typescript-eslint/utils@npm:^6.5.0":
   version: 6.5.0
   resolution: "@typescript-eslint/utils@npm:6.5.0"
   dependencies:
