@@ -2527,7 +2527,7 @@ __metadata:
     "@types/browser-sync": ^2.26.3
     "@types/glob": ^8.0.1
     "@types/mkdirp": ^2.0.0
-    "@types/node": ^20.4.4
+    "@types/node": ^20.5.9
     browser-sync: ^2.27.11
     chalk: ^5.2.0
     commander: ^11.0.0
@@ -2600,7 +2600,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tybalt/eslint-plugin@workspace:packages/eslint-plugin"
   dependencies:
-    "@types/node": ^20.4.4
+    "@types/node": ^20.5.9
     "@typescript-eslint/eslint-plugin": ^6.3.0
     "@typescript-eslint/parser": ^6.4.1
     "@typescript-eslint/rule-tester": ^6.5.0
@@ -2894,10 +2894,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=10.0.0, @types/node@npm:^20.4.4":
+"@types/node@npm:*, @types/node@npm:>=10.0.0":
   version: 20.4.5
   resolution: "@types/node@npm:20.4.5"
   checksum: 36a0304a8dc346a1b2d2edac4c4633eecf70875793d61a5274d0df052d7a7af7a8e34f29884eac4fbd094c4f0201477dcb39c0ecd3307ca141688806538d1138
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.5.9":
+  version: 20.5.9
+  resolution: "@types/node@npm:20.5.9"
+  checksum: 717490e94131722144878b4ca1a963ede1673bb8f2ef78c2f5b50b918df6dc9b35e7f8283e5c2a7a9f137730f7c08dc6228e53d4494a94c9ee16881e6ce6caed
   languageName: node
   linkType: hard
 
