@@ -2583,7 +2583,7 @@ __metadata:
     esbuild: ^0.19.2
     eslint: ^8.47.0
     find-up: ^6.3.0
-    glob: ^10.3.3
+    glob: ^10.3.4
     import-meta-resolve: ^3.0.0
     jest: ^29.4.3
     jest-environment-jsdom: ^29.6.4
@@ -2629,7 +2629,7 @@ __metadata:
   dependencies:
     "@tybalt/esbuild-plugin": "workspace:^"
     esbuild: ^0.19.2
-    glob: ^10.3.3
+    glob: ^10.3.4
     jsdom: ^22.1.0
   languageName: unknown
   linkType: soft
@@ -6164,7 +6164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2, glob@npm:^10.2.5, glob@npm:^10.3.3":
+"glob@npm:^10.2.2, glob@npm:^10.2.5":
   version: 10.3.3
   resolution: "glob@npm:10.3.3"
   dependencies:
@@ -6176,6 +6176,21 @@ __metadata:
   bin:
     glob: dist/cjs/src/bin.js
   checksum: 29190d3291f422da0cb40b77a72fc8d2c51a36524e99b8bf412548b7676a6627489528b57250429612b6eec2e6fe7826d328451d3e694a9d15e575389308ec53
+  languageName: node
+  linkType: hard
+
+"glob@npm:^10.3.4":
+  version: 10.3.4
+  resolution: "glob@npm:10.3.4"
+  dependencies:
+    foreground-child: ^3.1.0
+    jackspeak: ^2.0.3
+    minimatch: ^9.0.1
+    minipass: ^5.0.0 || ^6.0.2 || ^7.0.0
+    path-scurry: ^1.10.1
+  bin:
+    glob: dist/cjs/src/bin.js
+  checksum: 176b97c124414401cb51329a93d2ba112cef8814adbed10348481916b9521b677773eee2691cb6b24d66632d8c8bb8913533f5ac4bfb2d0ef5454a1856082361
   languageName: node
   linkType: hard
 
