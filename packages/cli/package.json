@@ -34,7 +34,7 @@
         "esbuild": "^0.19.2",
         "eslint": "^8.47.0",
         "find-up": "^6.3.0",
-        "glob": "^10.3.3",
+        "glob": "^10.3.4",
         "import-meta-resolve": "^3.0.0",
         "jest-environment-jsdom": "^29.6.1",
         "js-convert-case": "^4.2.0",
