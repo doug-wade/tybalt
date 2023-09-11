@@ -16,7 +16,7 @@
     "devDependencies": {
         "@11ty/eleventy": "^2.0.1",
         "chokidar-cli": "^3.0.0",
-        "eleventy-plugin-pwa-v2": "^1.0.0",
+        "eleventy-plugin-pwa-v2": "^1.0.1",
         "rimraf": "^5.0.1"
     },
     "dependencies": {
