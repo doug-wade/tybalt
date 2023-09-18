@@ -2582,7 +2582,7 @@ __metadata:
     "@swc/core": ^1.3.85
     "@tybalt/esbuild-plugin": "workspace:^"
     "@tybalt/eslint-plugin": "workspace:^"
-    "@types/browser-sync": ^2.26.3
+    "@types/browser-sync": ^2.27.1
     "@types/glob": ^8.0.1
     "@types/mkdirp": ^2.0.0
     "@types/node": ^20.6.0
@@ -2799,15 +2799,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/browser-sync@npm:^2.26.3":
-  version: 2.27.0
-  resolution: "@types/browser-sync@npm:2.27.0"
+"@types/browser-sync@npm:^2.27.1":
+  version: 2.27.1
+  resolution: "@types/browser-sync@npm:2.27.1"
   dependencies:
     "@types/micromatch": ^2
     "@types/node": "*"
     "@types/serve-static": "*"
     chokidar: ^3.0.0
-  checksum: a2e8d21681ba52f92ccdc196daa9ae9104df918c3265e111e20be589ecbfe21717289c814dac10940eb4485a370d67388be73005bfc0489eb41bd281c6343f80
+  checksum: 3eebcbffe745f298f06594edce17b755db89c500a3b3f92d5835bf100a1c8169f759accf4bf0cfe82fe7be6231075a129c271646e5b2e5e8cdeb2cd2783264c6
   languageName: node
   linkType: hard
 
