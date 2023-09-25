@@ -18,7 +18,7 @@
     "devDependencies": {
         "@11ty/eleventy": "^2.0.1",
         "@tybalt/esbuild-plugin": "workspace:^",
-        "rimraf": "^5.0.1"
+        "rimraf": "^5.0.2"
     },
     "bugs": {
         "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Aeleventy-plugin-vanilla-example"

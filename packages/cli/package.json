@@ -39,7 +39,7 @@
         "jest-environment-jsdom": "^29.6.4",
         "js-convert-case": "^4.2.0",
         "mkdirp": "^3.0.1",
-        "rimraf": "^5.0.1",
+        "rimraf": "^5.0.2",
         "ts-jest": "^29.0.5",
         "typescript": "^4.9.4"
     },
