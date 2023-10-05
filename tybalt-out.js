@@ -1458,9 +1458,12 @@ ${concatenatedMessages}
             this.#doRender();
           });
         }
-        this.attachShadow({ mode: shadowMode });
+        this.#shadowRoot = this.attachShadow({ mode: shadowMode });
         this.#doRender();
       }
+      // Closed shadow roots aren't attached to the class instance by default, so we
+      // grab a reference to it ourselves for later use.
+      #shadowRoot;
       // The context object passed to the component definition's setup method
       #setupContext;
       #props;
@@ -1491,15 +1494,15 @@ ${concatenatedMessages}
         this.#doRender();
       }
       #doRender() {
-        if (!this.#isConnected || !this.shadowRoot) {
+        if (!this.#isConnected || !this.#shadowRoot) {
           return;
         }
-        this.shadowRoot.innerHTML = "";
+        this.#shadowRoot.innerHTML = "";
         if (this.#css) {
           const styleElement = document.createElement("style");
           const calculatedCss = typeof css === "function" ? css(this.#renderState) || "" : css;
           styleElement.innerHTML = calculatedCss || "";
-          this.shadowRoot?.appendChild(styleElement);
+          this.#shadowRoot?.appendChild(styleElement);
         }
         if (this.#render) {
           const templateElement = document.createElement("template");
@@ -1510,13 +1513,13 @@ ${concatenatedMessages}
             Object.fromEntries(newEntries)
           );
           const templateContent = templateElement.content;
-          this.shadowRoot?.appendChild(templateContent.cloneNode(true));
+          this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
         }
         if (this.#template) {
           const templateElement = document.createElement("template");
           templateElement.innerHTML = this.#template;
           const templateContent = templateElement.content;
-          this.shadowRoot?.appendChild(templateContent.cloneNode(true));
+          this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
         }
       }
       /**
