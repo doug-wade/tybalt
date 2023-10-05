@@ -30,6 +30,10 @@ export default ({
     nameValidator.validate(name);
 
     const clazz = class extends HTMLElement {
+        // Closed shadow roots aren't attached to the class instance by default, so we
+        // grab a reference to it ourselves for later use.
+        #shadowRoot: ShadowRoot;
+
         // The context object passed to the component definition's setup method
         #setupContext: SetupContext;
 
@@ -205,7 +209,7 @@ export default ({
              * should. We would have to get away from the template tag method of rendering, and that is
              * contrary to the "use the platform" ethos we're building on.
              */
-            this.attachShadow({ mode: shadowMode });
+            this.#shadowRoot = this.attachShadow({ mode: shadowMode });
 
             this.#doRender();
         }
@@ -236,11 +240,11 @@ export default ({
         }
 
         #doRender() {
-            if (!this.#isConnected || !this.shadowRoot) {
+            if (!this.#isConnected || !this.#shadowRoot) {
                 return;
             }
 
-            this.shadowRoot.innerHTML = '';
+            this.#shadowRoot.innerHTML = '';
 
             /**
              * Note that the order of the rendered template is always
@@ -277,7 +281,7 @@ export default ({
                 const calculatedCss = typeof css === 'function' ? css(this.#renderState) || '' : css;
                 styleElement.innerHTML = calculatedCss || '';
 
-                this.shadowRoot?.appendChild(styleElement);
+                this.#shadowRoot?.appendChild(styleElement);
             }
 
             if (this.#render) {
@@ -290,7 +294,7 @@ export default ({
                 );
                 const templateContent = templateElement.content;
 
-                this.shadowRoot?.appendChild(templateContent.cloneNode(true));
+                this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
             }
 
             if (this.#template) {
@@ -298,7 +302,7 @@ export default ({
                 templateElement.innerHTML = this.#template;
                 const templateContent = templateElement.content;
 
-                this.shadowRoot?.appendChild(templateContent.cloneNode(true));
+                this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
             }
         }
 
