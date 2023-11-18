@@ -31,7 +31,7 @@
         "browser-sync": "^2.27.11",
         "chalk": "^5.2.0",
         "commander": "^11.0.0",
-        "esbuild": "^0.19.3",
+        "esbuild": "^0.19.5",
         "eslint": "^8.50.0",
         "find-up": "^6.3.0",
         "glob": "^10.3.4",
