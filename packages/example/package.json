@@ -27,7 +27,7 @@
         "@tybalt/esbuild-plugin": "workspace:^",
         "@tybalt/test-utils": "workspace:^",
         "browser-sync": "^2.27.11",
-        "esbuild": "^0.19.3",
+        "esbuild": "^0.19.6",
         "esbuild-jest": "^0.5.0",
         "jest-environment-jsdom": "^29.6.4"
     },

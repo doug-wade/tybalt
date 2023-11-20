@@ -8,7 +8,7 @@
     },
     "dependencies": {
         "@tybalt/esbuild-plugin": "workspace:^",
-        "esbuild": "^0.19.3",
+        "esbuild": "^0.19.6",
         "glob": "^10.3.4",
         "jsdom": "^22.1.0"
     },
