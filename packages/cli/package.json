@@ -35,7 +35,7 @@
         "eslint": "^8.50.0",
         "find-up": "^6.3.0",
         "glob": "^10.3.4",
-        "import-meta-resolve": "^3.0.0",
+        "import-meta-resolve": "^4.0.0",
         "jest-environment-jsdom": "^29.6.4",
         "js-convert-case": "^4.2.0",
         "mkdirp": "^3.0.1",
