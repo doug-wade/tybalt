@@ -32,7 +32,7 @@
         "uuid": "^9.0.1"
     },
     "devDependencies": {
-        "@types/uuid": "^9.0.5",
+        "@types/uuid": "^9.0.7",
         "concurrently": "^8.2.1",
         "esbuild": "^0.19.8",
         "esbuild-jest": "^0.5.0",
