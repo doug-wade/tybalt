@@ -38,9 +38,11 @@
 };
 </code></pre>
 <h2>Available rules</h2>
-<p>We currently only have one rule, but we plan to add more!</p>
+<p>We currently only have two rules, but we plan to add more!</p>
 <h3>Component names are multi-word</h3>
 <p>Checks to make sure that your component has a multi-word name (a name that contains an en-dash <code>-</code>). This is a requirement <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name">from the spec</a>.</p>
+<h2>Render variables are exported</h2>
+<p>Checks to make sure that the variables you are using in your render function were exported, either as a prop or from a <code>setup</code> function.</p>
 </div>
             </div>
             <tybalt-footer></tybalt-footer>
