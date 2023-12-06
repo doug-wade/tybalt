@@ -62,7 +62,7 @@ export default ({
 
         // All of the contexts to connect to
         // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
-        #contexts = new Map();
+        #contexts = new Map<string, { value: any, observable: BehaviorSubject<any>, unsubscribe?: () => void }>();
         contextState: any;
 
         constructor() {
@@ -102,6 +102,48 @@ export default ({
                 },
             );
 
+            for (const [contextName, context] of Object.entries(contexts)) {
+                const observable = new BehaviorSubject(context.initialValue || null);
+                this.#contexts.set(contextName, { value: context.initialValue, observable });
+
+                this.dispatchEvent(
+                    new ContextEvent(
+                        context,
+                        (value, unsubscribe) => {
+                            const contextState = this.#contexts.get(context) || { value: undefined, unsubscribe: undefined };
+
+                            // Call the old unsubscribe callback if the unsubscribe call has
+                            // changed. This probably means we have a new provider.
+                            if (unsubscribe !== contextState.unsubscribe) {
+                                contextState.unsubscribe?.();
+                            }
+
+                            observable.next(value);
+
+                            this.#contexts.set(contextName, { value, unsubscribe, observable });
+                        },
+                        {
+                            subscribe: true,
+                        },
+                    ),
+                );
+
+                /**
+                 * We want to make prop values and contexts available in the render function without needing to
+                 * pass them in the setup function. We don't want to shadow them if the dev wants to
+                 * reuse derived state with the same name in their render function or template.
+                 */
+                if (!this.#props[contextName]) {
+                    this.#renderObservables[contextName] = observable;
+                } else {
+                    /** 
+                     * DBW 12/6/23: I would prefer to throw here, but I can't catch the error and I can catch the log line
+                     * in the unit tests, so we log because its what we can test 🤣.
+                     */
+                    console.warn(`Collision detected between context and prop: ${contextName}`);
+                }
+            }
+
             // This is the method for clients to use to emit events
             const emit = (type: string, detail: any) => {
                 if (emits && !emits?.includes(type)) {
@@ -114,7 +156,7 @@ export default ({
                 emit,
             };
 
-            const getProxy = (value: { observable: BehaviorSubject<any>; parser: { parse(str: string | null): any; }; }) => {
+            const getProxy = (value: { observable: BehaviorSubject<any>; parser?: { parse(str: string | null): any; }; unsubscribe?: () => void }) => {
                 return new Proxy(value, {
                     get(target, prop, receiver) {
                         if (prop === 'value') {
@@ -125,9 +167,11 @@ export default ({
                     }
                 });
             };
-            const propsForSetup = Object.fromEntries(
-                Object.entries(this.#props).map(([key, value]) => [key, getProxy(value)]),
-            )
+            
+            const propsForSetup: { [key: string]: { subscribe: () => void; observable: Observable<any> } } = Object.fromEntries([
+                ...Object.entries(this.#props).map(([key, value]) => [key, getProxy(value)]),
+                ...Array.from(this.#contexts.entries()).map(([key, value]) => { return [key, getProxy(value)] }),
+            ]);
 
             const setupResults =
                 setup?.call(
@@ -145,45 +189,6 @@ export default ({
                     // We don't ever need to access this a second time, so we can cache it on the
                     // current render state and not have a corresponding render observable.
                     this.#renderState[key] = value;
-                }
-            }
-
-            for (const context of contexts) {
-                this.#contexts.set(context, { value: {}, unsubscribe: () => {} });
-
-                const observable = new BehaviorSubject(context.initialValue || null);
-
-                this.dispatchEvent(
-                    new ContextEvent(
-                        context,
-                        (value, unsubscribe) => {
-                            const contextState = this.#contexts.get(context);
-
-                            // Call the old unsubscribe callback if the unsubscribe call has
-                            // changed. This probably means we have a new provider.
-                            if (unsubscribe !== contextState.unsubscribe) {
-                                contextState.unsubscribe?.();
-                            }
-
-                            observable.next(value);
-
-                            this.contextState.set(context, { value, unsubscribe, observable });
-                        },
-                        {
-                            subscribe: true,
-                        },
-                    ),
-                );
-            }
-
-            /**
-             * We want to make prop values and contexts available in the render function without needing to
-             * pass them in the setup function. We don't want to shadow them if the dev wants to
-             * reuse derived state with the same name in their render function or template.
-             */
-            for (const [key, value] of Object.entries(this.#contexts)) {
-                if (!this.#renderObservables[key]) {
-                    this.#renderObservables[key] = value.observable;
                 }
             }
 
