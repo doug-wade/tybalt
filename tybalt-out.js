@@ -1254,15 +1254,16 @@ ${concatenatedMessages}
       }));
     });
   }
-  var TybaltContextEvent = class {
+  var TybaltContextEvent = class extends Event {
     constructor(context2, callback, options) {
+      super("context-request");
       this.NONE = 0;
       this.CAPTURING_PHASE = 1;
       this.AT_TARGET = 2;
       this.BUBBLING_PHASE = 3;
       this.#context = context2;
       this.#callback = callback;
-      this.#subscribe = options.subscribe || false;
+      this.#subscribe = options?.subscribe || false;
       this.#event = new CustomEvent("context-request", options);
     }
     #context;
@@ -1385,6 +1386,31 @@ ${concatenatedMessages}
           },
           {}
         );
+        for (const [contextName, context2] of Object.entries(contexts)) {
+          const observable2 = new BehaviorSubject(context2.initialValue || null);
+          this.#contexts.set(contextName, { value: context2.initialValue, observable: observable2 });
+          this.dispatchEvent(
+            new context_event_default(
+              context2,
+              (value, unsubscribe) => {
+                const contextState = this.#contexts.get(context2) || { value: void 0, unsubscribe: void 0 };
+                if (unsubscribe !== contextState.unsubscribe) {
+                  contextState.unsubscribe?.();
+                }
+                observable2.next(value);
+                this.#contexts.set(contextName, { value, unsubscribe, observable: observable2 });
+              },
+              {
+                subscribe: true
+              }
+            )
+          );
+          if (!this.#props[contextName]) {
+            this.#renderObservables[contextName] = observable2;
+          } else {
+            console.warn(`Collision detected between context and prop: ${contextName}`);
+          }
+        }
         const emit = (type, detail) => {
           if (emits && !emits?.includes(type)) {
             console.warn(`unexpected event emitted with type ${type} and detail ${detail}`);
@@ -1404,9 +1430,12 @@ ${concatenatedMessages}
             }
           });
         };
-        const propsForSetup = Object.fromEntries(
-          Object.entries(this.#props).map(([key, value]) => [key, getProxy(value)])
-        );
+        const propsForSetup = Object.fromEntries([
+          ...Object.entries(this.#props).map(([key, value]) => [key, getProxy(value)]),
+          ...Array.from(this.#contexts.entries()).map(([key, value]) => {
+            return [key, getProxy(value)];
+          })
+        ]);
         const setupResults = setup?.call(
           this,
           propsForSetup,
@@ -1419,32 +1448,6 @@ ${concatenatedMessages}
             this.#renderObservables[key] = value.observable;
           } else {
             this.#renderState[key] = value;
-          }
-        }
-        for (const context2 of contexts) {
-          this.#contexts.set(context2, { value: {}, unsubscribe: () => {
-          } });
-          const observable2 = new BehaviorSubject(context2.initialValue || null);
-          this.dispatchEvent(
-            new context_event_default(
-              context2,
-              (value, unsubscribe) => {
-                const contextState = this.#contexts.get(context2);
-                if (unsubscribe !== contextState.unsubscribe) {
-                  contextState.unsubscribe?.();
-                }
-                observable2.next(value);
-                this.contextState.set(context2, { value, unsubscribe, observable: observable2 });
-              },
-              {
-                subscribe: true
-              }
-            )
-          );
-        }
-        for (const [key, value] of Object.entries(this.#contexts)) {
-          if (!this.#renderObservables[key]) {
-            this.#renderObservables[key] = value.observable;
           }
         }
         for (const [key, value] of Object.entries(this.#props)) {
