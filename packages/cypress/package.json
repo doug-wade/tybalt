@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/cypress",
-    "version": "0.0.1",
+    "version": "0.0.22",
     "description": "The end-to-end tests for the tybalt website",
     "main": "dist/index.js",
     "scripts": {
