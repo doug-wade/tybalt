@@ -30,7 +30,7 @@ export type DefineComponentsOptions = {
     shadowMode?: 'open' | 'closed';
     css?: string | ((RenderContext) => string);
     template?: string;
-    contexts?: Context[];
+    contexts?: { [key: string]: Context };
 };
 
 export type UseObservableOptions =

@@ -11,31 +11,29 @@ describe('contexts', () => {
         let actual: any = {};
         const component = defineComponent({
             name: 'passes-contexts-to-setup',
-            setup({ context }) {
-                console.log('context:', context);
-                actual = context;
+            setup({ example }) {
+                actual = example;
             },
-            contexts: { context },
+            contexts: { example: context },
         });
 
         await mount(component);
 
-        console.log('actual:', actual);
-
-        expect(actual.name).toStrictEqual(mockContextName);
-        expect(actual.initialValue).toStrictEqual(mockContextValue);
+        expect(actual.value).toStrictEqual(mockContextValue);
     });
 
-    it('throws an error if there is a collision', async () => {
+    it('emits a warning if there is a collision', async () => {
+        const jestSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
         const context = createContext('bmo mochi');
-        expect(() => {
-            defineComponent({
-                name: 'passes-contexts-to-setup',
-                props: {
-                    example: { default: 'hello world' }
-                },
-                contexts: { example: context },
-            });
-        }).toThrow('Collision detected between context and prop: example')
+        
+        await mount(defineComponent({
+            name: 'throws-an-error-if-there-is-a-collision',
+            props: {
+                example: { default: 'hello world' }
+            },
+            contexts: { example: context },
+        }));
+        
+        expect(jestSpy.mock.calls[0][0]).toBe('Collision detected between context and prop: example');
     });
 });
