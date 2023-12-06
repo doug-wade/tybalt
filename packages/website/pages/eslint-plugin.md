@@ -27,8 +27,12 @@ module.exports = {
 
 ## Available rules
 
-We currently only have one rule, but we plan to add more!
+We currently only have two rules, but we plan to add more!
 
 ### Component names are multi-word
 
 Checks to make sure that your component has a multi-word name (a name that contains an en-dash `-`). This is a requirement [from the spec](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name).
+
+## Render variables are exported
+
+Checks to make sure that the variables you are using in your render function were exported, either as a prop or from a `setup` function.
