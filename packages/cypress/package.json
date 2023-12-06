@@ -6,6 +6,7 @@
     "scripts": {
         "build": "yarn run compile && yarn run generate-types",
         "clean": "rimraf dist/",
+        "lint": "eslint ese/ src/ support/",
         "compile": "esbuild src/index.ts --format=cjs --outdir=dist",
         "generate-types": "tsc"
     },
