@@ -6,4 +6,10 @@ module.exports = {
     rules: {
         '@typescript-eslint/no-explicit-any': 'off',
     },
+    overrides:[
+        { 
+            files: ['*.cy.js'],
+            extends: ['plugin:cypress/recommended'],
+        },
+    ],
 };

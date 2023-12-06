@@ -12,7 +12,7 @@
         "format": "prettier --write .",
         "generate-scaffold": "cd ./packages/cli/out && yarn run exec-source scaffold eleventy --name my-example && cd ../../..",
         "generate-types": "turbo generate-types",
-        "lint": "eslint packages/**!(node_modules)/src/**/*.ts",
+        "lint": "eslint packages/**!(node_modules)/src/**/*.ts packages/cypress/e2e/**/*.js packages/cypress/support/*.js",
         "serve": "turbo run serve --parallel",
         "test": "turbo test",
         "watch": "turbo run watch --parallel"
