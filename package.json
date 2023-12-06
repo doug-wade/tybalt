@@ -1,6 +1,6 @@
 {
     "name": "tybalt",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "description": "A toolkit for writing web components",
     "private": true,
     "scripts": {
