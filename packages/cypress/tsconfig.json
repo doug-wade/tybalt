@@ -3,7 +3,8 @@
     "compilerOptions": {
         "skipLibCheck": true,
         "outDir": "dist",
-        "moduleResolution": "node16",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
         "emitDeclarationOnly": true,
         "declaration": true
     },

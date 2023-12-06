@@ -3,14 +3,14 @@
     "compilerOptions": {
         "baseUrl": ".",
         "lib": ["es2021", "dom"],
-        "module": "es2022",
+        "module": "nodenext",
         "target": "es2021",
         "outDir": "dist",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "moduleResolution": "node16",
+        "moduleResolution": "nodenext",
         "declaration": true,
         "emitDeclarationOnly": true
     },
