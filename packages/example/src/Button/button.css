@@ -7,10 +7,12 @@
 
 .button-primary {
     background-color: var(--primary-color);
+    color: var(--inverse-font-color);
 }
 
 .button-secondary {
     background-color: var(--secondary-color);
+    color: var(--font-color);
 }
 
 .button-tertiary {

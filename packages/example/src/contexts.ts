@@ -5,4 +5,6 @@ export const theme = createContext('theme', {
     secondaryColor: 'bisque',
     fontFamily: 'Consolas',
     linkColor: '#ffcc99',
+    inverseFontColor: 'white',
+    fontColor: 'black',
 });
