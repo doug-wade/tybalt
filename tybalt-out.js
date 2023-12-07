@@ -309,19 +309,27 @@
   }
   var v4_default = v4;
   var TYBALT_PLACEHOLDER_ATTRIBUTE = "data-tybalt-placeholder";
+  var EVENT_LISTENER_REGEX = /\s+@\w+="/;
   var extractEventName = (str) => str.replace("@", "").split("=")[0];
-  var render_default = ({ strings, keys }, elem) => {
-    const placeholders = /* @__PURE__ */ new Map();
-    elem.innerHTML = strings.reduce((prev, curr, i) => {
-      if (curr.includes("@")) {
+  var renderToString = ({ strings, keys }, placeholders) => {
+    return strings.reduce((prev, curr, i) => {
+      if (EVENT_LISTENER_REGEX.test(curr)) {
         const [preAt, postAt] = curr.split("@");
         const eventName = extractEventName(postAt);
         const placeholder = v4_default();
         placeholders.set(placeholder, { eventName, listener: keys[i] });
         return `${prev}${preAt}${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}"`;
+      } else if (Array.isArray(keys[i])) {
+        return `${prev}${curr}${keys[i].map((key) => renderToString(key, placeholders)).join("")}`;
+      } else if (keys[i]?.strings && keys[i]?.keys) {
+        return `${prev}${curr}${renderToString(keys[i], placeholders)}`;
       }
       return `${prev}${curr}${keys[i] ? keys[i] : ""}`;
     }, "");
+  };
+  var render_default = (template, elem) => {
+    const placeholders = /* @__PURE__ */ new Map();
+    elem.innerHTML = renderToString(template, placeholders);
     for (const [placeholder, { listener, eventName }] of placeholders.entries()) {
       const placeheld = elem.querySelector(`[${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}"]`);
       if (placeheld === null) {
@@ -1629,11 +1637,11 @@ ${concatenatedMessages}
             <aside>
                 <div>Individual Package Documentation</div>
                 <ul>
-                    ${packageLis.join("")}
+                    ${packageLis}
                 </ul>
                 <div>Guides</div>
                 <ul>
-                    ${guideLis.join("")}
+                    ${guideLis}
                 </ul>
                 <tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link>
                 <tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link>
