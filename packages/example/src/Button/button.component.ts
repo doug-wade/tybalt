@@ -26,19 +26,24 @@ export default defineComponent({
     },
     render({ computedClass, clickHandler, theme }: RenderContext) {
         return html`<style>
-                :root {
+                button {
                     --primary-color: ${theme.primaryColor};
                     --secondary-color: ${theme.secondaryColor};
+                    --inverse-font-color: ${theme.inverseFontColor};
+                    --font-color: ${theme.fontColor};
                     --font-family: ${theme.fontFamily};
                 }
             </style>
-            <button class="button ${computedClass}" @click="${clickHandler}"><slot></slot></button>`;
+            <button class="button ${computedClass}" @click="${clickHandler}">
+                <slot></slot>
+            </button>
+        `;
     },
     setup({ variant }: PropsStateMap, { emit }: SetupContext) {
         const clickHandler = () => {
             emit('click');
         };
-        const computedClass = variant.pipe(map((variant: string) => `button-${variant}`));
+        const computedClass = variant.observable.pipe(map((variant: string) => `button-${variant}`));
 
         return {
             clickHandler,
