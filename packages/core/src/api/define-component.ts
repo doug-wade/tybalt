@@ -291,15 +291,24 @@ export default ({
             }
 
             if (this.#render) {
-                const templateElement = document.createElement('template');
                 const newEntries = Object.entries(this.#renderState).map(([key, value]) =>
                     [key, value?.observable ? value.observable : value]
                 );
                 const renderResults = this.#render(Object.fromEntries(newEntries));
-                render(renderResults, templateElement);
-                const templateContent = templateElement.content;
+                const renderedNodes = render(renderResults);
 
-                this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
+                for (let i = 0; i < renderedNodes.length; i++) { 
+                    try {
+                        this.#shadowRoot?.appendChild(renderedNodes[i]); 
+                    } catch (e) { console.error(e) }
+                }
+
+                for (let i = 0; i < renderedNodes.length; i++) {
+                    try {
+                        const childNode = renderedNodes[i];
+                        this.#shadowRoot?.appendChild(childNode);
+                    } catch (e) { console.error(e) }
+                }
             }
 
             if (this.#template) {

@@ -1,4 +1,5 @@
 import { defineComponent, html } from '@tybalt/core';
+import { theme } from '../contexts';
 
 import { BUTTON_VARIANTS } from '../Button/button.component';
 
@@ -14,17 +15,24 @@ export default defineComponent({
                 <button onClick=${clickHandler} variant=${TERTIARY}>🌖</button>
             </t-else>`;
     },
-    setup() {
-        // TODO: https://github.com/doug-wade/tybalt/issues/38
+    setup({ theme }, { emit }) {
+        const isChecked = new BehaviorSubject(false);
+        const clickHandler = () => {
+            isChecked.subscribe((value: boolean) => {
+                isChecked.next(!value);
+                theme.observable.next({
+                    primaryColor: 'rebeccapurple',
+                    secondaryColor: 'bisque',
+                    fontFamily: 'Consolas',
+                    linkColor: '#ffcc99',
+                    inverseFontColor: 'black',
+                    fontColor: 'white',
+                });
+                emit('click', { isChecked: !value });
+            });
+        };
 
-        // const isChecked = new BehaviorSubject(false);
-        // const clickHandler = () => {
-        //     isChecked.subscribe((value) => {
-        //         isChecked.next(!value);
-        //         ctx.emit('click', { isChecked: !value });
-        //     });
-        // };
-
-        return { TERTIARY: BUTTON_VARIANTS.TERTIARY };
+        return { clickHandler, TERTIARY: BUTTON_VARIANTS.TERTIARY };
     },
+    contexts: { theme }
 });

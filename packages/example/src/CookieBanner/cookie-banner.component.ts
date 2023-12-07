@@ -22,6 +22,7 @@ export default defineComponent({
     },
     setup(_: PropsStateMap, ctx: SetupContext) {
         const clickHandler = () => {
+            console.log('got click!');
             ctx.emit('click');
         };
 
