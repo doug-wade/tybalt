@@ -18,6 +18,11 @@ export type RenderContext = { [key: string]: BehaviorSubject | string };
 
 export type PropsStateMap = { [key: string]: Map };
 
+export type HtmlTemplate = {
+    strings: TemplateStringsArray,
+    keys: any[]
+}
+
 export type DefineComponentsOptions = {
     name: string;
     emits?: string[];
@@ -26,7 +31,7 @@ export type DefineComponentsOptions = {
     connectedCallback?: () => void;
     disconnectedCallback?: () => void;
     adoptedCallback?: () => void;
-    render?: (RenderContext) => string;
+    render?: (RenderContext) => HtmlTemplate;
     shadowMode?: 'open' | 'closed';
     css?: string | ((RenderContext) => string);
     template?: string;
