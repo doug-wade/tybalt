@@ -145,6 +145,35 @@ derived value.
 }
 ```
 
+### Events
+
+Events can be emitted from Tybalt components using `emit`, passed on the second argument to `setup`.
+
+```javascript
+defineComponent({
+    name: 'setup-context',
+    setup({}, { emit }): {
+        emit('mounted');
+    }
+});
+```
+
+If you want to listen for an event, attach an event handler using a special attribute that starts with `@` and is the name of the event you want to listen for
+
+```javascript
+defineComponent({
+    name: 'setup-context',
+    setup(): {
+        return {
+            listener: () => console.log('hello world')
+        }
+    },
+    render({ listener }) {
+        return html`<button @click=${listener}>Click me!</button>`;
+    }
+});
+```
+
 ### Slots
 
 There are `slot` and `template` elements in javascript that work well with web components.
@@ -372,6 +401,27 @@ export default defineComponent({
 ```
 
 Now, every time there is a new theme context (say when switching from a light theme to a dark theme), we'll call render with the new `theme`.
+
+### render
+
+Used for rendering an html template, as produced by the html tagged template literal, and renders it into a containing element. For instance, calling the following code
+
+```javascript
+const wrapper = document.createElement('div');
+const template = html`<input type="text" @change="${listener}"></input>`;
+
+render(template, wrapper);
+```
+
+Would produce an element with the following markup
+
+```html
+<div>
+    <input type="text"></input>
+</div>
+```
+
+With a listener for the `change` event attached to the `input`.
 
 ## Components
 
