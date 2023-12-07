@@ -3,6 +3,7 @@ import { flushPromises, mount } from '@tybalt/test-utils';
 import { BehaviorSubject, map } from 'rxjs';
 import { string, standard } from '@tybalt/parser';
 
+import html from '../../src/api/html';
 import defineComponent from '../../src/api/define-component';
 import { PropsStateMap } from '../../src/types';
 
@@ -40,12 +41,11 @@ describe('defineComponent', () => {
         const name = 'renders-slot';
         const message = 'Hello World';
         const slotName = 'content';
-        const template = `<div data-jest="${name}"><slot name="${slotName}"></slot></div>`;
         const slot = `<span slot="${slotName}">${message}</span>`;
         const component = defineComponent({
             name,
             render() {
-                return template;
+                return html`<div data-jest="${name}"><slot name="${slotName}"></slot></div>`;
             },
             
         });
@@ -119,7 +119,7 @@ describe('defineComponent', () => {
             props: { example: { default: value, parser: string } },
             
             render({ derived }) {
-                return `<div>${derived}</div>`;
+                return html`<div>${derived}</div>`;
             },
             setup({ example }) {
                 return {

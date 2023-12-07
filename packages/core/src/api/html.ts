@@ -1,5 +1,5 @@
-export default (strings: TemplateStringsArray, ...keys: any[]) => {
-    return strings.reduce((prev, curr, i) => {
-        return `${prev}${curr}${keys[i] ? keys[i] : ''}`;
-    }, '');
+import type { HtmlTemplate } from "src/types";
+
+export default (strings: TemplateStringsArray, ...keys: any[]): HtmlTemplate => {
+    return { strings, keys };
 };

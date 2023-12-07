@@ -1,3 +1,4 @@
+import render from './render';
 import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
 import { standard } from '@tybalt/parser';
 import { BehaviorSubject, Observable, map } from 'rxjs';
@@ -21,7 +22,7 @@ export default ({
     connectedCallback,
     disconnectedCallback,
     adoptedCallback,
-    render,
+    render: passedRender,
     shadowMode = 'open',
     css,
     template,
@@ -49,7 +50,7 @@ export default ({
         #renderState: { [Property: string]: any } = {};
 
         // The render method from the component definition
-        #render = render;
+        #render = passedRender;
 
         // The css string or function from the component definition
         #css = css;
@@ -261,7 +262,7 @@ export default ({
              *     <!-- The user's styles -->
              *     <style></style>
              *
-             *     <!-- The user's template -->
+             *     <!-- The user's render results -->
              *     <render></render>
              *
              *     <!-- The user's template -->
@@ -294,9 +295,8 @@ export default ({
                 const newEntries = Object.entries(this.#renderState).map(([key, value]) =>
                     [key, value?.observable ? value.observable : value]
                 );
-                templateElement.innerHTML = this.#render(
-                    Object.fromEntries(newEntries),
-                );
+                const renderResults = this.#render(Object.fromEntries(newEntries));
+                render(renderResults, templateElement);
                 const templateContent = templateElement.content;
 
                 this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
