@@ -127,6 +127,28 @@ derived value.</p>
   }
 }
 </code></pre>
+<h3>Events</h3>
+<p>Events can be emitted from Tybalt components using <code>emit</code>, passed on the second argument to <code>setup</code>.</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'setup-context',
+    setup({}, { emit }): {
+        emit('mounted');
+    }
+});
+</code></pre>
+<p>If you want to listen for an event, attach an event handler using a special attribute that starts with <code>@</code> and is the name of the event you want to listen for</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'setup-context',
+    setup(): {
+        return {
+            listener: () =&gt; console.log('hello world')
+        }
+    },
+    render({ listener }) {
+        return html`&lt;button @click=${listener}&gt;Click me!&lt;/button&gt;`;
+    }
+});
+</code></pre>
 <h3>Slots</h3>
 <p>There are <code>slot</code> and <code>template</code> elements in javascript that work well with web components.</p>
 <pre><code class="language-javascript">defineComponent({
@@ -291,6 +313,19 @@ export default defineComponent({
 });
 </code></pre>
 <p>Now, every time there is a new theme context (say when switching from a light theme to a dark theme), we'll call render with the new <code>theme</code>.</p>
+<h3>render</h3>
+<p>Used for rendering an html template, as produced by the html tagged template literal, and renders it into a containing element. For instance, calling the following code</p>
+<pre><code class="language-javascript">const wrapper = document.createElement('div');
+const template = html`&lt;input type="text" @change="${listener}"&gt;&lt;/input&gt;`;
+
+render(template, wrapper);
+</code></pre>
+<p>Would produce an element with the following markup</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;input type="text"&gt;&lt;/input&gt;
+&lt;/div&gt;
+</code></pre>
+<p>With a listener for the <code>change</code> event attached to the <code>input</code>.</p>
 <h2>Components</h2>
 <p>Tybalt exports a set of components for use for common templating tasks. These components are
 registered as soon as you require the tybalt core library; there is no extra work needed to set

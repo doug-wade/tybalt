@@ -268,6 +268,70 @@
       var import_standard = __toESM2(require_standard());
     }
   });
+  var getRandomValues;
+  var rnds8 = new Uint8Array(16);
+  function rng() {
+    if (!getRandomValues) {
+      getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
+      if (!getRandomValues) {
+        throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
+      }
+    }
+    return getRandomValues(rnds8);
+  }
+  var byteToHex = [];
+  for (let i = 0; i < 256; ++i) {
+    byteToHex.push((i + 256).toString(16).slice(1));
+  }
+  function unsafeStringify(arr, offset = 0) {
+    return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
+  }
+  var randomUUID = typeof crypto !== "undefined" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
+  var native_default = {
+    randomUUID
+  };
+  function v4(options, buf, offset) {
+    if (native_default.randomUUID && !buf && !options) {
+      return native_default.randomUUID();
+    }
+    options = options || {};
+    const rnds = options.random || (options.rng || rng)();
+    rnds[6] = rnds[6] & 15 | 64;
+    rnds[8] = rnds[8] & 63 | 128;
+    if (buf) {
+      offset = offset || 0;
+      for (let i = 0; i < 16; ++i) {
+        buf[offset + i] = rnds[i];
+      }
+      return buf;
+    }
+    return unsafeStringify(rnds);
+  }
+  var v4_default = v4;
+  var TYBALT_PLACEHOLDER_ATTRIBUTE = "data-tybalt-placeholder";
+  var extractEventName = (str) => str.replace("@", "").split("=")[0];
+  var render_default = ({ strings, keys }, elem) => {
+    const placeholders = /* @__PURE__ */ new Map();
+    elem.innerHTML = strings.reduce((prev, curr, i) => {
+      if (curr.includes("@")) {
+        const [preAt, postAt] = curr.split("@");
+        const eventName = extractEventName(postAt);
+        const placeholder = v4_default();
+        placeholders.set(placeholder, { eventName, listener: keys[i] });
+        return `${prev}${preAt}${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}"`;
+      }
+      return `${prev}${curr}${keys[i] ? keys[i] : ""}`;
+    }, "");
+    for (const [placeholder, { listener, eventName }] of placeholders.entries()) {
+      const placeheld = elem.querySelector(`[${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}"]`);
+      if (placeheld === null) {
+        console.warn(`expected to find element with placeholder ${placeholder}`);
+        continue;
+      }
+      placeheld.addEventListener(eventName, listener);
+      placeheld.removeAttribute(TYBALT_PLACEHOLDER_ATTRIBUTE);
+    }
+  };
   var validator_default = (cb) => {
     return {
       async validate(value) {
@@ -1350,7 +1414,7 @@ ${concatenatedMessages}
     connectedCallback,
     disconnectedCallback,
     adoptedCallback,
-    render,
+    render: passedRender,
     shadowMode = "open",
     css,
     template,
@@ -1363,7 +1427,7 @@ ${concatenatedMessages}
         this.#props = {};
         this.#renderObservables = {};
         this.#renderState = {};
-        this.#render = render;
+        this.#render = passedRender;
         this.#css = css;
         this.#template = template;
         this.#isConnected = false;
@@ -1512,9 +1576,8 @@ ${concatenatedMessages}
           const newEntries = Object.entries(this.#renderState).map(
             ([key, value]) => [key, value?.observable ? value.observable : value]
           );
-          templateElement.innerHTML = this.#render(
-            Object.fromEntries(newEntries)
-          );
+          const renderResults = this.#render(Object.fromEntries(newEntries));
+          render_default(renderResults, templateElement);
           const templateContent = templateElement.content;
           this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
         }
@@ -1549,9 +1612,7 @@ ${concatenatedMessages}
     return clazz;
   };
   var html_default = (strings, ...keys) => {
-    return strings.reduce((prev, curr, i) => {
-      return `${prev}${curr}${keys[i] ? keys[i] : ""}`;
-    }, "");
+    return { strings, keys };
   };
   var import_parser2 = __toESM(require_dist());
   var switch_default = define_component_default({
