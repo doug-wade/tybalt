@@ -25,11 +25,11 @@ defineComponent({
             <aside>
                 <div>Individual Package Documentation</div>
                 <ul>
-                    ${packageLis.join('')}
+                    ${packageLis}
                 </ul>
                 <div>Guides</div>
                 <ul>
-                    ${guideLis.join('')}
+                    ${guideLis}
                 </ul>
                 <tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link>
                 <tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link>
