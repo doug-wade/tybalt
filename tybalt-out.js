@@ -1319,75 +1319,14 @@ ${concatenatedMessages}
     });
   }
   var TybaltContextEvent = class extends Event {
-    constructor(context2, callback, options) {
-      super("context-request");
-      this.NONE = 0;
-      this.CAPTURING_PHASE = 1;
-      this.AT_TARGET = 2;
-      this.BUBBLING_PHASE = 3;
-      this.#context = context2;
-      this.#callback = callback;
-      this.#subscribe = options?.subscribe || false;
-      this.#event = new CustomEvent("context-request", options);
-    }
     #context;
     #callback;
     #subscribe;
-    #event;
-    get bubbles() {
-      return this.#event.bubbles;
-    }
-    // deprecated
-    get cancelBubble() {
-      return this.#event.cancelBubble;
-    }
-    get cancelable() {
-      return this.#event.cancelable;
-    }
-    get composed() {
-      return this.#event.bubbles;
-    }
-    get currentTarget() {
-      return this.#event.currentTarget;
-    }
-    get defaultPrevented() {
-      return this.#event.defaultPrevented;
-    }
-    get eventPhase() {
-      return this.#event.eventPhase;
-    }
-    get isTrusted() {
-      return this.#event.isTrusted;
-    }
-    get returnValue() {
-      return this.#event.returnValue;
-    }
-    get srcElement() {
-      return this.#event.srcElement;
-    }
-    get target() {
-      return this.#event.target;
-    }
-    get timeStamp() {
-      return this.#event.timeStamp;
-    }
-    get type() {
-      return this.#event.type;
-    }
-    composedPath() {
-      throw new Error("Method not implemented.");
-    }
-    initEvent() {
-      throw new Error("Method not implemented.");
-    }
-    preventDefault() {
-      throw new Error("Method not implemented.");
-    }
-    stopImmediatePropagation() {
-      throw new Error("Method not implemented.");
-    }
-    stopPropagation() {
-      throw new Error("Method not implemented.");
+    constructor(context2, callback, options) {
+      super("context-request");
+      this.#context = context2;
+      this.#callback = callback;
+      this.#subscribe = options?.subscribe || false;
     }
     get context() {
       return this.#context;
