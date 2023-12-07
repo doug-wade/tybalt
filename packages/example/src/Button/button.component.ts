@@ -40,7 +40,8 @@ export default defineComponent({
         `;
     },
     setup({ variant }: PropsStateMap, { emit }: SetupContext) {
-        const clickHandler = () => {
+        const clickHandler = (evt: Event) => {
+            evt.stopPropagation();
             emit('click');
         };
         const computedClass = variant.observable.pipe(map((variant: string) => `button-${variant}`));
