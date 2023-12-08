@@ -327,7 +327,7 @@
         const placeholder = v4_default();
         placeholders.set(placeholder, { eventName, listener: keys[i] });
         skip = true;
-        return `${prev}${preAt}${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}`;
+        return `${prev}${preAt}${TYBALT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true`;
       } else if (Array.isArray(keys[i])) {
         const children = keys[i].map((key) => renderToString(key, placeholders)).join("");
         return `${prev}${curr}${children}`;
@@ -342,14 +342,14 @@
     const placeholders = /* @__PURE__ */ new Map();
     mountPoint.innerHTML = renderToString(template, placeholders);
     for (const [placeholder, { listener, eventName }] of placeholders.entries()) {
-      const selector = `[${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}"]`;
+      const selector = `[${TYBALT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"]`;
       const placeheld = mountPoint.querySelector(selector);
       if (placeheld === null) {
         console.warn(`expected to find element with placeholder ${placeholder}`);
         continue;
       }
       placeheld.addEventListener(eventName, listener);
-      placeheld.removeAttribute(TYBALT_PLACEHOLDER_ATTRIBUTE);
+      placeheld.removeAttribute(`${TYBALT_PLACEHOLDER_ATTRIBUTE}-${placeholder}`);
     }
     return mountPoint.children;
   };
