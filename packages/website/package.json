@@ -21,7 +21,9 @@
     },
     "dependencies": {
         "@tybalt/core": "workspace:^",
-        "@tybalt/eleventy-plugin": "workspace:^"
+        "@tybalt/eleventy-plugin": "workspace:^",
+        "prism-themes": "^1.9.0",
+        "prismjs": "^1.29.0"
     },
     "bugs": {
         "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Awebsite"
