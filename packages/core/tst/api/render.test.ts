@@ -11,7 +11,29 @@ describe('render', () => {
         wrapper.dispatchEvent(event);
 
         expect(listener).toBeCalledWith(event);
-        expect(wrapper.outerHTML).toBe('<button type="button"></button>')
+        expect(wrapper.outerHTML).toBe('<button type="button"></button>');
+    });
+
+    it('should attach multiple event listeners', () => {
+        const blurHandler = jest.fn();
+        const changeHandler = jest.fn();
+        const blurEvent = new Event('blur');
+        const changeEvent = new Event('change');
+        const template = html`
+            <input 
+                type="text" 
+                @blur="${blurHandler}" 
+                @change="${changeHandler}">
+            </input>
+        `;
+
+        const wrapper = render(template)[0];
+        wrapper.dispatchEvent(blurEvent);
+        wrapper.dispatchEvent(changeEvent);
+
+        expect(blurHandler).toBeCalledWith(blurEvent);
+        expect(changeHandler).toBeCalledWith(changeEvent);
+        expect(wrapper.outerHTML).toBe('<input type="text">')
     });
 
     it('should render a number', () => {
