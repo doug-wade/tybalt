@@ -1,0 +1,130 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Fetching data</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>Fetching data</h1>
+<p>These exmaples use the <code>fetch</code> api, but the principle remains the same for other libraries, like <code>axios</code>.</p>
+<h2>Fetching data in setup</h2>
+<p>When fetching data in <code>setup</code>, you'll want to create an observable with an initial value, and then call its <code>next</code> method with the data once the request resolves.</p>
+<pre><code class="language-typescript">import { defineComponent, html } from '@tybalt/core';
+import { BehaviorSubject } from 'rxjs';
+
+const BASE_URL = /* your url goes here */;
+
+export default defineComponent({
+    name: 'fetch-example',
+    setup() {
+        const data = new BehaviorSubject('');
+
+        fetch(BASE_URL)
+            .then(results =&gt; results.json())
+            .then(data =&gt; cities.next(data));
+
+        return {
+            data
+        }
+    },
+    render({ data }) {
+        return html`${JSON.stringify(data)}`;
+    }
+});
+</code></pre>
+<h2>Fetching data in response to user interaction</h2>
+<p>Here is a full example of how to fetch data in response to user input.</p>
+<pre><code class="language-typescript">import { defineComponent, html } from '@tybalt/core';
+import { BehaviorSubject } from 'rxjs';
+
+const BASE_URL = /* your url goes here */;
+
+export default defineComponent({
+    name: 'fetch-example',
+    setup() {
+        const userInput = new BehaviorSubject('');
+        const data = new BehaviorSubject(null);
+        const loading = new BehaviorSubject(false);
+
+        const clickHandler = async () =&gt; {
+            loading.next(true);
+
+            const results = await fetch(`${BASE_URL}?q=${userInput.value}`);
+            const json = await results.json();
+            data.next(json);
+
+            loading.next(false);
+        };
+
+        const changeHandler = (evt: Event) =&gt; {
+            userInput.next(evt.target?.value);
+        };
+
+        return {
+            changeHandler,
+            clickHandler,
+            data,
+            loading
+        }
+    },
+    render({ data, changeHandler, clickHandler, loading }) {
+        return html`
+            &lt;div&gt;
+                ${loading ? html`&lt;div&gt;loading...&lt;/div&gt;` : ''}
+                &lt;div&gt;
+                    ${JSON.stringify(data)}
+                &lt;/div&gt;
+                &lt;label&gt;
+                    &lt;span&gt;Input&lt;/span&gt;
+                    &lt;input 
+                        type="text"
+                        value="${userInput}"
+                        @change="${changeHandler}"&gt;
+                    &lt;/input&gt;
+                &lt;/label&gt;
+                &lt;button @click="${clickHandler}"&gt;Fetch&lt;/button&gt;
+            &lt;/div&gt;
+        `;
+    },
+});
+</code></pre>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt-out.js"></script></body></html>
