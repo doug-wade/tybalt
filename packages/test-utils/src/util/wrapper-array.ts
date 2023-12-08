@@ -99,4 +99,8 @@ export default class WrapperArray implements Wrapper {
     trigger(type?: string, payload?: any): never {
         throw new Error(`trigger must be called on a single wrapper, use at(i) to access a wrapper`);
     }
+
+    emitted(eventName?: string): never {
+        throw new Error(`emitted must be called on a single wrapper, use at(i) to access a wrapper`);
+    }
 }

@@ -16,6 +16,7 @@ export interface Wrapper {
     exists(): boolean;
     trigger(type: string, payload?: any): void;
     setAttribute(name: string, value?: any): void;
+    emitted(eventName?: string): Array<Event>;
 }
 
 export type MountOptions = {

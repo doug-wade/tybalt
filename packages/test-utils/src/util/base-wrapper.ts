@@ -1,6 +1,7 @@
 import getElementName from './get-element-name';
 import EmptyWrapper from './empty-wrapper';
 import WrapperArray from './wrapper-array';
+import dynamicallyInstallListeners from './dynamically-install-listeners';
 
 import type { Wrapper } from '../types';
 
@@ -54,6 +55,7 @@ const stringifyShadowRoot = (shadowRoot: ShadowRoot): string => {
 };
 
 export default class BaseWrapper implements Wrapper {
+    #events: Array<Event> = [];
     element: Element;
     get length(): number {
         return 1;
@@ -61,6 +63,8 @@ export default class BaseWrapper implements Wrapper {
 
     constructor({ element }: { element: Element }) {
         this.element = element;
+
+        dynamicallyInstallListeners(element, this.#events);
     }
 
     exists() {
@@ -168,5 +172,12 @@ export default class BaseWrapper implements Wrapper {
 
     setAttribute(name: string, value: any): void {
         this.element.setAttribute(name, value);
+    }
+
+    emitted(eventName?: string): Array<Event> {
+        if (eventName) {
+            return this.#events.filter(evt => evt.type === eventName);
+        }
+        return this.#events;
     }
 }

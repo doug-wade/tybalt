@@ -35,4 +35,12 @@ describe('empty-wrapper', () => {
 
         expect(wrapper.findAll('span[data-jest="foo"]').exists()).toBeFalsy();
     });
+
+    it('throws when emittted is called', () => {
+        const elements = [document.createElement('div'), document.createElement('div')];
+
+        const wrapper = new WrapperArray({ elements });
+
+        expect(() => wrapper.emitted('click')).toThrow(getExpectedMessage({ method: 'emitted' }));
+    })
 });
