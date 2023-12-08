@@ -311,27 +311,39 @@
   var TYBALT_PLACEHOLDER_ATTRIBUTE = "data-tybalt-placeholder";
   var EVENT_LISTENER_REGEX = /\s+@\w+="/;
   var extractEventName = (str) => str.replace("@", "").split("=")[0];
+  var skip = false;
   var renderToString = ({ strings, keys }, placeholders) => {
-    return strings.reduce((prev, curr, i) => {
-      if (EVENT_LISTENER_REGEX.test(curr)) {
+    return strings.reduce((prev, current, i) => {
+      let curr = current;
+      if (skip) {
+        curr = current.replace(" ", "");
+        skip = false;
+      }
+      if (keys[i] === void 0 || keys[i] === null) {
+        return `${prev}${curr}`;
+      } else if (EVENT_LISTENER_REGEX.test(curr)) {
         const [preAt, postAt] = curr.split("@");
         const eventName = extractEventName(postAt);
         const placeholder = v4_default();
         placeholders.set(placeholder, { eventName, listener: keys[i] });
-        return `${prev}${preAt}${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}"`;
+        skip = true;
+        return `${prev}${preAt}${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}`;
       } else if (Array.isArray(keys[i])) {
-        return `${prev}${curr}${keys[i].map((key) => renderToString(key, placeholders)).join("")}`;
+        const children = keys[i].map((key) => renderToString(key, placeholders)).join("");
+        return `${prev}${curr}${children}`;
       } else if (keys[i]?.strings && keys[i]?.keys) {
         return `${prev}${curr}${renderToString(keys[i], placeholders)}`;
       }
-      return `${prev}${curr}${keys[i] ? keys[i] : ""}`;
+      return `${prev}${curr}${keys[i]}`;
     }, "");
   };
-  var render_default = (template, elem) => {
+  var render_default = (template) => {
+    const mountPoint = document.createElement("div");
     const placeholders = /* @__PURE__ */ new Map();
-    elem.innerHTML = renderToString(template, placeholders);
+    mountPoint.innerHTML = renderToString(template, placeholders);
     for (const [placeholder, { listener, eventName }] of placeholders.entries()) {
-      const placeheld = elem.querySelector(`[${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}"]`);
+      const selector = `[${TYBALT_PLACEHOLDER_ATTRIBUTE}="${placeholder}"]`;
+      const placeheld = mountPoint.querySelector(selector);
       if (placeheld === null) {
         console.warn(`expected to find element with placeholder ${placeholder}`);
         continue;
@@ -339,6 +351,7 @@
       placeheld.addEventListener(eventName, listener);
       placeheld.removeAttribute(TYBALT_PLACEHOLDER_ATTRIBUTE);
     }
+    return mountPoint.children;
   };
   var validator_default = (cb) => {
     return {
@@ -1519,14 +1532,26 @@ ${concatenatedMessages}
           this.#shadowRoot?.appendChild(styleElement);
         }
         if (this.#render) {
-          const templateElement = document.createElement("template");
           const newEntries = Object.entries(this.#renderState).map(
             ([key, value]) => [key, value?.observable ? value.observable : value]
           );
           const renderResults = this.#render(Object.fromEntries(newEntries));
-          render_default(renderResults, templateElement);
-          const templateContent = templateElement.content;
-          this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
+          const renderedNodes = render_default(renderResults);
+          for (let i = 0; i < renderedNodes.length; i++) {
+            try {
+              this.#shadowRoot?.appendChild(renderedNodes[i]);
+            } catch (e) {
+              console.error(e);
+            }
+          }
+          for (let i = 0; i < renderedNodes.length; i++) {
+            try {
+              const childNode = renderedNodes[i];
+              this.#shadowRoot?.appendChild(childNode);
+            } catch (e) {
+              console.error(e);
+            }
+          }
         }
         if (this.#template) {
           const templateElement = document.createElement("template");
