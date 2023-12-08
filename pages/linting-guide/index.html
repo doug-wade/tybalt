@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Linting</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>Linting</h1>
+<h2>Using the tybalt cli</h2>
+<p>The easiest way to get set up with linting your project is using the Tybalt cli. You can use <a href="https://docs.npmjs.com/cli/v8/commands/npx">npx</a> to lint your files</p>
+<pre><code class="language-shell">npx @tybalt/cli lint
+</code></pre>
+<p>However, if you will have many collaborators on a project, you'll likely want to standardize your lint step, especially if you have to set flags or options when building your project.</p>
+<p>First, install the cli</p>
+<pre><code class="language-shell">yarn add -D @tybalt/cli
+</code></pre>
+<p>You can also add a new script to your package.json</p>
+<pre><code class="language-json">{
+    "scripts": {
+        "lint": "tybalt lint"
+    }
+}
+</code></pre>
+<p>Now you can run the linter using your package manager's script runner, for instance <code>yarn run lint</code> or <code>npm run lint</code>.</p>
+<p>You can see the <a href="/pages/cli">cli documentation</a> for more details on setting up linting using the cli, like how to provide a pattern of files to lint.</p>
+<h2>Using @tybalt/eslint-plugin</h2>
+<p>For more complex projects, you'll likely need to do customization to your linting setup that is more complex than is available with the tybalt cli. For these cases, you'll want to use the eslint plugin.</p>
+<p>To get started, install the plugin and associated dependencies</p>
+<pre><code class="language-shell">yarn add -D eslint @tybalt/eslint-plugin
+</code></pre>
+<p>Then create an <code>.eslintrc.js</code> file that contains, at a minimum</p>
+<pre><code class="language-javascript">module.exports = {
+    extends: ['plugin:@tybalt/eslint-plugin/ts-recommended'],
+    plugins: ['@tybalt/eslint-plugin'],
+};
+</code></pre>
+<p>And finally add a script to your <code>package.json</code></p>
+<pre><code class="language-json">{
+    "scripts": {
+        "lint": "tybalt lint"
+    }
+}
+</code></pre>
+<p>And now you can run <code>npm run lint</code> to lint your code!</p>
+<p>You can see the <a href="/pages/eslint-plugin">eslint plugin documentation</a> and the <a href="https://eslint.org/docs/latest/use/configure/">eslint documentation</a> for more details on setting up linting using the eslint plugin.</p>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt-out.js"></script></body></html>

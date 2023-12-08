@@ -1,0 +1,103 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Props</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>Props</h1>
+<p>Dom elements can have attributes set on them. You can transform an attribute into a prop by specifying
+some data about it with the props config object passed to <code>defineComponent</code>.</p>
+<pre><code class="language-javascript">defineComponent({
+    props: { example: {} },
+});
+</code></pre>
+<p>All props are passed as observables with the same name as the first argument to setup. Each observable
+is notified when the corresponding attribute changes.</p>
+<pre><code class="language-javascript">defineComponent({
+    props: {
+        example: {},
+    },
+    setup({ example }) {
+        assert(example instanceof Observable);
+    },
+});
+</code></pre>
+<p>Props can have a default value that is provided if the attribute is unset.</p>
+<pre><code class="language-javascript">defineComponent({
+    props: {
+        example: {
+            default: 'tybalt',
+        },
+    },
+});
+</code></pre>
+<p>Props can also have a validator. Validation errors are pushed to the error stream of the observable.</p>
+<pre><code class="language-javascript">defineComponent({
+    props: {
+        example: {
+            validator: oneOf(['foo', 'bar', 'baz']),
+        },
+    },
+    setup({ example }) {
+        example.subscribe({
+            error(err) {
+                alert(err);
+            },
+        });
+    },
+});
+</code></pre>
+<p>To create derived state from a prop, you should create a new observable, and then update it with the
+derived value.</p>
+<pre><code class="language-javascript">{
+  props: {
+    name: { validator: string() }
+  },
+  setup({ name }) {
+    const greeting = new BehaviorSubject(`hello ${name}`);
+
+    return { greeting };
+  }
+}
+</code></pre>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt-out.js"></script></body></html>

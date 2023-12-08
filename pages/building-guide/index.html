@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Building</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>Building</h1>
+<h2>Using the cli</h2>
+<p>The easiest way to get started building your project is to use the tybalt cli with npx.</p>
+<pre><code class="language-shell">npx @tybalt/cli build
+</code></pre>
+<p>However, if you will have many collaborators on a project, you'll likely want to standardize your build step, especially if you have to set flags or options when building your project.</p>
+<p>First, install the cli</p>
+<pre><code class="language-shell">yarn add -D @tybalt/cli
+</code></pre>
+<p>You can also add a new script to your package.json</p>
+<pre><code class="language-json">{
+    "scripts": {
+        "build": "tybalt build"
+    }
+}
+</code></pre>
+<p>Now you can run the build using <code>yarn run build</code>.</p>
+<p>You can see the <a href="/pages/cli">cli documentation</a> for more details on how to use the cli to build your project, like how to specify entry points or the output directory.</p>
+<h2>Using the esbuild plugin</h2>
+<p>For more complex projects, such as projects that want to use css preprocessors, you'll need to set up your build to use <code>@tybalt/esbuild-plugin</code> instead of using the cli.</p>
+<p>First, install the dependencies</p>
+<pre><code class="language-shell">yarn add -D esbuild @tybalt/esbuild-plugin
+</code></pre>
+<p>Then create a new file, such as <code>scripts/build.js</code>, to house your new build script</p>
+<pre><code class="language-js">import tybaltPlugin from '@tybalt/esbuild-plugin';
+import esbuild from 'esbuild';
+
+esbuild.build({
+    bundle: true,
+    entryPoints: ['path/to/my/entry-points/*.ts'],
+    outdir: 'path/to/my/output/directory/',
+    assetNames: 'assets/[name]-[hash]',
+    chunkNames: '[ext]/[name]-[hash]',
+    plugins: [tybaltPlugin()],
+});
+</code></pre>
+<p>And finally update your <code>package.json</code> to have an alias to call the new script</p>
+<pre><code class="language-json">{
+    "scripts": {
+        "build": "node scripts/build.js"
+    }
+}
+</code></pre>
+<p>You can see the <a href="/pages/esbuild-plugin">esbuild plugin documentation</a> and in the <a href="https://esbuild.github.io/getting-started/#build-scripts">esbuild documentation</a> for more details on building using the esbuild plugin with a build script.</p>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt-out.js"></script></body></html>

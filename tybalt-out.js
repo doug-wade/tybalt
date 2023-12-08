@@ -1639,7 +1639,7 @@ ${concatenatedMessages}
 
   // components/sidebar.js
   var PACKAGES = ["cli", "core", "eleventy-plugin", "esbuild-plugin", "eslint-plugin", "parser", "test-utils", "validator"];
-  var GUIDES = ["new-website", "styling-your-component", "writing-tests", "custom-validator", "data-fetching"];
+  var GUIDES = ["props", "events", "slots", "new-website", "styling-your-component", "writing-tests", "custom-validator", "data-fetching", "linting", "building"];
   define_component_default({
     name: "tybalt-sidebar",
     shadowMode: "open",

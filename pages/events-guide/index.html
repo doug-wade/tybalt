@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Events</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>Events</h1>
+<p>Events can be emitted from Tybalt components using <code>emit</code>, passed on the second argument to <code>setup</code>.</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'setup-context',
+    setup({}, { emit }): {
+        emit('mounted');
+    }
+});
+</code></pre>
+<p>If you want to listen for an event, attach an event handler using a special attribute that starts with <code>@</code> and is the name of the event you want to listen for</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'setup-context',
+    setup(): {
+        return {
+            listener: () =&gt; console.log('hello world')
+        }
+    },
+    render({ listener }) {
+        return html`&lt;button @click=${listener}&gt;Click me!&lt;/button&gt;`;
+    }
+});
+</code></pre>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt-out.js"></script></body></html>
