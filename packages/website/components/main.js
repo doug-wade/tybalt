@@ -30,32 +30,34 @@ defineComponent({
                 Tybalt exports tools for building web components. It uses templates, slots, custom elements and the
                 shadow dom to implement rendering.
             </p>
-            <pre><code class="language-javascript">
-            import { defineComponent, html } from '@tybalt/core';
-            export default defineComponent({
-                name: 'my-component',
-                shadowMode: 'open',
-                render() {
-                    return html\`<div>Hello World</div>\`;
-                },
-            });
-            </code></pre>
+            <tybalt-code-example language="javascript">
+import { defineComponent, html } from '@tybalt/core';
+
+export default defineComponent({
+    name: 'my-component',
+    shadowMode: 'open',
+    render() {
+        return html\`<div>Hello World</div>\`;
+    },
+});
+            </tybalt-code-example>
             <h3>Unit Testing</h3>
             <p>
                 Tybalt exports tools for testing web components. It uses Jest and JSDOM to render web components in a
                 test environment.
             </p>
-            <pre><code class="language-javascript">
-            import MyComponent from './my-component.js';
-            import { mount } from '@tybalt/test-utils';
-            describe('my-component', () => {
-                it('renders', async () => {
-                    const el = await mount(MyComponent);
+            <tybalt-code-example language="javascript">
+import MyComponent from './my-component.js';
+import { mount } from '@tybalt/test-utils';
 
-                    expect(el.shadowHtml()).toContain('Hello World');
-                });
-            });
-            </code></pre>
+describe('my-component', () => {
+    it('renders', async () => {
+        const el = await mount(MyComponent);
+
+        expect(el.shadowHtml()).toContain('Hello World');
+    });
+});
+            </tybalt-code-example>
             <h3>Compilation</h3>
             <p>
                 Tybalt exports a compiler for compiling web components. It uses esbuild to compile web components to a
@@ -68,9 +70,13 @@ defineComponent({
             </p>
             <h2>Getting Started</h2>
             <p>The fastest way to get started is creating a static website</p>
-            <code><pre>$ npx @tybalt/cli scaffold eleventy -n my-static-website</pre></code>
+            <tybalt-code-example language="shell">
+$ npx @tybalt/cli scaffold eleventy -n my-static-website
+            </tybalt-code-example>
             <p>Then, you can start the development server</p>
-            <code><pre>$ npx @11ty/eleventy --serve</pre></code>
+            <tybalt-code-example language="shell">
+$ npx @11ty/eleventy --serve
+            </tybalt-code-example>
             <p>And open the site at <tybalt-link href="http://localhost:8080/">http://localhost:8080/</tybalt-link></p>
         </div>`;
     },
