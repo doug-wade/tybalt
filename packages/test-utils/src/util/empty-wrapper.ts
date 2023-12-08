@@ -64,4 +64,8 @@ export default class EmptyWrapper implements Wrapper {
     setAttribute(type: string, payload?: any): never {
         throw new Error(this.#makeErrorMessage({ method: 'setAttribute' }));
     }
+
+    emitted(eventName?: string): never {
+        throw new Error(this.#makeErrorMessage({ method: 'emitted' }));
+    }
 }

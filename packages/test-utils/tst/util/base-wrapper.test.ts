@@ -369,4 +369,37 @@ describe('base-wrapper', () => {
             expect(mock.mock.calls[0][0].detail).toBe(payload);
         });
     });
+
+    describe('emitted', () => {
+        it('should return an empty array if component has not emitted', () => {
+            const element = document.createElement('button');
+
+            const wrapper = new BaseWrapper({ element });
+
+            expect(wrapper.emitted()).toStrictEqual([]);
+        });
+
+        it('should return a single event if component has evented', () => {
+            const mockEvent = new Event('change');
+            const element = document.createElement('input');
+
+            const wrapper = new BaseWrapper({ element });
+            element.dispatchEvent(mockEvent);
+
+            expect(wrapper.emitted()).toHaveLength(1);
+        });
+
+        it('should return a single event if component has evented', () => {
+            const times = 5;
+            const mockEvent = new Event('change');
+            const element = document.createElement('input');
+
+            const wrapper = new BaseWrapper({ element });
+            for (let i = 0; i < times ; i++) {
+                element.dispatchEvent(mockEvent);
+            }
+
+            expect(wrapper.emitted()).toHaveLength(times);
+        });
+    });
 });

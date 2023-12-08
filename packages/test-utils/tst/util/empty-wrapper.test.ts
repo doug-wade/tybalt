@@ -121,4 +121,14 @@ describe('empty-wrapper', () => {
             wrapper.trigger('click');
         }).toThrow(expectedMessage);
     });
+
+    it('throws when emitted is called', () => {
+        const expectedMessage = getExpectedMessage({ method: 'emitted' });
+
+        const wrapper = new EmptyWrapper({ selector: MOCK_SELECTOR });
+
+        expect(() => {
+            wrapper.emitted('click');
+        }).toThrow(expectedMessage);
+    });
 });

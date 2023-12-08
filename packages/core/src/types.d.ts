@@ -51,7 +51,7 @@ export type UseObservableReturn = Promise<{
 }>;
 
 export type SetupContext = {
-    emit(type: string, detail: any): void;
+    emit(type: string, detail?: any): void;
 };
 
 // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
