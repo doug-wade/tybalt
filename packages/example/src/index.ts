@@ -1,3 +1,4 @@
+import './BrewerySearch/brewery-search.component';
 import './Button/button.component';
 import './Circle/circle.component';
 import './ClosedShadowDom/ClosedShadowDom.component';
