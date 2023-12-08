@@ -1,6 +1,6 @@
 ---
 layout: layout.html
-title: Events
+title: Linting
 ---
 
 # Linting
@@ -13,10 +13,12 @@ The easiest way to get set up with linting your project is using the Tybalt cli.
 npx @tybalt/cli lint
 ```
 
-However, if you will have many collaborators on a project, you'll likely want to standardize your lint step. First, install the cli
+However, if you will have many collaborators on a project, you'll likely want to standardize your lint step, especially if you have to set flags or options when building your project.
+
+First, install the cli
 
 ```shell
-yarn install -D @tybalt/cli
+yarn add -D @tybalt/cli
 ```
 
 You can also add a new script to your package.json
@@ -29,9 +31,9 @@ You can also add a new script to your package.json
 }
 ```
 
-Now you can run the linter using `npm run lint`.
+Now you can run the linter using your package manager's script runner, for instance `yarn run lint` or `npm run lint`.
 
-You can see the [cli documentation](/pages/cli) for more details on setting up linting using the cli.
+You can see the [cli documentation](/pages/cli) for more details on setting up linting using the cli, like how to provide a pattern of files to lint.
 
 ## Using @tybalt/eslint-plugin
 
@@ -64,4 +66,4 @@ And finally add a script to your `package.json`
 
 And now you can run `npm run lint` to lint your code!
 
-You can see the [eslint plugin documentation](/pages/eslint-plugin) for more details on setting up linting using the eslint plugin.
+You can see the [eslint plugin documentation](/pages/eslint-plugin) and the [eslint documentation](https://eslint.org/docs/latest/use/configure/) for more details on setting up linting using the eslint plugin.
