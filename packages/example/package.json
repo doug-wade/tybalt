@@ -12,7 +12,7 @@
         "lint": "tybalt lint",
         "scaffold": "tybalt scaffold",
         "test": "echo 'TODO: run tybalt test'",
-        "watch": "tybalt watch",
+        "watch": "tybalt watch 'src/**/*.*'",
         "serve": "tybalt serve",
         "prepare": "yarn run build && yarn run lint && yarn run test && yarn run examples"
     },

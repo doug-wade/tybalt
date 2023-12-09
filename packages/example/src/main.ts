@@ -1,0 +1,9 @@
+import './BrewerySearch/brewery-search.component.js';
+import './Button/button.component.js';
+import './Circle/circle.component.js';
+import './ClosedShadowDom/ClosedShadowDom.component.js';
+import './CookieBanner/cookie-banner.component.js';
+import './Counter/counter.component.js';
+import './Link/link.component.js';
+import './Toggle/toggle.component.js';
+import './YoutubeEmbed/youtube-embed.component.js';
