@@ -24,7 +24,7 @@ export default defineComponent({
 
         fetch(BASE_URL)
             .then(results => results.json())
-            .then(data => cities.next(data));
+            .then(json => data.next(json));
 
         return {
             data
