@@ -1898,7 +1898,12 @@ ${concatenatedMessages}
   var compose_default = (...validators) => {
     return {
       async validate(value) {
-        const promises = validators.map((validator) => validator.validate(value));
+        const promises = validators.map((validator) => {
+          if (validator) {
+            return validator.validate(value);
+          }
+          return Promise.resolve({ passed: true });
+        });
         const results = await Promise.all(promises);
         const level = getMostSevereLevel(results);
         const message = concatenateMessages(results);
@@ -3304,7 +3309,12 @@ ${concatenatedMessages}
   var compose_default2 = (...validators) => {
     return {
       async validate(value) {
-        const promises = validators.map((validator) => validator.validate(value));
+        const promises = validators.map((validator) => {
+          if (validator) {
+            return validator.validate(value);
+          }
+          return Promise.resolve({ passed: true });
+        });
         const results = await Promise.all(promises);
         const level = getMostSevereLevel2(results);
         const message = concatenateMessages2(results);

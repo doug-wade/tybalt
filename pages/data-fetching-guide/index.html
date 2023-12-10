@@ -41,7 +41,7 @@ export default defineComponent({
 
         fetch(BASE_URL)
             .then(results =&gt; results.json())
-            .then(data =&gt; cities.next(data));
+            .then(json =&gt; data.next(json));
 
         return {
             data

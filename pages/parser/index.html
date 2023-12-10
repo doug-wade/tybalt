@@ -27,36 +27,31 @@
                 <tybalt-sidebar></tybalt-sidebar>
                 <div class="tybalt-main"><h1>@tybalt/parser</h1>
 <p>Tybalt's package for parsing web component attributes</p>
+<h2>Motivation</h2>
+<p>All web component attribute values are strings, because that's how html works. However, this is inconvenient sometimes for programming, where it can be easier to work with more complex data types, like objects.</p>
+<p>Tybalt does its best to parse what it thinks you intend to pass using the <code>standard</code> parser. If you pass the string <code>true</code> or <code>false</code>, it will assume that you intend to pass a boolean, rather than a string. This can be problematic, for instance when you do want to pass the string "true" or "false". To handle these cases, the parser package exports a variety of parsers to match common data types that are passed in attributes between custom elements.</p>
 <h2>Installation</h2>
 <p>Install the parser with your favorite npm client</p>
 <pre><code class="language-shell">npm install --save @tybalt/parser
 </code></pre>
 <h2>Usage</h2>
-<pre><code class="language-js">import { object } from '@tybalt/parser';
+<p>To use a new parser, import it and pass it as the <code>parser</code> key on a prop definition as follows</p>
+<pre><code class="language-js">import { json } from '@tybalt/parser';
 
 defineComponent({
   props: {
     option: {
       validator: (obj) =&gt; !!obj.requiredKey
-      parser: object
+      parser: json
     }
   }
 })
 </code></pre>
+<p>Now, when your custom element gets a new value passed to it, the value will be parsed using the custom parser.</p>
 <h2>Api</h2>
-<p>There are four parsers currently: <code>boolean</code>, <code>json</code>, <code>number</code>, <code>string</code>.</p>
-<h3>object</h3>
-<pre><code class="language-js">import { object } from '@tybalt/parser';
-
-defineComponent({
-  props: {
-    option: {
-      parser: object
-    }
-  }
-})
-</code></pre>
+<p>There are five parsers currently: <code>boolean</code>, <code>json</code>, <code>number</code>, <code>standard</code>, and <code>string</code>.</p>
 <h3>boolean</h3>
+<p>This parser supports tri-state booleans, and returns <code>null</code> for all values other than <code>true</code> and <code>false</code>.</p>
 <pre><code class="language-js">import { boolean } from '@tybalt/parser';
 
 defineComponent({
@@ -67,24 +62,50 @@ defineComponent({
   }
 })
 </code></pre>
-<h3>array</h3>
-<pre><code class="language-js">import { array } from '@tybalt/array';
+<h3>json</h3>
+<p>This parser assumes the contents of the attribute string are valid json, and then calls <code>JSON.parse</code> on the contents and passes the resulting object.</p>
+<pre><code class="language-js">import { json } from '@tybalt/parser';
 
 defineComponent({
   props: {
     option: {
-      parser: array
+      parser: json
     }
   }
 })
 </code></pre>
 <h3>number</h3>
-<pre><code class="language-js">import { number } from '@tybalt/array';
+<p>This parser returns a number from its string representation.</p>
+<pre><code class="language-js">import { number } from '@tybalt/parser';
 
 defineComponent({
   props: {
     option: {
       parser: number
+    }
+  }
+})
+</code></pre>
+<h3>standard</h3>
+<p>This is the standard parser used by Tybalt components. It makes its best guess, bless its heart, but it is kinda dumb sometimes.</p>
+<pre><code class="language-js">import { standard } from '@tybalt/parser';
+
+defineComponent({
+  props: {
+    option: {
+      parser: standard
+    }
+  }
+})
+</code></pre>
+<h3>string</h3>
+<p>Returns the string value passed to the web component attribute directly, as-is. The identity function of web component attribute parsers.</p>
+<pre><code class="language-js">import { string } from '@tybalt/parser';
+
+defineComponent({
+  props: {
+    option: {
+      parser: string
     }
   }
 })
