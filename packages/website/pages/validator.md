@@ -117,6 +117,16 @@ const validator = compose(required(), string(), url());
 const result = await validator.validate(value);
 ```
 
+Note that `compose` will ignore falsey validators, to make it easier to make dynamic validators
+
+```javascript
+const validator = compose(
+    required(), 
+    string(), 
+    isUrl ? url() : null
+);
+```
+
 ### integer
 
 `integer` creates a validator that checks whether a value is an integer.

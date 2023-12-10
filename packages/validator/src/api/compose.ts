@@ -48,10 +48,15 @@ const concatenateMessages = (results: Array<ValidationResults>) => {
     }
 };
 
-export default (...validators: Array<Validator>) => {
+export default (...validators: Array<Validator | null>) => {
     return {
         async validate(value: any) {
-            const promises = validators.map((validator) => validator.validate(value));
+            const promises = validators.map((validator) => {
+                if (validator) {
+                    return validator.validate(value)
+                }
+                return Promise.resolve({ passed: true });
+            });
             const results = await Promise.all(promises);
 
             const level = getMostSevereLevel(results);
