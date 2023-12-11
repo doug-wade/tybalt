@@ -3052,7 +3052,6 @@ ${concatenatedMessages}
           if (!usingDefault && areDifferent) {
             const nextValue = value.parser.parse(attributeValue);
             value.observable.next(nextValue);
-            this.#renderState[key] = attributeValue;
           }
         }
       }
