@@ -55,7 +55,7 @@ const renderToString = (
             const attributeName = chunks[chunks.length - 1];
 
             setAttributePlaceholders.set(placeholder, {
-                prefix: attributePrefix,
+                prefix: attributePrefix || '',
                 reactive: key,
                 suffix,
                 attributeName,
