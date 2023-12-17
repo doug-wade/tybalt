@@ -32,14 +32,14 @@ some data about it with the props config object passed to <code>defineComponent<
     props: { example: {} },
 });
 </code></pre>
-<p>All props are passed as observables with the same name as the first argument to setup. Each observable
+<p>All props are passed as reactives with the same name as the first argument to setup. Each reactive
 is notified when the corresponding attribute changes.</p>
 <pre><code class="language-javascript">defineComponent({
     props: {
         example: {},
     },
     setup({ example }) {
-        assert(example instanceof Observable);
+        assert(example instanceof Reactive);
     },
 });
 </code></pre>
@@ -52,7 +52,7 @@ is notified when the corresponding attribute changes.</p>
     },
 });
 </code></pre>
-<p>Props can also have a validator. Validation errors are pushed to the error stream of the observable.</p>
+<p>Props can also have a validator. Validation errors are pushed to the error stream of the Reactive.</p>
 <pre><code class="language-javascript">defineComponent({
     props: {
         example: {
@@ -60,22 +60,20 @@ is notified when the corresponding attribute changes.</p>
         },
     },
     setup({ example }) {
-        example.subscribe({
-            error(err) {
-                alert(err);
-            },
+        example.addListener(nextValue =&gt; {
+            // TODO: What do we for error streams for reactives???
         });
     },
 });
 </code></pre>
-<p>To create derived state from a prop, you should create a new observable, and then update it with the
+<p>To create derived state from a prop, you should create a new reactive, and then update it with the
 derived value.</p>
 <pre><code class="language-javascript">{
   props: {
     name: { validator: string() }
   },
   setup({ name }) {
-    const greeting = new BehaviorSubject(`hello ${name}`);
+    const greeting = reactive(`hello ${name}`);
 
     return { greeting };
   }
