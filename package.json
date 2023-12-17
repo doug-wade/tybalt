@@ -30,6 +30,7 @@
         "./packages/eslint-plugin",
         "./packages/example",
         "./packages/parser",
+        "./packages/reactive",
         "./packages/test-utils",
         "./packages/test-utils-lit-example",
         "./packages/validator",

@@ -35,7 +35,6 @@ export default async ({
         const requestComponent = () => {
             const element = document.querySelector(selector);
             if (element) {
-                
                 resolve(element);
             } else {
                 window.requestAnimationFrame(requestComponent);

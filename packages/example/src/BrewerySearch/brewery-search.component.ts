@@ -1,5 +1,5 @@
 import { defineComponent, html } from '@tybalt/core';
-import { BehaviorSubject } from 'rxjs';
+import { derive, reactive } from "@tybalt/reactive";
 
 import css from './brewery-search.css';
 
@@ -9,42 +9,65 @@ export default defineComponent({
     name: 'example-brewery-search',
     css,
     setup() {
-        const city = new BehaviorSubject('');
-        const cities = new BehaviorSubject([]);
-        const loading = new BehaviorSubject(false);
+        const city = reactive('');
+        const cities = reactive([]);
+        const loading = reactive(false);
 
         const clickHandler = async () => {
-            loading.next(true);
+            loading.value = true;
 
             const results = await fetch(`${BASE_URL}?by_city=${city.value}`);
             const json = await results.json();
-            cities.next(json);
+            cities.value = json;
 
-            loading.next(false);
+            loading.value = false;
         };
 
-        const changeHandler = (evt: Event) => {
-            city.next(evt.target?.value);
+        const inputHandler = (evt: Event) => {
+            city.value = evt.target?.value;
         };
+
+        const loadingMessage = derive(loading, ([value]) => {
+            if (value) {
+                return html`<div>Searching for ${city.value}...</div>`
+            } else {
+                return '';
+            }
+        });
+
+        const citiesList = derive(cities, ([value]) => {
+            if (cities.length) {
+                const lis = value.map(localCity => html`
+                    <li>
+                        <a href="${localCity.website_url}">${localCity.name}</a>
+                    </li>
+                `);
+                return html`
+                    <ul>
+                        ${lis}
+                    </ul>
+                `;
+            } else {
+                return '';
+            }
+        });
 
         return {
-            changeHandler,
+            inputHandler,
             clickHandler,
             city,
-            cities,
-            loading
+            citiesList,
+            loadingMessage,
         }
     },
-    render({ city, cities, changeHandler, clickHandler, loading }) {
+    render({ city, citiesList, inputHandler, clickHandler, loadingMessage }) {
         return html`
             <div class="brewery-search">
-                ${loading ? html`<div>Searching for city ${city}</div>` : ''}
-                <ul>
-                    ${cities.map(localCity => html`<li><a href="${localCity.website_url}">${localCity.name}</a></li>`)}
-                </ul>
+                ${loadingMessage}
+                ${citiesList}
                 <label>
                     <span>City name</span>
-                    <input type="text" @change="${changeHandler}" value="${city}"></input>
+                    <input type="text" @input="${inputHandler}" value="${city}"></input>
                 </label>
                 <example-button @click="${clickHandler}">Search</example-button>
             </div>

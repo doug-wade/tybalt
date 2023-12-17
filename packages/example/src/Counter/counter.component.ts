@@ -1,5 +1,5 @@
 import { defineComponent, html } from '@tybalt/core';
-import { BehaviorSubject } from 'rxjs';
+import { reactive } from "@tybalt/reactive";
 
 import { BUTTON_VARIANTS } from '../Button/button.component.js';
 
@@ -7,9 +7,9 @@ export default defineComponent({
     shadowMode: 'closed',
     name: 'example-counter',
     setup() {
-        const count = new BehaviorSubject(0);
-        const increment = () => count.next(count.value + 1);
-        const decrement = () => count.next(count.value - 1);
+        const count = reactive(0);
+        const increment = () => { count.value = count.value + 1 };
+        const decrement = () => { count.value = count.value - 1 };
 
         return {
             increment,

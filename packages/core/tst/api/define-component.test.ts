@@ -1,7 +1,7 @@
 import { describe, it, jest, expect } from '@jest/globals';
 import { flushPromises, mount } from '@tybalt/test-utils';
-import { BehaviorSubject, map } from 'rxjs';
 import { string, standard } from '@tybalt/parser';
+import { Reactive, derive, reactive } from '@tybalt/reactive';
 
 import html from '../../src/api/html';
 import defineComponent from '../../src/api/define-component';
@@ -57,8 +57,8 @@ describe('defineComponent', () => {
         expect(wrapper.html()).toContain(message);
     });
 
-    it('converts all props to Observable', async () => {
-        const name = 'props-are-observables';
+    it('converts all props to reactives', async () => {
+        const name = 'props-are-reactives';
         const props = { 
             one: {}, 
             two: {
@@ -89,9 +89,10 @@ describe('defineComponent', () => {
         for (const propKey of Object.keys(props)) {
             const prop = underTest[propKey];
 
-            expect(prop.parser).toBeTruthy();
-            expect(prop.observable).toBeTruthy();
-            expect(prop.value).toEqual(prop.observable.getValue())
+            expect(prop.addListener).toBeTruthy();
+            if (propKey !== 'one') {
+                expect(prop.value).toBeTruthy();
+            }
         }
     });
 
@@ -112,25 +113,26 @@ describe('defineComponent', () => {
 
     it('renders derived state', async () => {
         const value = 'foo';
-        const deriveState = (x: string): string => `${x}bar`;
+        const deriveState = ([x]) => `${x}bar`;
 
         const component = defineComponent({
             name: 'renders-derived-state',
             props: { example: { default: value, parser: string } },
-            
             render({ derived }) {
                 return html`<div>${derived}</div>`;
             },
             setup({ example }) {
+                const derived = derive(example, deriveState);
+
                 return {
-                    derived: example.observable.pipe(map(deriveState)),
+                    derived,
                 };
             },
         });
 
         const wrapper = await mount(component);
 
-        expect(wrapper.shadowHtml()?.textContent).toContain(deriveState(value));
+        expect(wrapper.shadowHtml()?.textContent).toContain(deriveState([value]));
     });
 
     it('parses props with a standard parser', async () => {
@@ -162,7 +164,7 @@ describe('defineComponent', () => {
             },
         };
 
-        let actual: PropsStateMap = { observable: new BehaviorSubject(null), parse: () => {} };
+        let actual: PropsStateMap = { reactive: reactive(null), parse: () => {} };
         const component = defineComponent({
             name: 'uses-custom-parser',
             props: {
@@ -177,5 +179,47 @@ describe('defineComponent', () => {
         await mount(component, { attributes: { example: 'true' } });
 
         expect(actual.value).toBe(expected);
+    });
+
+    it('supports returning a reactive from the setup method', async () => {
+        const expected = [];
+
+        let actual: PropsStateMap = { reactive: reactive(null), parse: () => {} };
+        const component = defineComponent({
+            name: 'returns-reactive-from-setup',
+            setup() {
+                return {
+                    example: reactive(expected)
+                };
+            },
+            render({ example }) {
+                actual = example;
+            }
+        });
+
+        await mount(component);
+
+        expect(actual.value).toStrictEqual(expected);
+    });
+
+    it('should not wrap event listeners in a reactive', async () => {
+        const expected = () => {};
+
+        let actual: PropsStateMap = { reactive: reactive(null), parse: () => {} };
+        const component = defineComponent({
+            name: 'should-not-wrap-event-listeners',
+            setup() {
+                return {
+                    example: expected
+                };
+            },
+            render({ example }) {
+                actual = example;
+            }
+        });
+
+        await mount(component);
+
+        expect(actual).toBe(expected);
     });
 });

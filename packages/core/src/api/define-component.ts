@@ -1,7 +1,9 @@
 import render from './render';
 import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
 import { standard } from '@tybalt/parser';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { derive, reactive } from '@tybalt/reactive';
+
+import type { Reactive } from '@tybalt/reactive';
 
 import ContextEvent from './context-event';
 
@@ -38,16 +40,17 @@ export default ({
         // The context object passed to the component definition's setup method
         #setupContext: SetupContext;
 
-        // A hash from the attribute name to its corresponding observable and parser
+        // A hash from the attribute name to its corresponding reactive and parser
         #props: {
-            [Property: string]: { observable: BehaviorSubject<any>; parser: { parse(str: string | null): any } };
+            [Property: string]: { 
+                reactive: Reactive<any>; 
+                parser: { parse(str: string | null): any }, 
+                value: any
+            };
         } = {};
 
-        // A hash from the render state key to its corresponding observable (returned from the setup method)
-        #renderObservables: { [Property: string]: Observable<any> } = {};
-
-        // The current state for the next render
-        #renderState: { [Property: string]: any } = {};
+        // A hash from the render state key to its corresponding reactive (returned from the setup method)
+        #renderState: Map<string, Reactive<any>> = new Map();
 
         // The render method from the component definition
         #render = passedRender;
@@ -63,49 +66,45 @@ export default ({
 
         // All of the contexts to connect to
         // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
-        #contexts = new Map<string, { value: any, observable: BehaviorSubject<any>, unsubscribe?: () => void }>();
+        #contexts = new Map<string, { reactive: Reactive<any>, unsubscribe?: () => void }>();
         contextState: any;
 
         constructor() {
             super();
 
-            /**
-             * Props are a hash from their attribute name to a BehaviorSubject that represents its
-             * stream of events. I chose a BehaviorSubject because it makes it easy to access the
-             * current value of the prop when setup is called, which makes it easier for end users
-             * to work with -- other observables don't have a concept of the "current value" in
-             * favor of the push stream, but it seems like a common use case.
-             */
             this.#props = Object.entries(props).reduce(
                 (accumulator, [key, value]) => {
                     const parser = value.parser || standard;
 
-                    let initialValue = null;
+                    let initialValue: any = null;
                     try {
                         initialValue = parser.parse(value.default);
-                        this.#renderState[key] = initialValue;
                     } catch (e) {
                         initialValue = e;
                     }
 
-                    accumulator[key] = {
-                        observable: new BehaviorSubject(initialValue),
+                    const entry = {
+                        reactive: reactive(initialValue),
                         parser: value.parser || standard,
+                        value: initialValue,
                     };
+                    entry.reactive.addListener((value: any) => entry.value = value);
+                    
+                    accumulator[key] = entry;
 
                     return accumulator;
                 },
                 {} as {
                     [Property: string]: {
-                        observable: BehaviorSubject<any>;
+                        reactive: Reactive<any>;
                         parser: { parse(str: string | null): any };
+                        value: any;
                     };
                 },
             );
 
             for (const [contextName, context] of Object.entries(contexts)) {
-                const observable = new BehaviorSubject(context.initialValue || null);
-                this.#contexts.set(contextName, { value: context.initialValue, observable });
+                const contextReactive = reactive(context.initialValue);
 
                 this.dispatchEvent(
                     new ContextEvent(
@@ -119,9 +118,9 @@ export default ({
                                 contextState.unsubscribe?.();
                             }
 
-                            observable.next(value);
+                            contextReactive.value = value;
 
-                            this.#contexts.set(contextName, { value, unsubscribe, observable });
+                            this.#contexts.set(contextName, { unsubscribe, reactive: contextReactive });
                         },
                         {
                             subscribe: true,
@@ -129,13 +128,15 @@ export default ({
                     ),
                 );
 
+                this.#contexts.set(contextName, { reactive: contextReactive });
+
                 /**
                  * We want to make prop values and contexts available in the render function without needing to
                  * pass them in the setup function. We don't want to shadow them if the dev wants to
                  * reuse derived state with the same name in their render function or template.
                  */
                 if (!this.#props[contextName]) {
-                    this.#renderObservables[contextName] = observable;
+                    this.#renderState.set(contextName, contextReactive);
                 } else {
                     /** 
                      * DBW 12/6/23: I would prefer to throw here, but I can't catch the error and I can catch the log line
@@ -156,22 +157,10 @@ export default ({
             this.#setupContext = {
                 emit,
             };
-
-            const getProxy = (value: { observable: BehaviorSubject<any>; parser?: { parse(str: string | null): any; }; unsubscribe?: () => void }) => {
-                return new Proxy(value, {
-                    get(target, prop, receiver) {
-                        if (prop === 'value') {
-                            return target.observable.getValue();
-                        }
-
-                        return Reflect.get(target, prop, receiver);
-                    }
-                });
-            };
             
-            const propsForSetup: { [key: string]: { subscribe: () => void; observable: Observable<any> } } = Object.fromEntries([
-                ...Object.entries(this.#props).map(([key, value]) => [key, getProxy(value)]),
-                ...Array.from(this.#contexts.entries()).map(([key, value]) => { return [key, getProxy(value)] }),
+            const propsForSetup: { [key: string]: { subscribe: () => void; reactive: Reactive<any> } } = Object.fromEntries([
+                ...Object.entries(this.#props).map(([key, value]) => [key, value.reactive]),
+                ...Array.from(this.#contexts.entries()).map(([key, value]) => [key, value.reactive]),
             ]);
 
             const setupResults =
@@ -182,32 +171,22 @@ export default ({
                 ) || {};
 
             for (const [key, value] of Object.entries({ ...propsForSetup, ...setupResults })) {
-                if (value.subscribe) {
-                    this.#renderObservables[key] = value;
-                } else if (value.observable) {
-                    this.#renderObservables[key] = value.observable;
+                if (value.addListener) {
+                    this.#renderState.set(key, value);
+                } else if (typeof value === 'function') {
+                    this.#renderState.set(key, value);
                 } else {
-                    // We don't ever need to access this a second time, so we can cache it on the
-                    // current render state and not have a corresponding render observable.
-                    this.#renderState[key] = value;
+                    this.#renderState.set(key, reactive(value));
                 }
             }
 
-            for (const [key, value] of Object.entries(this.#props)) {
-                if (!this.#renderObservables[key]) {
-                    // dbw 7/29/23: We convert the BehaviorSubject to an Observable here because its easier to use
-                    // pipes when working with observables, but they convert Subjects to Observables. The general
-                    // idea is to be strict in what we pass to clients, and permissive about what we accept, to
-                    // make the framework easier to work with.
-                    this.#renderObservables[key] = value.observable.pipe(map((value) => value.parser(value)));
+            for (const [attributeName, propValue] of Object.entries(this.#props)) {
+                if (!this.#renderState.get(attributeName)) {
+                    const parsedReactive = derive(propValue.reactive, ([newValue]: Reactive<string>[]) => {
+                        return propValue.parser.parse(newValue.value);
+                    });
+                    this.#renderState.set(attributeName, parsedReactive);
                 }
-            }
-
-            for (const [key, observable] of Object.entries(this.#renderObservables)) {
-                observable.subscribe((value) => {
-                    this.#renderState[key] = value;
-                    this.#doRender();
-                });
             }
 
             /**
@@ -225,13 +204,17 @@ export default ({
             connectedCallback?.apply(this);
 
             this.#updateProps();
-
             this.#doRender();
         }
 
         disconnectedCallback() {
             this.#isConnected = false;
+
             disconnectedCallback?.apply(this);
+
+            for (const context of this.#contexts.values()) {
+                context.unsubscribe?.();
+            }
         }
 
         adoptedCallback() {
@@ -239,9 +222,10 @@ export default ({
         }
 
         attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-            const { observable, parser } = this.#props[name];
-            const parsed = parser.parse(newValue);
-            observable.next(parsed);
+            const entry = this.#props[name];
+            const parsed = entry.parser.parse(newValue);
+            entry.reactive.value = parsed;
+
             this.#doRender();
         }
 
@@ -291,11 +275,14 @@ export default ({
             }
 
             if (this.#render) {
-                const newEntries = Object.entries(this.#renderState).map(([key, value]) =>
-                    [key, value?.observable ? value.observable : value]
-                );
-                const renderResults = this.#render(Object.fromEntries(newEntries));
-                const renderedNodes = render(renderResults);
+                const renderResults = this.#render(Object.fromEntries(this.#renderState));
+                
+                let renderedNodes;
+                if (renderResults) {
+                    renderedNodes = render(renderResults);
+                } else {
+                    renderedNodes = [];
+                }
 
                 for (let i = 0; i < renderedNodes.length; i++) { 
                     try {
@@ -318,20 +305,34 @@ export default ({
 
                 this.#shadowRoot?.appendChild(templateContent.cloneNode(true));
             }
+
+            const renderReactiveListener = () => {
+                this.#doRender();
+            };
+
+            for (const [name, renderReactive] of this.#renderState.entries()) {
+                if (!renderReactive?.addListener) {
+                    continue;
+                }
+
+                if (renderReactive.isForcingRerenderOnUpdate) {
+                    renderReactive.addListener(renderReactiveListener);
+                }
+            }
         }
 
         /**
-         * Pushes the current value of all props into their corresponding observables. Called
+         * Pushes the current value of all props into their corresponding reactives. Called
          * on connectedCallback.
          */
         #updateProps() {
             for (const [key, value] of Object.entries(this.#props)) {
                 const attributeValue = this.getAttribute(key);
-                const usingDefault = attributeValue === null && value.observable.value;
-                const areDifferent = attributeValue !== value.observable.getValue();
+                const usingDefault = attributeValue === null && value.value;
+                const areDifferent = attributeValue !== value.value;
                 if (!usingDefault && areDifferent) {
                     const nextValue = value.parser.parse(attributeValue);
-                    value.observable.next(nextValue);
+                    value.reactive.value = nextValue;
                 }
             }
         }

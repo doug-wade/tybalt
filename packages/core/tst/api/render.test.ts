@@ -1,3 +1,5 @@
+import { reactive } from "@tybalt/reactive";
+
 import render from "../../src/api/render";
 import html from "../../src/api/html";
 
@@ -10,7 +12,7 @@ describe('render', () => {
         const wrapper = render(template)[0];
         wrapper.dispatchEvent(event);
 
-        expect(listener).toBeCalledWith(event);
+        expect(listener).toHaveBeenCalledWith(event);
         expect(wrapper.outerHTML).toBe('<button type="button"></button>');
     });
 
@@ -31,8 +33,8 @@ describe('render', () => {
         wrapper.dispatchEvent(blurEvent);
         wrapper.dispatchEvent(changeEvent);
 
-        expect(blurHandler).toBeCalledWith(blurEvent);
-        expect(changeHandler).toBeCalledWith(changeEvent);
+        expect(blurHandler).toHaveBeenCalledWith(blurEvent);
+        expect(changeHandler).toHaveBeenCalledWith(changeEvent);
         expect(wrapper.outerHTML).toBe('<input type="text">')
     });
 
@@ -72,4 +74,36 @@ describe('render', () => {
 
         expect(wrapper.outerHTML).toBe('<div>0</div>');
     });
+
+    it('should return placeholders for setAttribute calls', () => {
+        const prefix = 'prefix-';
+        const suffix = '-suffix';
+        const value = 'hello world';
+        const attributeReactive = reactive(value);
+        jest.spyOn(attributeReactive, 'addListener');
+        
+        const template = html`<div my-attribute="prefix-${attributeReactive}-suffix"></div>`;
+        const wrapper = render(template)[0];
+
+        expect(wrapper.outerHTML).toBe(`<div my-attribute="${prefix}${value}${suffix}"></div>`);
+        expect(attributeReactive.addListener).toHaveBeenCalledTimes(1);
+    });
+
+    it('should mark non-set-attribute renders to force re-render', () => {
+        const example = reactive('');
+
+        const template = html`<div>${example}</div>`;
+        render(template)[0];
+
+        expect(example.isForcingRerenderOnUpdate).toBeTruthy();
+    });
+
+    it('should handle multiple attributes', () => {
+        const attributeValue = reactive('https://tybalt.org');
+
+        const template = html`<a class="my-class" href="${attributeValue}"></a>`
+        const wrapper = render(template)[0];
+
+        expect(wrapper.outerHTML).toBe(`<a class="my-class" href="${attributeValue.value}"></a>`);
+    })
 });

@@ -3,6 +3,7 @@ import type { SetupContext, RenderContext, PropsStateMap } from './types';
 export { SetupContext, RenderContext, PropsStateMap };
 
 export { default as defineComponent } from './api/define-component';
+export { default as forceRerenderOnUpdate } from './api/force-rerender-on-update';
 export { default as html } from './api/html';
 export { default as createContext } from './api/create-context';
 export { default as ContextEvent } from './api/context-event';

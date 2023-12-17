@@ -22,6 +22,7 @@
                 "packages/esbuild-plugin/src/**/*.*",
                 "packages/eslint-plugin/src/**/*.*",
                 "packages/example/src/**/*.*",
+                "packages/reactive/src/**/*.*",
                 "packages/test-utils/src/**/*.ts",
                 "packages/test-utils-lit-example/src/**/*.ts",
                 "packages/validator/src/**/*.ts",

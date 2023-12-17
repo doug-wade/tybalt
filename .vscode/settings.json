@@ -5,5 +5,6 @@
         "outdir",
         "tybalt"
     ],
-    "jest.jestCommandLine": "yarn test"
+    "jest.jestCommandLine": "npx jest",
+    "jest.rootPath": "."
 }
