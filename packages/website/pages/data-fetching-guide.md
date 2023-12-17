@@ -64,7 +64,7 @@ export default defineComponent({
         };
 
         const changeHandler = (evt: Event) => {
-            userInput.next(evt.target?.value);
+            userInput.value = evt.target?.value;
         };
 
         return {
