@@ -2,11 +2,11 @@ import type { PropsStateMap, SetupContext, RenderContext } from '@tybalt/core';
 
 import { defineComponent, html } from '@tybalt/core';
 import { compose, oneOf, required } from '@tybalt/validator';
-import { map } from 'rxjs';
 
 import { theme } from '../contexts';
 
 import css from './button.css';
+import { Reactive, derive } from '@tybalt/reactive';
 
 export const BUTTON_VARIANTS = Object.freeze({
     PRIMARY: 'primary',
@@ -44,7 +44,7 @@ export default defineComponent({
             evt.stopPropagation();
             emit('click');
         };
-        const computedClass = variant.observable.pipe(map((variant: string) => `button-${variant}`));
+        const computedClass = derive([variant.reactive], ([variant]) => `button-${variant}`);
 
         return {
             clickHandler,

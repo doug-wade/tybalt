@@ -1,6 +1,6 @@
-import type { Observer } from 'rxjs';
 import type { Parser } from '@tybalt/parser';
 import type { Validator } from '@tybalt/validator';
+import type { Reactive } from '@tybalt/reactive';
 
 export type PropType = string | number | object | Array<any>;
 
@@ -14,7 +14,7 @@ export type PropsDefinitionMap = {
     [Property: string]: PropDefinition;
 };
 
-export type RenderContext = { [key: string]: BehaviorSubject | string };
+export type RenderContext = { [key: string]: Reactive | string };
 
 export type PropsStateMap = { [key: string]: Map };
 
@@ -31,24 +31,12 @@ export type DefineComponentsOptions = {
     connectedCallback?: () => void;
     disconnectedCallback?: () => void;
     adoptedCallback?: () => void;
-    render?: (RenderContext) => HtmlTemplate;
+    render?: (RenderContext) => HtmlTemplate | void;
     shadowMode?: 'open' | 'closed';
     css?: string | ((RenderContext) => string);
     template?: string;
     contexts?: { [key: string]: Context };
 };
-
-export type UseObservableOptions =
-    | {
-          initialValue?: any;
-          subscriber?: SubscriptionObserver<any>;
-      }
-    | undefined;
-
-export type UseObservableReturn = Promise<{
-    observer: Observer<any>;
-    observable: Observable<any>;
-}>;
 
 export type SetupContext = {
     emit(type: string, detail?: any): void;

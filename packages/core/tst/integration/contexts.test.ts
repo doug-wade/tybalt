@@ -36,4 +36,21 @@ describe('contexts', () => {
         
         expect(jestSpy.mock.calls[0][0]).toBe('Collision detected between context and prop: example');
     });
+
+    it('is not re-wrapped during setup', async () => {
+        const mockContextName = 'context';
+        const mockContextValue = 'hello world';
+        const context = createContext(mockContextName, mockContextValue);
+
+        let actual: any = {};
+        const component = defineComponent({
+            name: 'context-not-rewrapped',
+            render({ example }) { actual = example },
+            contexts: { example: context },
+        });
+
+        await mount(component);
+
+        expect(actual.value).toStrictEqual(mockContextValue);
+    });
 });

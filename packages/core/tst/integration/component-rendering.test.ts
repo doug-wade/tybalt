@@ -2,21 +2,20 @@ import { describe, it, expect } from '@jest/globals';
 import { mount } from '@tybalt/test-utils';
 import defineComponent from '../../src/api/define-component';
 import html from '../../src/api/html';
-import { BehaviorSubject } from 'rxjs';
+import { reactive } from "@tybalt/reactive";
 
 describe('component rendering', () => {
-    it('renders observables returned from setup', async () => {
+    it('renders reactives returned from setup', async () => {
         const name = 'template-method';
         const expected = 'bar';
 
         const component = defineComponent({
             name,
-            
-            render({ expected }) {
-                return html`<span>${expected}</span>`;
+            render({ example }) {
+                return html`<span>${example.value}</span>`;
             },
             setup() {
-                return { expected: new BehaviorSubject(expected) };
+                return { example: reactive(expected) };
             },
         });
         const wrapper = await mount(component);
@@ -47,10 +46,10 @@ describe('component rendering', () => {
 
         const component = defineComponent({
             name,
-            
             props: { example: { default: firstRenderPropValue } },
             render({ example }) {
-                return html`<span>${example}</span>`;
+                const result = html`<span>${example}</span>`;
+                return result;
             },
         });
         const wrapper = await mount(component);
@@ -85,6 +84,6 @@ describe('component rendering', () => {
 
         await mount(parentComponent, { attributes: { example: expected } });
 
-        expect(actual.value).toBe(expected);
+        expect(actual?.value).toBe(expected);
     });
 });

@@ -9,22 +9,22 @@ These exmaples use the `fetch` api, but the principle remains the same for other
 
 ## Fetching data in setup
 
-When fetching data in `setup`, you'll want to create an observable with an initial value, and then call its `next` method with the data once the request resolves.
+When fetching data in `setup`, you'll want to create an reactive with an initial value, and then call its `next` method with the data once the request resolves.
 
 ```typescript
 import { defineComponent, html } from '@tybalt/core';
-import { BehaviorSubject } from 'rxjs';
+import { reactive } from "@tybalt/reactive";
 
 const BASE_URL = /* your url goes here */;
 
 export default defineComponent({
     name: 'fetch-example',
     setup() {
-        const data = new BehaviorSubject('');
+        const data = reactive('');
 
         fetch(BASE_URL)
             .then(results => results.json())
-            .then(json => data.next(json));
+            .then(json => data.value = json);
 
         return {
             data
@@ -42,25 +42,25 @@ Here is a full example of how to fetch data in response to user input.
 
 ```typescript
 import { defineComponent, html } from '@tybalt/core';
-import { BehaviorSubject } from 'rxjs';
+import { reactive } from "@tybalt/reactive";
 
 const BASE_URL = /* your url goes here */;
 
 export default defineComponent({
     name: 'fetch-example',
     setup() {
-        const userInput = new BehaviorSubject('');
-        const data = new BehaviorSubject(null);
-        const loading = new BehaviorSubject(false);
+        const userInput = reactive('');
+        const data = reactive(null);
+        const loading = reactive(false);
 
         const clickHandler = async () => {
-            loading.next(true);
+            loading.value = true;
 
             const results = await fetch(`${BASE_URL}?q=${userInput.value}`);
             const json = await results.json();
-            data.next(json);
+            data.value = json;
 
-            loading.next(false);
+            loading.value = false;
         };
 
         const changeHandler = (evt: Event) => {
