@@ -6,7 +6,7 @@ import { compose, oneOf, required } from '@tybalt/validator';
 import { theme } from '../contexts';
 
 import css from './button.css';
-import { Reactive, derive } from '@tybalt/reactive';
+import { derive } from '@tybalt/reactive';
 
 export const BUTTON_VARIANTS = Object.freeze({
     PRIMARY: 'primary',

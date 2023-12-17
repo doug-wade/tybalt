@@ -310,7 +310,7 @@ export default ({
                 this.#doRender();
             };
 
-            for (const [name, renderReactive] of this.#renderState.entries()) {
+            for (const renderReactive of this.#renderState.values()) {
                 if (!renderReactive?.addListener) {
                     continue;
                 }
