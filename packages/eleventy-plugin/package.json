@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/eleventy-plugin",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "A plugin for eleventy for serving web components",
     "main": ".eleventy.js",
     "scripts": {
