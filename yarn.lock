@@ -2976,7 +2976,7 @@ __metadata:
   dependencies:
     "@tybalt/reactive": "workspace:^"
     "@tybalt/validator": "workspace:^"
-    concurrently: "npm:^8.2.1"
+    concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.19.8"
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
@@ -3022,7 +3022,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tybalt/esbuild-plugin@workspace:packages/esbuild-plugin"
   dependencies:
-    concurrently: "npm:^8.2.1"
+    concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.19.8"
     rimraf: "npm:^5.0.5"
     typescript: "npm:^5.3.3"
@@ -3080,7 +3080,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tybalt/reactive@workspace:packages/reactive"
   dependencies:
-    concurrently: "npm:^8.2.1"
+    concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.19.8"
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
@@ -3110,7 +3110,7 @@ __metadata:
   resolution: "@tybalt/test-utils@workspace:packages/test-utils"
   dependencies:
     "@types/uuid": "npm:^9.0.7"
-    concurrently: "npm:^8.2.1"
+    concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.19.8"
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
@@ -3125,7 +3125,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tybalt/validator@workspace:packages/validator"
   dependencies:
-    concurrently: "npm:^8.2.1"
+    concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.19.8"
     jest: "npm:^29.7.0"
     rimraf: "npm:^5.0.5"
@@ -5272,9 +5272,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"concurrently@npm:^8.2.1":
-  version: 8.2.1
-  resolution: "concurrently@npm:8.2.1"
+"concurrently@npm:^8.2.2":
+  version: 8.2.2
+  resolution: "concurrently@npm:8.2.2"
   dependencies:
     chalk: "npm:^4.1.2"
     date-fns: "npm:^2.30.0"
@@ -5288,7 +5288,7 @@ __metadata:
   bin:
     conc: dist/bin/concurrently.js
     concurrently: dist/bin/concurrently.js
-  checksum: 8a7cb8caeb9430f939ae6ba3ccdce6080e7f3084dcbffb6383059002937bbe771d71f8f4f854258e6138f52918637a3d66a6b21fd19d0ea69c426011f878e701
+  checksum: dcb1aa69d9c611a7bda9d4fc0fe1e388f971d1744acec7e0d52dffa2ef55743f1266ec9292f414c5789b9f61734b3fce772bd005d4de9564a949fb121b97bae1
   languageName: node
   linkType: hard
 
