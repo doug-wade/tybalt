@@ -10,7 +10,7 @@
         "@tybalt/esbuild-plugin": "workspace:^",
         "esbuild": "^0.19.8",
         "glob": "^10.3.10",
-        "jsdom": "^22.1.0"
+        "jsdom": "^23.0.1"
     },
     "keywords": [
         "eleventy",
