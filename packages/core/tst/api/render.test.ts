@@ -105,5 +105,16 @@ describe('render', () => {
         const wrapper = render(template)[0];
 
         expect(wrapper.outerHTML).toBe(`<a class="my-class" href="${attributeValue.value}"></a>`);
-    })
+    });
+
+    it('should not support multiple interpolations in a single attribute', () => {
+        const firstAttributeValue = reactive('bar');
+        const secondAttributeValue = reactive('baz');
+
+        const template = html`<div class="foo ${firstAttributeValue} ${secondAttributeValue}"></div>`;
+
+        expect(() => {
+            render(template)
+        }).toThrow('Tybalt currently only supports one reactive per attribute. Please consolidate.')
+    });
 });
