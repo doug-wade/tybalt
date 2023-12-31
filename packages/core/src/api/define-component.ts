@@ -67,7 +67,7 @@ export default ({
         // All of the contexts to connect to
         // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
         #contexts = new Map<string, { reactive: Reactive<any>, unsubscribe?: () => void }>();
-        contextState: any;
+        contextState: any = undefined;
 
         constructor() {
             super();
