@@ -33,7 +33,7 @@
         "commander": "^11.0.0",
         "esbuild": "^0.19.10",
         "eslint": "^8.56.0",
-        "find-up": "^6.3.0",
+        "find-up": "^7.0.0",
         "glob": "^10.3.10",
         "import-meta-resolve": "^4.0.0",
         "jest-environment-jsdom": "^29.7.0",
