@@ -117,4 +117,16 @@ describe('render', () => {
             render(template)
         }).toThrow('Tybalt currently only supports one reactive per attribute. Please consolidate.')
     });
+    
+    it('should emit a warning if a placeholder is unexpectedly not found', () => {
+        const listener = jest.fn();
+        const template = html`<button type="button" @click="${listener}"></button>`;
+
+        jest.spyOn(Element.prototype, 'querySelector').mockImplementation(() => null);
+        const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => '');
+        render(template)[0];
+
+        expect(warnSpy).toHaveBeenCalledTimes(1);
+        expect(warnSpy.mock.calls[0][0].startsWith('expected to find element with selector ')).toBeTruthy();
+    });
 });
