@@ -1812,7 +1812,9 @@
         const htmlErrata = attributeChunks.join('="');
         const placeholder = v4_default();
         let suffix = "";
-        if (!strings[i + 1].startsWith('"')) {
+        if (!strings[i + 1].includes('"')) {
+          throw new Error("Tybalt currently only supports one reactive per attribute. Please consolidate.");
+        } else if (!strings[i + 1].startsWith('"')) {
           suffix = strings[i + 1].split('"')[0];
         }
         const chunks = htmlErrata.split(/\s+/);
@@ -1843,6 +1845,10 @@
       if (key?.addListener) {
         if (key?.value.strings && key?.value.keys) {
           return `${prev}${curr}${renderToString(key, eventPlaceholders, setAttributePlaceholders)}`;
+        }
+        if (Array.isArray(key.value)) {
+          const children = key.value.map((templ) => renderToString(templ, eventPlaceholders, setAttributePlaceholders)).join("");
+          return `${prev}${curr}${children}`;
         }
         return `${prev}${curr}${key.value}`;
       }
