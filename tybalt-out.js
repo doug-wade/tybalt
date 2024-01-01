@@ -2146,6 +2146,7 @@ ${concatenatedMessages}
         this.#template = template;
         this.#isConnected = false;
         this.#contexts = /* @__PURE__ */ new Map();
+        this.contextState = void 0;
         this.#props = Object.entries(props).reduce(
           (accumulator, [key, value]) => {
             const parser = value.parser || import_parser.standard;
