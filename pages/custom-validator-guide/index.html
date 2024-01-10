@@ -33,11 +33,16 @@
 </code></pre>
 <p>You can also return other metadata on a validator by with the with* methods, like <code>withMessage</code> and <code>withLevel</code>. For instance, to set our log level to warn and add a message, we would wrap our validator as follows</p>
 <pre><code class="language-js">withMessage(
-  withLevel({
-    validate(val) { return val % 8 === 0; }
-  }, 'warning'),
-  'value must be divisible by 8'
-)
+    withLevel(
+        {
+            validate(val) {
+                return val % 8 === 0;
+            },
+        },
+        'warning',
+    ),
+    'value must be divisible by 8',
+);
 </code></pre>
 <p>This ends up creating a validator which looks like this</p>
 <pre><code class="language-json">{
@@ -58,12 +63,12 @@
 </code></pre>
 <p>Which can be used as follows</p>
 <pre><code class="language-js">defineComponent({
-  props: {
-    size: {
-      validator: compose(number(), divisibleBy(10))
-    }
-  }
-})
+    props: {
+        size: {
+            validator: compose(number(), divisibleBy(10)),
+        },
+    },
+});
 </code></pre>
 </div>
             </div>

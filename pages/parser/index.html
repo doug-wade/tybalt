@@ -55,60 +55,60 @@ defineComponent({
 <pre><code class="language-js">import { boolean } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: boolean
-    }
-  }
-})
+    props: {
+        option: {
+            parser: boolean,
+        },
+    },
+});
 </code></pre>
 <h3>json</h3>
 <p>This parser assumes the contents of the attribute string are valid json, and then calls <code>JSON.parse</code> on the contents and passes the resulting object.</p>
 <pre><code class="language-js">import { json } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: json
-    }
-  }
-})
+    props: {
+        option: {
+            parser: json,
+        },
+    },
+});
 </code></pre>
 <h3>number</h3>
 <p>This parser returns a number from its string representation.</p>
 <pre><code class="language-js">import { number } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: number
-    }
-  }
-})
+    props: {
+        option: {
+            parser: number,
+        },
+    },
+});
 </code></pre>
 <h3>standard</h3>
 <p>This is the standard parser used by Tybalt components. It makes its best guess, bless its heart, but it is kinda dumb sometimes.</p>
 <pre><code class="language-js">import { standard } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: standard
-    }
-  }
-})
+    props: {
+        option: {
+            parser: standard,
+        },
+    },
+});
 </code></pre>
 <h3>string</h3>
 <p>Returns the string value passed to the web component attribute directly, as-is. The identity function of web component attribute parsers.</p>
 <pre><code class="language-js">import { string } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: string
-    }
-  }
-})
+    props: {
+        option: {
+            parser: string,
+        },
+    },
+});
 </code></pre>
 </div>
             </div>

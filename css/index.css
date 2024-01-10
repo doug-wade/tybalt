@@ -1,22 +1,22 @@
 #app {
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
 }
 
 #content {
-  display: flex;
+    display: flex;
 }
 
 tybalt-main {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 tybalt-header {
-  margin-bottom: .5em;
-  border-bottom: 1px solid black;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid black;
 }
