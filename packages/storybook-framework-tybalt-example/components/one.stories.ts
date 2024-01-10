@@ -10,10 +10,14 @@ export default meta;
 
 type Story = StoryObj;
 
+export const Default: Story = {
+  render: () => html`<tybalt-one></tybalt-one>`,
+};
+
 export const Primary: Story = {
   render: () => html`<tybalt-one prop="primary"></tybalt-one>`,
 };
 
 export const Secondary: Story = {
     render: () => html`<tybalt-one prop="secondary"></tybalt-one>`,
-  };
+};
