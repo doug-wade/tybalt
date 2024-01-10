@@ -2,8 +2,8 @@ export default {
     parse(str: any) {
         if (str === undefined || str === 'undefined') {
             return undefined;
-        } 
-        
+        }
+
         if (str === null || str === 'null') {
             return null;
         }
@@ -23,16 +23,20 @@ export default {
         if (str[0] === '{' || str[0] === '[') {
             try {
                 return JSON.parse(str);
-            } catch (e) { /* ignore */ }
-        } 
-        
+            } catch (e) {
+                /* ignore */
+            }
+        }
+
         try {
             const parsed = Number(str);
             if (!Number.isNaN(parsed)) {
                 return parsed;
             }
-        } catch (e) { /* ignore */}
-        
+        } catch (e) {
+            /* ignore */
+        }
+
         return str;
     },
 };

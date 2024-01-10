@@ -1,11 +1,6 @@
 /// <reference types="cypress" />
 
-const guides = [
-    'custom-validator',
-    'new-website',
-    'styling-your-component',
-    'writing-tests'
-];
+const guides = ['custom-validator', 'new-website', 'styling-your-component', 'writing-tests'];
 
 guides.forEach((guide) => {
     describe(`guide: ${guide}`, () => {

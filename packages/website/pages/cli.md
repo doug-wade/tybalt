@@ -71,7 +71,7 @@ Options:
   -s, --styles          whether to generate a separate css file (default: true)
   -t, --tests           whether to generate unit tests (default: true)
   -i, --implementation  whether to generate a component implementation file (default: true)
-  -h, --help            display help for command                     
+  -h, --help            display help for command
 ```
 
 You can also run `--version` to get the current version number.
@@ -96,7 +96,7 @@ $ npx @tybalt/cli lint
 
 ### scaffold
 
-Scaffolds a new project. 
+Scaffolds a new project.
 
 Must be provided with a project type, one of: `eleventy`, `fastify`, `component` or `library`, as the first argument.
 

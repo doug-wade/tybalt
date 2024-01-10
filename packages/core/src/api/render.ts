@@ -1,9 +1,9 @@
-import { HtmlTemplate } from "src/types";
+import { HtmlTemplate } from 'src/types';
 import { v4 as uuid } from 'uuid';
 
-import type { Reactive } from "@tybalt/reactive";
+import type { Reactive } from '@tybalt/reactive';
 
-import forceRerenderOnUpdate from "./force-rerender-on-update";
+import forceRerenderOnUpdate from './force-rerender-on-update';
 
 const TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE = 'data-tybalt-event-placeholder';
 const TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE = 'data-tybalt-set-attribute-placeholder';
@@ -18,9 +18,12 @@ const extractEventName = (str: string) => str.replace('@', '').split('=')[0];
 let prevAttribute = false;
 
 const renderToString = (
-    { strings, keys }: HtmlTemplate, 
+    { strings, keys }: HtmlTemplate,
     eventPlaceholders: Map<string, { listener: () => void; eventName: string }>,
-    setAttributePlaceholders: Map<string, { reactive: Reactive<any>; attributeName: string, prefix: string, suffix: string }>
+    setAttributePlaceholders: Map<
+        string,
+        { reactive: Reactive<any>; attributeName: string; prefix: string; suffix: string }
+    >,
 ): string => {
     return strings.reduce((prev, current, i) => {
         let curr = current;
@@ -33,14 +36,14 @@ const renderToString = (
             prevAttribute = false;
         }
 
-        // Is this a bug? Does this ever result in us leaving `<my-component my-attribute>`, 
+        // Is this a bug? Does this ever result in us leaving `<my-component my-attribute>`,
         // indicating truthiness rather than falsiness?Q
         if (key === undefined || key === null) {
             return `${prev}${curr}`;
         }
 
         // my-attribute="my-${value}"
-        if (HTML_ATTRIBUTE_REGEX.test(curr) && typeof key.addListener === "function") {
+        if (HTML_ATTRIBUTE_REGEX.test(curr) && typeof key.addListener === 'function') {
             const attributeChunks = curr.split('="');
             const attributePrefix = attributeChunks.pop();
             const htmlErrata = attributeChunks.join('="');
@@ -82,10 +85,12 @@ const renderToString = (
             eventPlaceholders.set(placeholder, { eventName, listener: key });
 
             return `${prev}${preAt}${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true`;
-        } 
-        
+        }
+
         if (Array.isArray(key)) {
-            const children = key.map((key: HtmlTemplate) => renderToString(key, eventPlaceholders, setAttributePlaceholders)).join('');
+            const children = key
+                .map((key: HtmlTemplate) => renderToString(key, eventPlaceholders, setAttributePlaceholders))
+                .join('');
             return `${prev}${curr}${children}`;
         }
 
@@ -95,32 +100,35 @@ const renderToString = (
             }
 
             if (Array.isArray(key.value)) {
-                const children = key
-                    .value
-                    .map((templ: HtmlTemplate) => renderToString(templ, eventPlaceholders, setAttributePlaceholders)).join('');
+                const children = key.value
+                    .map((templ: HtmlTemplate) => renderToString(templ, eventPlaceholders, setAttributePlaceholders))
+                    .join('');
                 return `${prev}${curr}${children}`;
-            } 
+            }
 
             return `${prev}${curr}${key.value}`;
         }
-        
+
         if (key?.strings && key?.keys) {
             return `${prev}${curr}${renderToString(key, eventPlaceholders, setAttributePlaceholders)}`;
         }
 
         return `${prev}${curr}${key}`;
     }, '');
-}
+};
 
 export default (template: HtmlTemplate): HTMLCollection => {
     const mountPoint = document.createElement('div');
     const eventPlaceholders = new Map<string, { listener: () => void; eventName: string }>();
-    const setAttributePlaceholders = new Map<string, { reactive: Reactive<any>; attributeName: string, prefix: string, suffix: string }>();
+    const setAttributePlaceholders = new Map<
+        string,
+        { reactive: Reactive<any>; attributeName: string; prefix: string; suffix: string }
+    >();
 
     mountPoint.innerHTML = renderToString(template, eventPlaceholders, setAttributePlaceholders);
 
     for (const [placeholder, { listener, eventName }] of eventPlaceholders.entries()) {
-        const selector = `[${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"]`
+        const selector = `[${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"]`;
         const placeheld = mountPoint.querySelector(selector);
 
         if (placeheld === null) {
@@ -141,7 +149,7 @@ export default (template: HtmlTemplate): HTMLCollection => {
             continue;
         }
 
-        reactive.addListener((value: string) => { 
+        reactive.addListener((value: string) => {
             placeheld.setAttribute(attributeName, `${prefix}${value}${suffix}`);
         });
 
@@ -149,4 +157,4 @@ export default (template: HtmlTemplate): HTMLCollection => {
     }
 
     return mountPoint.children;
-}
+};

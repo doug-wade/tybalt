@@ -5,9 +5,9 @@ title: Styling your component
 
 The first thing to do when styling your component is to decide what method you want to use to add styles. The options are:
 
-- render function
-- css file
-- inline string
+-   render function
+-   css file
+-   inline string
 
 If you're just adding a little bit of style, the inline string is probably your best solution. A standalone css file can be nice if you highly value the separation of concerns. A render function is needed if your styles are derived from data, like props, or something fetched from an api.
 
@@ -23,7 +23,7 @@ export default defineComponent({
     css,
     render() {
         return html`<div class="my-class">hello world</di>`;
-    }
+    },
 });
 ```
 
@@ -42,7 +42,7 @@ export default defineComponent({
     `,
     render() {
         return html`<div class="my-class">hello world</di>`;
-    }
+    },
 });
 ```
 
@@ -66,9 +66,9 @@ export default defineComponent({
     },
     props: {
         customColor: {
-            validator: string()
-        }
-    }
+            validator: string(),
+        },
+    },
 });
 ```
 

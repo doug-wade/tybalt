@@ -83,7 +83,7 @@ export default defineComponent({
                 </div>
                 <label>
                     <span>Input</span>
-                    <input 
+                    <input
                         type="text"
                         value="${userInput}"
                         @change="${changeHandler}">

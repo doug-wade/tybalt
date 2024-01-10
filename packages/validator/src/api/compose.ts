@@ -53,7 +53,7 @@ export default (...validators: Array<Validator | null>) => {
         async validate(value: any) {
             const promises = validators.map((validator) => {
                 if (validator) {
-                    return validator.validate(value)
+                    return validator.validate(value);
                 }
                 return Promise.resolve({ passed: true });
             });

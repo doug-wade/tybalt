@@ -31,7 +31,7 @@ jobs:
 
             - name: Run the tests
               run: yarn ci-test
-              
+
             - name: Merge code coverage
               run: yarn run combine-coverage
 

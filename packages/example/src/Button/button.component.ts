@@ -36,8 +36,7 @@ export default defineComponent({
             </style>
             <button class="button ${computedClass}" @click="${clickHandler}">
                 <slot></slot>
-            </button>
-        `;
+            </button> `;
     },
     setup({ variant }: PropsStateMap, { emit }: SetupContext) {
         const clickHandler = (evt: Event) => {

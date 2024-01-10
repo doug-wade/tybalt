@@ -4,7 +4,7 @@ import { oneOf } from '@tybalt/validator';
 
 export default defineComponent({
     name: 't-if',
-    
+
     props: {
         condition: {
             validator: oneOf(['true', 'false']),

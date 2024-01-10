@@ -7,11 +7,11 @@ describe('t-if', () => {
 
         const FlipACoin = defineComponent({
             name: 'flip-a-coin',
-            props: { 
+            props: {
                 side: {
                     default: SIDES[0],
                     validator: { validate: (value: string) => SIDES.includes(value) },
-                } 
+                },
             },
             render({ side }) {
                 return html`

@@ -120,11 +120,7 @@ const result = await validator.validate(value);
 Note that `compose` will ignore falsey validators, to make it easier to make dynamic validators
 
 ```javascript
-const validator = compose(
-    required(), 
-    string(), 
-    isUrl ? url() : null
-);
+const validator = compose(required(), string(), isUrl ? url() : null);
 ```
 
 ### integer

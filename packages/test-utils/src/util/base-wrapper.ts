@@ -176,7 +176,7 @@ export default class BaseWrapper implements Wrapper {
 
     emitted(eventName?: string): Array<Event> {
         if (eventName) {
-            return this.#events.filter(evt => evt.type === eventName);
+            return this.#events.filter((evt) => evt.type === eventName);
         }
         return this.#events;
     }

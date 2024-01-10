@@ -19,9 +19,9 @@ export type RenderContext = { [key: string]: Reactive | string };
 export type PropsStateMap = { [key: string]: Map };
 
 export type HtmlTemplate = {
-    strings: TemplateStringsArray,
-    keys: any[]
-}
+    strings: TemplateStringsArray;
+    keys: any[];
+};
 
 export type DefineComponentsOptions = {
     name: string;

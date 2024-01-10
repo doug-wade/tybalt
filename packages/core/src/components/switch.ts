@@ -4,7 +4,7 @@ import { required } from '@tybalt/validator';
 
 export default defineComponent({
     name: 't-switch',
-    
+
     props: {
         value: {
             validator: required,

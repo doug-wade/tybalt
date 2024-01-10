@@ -50,7 +50,7 @@ defineComponent({
         },
     },
     setup({ example }) {
-        example.addListener(nextValue => {
+        example.addListener((nextValue) => {
             // TODO: What do we for error streams for reactives???
         });
     },

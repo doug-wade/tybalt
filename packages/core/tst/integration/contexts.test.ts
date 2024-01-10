@@ -25,15 +25,17 @@ describe('contexts', () => {
     it('emits a warning if there is a collision', async () => {
         const jestSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
         const context = createContext('bmo mochi');
-        
-        await mount(defineComponent({
-            name: 'throws-an-error-if-there-is-a-collision',
-            props: {
-                example: { default: 'hello world' }
-            },
-            contexts: { example: context },
-        }));
-        
+
+        await mount(
+            defineComponent({
+                name: 'throws-an-error-if-there-is-a-collision',
+                props: {
+                    example: { default: 'hello world' },
+                },
+                contexts: { example: context },
+            }),
+        );
+
         expect(jestSpy.mock.calls[0][0]).toBe('Collision detected between context and prop: example');
     });
 
@@ -45,7 +47,9 @@ describe('contexts', () => {
         let actual: any = {};
         const component = defineComponent({
             name: 'context-not-rewrapped',
-            render({ example }) { actual = example },
+            render({ example }) {
+                actual = example;
+            },
             contexts: { example: context },
         });
 

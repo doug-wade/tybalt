@@ -15,15 +15,20 @@ For our example, we want to check the value is divisible by 8
 { validate(val) { return val % 8 === 0; } }
 ```
 
-You can also return other metadata on a validator by with the with* methods, like `withMessage` and `withLevel`. For instance, to set our log level to warn and add a message, we would wrap our validator as follows
+You can also return other metadata on a validator by with the with\* methods, like `withMessage` and `withLevel`. For instance, to set our log level to warn and add a message, we would wrap our validator as follows
 
 ```js
 withMessage(
-  withLevel({
-    validate(val) { return val % 8 === 0; }
-  }, 'warning'),
-  'value must be divisible by 8'
-)
+    withLevel(
+        {
+            validate(val) {
+                return val % 8 === 0;
+            },
+        },
+        'warning',
+    ),
+    'value must be divisible by 8',
+);
 ```
 
 This ends up creating a validator which looks like this
@@ -54,10 +59,10 @@ Which can be used as follows
 
 ```js
 defineComponent({
-  props: {
-    size: {
-      validator: compose(number(), divisibleBy(10))
-    }
-  }
-})
+    props: {
+        size: {
+            validator: compose(number(), divisibleBy(10)),
+        },
+    },
+});
 ```

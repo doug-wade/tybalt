@@ -85,7 +85,7 @@ Then navigate to [chrome://inspect/](chrome://inspect/)
 ### Run the cli locally
 
 There is a script, `exec-source`, that runs the local cli, and a git-ignored directory in the cli
-project called `out/` with a mostly-empty package.json. So, for instance, to run the unit tests 
+project called `out/` with a mostly-empty package.json. So, for instance, to run the unit tests
 for a scaffolded package without risking checking it in, you can run
 
 ```shell

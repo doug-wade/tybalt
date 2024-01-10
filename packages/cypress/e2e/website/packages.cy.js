@@ -8,7 +8,7 @@ const packages = [
     'eslint-plugin',
     'parser',
     'test-utils',
-    'validator'
+    'validator',
 ];
 
 packages.forEach((pkg) => {

@@ -4,13 +4,13 @@ describe('html', () => {
     it('handles the happy case', () => {
         const mockClass = 'foo-bar';
         const mockDataJest = 'baz-quux';
-        const mockListener = () => {}
+        const mockListener = () => {};
 
         const actual = html`<div class="${mockClass}" data-jest="${mockDataJest}" @input="${mockListener}"></div>`;
 
         expect(actual).toStrictEqual({
             strings: ['<div class="', '" data-jest="', '" @input="', '"></div>'],
-            keys: [mockClass, mockDataJest, mockListener]
+            keys: [mockClass, mockDataJest, mockListener],
         });
     });
 
@@ -19,7 +19,7 @@ describe('html', () => {
 
         expect(actual).toStrictEqual({
             strings: ['<div>hello world</div>'],
-            keys: []
+            keys: [],
         });
     });
 
@@ -28,7 +28,7 @@ describe('html', () => {
 
         expect(actual).toStrictEqual({
             strings: [''],
-            keys: []
+            keys: [],
         });
     });
 });

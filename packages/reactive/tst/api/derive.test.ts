@@ -1,5 +1,5 @@
-import reactive from "../../src/api/reactive";
-import derive from "../../src/api/derive";
+import reactive from '../../src/api/reactive';
+import derive from '../../src/api/derive';
 
 describe('reactive', () => {
     it('should support a single derivation for numbers', () => {

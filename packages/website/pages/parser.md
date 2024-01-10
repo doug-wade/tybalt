@@ -52,12 +52,12 @@ This parser supports tri-state booleans, and returns `null` for all values other
 import { boolean } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: boolean
-    }
-  }
-})
+    props: {
+        option: {
+            parser: boolean,
+        },
+    },
+});
 ```
 
 ### json
@@ -68,12 +68,12 @@ This parser assumes the contents of the attribute string are valid json, and the
 import { json } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: json
-    }
-  }
-})
+    props: {
+        option: {
+            parser: json,
+        },
+    },
+});
 ```
 
 ### number
@@ -84,12 +84,12 @@ This parser returns a number from its string representation.
 import { number } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: number
-    }
-  }
-})
+    props: {
+        option: {
+            parser: number,
+        },
+    },
+});
 ```
 
 ### standard
@@ -100,12 +100,12 @@ This is the standard parser used by Tybalt components. It makes its best guess, 
 import { standard } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: standard
-    }
-  }
-})
+    props: {
+        option: {
+            parser: standard,
+        },
+    },
+});
 ```
 
 ### string
@@ -116,10 +116,10 @@ Returns the string value passed to the web component attribute directly, as-is. 
 import { string } from '@tybalt/parser';
 
 defineComponent({
-  props: {
-    option: {
-      parser: string
-    }
-  }
-})
+    props: {
+        option: {
+            parser: string,
+        },
+    },
+});
 ```

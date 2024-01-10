@@ -2,7 +2,7 @@ import { describe, it, expect } from '@jest/globals';
 import { mount } from '@tybalt/test-utils';
 import defineComponent from '../../src/api/define-component';
 import html from '../../src/api/html';
-import { reactive } from "@tybalt/reactive";
+import { reactive } from '@tybalt/reactive';
 
 describe('component rendering', () => {
     it('renders reactives returned from setup', async () => {
@@ -72,14 +72,14 @@ describe('component rendering', () => {
             props: { nested: {} },
             setup({ nested }) {
                 actual = nested;
-            }
+            },
         });
         const parentComponent = defineComponent({
             name,
             props: { example: {} },
             render({ example }) {
                 return html`<${childComponentName} nested="${example}"></${childComponentName}>`;
-            }
+            },
         });
 
         await mount(parentComponent, { attributes: { example: expected } });

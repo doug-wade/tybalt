@@ -42,10 +42,10 @@ export default ({
 
         // A hash from the attribute name to its corresponding reactive and parser
         #props: {
-            [Property: string]: { 
-                reactive: Reactive<any>; 
-                parser: { parse(str: string | null): any }, 
-                value: any
+            [Property: string]: {
+                reactive: Reactive<any>;
+                parser: { parse(str: string | null): any };
+                value: any;
             };
         } = {};
 
@@ -66,7 +66,7 @@ export default ({
 
         // All of the contexts to connect to
         // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
-        #contexts = new Map<string, { reactive: Reactive<any>, unsubscribe?: () => void }>();
+        #contexts = new Map<string, { reactive: Reactive<any>; unsubscribe?: () => void }>();
         contextState: any = undefined;
 
         constructor() {
@@ -88,8 +88,8 @@ export default ({
                         parser: value.parser || standard,
                         value: initialValue,
                     };
-                    entry.reactive.addListener((value: any) => entry.value = value);
-                    
+                    entry.reactive.addListener((value: any) => (entry.value = value));
+
                     accumulator[key] = entry;
 
                     return accumulator;
@@ -110,7 +110,10 @@ export default ({
                     new ContextEvent(
                         context,
                         (value, unsubscribe) => {
-                            const contextState = this.#contexts.get(context) || { value: undefined, unsubscribe: undefined };
+                            const contextState = this.#contexts.get(context) || {
+                                value: undefined,
+                                unsubscribe: undefined,
+                            };
 
                             // Call the old unsubscribe callback if the unsubscribe call has
                             // changed. This probably means we have a new provider.
@@ -138,7 +141,7 @@ export default ({
                 if (!this.#props[contextName]) {
                     this.#renderState.set(contextName, contextReactive);
                 } else {
-                    /** 
+                    /**
                      * DBW 12/6/23: I would prefer to throw here, but I can't catch the error and I can catch the log line
                      * in the unit tests, so we log because its what we can test 🤣.
                      */
@@ -157,18 +160,14 @@ export default ({
             this.#setupContext = {
                 emit,
             };
-            
-            const propsForSetup: { [key: string]: { subscribe: () => void; reactive: Reactive<any> } } = Object.fromEntries([
-                ...Object.entries(this.#props).map(([key, value]) => [key, value.reactive]),
-                ...Array.from(this.#contexts.entries()).map(([key, value]) => [key, value.reactive]),
-            ]);
 
-            const setupResults =
-                setup?.call(
-                    this,
-                    propsForSetup,
-                    this.#setupContext,
-                ) || {};
+            const propsForSetup: { [key: string]: { subscribe: () => void; reactive: Reactive<any> } } =
+                Object.fromEntries([
+                    ...Object.entries(this.#props).map(([key, value]) => [key, value.reactive]),
+                    ...Array.from(this.#contexts.entries()).map(([key, value]) => [key, value.reactive]),
+                ]);
+
+            const setupResults = setup?.call(this, propsForSetup, this.#setupContext) || {};
 
             for (const [key, value] of Object.entries({ ...propsForSetup, ...setupResults })) {
                 if (value.addListener) {
@@ -276,7 +275,7 @@ export default ({
 
             if (this.#render) {
                 const renderResults = this.#render(Object.fromEntries(this.#renderState));
-                
+
                 let renderedNodes;
                 if (renderResults) {
                     renderedNodes = render(renderResults);
@@ -284,17 +283,21 @@ export default ({
                     renderedNodes = [];
                 }
 
-                for (let i = 0; i < renderedNodes.length; i++) { 
+                for (let i = 0; i < renderedNodes.length; i++) {
                     try {
-                        this.#shadowRoot?.appendChild(renderedNodes[i]); 
-                    } catch (e) { console.error(e) }
+                        this.#shadowRoot?.appendChild(renderedNodes[i]);
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
 
                 for (let i = 0; i < renderedNodes.length; i++) {
                     try {
                         const childNode = renderedNodes[i];
                         this.#shadowRoot?.appendChild(childNode);
-                    } catch (e) { console.error(e) }
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
             }
 

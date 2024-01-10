@@ -1,5 +1,5 @@
 export default {
-    process: function() {
-      return { code: "" };
-    }
+    process: function () {
+        return { code: '' };
+    },
 };
