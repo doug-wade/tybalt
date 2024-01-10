@@ -1,0 +1,21 @@
+{
+  "name": "storybook-framework-tybalt-example",
+  "private": true,
+  "dependencies": {
+    "storybook-framework-tybalt": "workspace:^"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.3.2",
+    "@storybook/addon-links": "^7.3.2",
+    "@storybook/blocks": "^7.3.2",
+    "@tybalt/core": "workspace:^",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.3.2",
+    "storybook-framework-tybalt": "workspace:^"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  }
+}

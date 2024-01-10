@@ -1,0 +1,49 @@
+{
+  "name": "storybook-framework-tybalt",
+  "version": "0.0.19",
+  "description": "Framework for using storybook with tybalt",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": ["dist/**/*", "types/**/*", "README.md", "*.js", "*.d.ts"],
+  "scripts": {
+    "build": "tsc index.ts --outDir dist",
+    "test": "echo \"no tests yet\" && exit 0"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  },
+  "keywords": [
+    "storybook",
+    "tybalt"
+  ],
+  "author": "Douglas Wade <douglas.b.wade@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Astorybook-framework-tybalt"
+  },
+  "homepage": "https://tybalt.org/pages/storybook-framework-tybalt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doug-wade/tybalt.git",
+    "directory": "packages/storybook-framework-tybalt"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./preset": {
+      "types": "./dist/preset.d.ts",
+      "require": "./dist/preset.js",
+      "import": "./dist/preset.mjs"
+    },
+    "./preview.js": {
+      "types": "./dist/preview.d.ts",
+      "require": "./dist/preview.js",
+      "import": "./dist/preview.mjs"
+    },
+    "./package.json": "./package.json"
+  }
+}
