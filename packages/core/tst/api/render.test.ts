@@ -1,12 +1,12 @@
-import { reactive } from "@tybalt/reactive";
+import { reactive } from '@tybalt/reactive';
 
-import render from "../../src/api/render";
-import html from "../../src/api/html";
+import render from '../../src/api/render';
+import html from '../../src/api/html';
 
 describe('render', () => {
     it('should attach an event listener', () => {
         const listener = jest.fn();
-        const event = new Event('click')
+        const event = new Event('click');
         const template = html`<button type="button" @click="${listener}"></button>`;
 
         const wrapper = render(template)[0];
@@ -35,7 +35,7 @@ describe('render', () => {
 
         expect(blurHandler).toHaveBeenCalledWith(blurEvent);
         expect(changeHandler).toHaveBeenCalledWith(changeEvent);
-        expect(wrapper.outerHTML).toBe('<input type="text">')
+        expect(wrapper.outerHTML).toBe('<input type="text">');
     });
 
     it('should render a number', () => {
@@ -58,12 +58,12 @@ describe('render', () => {
 
     it('should render an array of html fragments', () => {
         const messages = ['foo', 'bar', 'baz'];
-        const fragments = messages.map(message => html`<li>${message}</li>`);
+        const fragments = messages.map((message) => html`<li>${message}</li>`);
         const template = html`<ul>${fragments}</ul>`;
 
         const wrapper = render(template)[0];
 
-        expect(wrapper.outerHTML).toBe(`<ul>${messages.map(message => `<li>${message}</li>`).join('')}</ul>`);
+        expect(wrapper.outerHTML).toBe(`<ul>${messages.map((message) => `<li>${message}</li>`).join('')}</ul>`);
     });
 
     it('should render a zero', () => {
@@ -81,7 +81,7 @@ describe('render', () => {
         const value = 'hello world';
         const attributeReactive = reactive(value);
         jest.spyOn(attributeReactive, 'addListener');
-        
+
         const template = html`<div my-attribute="prefix-${attributeReactive}-suffix"></div>`;
         const wrapper = render(template)[0];
 
@@ -101,7 +101,7 @@ describe('render', () => {
     it('should handle multiple attributes', () => {
         const attributeValue = reactive('https://tybalt.org');
 
-        const template = html`<a class="my-class" href="${attributeValue}"></a>`
+        const template = html`<a class="my-class" href="${attributeValue}"></a>`;
         const wrapper = render(template)[0];
 
         expect(wrapper.outerHTML).toBe(`<a class="my-class" href="${attributeValue.value}"></a>`);
@@ -114,10 +114,10 @@ describe('render', () => {
         const template = html`<div class="foo ${firstAttributeValue} ${secondAttributeValue}"></div>`;
 
         expect(() => {
-            render(template)
-        }).toThrow('Tybalt currently only supports one reactive per attribute. Please consolidate.')
+            render(template);
+        }).toThrow('Tybalt currently only supports one reactive per attribute. Please consolidate.');
     });
-    
+
     it('should emit a warning if a placeholder is unexpectedly not found', () => {
         const listener = jest.fn();
         const template = html`<button type="button" @click="${listener}"></button>`;

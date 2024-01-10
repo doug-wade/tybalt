@@ -10,10 +10,10 @@ const getSlotName = (condition: string | boolean) => {
 
 export default defineComponent({
     name: 't-if',
-    
+
     props: {
         condition: {
-            validator: oneOf(['true', 'false', true, false])
+            validator: oneOf(['true', 'false', true, false]),
         },
     },
     render({ condition }: { condition: string | boolean }) {

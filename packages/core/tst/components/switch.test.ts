@@ -3,7 +3,7 @@ import { mount } from '@tybalt/test-utils';
 
 describe('t-switch', () => {
     it('renders the first option of three', () => {
-        const THREE_SPECIES = [ "tanar'ri", "yugoloth", "baatezu" ];
+        const THREE_SPECIES = ["tanar'ri", 'yugoloth', 'baatezu'];
 
         const RuleOfThree = defineComponent({
             name: 'rule-of-three',
@@ -16,7 +16,7 @@ describe('t-switch', () => {
                         <div slot="${THREE_SPECIES[2]}">${THREE_SPECIES[2]}</div>
                     </t-switch>
                 `;
-            }
+            },
         });
 
         THREE_SPECIES.forEach(async (species) => {

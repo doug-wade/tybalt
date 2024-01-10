@@ -26,8 +26,8 @@ import { describe, expect, test } from '@jest/globals';
 
 describe('my component', () => {
     test('true is not false', () => {
-      expect(true).not.toBe(false);
-    })
+        expect(true).not.toBe(false);
+    });
 });
 ```
 
@@ -51,7 +51,7 @@ describe('my component', () => {
 });
 ```
 
-In this example, we can start to see that the wrapper that is returned from mount is a dom node, so we can use the dom methods to access things we need to access to make assertions about our components. The wrapper is super powered, and also has some extra methods, like `emitted()` and `shadowHtml()`, which give a history of every event emitted by this component and access to a web component's shadow root, respectively. 
+In this example, we can start to see that the wrapper that is returned from mount is a dom node, so we can use the dom methods to access things we need to access to make assertions about our components. The wrapper is super powered, and also has some extra methods, like `emitted()` and `shadowHtml()`, which give a history of every event emitted by this component and access to a web component's shadow root, respectively.
 
 For example, you can get access to the shadow root to make assertions about the state of the dom inside it and check the history of emitted events, even though those methods aren't usually on a web component
 

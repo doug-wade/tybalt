@@ -1,5 +1,5 @@
 import { defineComponent, html } from '@tybalt/core';
-import { reactive } from "@tybalt/reactive";
+import { reactive } from '@tybalt/reactive';
 
 import { BUTTON_VARIANTS } from '../Button/button.component.js';
 
@@ -8,14 +8,18 @@ export default defineComponent({
     name: 'example-counter',
     setup() {
         const count = reactive(0);
-        const increment = () => { count.value = count.value + 1 };
-        const decrement = () => { count.value = count.value - 1 };
+        const increment = () => {
+            count.value = count.value + 1;
+        };
+        const decrement = () => {
+            count.value = count.value - 1;
+        };
 
         return {
             increment,
             decrement,
-            count
-        }
+            count,
+        };
     },
     render({ count, increment, decrement }) {
         return html`<div class="example-counter">

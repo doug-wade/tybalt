@@ -17,7 +17,7 @@ describe('events', () => {
                     evt.stopPropagation();
 
                     emit(eventName);
-                }
+                };
                 return { listener };
             },
         });
@@ -37,7 +37,7 @@ describe('events', () => {
         const component = defineComponent({
             name: 'events-trigger-rerender',
             props: {
-                value: { default: startingValue }
+                value: { default: startingValue },
             },
             setup({ value }) {
                 const listener = () => {
@@ -50,8 +50,8 @@ describe('events', () => {
                 return html`<div>
                     <span>${value}</span>
                     <button @click="${listener}"></button>
-                </div>`
-            }
+                </div>`;
+            },
         });
 
         const wrapper = await mount(component);

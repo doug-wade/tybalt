@@ -1,10 +1,10 @@
 import type { Reactive } from '../types';
 
 function reactive<T>(initialValue?: any, listeners: Array<(newState: object) => void> = []): Reactive<T> {
-    const state = { 
-        value: initialValue, 
-        addListener(listener: () => void) { 
-            listeners.push(listener) 
+    const state = {
+        value: initialValue,
+        addListener(listener: () => void) {
+            listeners.push(listener);
         },
         isForcingRerenderOnUpdate: false,
     };
@@ -30,7 +30,7 @@ function reactive<T>(initialValue?: any, listeners: Array<(newState: object) => 
                 state.value = value;
 
                 try {
-                    listeners.forEach(listener => listener(value));
+                    listeners.forEach((listener) => listener(value));
                 } catch (e) {
                     console.error(e);
                     return false;
@@ -40,9 +40,9 @@ function reactive<T>(initialValue?: any, listeners: Array<(newState: object) => 
             } else {
                 return Reflect.set(obj, prop, value);
             }
-        }
+        },
     };
-    
+
     return new Proxy(state, handler);
 }
 

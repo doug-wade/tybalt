@@ -1,5 +1,5 @@
 import { defineComponent, html } from '@tybalt/core';
-import { reactive } from "@tybalt/reactive";
+import { reactive } from '@tybalt/reactive';
 
 import { theme } from '../contexts';
 import { BUTTON_VARIANTS } from '../Button/button.component';
@@ -35,5 +35,5 @@ export default defineComponent({
 
         return { clickHandler, TERTIARY: BUTTON_VARIANTS.TERTIARY };
     },
-    contexts: { theme }
+    contexts: { theme },
 });

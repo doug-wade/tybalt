@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  --dark-blue: #010B14;
-  --light-blue: rgb(130, 170, 255);
-  --green: rgb(128, 203, 196);
-  --orange: rgb(247, 140, 108);
-  --purple: rgb(199, 146, 234);
-  --off-white: #f1f2ec;
+    --dark-blue: #010b14;
+    --light-blue: rgb(130, 170, 255);
+    --green: rgb(128, 203, 196);
+    --orange: rgb(247, 140, 108);
+    --purple: rgb(199, 146, 234);
+    --off-white: #f1f2ec;
 
-  --background-primary: var(--dark-blue);
+    --background-primary: var(--dark-blue);
 }
 
 body {
-    padding: .75em;
+    padding: 0.75em;
     margin: 0;
     background-color: var(--background-primary);
     color: var(--off-white);
@@ -38,7 +38,7 @@ tybalt-main {
 }
 
 tybalt-header {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     border-bottom: 1px solid black;
 }
 

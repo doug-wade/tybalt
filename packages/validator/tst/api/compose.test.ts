@@ -17,11 +17,7 @@ describe('compose', () => {
     });
 
     it('should validate if null validators are passed and all are passing', async () => {
-        const underTest = compose(
-            mockValidator({ passed: true }),
-            null,
-            mockValidator({ passed: true }),
-        );
+        const underTest = compose(mockValidator({ passed: true }), null, mockValidator({ passed: true }));
 
         const results = await underTest.validate('foo');
 
@@ -29,11 +25,7 @@ describe('compose', () => {
     });
 
     it('should fail validation if null validators are passed and some are failing', async () => {
-        const underTest = compose(
-            mockValidator({ passed: true }),
-            null,
-            mockValidator({ passed: false }),
-        );
+        const underTest = compose(mockValidator({ passed: true }), null, mockValidator({ passed: false }));
 
         const results = await underTest.validate('foo');
 

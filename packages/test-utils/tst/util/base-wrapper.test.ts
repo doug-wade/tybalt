@@ -395,7 +395,7 @@ describe('base-wrapper', () => {
             const element = document.createElement('input');
 
             const wrapper = new BaseWrapper({ element });
-            for (let i = 0; i < times ; i++) {
+            for (let i = 0; i < times; i++) {
                 element.dispatchEvent(mockEvent);
             }
 

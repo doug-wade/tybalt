@@ -9,9 +9,10 @@ export default () => {
         try {
             const parsed = JSON.parse(value);
             return Array.isArray(parsed);
-        } catch (e) { /* ignore */}
+        } catch (e) {
+            /* ignore */
+        }
 
         return false;
-        
     });
 };

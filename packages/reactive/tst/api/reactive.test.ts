@@ -1,4 +1,4 @@
-import reactive from "../../src/api/reactive";
+import reactive from '../../src/api/reactive';
 
 describe('reactive', () => {
     it('should support the default constructor', () => {
@@ -9,7 +9,7 @@ describe('reactive', () => {
 
     it('should take an initial value', () => {
         const value = 42;
-        
+
         const underTest = reactive(value);
 
         expect(underTest.value).toBeTruthy();

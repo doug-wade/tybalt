@@ -31,15 +31,10 @@ defineComponent({
                 shadow dom to implement rendering.
             </p>
             <tybalt-code-example language="javascript">
-import { defineComponent, html } from '@tybalt/core';
-
-export default defineComponent({
-    name: 'my-component',
-    shadowMode: 'open',
-    render() {
-        return html\`<div>Hello World</div>\`;
-    },
-});
+                import { defineComponent, html } from '@tybalt/core'; export default defineComponent({ name:
+                'my-component', shadowMode: 'open', render() { return html\`
+                <div>Hello World</div>
+                \`; }, });
             </tybalt-code-example>
             <h3>Unit Testing</h3>
             <p>
@@ -47,16 +42,9 @@ export default defineComponent({
                 test environment.
             </p>
             <tybalt-code-example language="javascript">
-import MyComponent from './my-component.js';
-import { mount } from '@tybalt/test-utils';
-
-describe('my-component', () => {
-    it('renders', async () => {
-        const el = await mount(MyComponent);
-
-        expect(el.shadowHtml()).toContain('Hello World');
-    });
-});
+                import MyComponent from './my-component.js'; import { mount } from '@tybalt/test-utils';
+                describe('my-component', () => { it('renders', async () => { const el = await mount(MyComponent);
+                expect(el.shadowHtml()).toContain('Hello World'); }); });
             </tybalt-code-example>
             <h3>Compilation</h3>
             <p>
@@ -71,12 +59,10 @@ describe('my-component', () => {
             <h2>Getting Started</h2>
             <p>The fastest way to get started is creating a static website</p>
             <tybalt-code-example language="shell">
-$ npx @tybalt/cli scaffold eleventy -n my-static-website
+                $ npx @tybalt/cli scaffold eleventy -n my-static-website
             </tybalt-code-example>
             <p>Then, you can start the development server</p>
-            <tybalt-code-example language="shell">
-$ npx @11ty/eleventy --serve
-            </tybalt-code-example>
+            <tybalt-code-example language="shell"> $ npx @11ty/eleventy --serve </tybalt-code-example>
             <p>And open the site at <tybalt-link href="http://localhost:8080/">http://localhost:8080/</tybalt-link></p>
         </div>`;
     },

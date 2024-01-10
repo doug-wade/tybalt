@@ -1,5 +1,5 @@
 import { defineComponent, html } from '@tybalt/core';
-import { derive, reactive } from "@tybalt/reactive";
+import { derive, reactive } from '@tybalt/reactive';
 
 import css from './brewery-search.css';
 
@@ -29,7 +29,7 @@ export default defineComponent({
 
         const loadingMessage = derive(loading, ([value]) => {
             if (value) {
-                return html`<div>Searching for ${city.value}...</div>`
+                return html`<div>Searching for ${city.value}...</div>`;
             } else {
                 return '';
             }
@@ -37,11 +37,13 @@ export default defineComponent({
 
         const citiesList = derive(cities, ([value]) => {
             if (cities.length) {
-                const lis = value.map(localCity => html`
-                    <li>
-                        <a href="${localCity.website_url}">${localCity.name}</a>
-                    </li>
-                `);
+                const lis = value.map(
+                    (localCity) => html`
+                        <li>
+                            <a href="${localCity.website_url}">${localCity.name}</a>
+                        </li>
+                    `,
+                );
                 return html`
                     <ul>
                         ${lis}
@@ -58,7 +60,7 @@ export default defineComponent({
             city,
             citiesList,
             loadingMessage,
-        }
+        };
     },
     render({ city, citiesList, inputHandler, clickHandler, loadingMessage }) {
         return html`

@@ -47,7 +47,6 @@ describe('defineComponent', () => {
             render() {
                 return html`<div data-jest="${name}"><slot name="${slotName}"></slot></div>`;
             },
-            
         });
 
         const wrapper = await mount(component, { slot });
@@ -59,20 +58,36 @@ describe('defineComponent', () => {
 
     it('converts all props to reactives', async () => {
         const name = 'props-are-reactives';
-        const props = { 
-            one: {}, 
+        const props = {
+            one: {},
             two: {
-                parser: { parse: () => { return 'world'; } }
-            }, 
-            three: { 
-                default: 'hello', 
-                validator: { validate: () => { return true; } }
-            }, 
+                parser: {
+                    parse: () => {
+                        return 'world';
+                    },
+                },
+            },
+            three: {
+                default: 'hello',
+                validator: {
+                    validate: () => {
+                        return true;
+                    },
+                },
+            },
             four: {
-                default: 'hello', 
-                validator: { validate: () => { return true; } },
-                parser: { parse: () => { return 'world'; } }
-            } 
+                default: 'hello',
+                validator: {
+                    validate: () => {
+                        return true;
+                    },
+                },
+                parser: {
+                    parse: () => {
+                        return 'world';
+                    },
+                },
+            },
         };
 
         let underTest;
@@ -103,7 +118,6 @@ describe('defineComponent', () => {
         const component = defineComponent({
             name,
             template,
-            
         });
 
         const wrapper = await mount(component);
@@ -141,10 +155,10 @@ describe('defineComponent', () => {
         let actual: PropsStateMap = {};
         const component = defineComponent({
             name: 'uses-standard-parser',
-            props: { 
+            props: {
                 example: {
-                    parser: standard
-                }
+                    parser: standard,
+                },
             },
             setup({ example }) {
                 actual = example;
@@ -170,7 +184,7 @@ describe('defineComponent', () => {
             props: {
                 example: { parser },
             },
-            
+
             setup({ example }) {
                 actual = example;
             },
@@ -189,12 +203,12 @@ describe('defineComponent', () => {
             name: 'returns-reactive-from-setup',
             setup() {
                 return {
-                    example: reactive(expected)
+                    example: reactive(expected),
                 };
             },
             render({ example }) {
                 actual = example;
-            }
+            },
         });
 
         await mount(component);
@@ -210,12 +224,12 @@ describe('defineComponent', () => {
             name: 'should-not-wrap-event-listeners',
             setup() {
                 return {
-                    example: expected
+                    example: expected,
                 };
             },
             render({ example }) {
                 actual = example;
-            }
+            },
         });
 
         await mount(component);

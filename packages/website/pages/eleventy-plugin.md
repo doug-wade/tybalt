@@ -27,7 +27,7 @@ const tybaltPlugin = require('@tybalt/eleventy-plugin');
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(tybaltPlugin, {
         pattern: './components',
-        outfile: 'tybalt-out.js'
+        outfile: 'tybalt-out.js',
     });
 };
 ```
@@ -67,7 +67,7 @@ const tybaltPlugin = require('@tybalt/eleventy-plugin');
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(tybaltPlugin, {
-        outfile: 'index.js'
+        outfile: 'index.js',
     });
 };
 ```

@@ -42,5 +42,5 @@ describe('empty-wrapper', () => {
         const wrapper = new WrapperArray({ elements });
 
         expect(() => wrapper.emitted('click')).toThrow(getExpectedMessage({ method: 'emitted' }));
-    })
+    });
 });

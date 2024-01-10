@@ -51,7 +51,7 @@ const rule: RuleModule<'renderVariableNotExported', never[], RuleListener> = cre
                 }
 
                 const renderFunctionArgs = firstRenderArg.properties
-                    .map((prop: { type: any; key: any; }) => {
+                    .map((prop: { type: any; key: any }) => {
                         const property = prop.type === AST_NODE_TYPES.Property ? prop.key : null;
                         if (property?.type !== AST_NODE_TYPES.Identifier) {
                             return;
@@ -91,7 +91,10 @@ const rule: RuleModule<'renderVariableNotExported', never[], RuleListener> = cre
 
                     const returnedProps = (returnStatement.argument as TSESTree.ObjectExpression).properties
                         .map((prop) => {
-                            if (prop.type !== AST_NODE_TYPES.Property || (prop as TSESTree.Property).key.type !== AST_NODE_TYPES.Identifier) {
+                            if (
+                                prop.type !== AST_NODE_TYPES.Property ||
+                                (prop as TSESTree.Property).key.type !== AST_NODE_TYPES.Identifier
+                            ) {
                                 return undefined;
                             }
                             return ((prop as TSESTree.Property).key as TSESTree.Identifier).name;
@@ -104,7 +107,7 @@ const rule: RuleModule<'renderVariableNotExported', never[], RuleListener> = cre
                 }
 
                 const returnStatements = setupProperty.value.body.body.filter(
-                    (statement: { type: any; }) => statement.type === AST_NODE_TYPES.ReturnStatement,
+                    (statement: { type: any }) => statement.type === AST_NODE_TYPES.ReturnStatement,
                 ) as TSESTree.ReturnStatement[];
 
                 for (const returnStatement of returnStatements) {
