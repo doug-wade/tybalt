@@ -28,7 +28,7 @@ jobs:
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Publish packages
-              run: yarn workspaces foreach --no-private npm publish
+              run: yarn workspaces foreach --all --no-private npm publish
 
             - name: Post to Discord
               env:
