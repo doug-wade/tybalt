@@ -1474,7 +1474,7 @@
     }
   });
 
-  // ../core/dist/mjs/index.js
+  // ../core/dist/mjs/index.mjs
   var __create2 = Object.create;
   var __defProp2 = Object.defineProperty;
   var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -2143,16 +2143,29 @@ ${concatenatedMessages}
   }) => {
     nameValidator.validate(name);
     const clazz = class extends HTMLElement {
+      // Closed shadow roots aren't attached to the class instance by default, so we
+      // grab a reference to it ourselves for later use.
+      #shadowRoot;
+      // The context object passed to the component definition's setup method
+      #setupContext;
+      // A hash from the attribute name to its corresponding reactive and parser
+      #props = {};
+      // A hash from the render state key to its corresponding reactive (returned from the setup method)
+      #renderState = /* @__PURE__ */ new Map();
+      // The render method from the component definition
+      #render = passedRender;
+      // The css string or function from the component definition
+      #css = css;
+      // The template string from the component definition
+      #template = template;
+      // Whether or not the component is currently connected to the dom
+      #isConnected = false;
+      // All of the contexts to connect to
+      // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
+      #contexts = /* @__PURE__ */ new Map();
+      contextState = void 0;
       constructor() {
         super();
-        this.#props = {};
-        this.#renderState = /* @__PURE__ */ new Map();
-        this.#render = passedRender;
-        this.#css = css;
-        this.#template = template;
-        this.#isConnected = false;
-        this.#contexts = /* @__PURE__ */ new Map();
-        this.contextState = void 0;
         this.#props = Object.entries(props).reduce(
           (accumulator, [key, value]) => {
             const parser = value.parser || import_parser.standard;
@@ -2236,18 +2249,6 @@ ${concatenatedMessages}
         this.#shadowRoot = this.attachShadow({ mode: shadowMode });
         this.#doRender();
       }
-      // Closed shadow roots aren't attached to the class instance by default, so we
-      // grab a reference to it ourselves for later use.
-      #shadowRoot;
-      // The context object passed to the component definition's setup method
-      #setupContext;
-      #props;
-      #renderState;
-      #render;
-      #css;
-      #template;
-      #isConnected;
-      #contexts;
       connectedCallback() {
         this.#isConnected = true;
         connectedCallback?.apply(this);
