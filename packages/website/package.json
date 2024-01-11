@@ -10,7 +10,7 @@
         "clean": "rimraf _site/ coverage/",
         "serve": "eleventy --serve --port 8081",
         "test": "tybalt test",
-        "watch": "chokidar \"pages/*.md\" \"guides/*.md\" \"components/*.component.ts\" -c \"yarn run build\""
+        "watch": "chokidar \"pages/*.md\" \"guides/*.md\" \"components/*.*\" -c \"yarn run build\""
     },
     "keywords": [],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
