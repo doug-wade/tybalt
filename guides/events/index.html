@@ -5,7 +5,7 @@
         <meta property="og:description" content="A framework for writing web components.">
         <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
 
-        <title>Slots</title>
+        <title>Events</title>
         <link rel="manifest" href="manifest.json">
         <link rel="shortcut icon" type="image/png" href="img/favico.png">
         <link href="/css/base.css" rel="stylesheet">
@@ -15,42 +15,54 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
         <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
         <script>
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/service-worker.js');
+            if ("serviceWorker" in navigator) {
+              navigator.serviceWorker
+                .register("/service-worker.js")
+                .then((registration) => {
+                  registration.addEventListener("updatefound", () => {
+                    const newWorker = registration.installing;
+                    newWorker.addEventListener("statechange", () => {
+                      if (newWorker.state === "installed") {
+                        if (navigator.serviceWorker.controller) {
+                          // New service worker installed and registered, we reload the page
+                          window.location.reload();
+                        }
+                      }
+                    });
+                  });
+                })
+                .catch((error) => {
+                  console.error("Service Worker registration failed:", error);
+                });
             }
-        </script>
+          </script>
     </head>
     <body>
         <div id="app">
             <tybalt-header></tybalt-header>
             <div id="content">
                 <tybalt-sidebar></tybalt-sidebar>
-                <div class="tybalt-main"><h1>Slots</h1>
-<p>There are <code>slot</code> and <code>template</code> elements in javascript that work well with web components.</p>
+                <div class="tybalt-main"><h1>Events</h1>
+<p>Events can be emitted from Tybalt components using <code>emit</code>, passed on the second argument to <code>setup</code>.</p>
 <pre><code class="language-javascript">defineComponent({
-    name: 'slot-example',
-    shadowMode: 'open',
-    render() {
-        return html`
-            &lt;div class="my-class"&gt;
-                &lt;span&gt;Example: &lt;/span&gt;
-                &lt;slot name="content"&gt;&lt;/slot&gt;
-            &lt;/div&gt;
-        `;
-    },
+    name: 'setup-context',
+    setup({}, { emit }): {
+        emit('mounted');
+    }
 });
 </code></pre>
-<p>When you render a <code>slot-example</code> component, it will replace the <code>slot</code> element with the children
-of the <code>slot-example</code> component. A component rendered in the DOM as</p>
-<pre><code class="language-html">&lt;slot-example&gt;
-    &lt;div my-attribute="foo"&gt;example content&lt;/div&gt;
-&lt;/slot-example&gt;
-</code></pre>
-<p>Would be rendered to the user as</p>
-<pre><code class="language-html">&lt;div class="my-class"&gt;
-    &lt;span&gt;Example: &lt;/span&gt;
-    &lt;div my-attribute="foo"&gt;example content&lt;/div&gt;
-&lt;/div&gt;
+<p>If you want to listen for an event, attach an event handler using a special attribute that starts with <code>@</code> and is the name of the event you want to listen for</p>
+<pre><code class="language-javascript">defineComponent({
+    name: 'setup-context',
+    setup(): {
+        return {
+            listener: () =&gt; console.log('hello world')
+        }
+    },
+    render({ listener }) {
+        return html`&lt;button @click=${listener}&gt;Click me!&lt;/button&gt;`;
+    }
+});
 </code></pre>
 </div>
             </div>

@@ -2400,7 +2400,7 @@ ${concatenatedMessages}
     }
   });
 
-  // components/sidebar.js
+  // components/sidebar/sidebar.component.ts
   var PACKAGES = [
     "cli",
     "core",
@@ -2424,7 +2424,7 @@ ${concatenatedMessages}
     "linting",
     "building"
   ];
-  define_component_default({
+  var sidebar_component_default = define_component_default({
     name: "tybalt-sidebar",
     shadowMode: "open",
     render() {
@@ -2438,7 +2438,7 @@ ${concatenatedMessages}
       const guideLis = GUIDES.map((guide) => {
         return html_default`
                 <li>
-                    <tybalt-link href="/pages/${guide}-guide">${guide.replaceAll("-", " ")}</tybalt-link>
+                    <tybalt-link href="/guides/${guide}">${guide.replaceAll("-", " ")}</tybalt-link>
                 </li>
             `;
       });
@@ -2459,7 +2459,7 @@ ${concatenatedMessages}
     }
   });
 
-  // components/main.js
+  // components/main/main.component.ts
   define_component_default({
     name: "tybalt-main",
     shadowMode: "open",
@@ -2641,8 +2641,8 @@ ${concatenatedMessages}
     return matches_pattern_default2(urlPattern);
   };
 
-  // components/link.js
-  define_component_default({
+  // components/link/link.component.ts
+  var link_component_default = define_component_default({
     name: "tybalt-link",
     shadowMode: "open",
     props: {
@@ -2663,18 +2663,20 @@ ${concatenatedMessages}
         `
   });
 
-  // components/header.js
-  define_component_default({
+  // components/header/header.component.ts
+  var header_component_default = define_component_default({
     name: "tybalt-header",
     shadowMode: "open",
     render() {
       return html_default`
-            <nav>
-                <span>Tybalt Web Components</span>
-                <span>
-                    <tybalt-link href="https://github.com/doug-wade/tybalt">Github</tybalt-link>
-                </span>
-            </nav>
+            <header>
+                <nav>
+                    <span>Tybalt Web Components</span>
+                    <span>
+                        <tybalt-link href="https://github.com/doug-wade/tybalt">Github</tybalt-link>
+                    </span>
+                </nav>
+            </header>
         `;
     },
     css: `
@@ -2685,8 +2687,8 @@ ${concatenatedMessages}
     `
   });
 
-  // components/footer.js
-  define_component_default({
+  // components/footer/footer.component.ts
+  var footer_component_default = define_component_default({
     name: "tybalt-footer",
     shadowMode: "open",
     render() {
@@ -2694,7 +2696,7 @@ ${concatenatedMessages}
     }
   });
 
-  // components/code-example.js
+  // components/code-example/code-example.component.ts
   var import_prism = __toESM(require_prism());
 
   // tybalt-styles:/home/runner/work/tybalt/tybalt/node_modules/prism-themes/themes/prism-night-owl.css
@@ -2858,7 +2860,7 @@ pre[class*="language-"] {
 }
 `;
 
-  // components/code-example.js
+  // components/code-example/code-example.component.ts
   define_component_default({
     name: "tybalt-code-example",
     shadowMode: "open",
