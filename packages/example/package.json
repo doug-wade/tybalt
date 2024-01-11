@@ -7,8 +7,8 @@
     "type": "module",
     "scripts": {
         "build": "tybalt build",
-        "clean": "rimraf dist/",
-        "ci-test": "yarn run test",
+        "clean": "rimraf dist/ coverage/",
+        "ci-test": "tybalt test --coverage",
         "lint": "tybalt lint",
         "scaffold": "tybalt scaffold",
         "test": "tybalt test",

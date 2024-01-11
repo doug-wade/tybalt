@@ -1,6 +1,6 @@
 import { defineComponent, html } from '@tybalt/core';
 
-defineComponent({
+export default defineComponent({
     name: 'tybalt-footer',
     shadowMode: 'open',
     render() {

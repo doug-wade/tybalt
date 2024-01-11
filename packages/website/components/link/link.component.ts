@@ -1,7 +1,8 @@
 import { defineComponent, html } from '@tybalt/core';
 import { compose, required, string, url } from '@tybalt/validator';
+import type { Reactive } from '@tybalt/reactive';
 
-defineComponent({
+export default defineComponent({
     name: 'tybalt-link',
     shadowMode: 'open',
     props: {
@@ -12,7 +13,7 @@ defineComponent({
             validator: required(),
         },
     },
-    render({ ariaLabel, href }) {
+    render({ ariaLabel, href }: { ariaLabel: Reactive, href: Reactive }) {
         return html`<a href="${href}" aria-label="${ariaLabel}"><slot>link</slot></a>`;
     },
     css: `

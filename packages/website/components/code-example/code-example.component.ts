@@ -2,7 +2,7 @@ import { defineComponent, html } from '@tybalt/core';
 import { compose, string, required } from '@tybalt/validator';
 
 import Prism from 'prismjs/prism.js';
-import syntaxHighlighting from '../../../node_modules/prism-themes/themes/prism-night-owl.css' assert { type: 'css' };
+import syntaxHighlighting from '../../../../node_modules/prism-themes/themes/prism-night-owl.css' assert { type: 'css' };
 
 function encode(str) {
     var buf = [];
