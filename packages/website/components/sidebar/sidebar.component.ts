@@ -24,7 +24,7 @@ const GUIDES = [
     'building',
 ];
 
-defineComponent({
+export default defineComponent({
     name: 'tybalt-sidebar',
     shadowMode: 'open',
     render() {
@@ -38,7 +38,7 @@ defineComponent({
         const guideLis = GUIDES.map((guide) => {
             return html`
                 <li>
-                    <tybalt-link href="/pages/${guide}-guide">${guide.replaceAll('-', ' ')}</tybalt-link>
+                    <tybalt-link href="/guides/${guide}">${guide.replaceAll('-', ' ')}</tybalt-link>
                 </li>
             `;
         });

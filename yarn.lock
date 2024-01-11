@@ -3014,6 +3014,7 @@ __metadata:
   resolution: "@tybalt/website@workspace:packages/website"
   dependencies:
     "@11ty/eleventy": "npm:^2.0.1"
+    "@tybalt/cli": "workspace:^"
     "@tybalt/core": "workspace:^"
     "@tybalt/eleventy-plugin": "workspace:^"
     chokidar-cli: "npm:^3.0.0"

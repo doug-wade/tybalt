@@ -10,18 +10,20 @@ export default ({ program }: CommandContext) => {
         .description('test a component or components')
         .option('--coverage', 'whether to generate test coverage', false)
         .argument('[string]', 'pattern', '')
-        .action(async (pattern: string) => {
+        .action(async (pattern: string, { coverage }) => {
             const __filename = url.fileURLToPath(import.meta.url);
             const __dirname = path.dirname(__filename);
 
             const filePath = path.resolve(`${__dirname}../../../config/jest.config.js`);
 
-            const results = child_process.spawnSync(
-                'npx',
-                ['--node-options="--experimental-vm-modules"', 'jest', `--config=${filePath}`, pattern],
-                {},
-            );
-
+            const args = [
+                '--node-options="--experimental-vm-modules"', 
+                'jest', 
+                `--config=${filePath}`,
+                pattern,
+                coverage ? '--coverage' : ''
+            ];
+            const results = child_process.spawnSync('npx', args, {});
             const stdErr = results.stderr?.toString();
 
             console.log(results.stdout?.toString());

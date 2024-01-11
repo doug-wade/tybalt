@@ -6,9 +6,11 @@
     "private": true,
     "scripts": {
         "build": "eleventy",
-        "clean": "rimraf _site/",
+        "ci-test": "tybalt test --coverage",
+        "clean": "rimraf _site/ coverage/",
         "serve": "eleventy --serve --port 8081",
-        "watch": "chokidar \"pages/*.md\" \"components/*.js\" -c \"yarn run build\""
+        "test": "tybalt test",
+        "watch": "chokidar \"pages/*.md\" \"guides/*.md\" \"components/*.component.ts\" -c \"yarn run build\""
     },
     "keywords": [],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
@@ -20,6 +22,7 @@
         "rimraf": "^5.0.5"
     },
     "dependencies": {
+        "@tybalt/cli": "workspace:^",
         "@tybalt/core": "workspace:^",
         "@tybalt/eleventy-plugin": "workspace:^",
         "prism-themes": "^1.9.0",

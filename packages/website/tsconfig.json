@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "allowJs": true,
+        "allowImportingTsExtensions": true,
+        "lib": ["es2022", "dom"],
+        "module": "nodenext",
+        "target": "es2022",
+        "outDir": "dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "nodenext",
+        "declaration": true,
+        "emitDeclarationOnly": true
+    },
+    "include": ["components/**/*"],
+    "module": "es2022"
+}
