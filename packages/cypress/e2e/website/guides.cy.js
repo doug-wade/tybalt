@@ -5,7 +5,7 @@ const guides = ['custom-validator', 'new-website', 'styling-your-component', 'wr
 guides.forEach((guide) => {
     describe(`guide: ${guide}`, () => {
         beforeEach(() => {
-            cy.visit(`http://localhost:8081/guide/${guide}/`);
+            cy.visit(`http://localhost:8081/guides/${guide}/`);
         });
 
         it('should mount the layout', () => {
