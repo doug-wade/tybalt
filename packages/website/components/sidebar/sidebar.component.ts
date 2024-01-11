@@ -44,16 +44,20 @@ export default defineComponent({
         });
         return html`
             <aside>
-                <div>Individual Package Documentation</div>
+                <h4>Individual Package Documentation</h4>
                 <ul>
                     ${packageLis}
                 </ul>
-                <div>Guides</div>
+                <h4>Guides</h4>
                 <ul>
                     ${guideLis}
                 </ul>
-                <tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link>
-                <tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link>
+                <h4>Learn More</h4>
+                <ul>
+                    <li><tybalt-link href="/built-with-tybalt">See projects built with Tybalt</tybalt-link></li>
+                    <li><tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link></li>
+                    <li><tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link></li>
+                </ul>
             </aside>
         `;
     },

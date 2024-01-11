@@ -20,7 +20,7 @@ describe('sidebar', () => {
 
         const aside = wrapper.find('aside');
 
-        expect(aside.findAll('ul').length).toBe(2);
+        expect(aside.findAll('ul').length).toBe(3);
     });
 
     it('has lis for each of the pages and guides', async () => {
@@ -31,6 +31,6 @@ describe('sidebar', () => {
 
         const aside = wrapper.find('aside');
 
-        expect(aside.findComponentAll(Link).length).toBe(pageLis + guideLis + 2);
+        expect(aside.findComponentAll(Link).length).toBe(pageLis + guideLis + 3);
     });
 });

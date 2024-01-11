@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="Tybalt gallery" />
+        <meta property="og:description" content="A gallery of sites using Tybalt in production." />
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png" />
+        <title>Tybalt</title>
+        <link rel="manifest" href="manifest.json" />
+        <meta name="theme-color" content="#c792ea" />
+        <meta name="description" content="A gallery of sites using Tybalt in production." />
+        <link rel="shortcut icon" type="image/jpg" href="/img/favico.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <link href="{{ '/css/index.css' | url }}" rel="stylesheet" />
+        <link href="{{ '/css/base.css' | url }}" rel="stylesheet" />
+
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="project-feed">
+                    <tybalt-project-card url="http://tybalt.org" github-url="https://github.com/doug-wade/tybalt">
+                        <h2 slot="title">tybalt.org</h2>
+                        <p slot="description">
+                            The docs site for Tybalt. We build the website and deploy the documentation website with
+                            every commit in the Tybalt monorepo as part of our continuous integration pipeline. Be
+                            careful when looking through the website's source code, as it may exercise features that
+                            aren't available in public releases yet.
+                        </p>
+                    </tybalt-project-card>
+                    <tybalt-project-card url="http://i-want-to-be-a-fan.netlify.com" github-url="https://github.com/doug-wade/i-want-to-be-a-fan">
+                        <h2 slot="title">I Want To Be A Fan</h2>
+                        <p slot="description">
+                            A simple USWNT fan site that displays statistics from American Soccer Analysis using 
+                            <tybalt-link href="https://npmjs.com/packages/itscalledsoccer">itscalledsoccer</tybalt-link>. A great
+                            example for how to set up building a static site using the eleventy plugin.
+                        </p>
+                    </tybalt-project-card>
+                    <tybalt-project-card url="http://dougwade.io" github-url="https://github.com/doug-wade/dougwade.io">
+                        <h2 slot="title">dougwade.io</h2>
+                        <p slot="description">
+                            My personal website. A great example of how to build forms using Tybalt.
+                        </p>
+                    </tybalt-project-card>
+                </div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+    </body>
+    <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-90R0R9Y7VG');
+    </script>
+</html>
