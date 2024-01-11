@@ -45,3 +45,8 @@ tybalt-header {
 code {
     font-family: 'DM Mono', monospace;
 }
+
+.project-feed {
+    display: flex;
+    flex-direction: column;
+}

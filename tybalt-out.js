@@ -2444,87 +2444,22 @@ ${concatenatedMessages}
       });
       return html_default`
             <aside>
-                <div>Individual Package Documentation</div>
+                <h4>Individual Package Documentation</h4>
                 <ul>
                     ${packageLis}
                 </ul>
-                <div>Guides</div>
+                <h4>Guides</h4>
                 <ul>
                     ${guideLis}
                 </ul>
-                <tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link>
-                <tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link>
+                <h4>Learn More</h4>
+                <ul>
+                    <li><tybalt-link href="/built-with-tybalt">See projects built with Tybalt</tybalt-link></li>
+                    <li><tybalt-link href="https://discord.gg/FHpfstT7Dw">Join the Discord server</tybalt-link></li>
+                    <li><tybalt-link href="https://dougwade.substack.com/">Subscribe to the Substack</tybalt-link></li>
+                </ul>
             </aside>
         `;
-    }
-  });
-
-  // components/main/main.component.ts
-  define_component_default({
-    name: "tybalt-main",
-    shadowMode: "open",
-    render() {
-      return html_default`<div>
-            <h1>Tybalt</h1>
-            <h2>A collection of tools for building web components</h2>
-            <p>
-                Tybalt is a collection of tools for building web components. It is designed to be modular, so you can
-                use as much or as little as you want.
-            </p>
-            <p>
-                Tybalt built with a "use the platform" mentality, so it uses the latest web platform features to provide
-                the best developer experience.
-            </p>
-            <h2>Features</h2>
-            <ul>
-                <li>Static Site Generation</li>
-                <li>Web Component Development</li>
-                <li>Compiler</li>
-                <li>Unit Testing</li>
-                <li>Linting</li>
-                <li>Parsing and Validation</li>
-            </ul>
-            <h2>Core Concepts</h2>
-            <h3>Web Components</h3>
-            <p>
-                Tybalt exports tools for building web components. It uses templates, slots, custom elements and the
-                shadow dom to implement rendering.
-            </p>
-            <tybalt-code-example language="javascript">
-                import { defineComponent, html } from '@tybalt/core'; export default defineComponent({ name:
-                'my-component', shadowMode: 'open', render() { return html\`
-                <div>Hello World</div>
-                \`; }, });
-            </tybalt-code-example>
-            <h3>Unit Testing</h3>
-            <p>
-                Tybalt exports tools for testing web components. It uses Jest and JSDOM to render web components in a
-                test environment.
-            </p>
-            <tybalt-code-example language="javascript">
-                import MyComponent from './my-component.js'; import { mount } from '@tybalt/test-utils';
-                describe('my-component', () => { it('renders', async () => { const el = await mount(MyComponent);
-                expect(el.shadowHtml()).toContain('Hello World'); }); });
-            </tybalt-code-example>
-            <h3>Compilation</h3>
-            <p>
-                Tybalt exports a compiler for compiling web components. It uses esbuild to compile web components to a
-                single file and a plugin called @tybalt/esbuild-plugin.
-            </p>
-            <h3>Linting</h3>
-            <p>
-                Tybalt exports a linter for linting web components. It uses eslint to lint web components and a plugin
-                called @tybalt/eslint-plugin.
-            </p>
-            <h2>Getting Started</h2>
-            <p>The fastest way to get started is creating a static website</p>
-            <tybalt-code-example language="shell">
-                $ npx @tybalt/cli scaffold eleventy -n my-static-website
-            </tybalt-code-example>
-            <p>Then, you can start the development server</p>
-            <tybalt-code-example language="shell"> $ npx @11ty/eleventy --serve </tybalt-code-example>
-            <p>And open the site at <tybalt-link href="http://localhost:8080/">http://localhost:8080/</tybalt-link></p>
-        </div>`;
     }
   });
 
@@ -2640,6 +2575,97 @@ ${concatenatedMessages}
   var url_default = () => {
     return matches_pattern_default2(urlPattern);
   };
+
+  // components/project-card/project-card.component.ts
+  var project_card_component_default = define_component_default({
+    name: "tybalt-project-card",
+    shadowMode: "open",
+    props: {
+      url: {
+        validator: compose_default2(url_default(), required_default2())
+      },
+      githubUrl: {
+        validator: url_default()
+      }
+    },
+    render({ url, githubUrl }) {
+      return html_default`<div class="project-card">
+            <slot name="title"></slot>
+            <tybalt-link href="${url}">link</tybalt-link>
+            <tybalt-link href="${githubUrl}">GitHub</tybalt-link>
+            <slot name="description"></slot>
+        </div>`;
+    }
+  });
+
+  // components/main/main.component.ts
+  define_component_default({
+    name: "tybalt-main",
+    shadowMode: "open",
+    render() {
+      return html_default`<div>
+            <h1>Tybalt</h1>
+            <h2>A collection of tools for building web components</h2>
+            <p>
+                Tybalt is a collection of tools for building web components. It is designed to be modular, so you can
+                use as much or as little as you want.
+            </p>
+            <p>
+                Tybalt built with a "use the platform" mentality, so it uses the latest web platform features to provide
+                the best developer experience.
+            </p>
+            <h2>Features</h2>
+            <ul>
+                <li>Static Site Generation</li>
+                <li>Web Component Development</li>
+                <li>Compiler</li>
+                <li>Unit Testing</li>
+                <li>Linting</li>
+                <li>Parsing and Validation</li>
+            </ul>
+            <h2>Core Concepts</h2>
+            <h3>Web Components</h3>
+            <p>
+                Tybalt exports tools for building web components. It uses templates, slots, custom elements and the
+                shadow dom to implement rendering.
+            </p>
+            <tybalt-code-example language="javascript">
+                import { defineComponent, html } from '@tybalt/core'; export default defineComponent({ name:
+                'my-component', shadowMode: 'open', render() { return html\`
+                <div>Hello World</div>
+                \`; }, });
+            </tybalt-code-example>
+            <h3>Unit Testing</h3>
+            <p>
+                Tybalt exports tools for testing web components. It uses Jest and JSDOM to render web components in a
+                test environment.
+            </p>
+            <tybalt-code-example language="javascript">
+                import MyComponent from './my-component.js'; import { mount } from '@tybalt/test-utils';
+                describe('my-component', () => { it('renders', async () => { const el = await mount(MyComponent);
+                expect(el.shadowHtml()).toContain('Hello World'); }); });
+            </tybalt-code-example>
+            <h3>Compilation</h3>
+            <p>
+                Tybalt exports a compiler for compiling web components. It uses esbuild to compile web components to a
+                single file and a plugin called @tybalt/esbuild-plugin.
+            </p>
+            <h3>Linting</h3>
+            <p>
+                Tybalt exports a linter for linting web components. It uses eslint to lint web components and a plugin
+                called @tybalt/eslint-plugin.
+            </p>
+            <h2>Getting Started</h2>
+            <p>The fastest way to get started is creating a static website</p>
+            <tybalt-code-example language="shell">
+                $ npx @tybalt/cli scaffold eleventy -n my-static-website
+            </tybalt-code-example>
+            <p>Then, you can start the development server</p>
+            <tybalt-code-example language="shell"> $ npx @11ty/eleventy --serve </tybalt-code-example>
+            <p>And open the site at <tybalt-link href="http://localhost:8080/">http://localhost:8080/</tybalt-link></p>
+        </div>`;
+    }
+  });
 
   // components/link/link.component.ts
   var link_component_default = define_component_default({
