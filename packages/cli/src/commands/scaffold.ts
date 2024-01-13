@@ -18,10 +18,10 @@ import {
 } from '../templates/index.js';
 import { CommandContext, ScaffoldCommandOptions, ScaffoldContext, ScaffoldTarget } from '../types.js';
 
-const execAsync = async (command: string) => {
-    const promisifiedExec = util.promisify(exec);
+const promisifiedExec = util.promisify(exec);
 
-    const { stdout, stderr } = await promisifiedExec(command);
+const execAsync = async (command: string, opts = {}) => {
+    const { stdout, stderr } = await promisifiedExec(command, opts);
 
     if (stdout) {
         console.log(chalk.blue('stdout:\r\n'));
@@ -55,7 +55,7 @@ const writeScripts = async () => {
 
     await Promise.all(
         Object.entries(scripts).map(([scriptName, { script, description }]) => {
-            execAsync(`npm pkg set 'scripts.${scriptName}'='${script}'`);
+            execAsync(`npm pkg set 'scripts.${scriptName}'='${script}'`, { cwd: process.cwd() });
             console.log(`    ${scriptName}: ${description}`);
         }),
     );
