@@ -5,11 +5,7 @@ import Prism from 'prismjs/prism.js';
 import syntaxHighlighting from '../../../../node_modules/prism-themes/themes/prism-night-owl.css' assert { type: 'css' };
 
 function encode(str) {
-    var buf = [];
-    for (var i = str.length - 1; i >= 0; i--) {
-        buf.unshift(['&#', str[i].charCodeAt(), ';'].join(''));
-    }
-    return buf.join('');
+    return str.replaceAll('&gt;', '>');
 }
 
 defineComponent({
@@ -24,8 +20,8 @@ defineComponent({
     setup({ language }) {
         const code = this.innerHTML.replace(/^\s+/g, '');
         const languageCode = language === 'shell' ? Prism.languages.shell : Prism.languages.javascript;
-        const highlighted = Prism.highlight(code, languageCode, language);
-
+        const highlighted = Prism.highlight(encode(code), languageCode, language);
+``
         return {
             code: highlighted,
         };
