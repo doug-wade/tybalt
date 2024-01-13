@@ -88,11 +88,11 @@
            * @memberof Prism
            */
           util: {
-            encode: function encode(tokens) {
+            encode: function encode2(tokens) {
               if (tokens instanceof Token) {
-                return new Token(tokens.type, encode(tokens.content), tokens.alias);
+                return new Token(tokens.type, encode2(tokens.content), tokens.alias);
               } else if (Array.isArray(tokens)) {
-                return tokens.map(encode);
+                return tokens.map(encode2);
               } else {
                 return tokens.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\u00a0/g, " ");
               }
@@ -2630,10 +2630,15 @@ ${concatenatedMessages}
                 shadow dom to implement rendering.
             </p>
             <tybalt-code-example language="javascript">
-                import { defineComponent, html } from '@tybalt/core'; export default defineComponent({ name:
-                'my-component', shadowMode: 'open', render() { return html\`
-                <div>Hello World</div>
-                \`; }, });
+import { defineComponent, html } from '@tybalt/core'; 
+                
+export default defineComponent({ 
+    name: 'my-component', 
+    shadowMode: 'open', 
+    render() { 
+        return html\`<div>Hello World</div>\`; 
+    }, 
+});
             </tybalt-code-example>
             <h3>Unit Testing</h3>
             <p>
@@ -2641,9 +2646,15 @@ ${concatenatedMessages}
                 test environment.
             </p>
             <tybalt-code-example language="javascript">
-                import MyComponent from './my-component.js'; import { mount } from '@tybalt/test-utils';
-                describe('my-component', () => { it('renders', async () => { const el = await mount(MyComponent);
-                expect(el.shadowHtml()).toContain('Hello World'); }); });
+import MyComponent from './my-component.js'; 
+import { mount } from '@tybalt/test-utils';
+
+describe('my-component', () => { 
+    it('renders', async () => { 
+        const el = await mount(MyComponent);
+        expect(el.shadowHtml()).toContain('Hello World'); 
+    }); 
+});
             </tybalt-code-example>
             <h3>Compilation</h3>
             <p>
@@ -2658,7 +2669,7 @@ ${concatenatedMessages}
             <h2>Getting Started</h2>
             <p>The fastest way to get started is creating a static website</p>
             <tybalt-code-example language="shell">
-                $ npx @tybalt/cli scaffold eleventy -n my-static-website
+$ npx @tybalt/cli scaffold eleventy -n my-static-website
             </tybalt-code-example>
             <p>Then, you can start the development server</p>
             <tybalt-code-example language="shell"> $ npx @11ty/eleventy --serve </tybalt-code-example>
@@ -2887,6 +2898,9 @@ pre[class*="language-"] {
 `;
 
   // components/code-example/code-example.component.ts
+  function encode(str) {
+    return str.replaceAll("&gt;", ">");
+  }
   define_component_default({
     name: "tybalt-code-example",
     shadowMode: "open",
@@ -2899,7 +2913,8 @@ pre[class*="language-"] {
     setup({ language }) {
       const code = this.innerHTML.replace(/^\s+/g, "");
       const languageCode = language === "shell" ? import_prism.default.languages.shell : import_prism.default.languages.javascript;
-      const highlighted = import_prism.default.highlight(code, languageCode, language);
+      const highlighted = import_prism.default.highlight(encode(code), languageCode, language);
+      ``;
       return {
         code: highlighted
       };
