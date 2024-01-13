@@ -12,7 +12,8 @@
         "forceConsistentCasingInFileNames": true,
         "moduleResolution": "nodenext",
         "declaration": true,
-        "emitDeclarationOnly": true
+        "emitDeclarationOnly": true,
+        "resolveJsonModule": true
     },
     "include": ["src/**/*"],
     "module": "es2022"
