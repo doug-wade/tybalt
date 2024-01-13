@@ -6,4 +6,5 @@ export default {
         '^.+\\.tsx?$': 'esbuild-jest',
     },
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+    collectCoverageFrom: ['src/'],
 };
