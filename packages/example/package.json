@@ -10,9 +10,8 @@
         "clean": "rimraf dist/ coverage/",
         "ci-test": "tybalt test --coverage",
         "lint": "tybalt lint",
-        "scaffold": "tybalt scaffold",
         "test": "tybalt test",
-        "watch": "tybalt watch 'src/**/*.*'",
+        "watch": "tybalt watch",
         "serve": "tybalt serve",
         "prepare": "yarn run build && yarn run lint && yarn run test"
     },
