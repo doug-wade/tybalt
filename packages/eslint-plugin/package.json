@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/eslint-plugin",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "An eslint plugin for linting tybalt web components",
     "main": "dist/index.js",
     "scripts": {
