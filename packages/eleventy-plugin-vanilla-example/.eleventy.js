@@ -4,9 +4,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.setBrowserSyncConfig({
         open: true,
     });
-    eleventyConfig.addPlugin(tybaltPlugin, {
-        components: ['./components'],
-    });
+    eleventyConfig.addPlugin(tybaltPlugin);
 
     return {
         pathPrefix: '/tybalt/',
