@@ -3,6 +3,8 @@ import { compose, required, matchesPattern, shouldThrow, withMessage } from '@ty
 import { standard } from '@tybalt/parser';
 import { derive, reactive } from '@tybalt/reactive';
 
+import { toKebabCase } from 'js-convert-case';
+
 import type { Reactive } from '@tybalt/reactive';
 
 import ContextEvent from './context-event';
@@ -330,7 +332,7 @@ export default ({
          */
         #updateProps() {
             for (const [key, value] of Object.entries(this.#props)) {
-                const attributeValue = this.getAttribute(key);
+                const attributeValue = this.getAttribute(toKebabCase(key));
                 const usingDefault = attributeValue === null && value.value;
                 const areDifferent = attributeValue !== value.value;
                 if (!usingDefault && areDifferent) {

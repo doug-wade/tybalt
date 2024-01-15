@@ -86,4 +86,30 @@ describe('component rendering', () => {
 
         expect(actual?.value).toBe(expected);
     });
+
+    it('passes multi-word props to children correctly', async () => {
+        const name = 'pass-multi-word-props-to-children';
+        const childComponentName = 'multi-word-child-component';
+        const expected = 'expected value';
+
+        let actual;
+        defineComponent({
+            name: childComponentName,
+            props: { multiWordProp: {} },
+            setup({ multiWordProp }) {
+                actual = multiWordProp;
+            },
+        });
+        const parentComponent = defineComponent({
+            name,
+            props: { multiWordProp: {} },
+            render({ multiWordProp }) {
+                return html`<${childComponentName} multi-word-prop="${multiWordProp}"></${childComponentName}>`;
+            },
+        });
+
+        await mount(parentComponent, { attributes: { multiWordProp: expected } });
+
+        expect(actual?.value).toBe(expected);
+    });
 });
