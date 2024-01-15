@@ -35,7 +35,6 @@
         "eslint": "^8.56.0",
         "find-up": "^7.0.0",
         "glob": "^10.3.10",
-        "identity-obj-proxy": "3.0.0",
         "import-meta-resolve": "^4.0.0",
         "jest-css-modules-transform": "^4.4.2",
         "jest-environment-jsdom": "^29.7.0",
