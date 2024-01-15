@@ -12,7 +12,6 @@ import {
     componentTemplate,
     stylesTemplate,
     testsTemplate,
-    jestConfigTemplate,
     indexHtmlTemplate,
     eleventyConfigTemplate,
 } from '../templates/index.js';
@@ -119,15 +118,9 @@ const scaffoldProject = async ({ projectName, options }: { projectName: string; 
     await execAsync('npm init --yes');
 
     if (options.tests) {
-        devDependencies.push('@tybalt/test-utils', 'jest', 'jest-environment-jsdom', 'esbuild-jest', 'esbuild');
+        devDependencies.push('@tybalt/test-utils');
 
-        writeFile({
-            filePath: `jest.config.js`,
-            fileContents: jestConfigTemplate(),
-            warning: 'jest config cannot be written as it would overwrite an existing file',
-        });
-
-        scripts['test'] = { script: 'jest', description: 'run the unit tests' };
+        scripts['test'] = { script: 'tybalt test', description: 'run the unit tests' };
     }
 };
 
