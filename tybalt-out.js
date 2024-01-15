@@ -1743,6 +1743,580 @@
       var import_standard = __toESM22(require_standard());
     }
   });
+  var require_js_camelcase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-camelcase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toCamelCase(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        return String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "").replace(/[^A-Za-z0-9]+/g, "$").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "$" + b;
+        }).toLowerCase().replace(/(\$)(\w)/g, function(m, a, b) {
+          return b.toUpperCase();
+        });
+      }
+      exports.default = toCamelCase;
+    }
+  });
+  var require_js_snakecase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-snakecase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toSnakeCase(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        return String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "_" + b.toLowerCase();
+        }).replace(/[^A-Za-z0-9]+|_+/g, "_").toLowerCase();
+      }
+      exports.default = toSnakeCase;
+    }
+  });
+  var require_js_pascalcase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-pascalcase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toPascalCase(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        return String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "$").replace(/[^A-Za-z0-9]+/g, "$").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "$" + b;
+        }).toLowerCase().replace(/(\$)(\w?)/g, function(m, a, b) {
+          return b.toUpperCase();
+        });
+      }
+      exports.default = toPascalCase;
+    }
+  });
+  var require_js_dotcase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-dotcase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toDotCase(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        return String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "_" + b.toLowerCase();
+        }).replace(/[^A-Za-z0-9]+|_+/g, ".").toLowerCase();
+      }
+      exports.default = toDotCase;
+    }
+  });
+  var require_js_pathcase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-pathcase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toPathCase(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        return String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "_" + b.toLowerCase();
+        }).replace(/[^A-Za-z0-9]+|_+/g, "/").toLowerCase();
+      }
+      exports.default = toPathCase;
+    }
+  });
+  var require_js_textcase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-textcase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toTextCase(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        return String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "_" + b.toLowerCase();
+        }).replace(/[^A-Za-z0-9]+|_+/g, " ").toLowerCase();
+      }
+      exports.default = toTextCase;
+    }
+  });
+  var require_js_sentencecase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-sentencecase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toSentenceCase(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        var textcase = String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "_" + b.toLowerCase();
+        }).replace(/[^A-Za-z0-9]+|_+/g, " ").toLowerCase();
+        return textcase.charAt(0).toUpperCase() + textcase.slice(1);
+      }
+      exports.default = toSentenceCase;
+    }
+  });
+  var require_js_headercase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-headercase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toHeaderCase(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        return String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "_" + b.toLowerCase();
+        }).replace(/[^A-Za-z0-9]+|_+/g, " ").toLowerCase().replace(/( ?)(\w+)( ?)/g, function(m, a, b, c) {
+          return a + b.charAt(0).toUpperCase() + b.slice(1) + c;
+        });
+      }
+      exports.default = toHeaderCase;
+    }
+  });
+  var require_js_kebabcase = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/js-kebabcase/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      function toKebabCase2(str) {
+        if (str === void 0) {
+          str = "";
+        }
+        if (!str)
+          return "";
+        return String(str).replace(/^[^A-Za-z0-9]*|[^A-Za-z0-9]*$/g, "").replace(/([a-z])([A-Z])/g, function(m, a, b) {
+          return a + "_" + b.toLowerCase();
+        }).replace(/[^A-Za-z0-9]+|_+/g, "-").toLowerCase();
+      }
+      exports.default = toKebabCase2;
+    }
+  });
+  var require_utils = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/extends/utils.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.belongToTypes = exports.isValidObject = exports.isArrayObject = exports.validateOptions = exports.DefaultOption = void 0;
+      exports.DefaultOption = {
+        recursive: false,
+        recursiveInArray: false,
+        keepTypesOnRecursion: []
+      };
+      exports.validateOptions = function(opt) {
+        if (opt === void 0) {
+          opt = exports.DefaultOption;
+        }
+        if (opt.recursive == null) {
+          opt = exports.DefaultOption;
+        } else if (opt.recursiveInArray == null) {
+          opt.recursiveInArray = false;
+        }
+        return opt;
+      };
+      exports.isArrayObject = function(obj) {
+        return obj != null && Array.isArray(obj);
+      };
+      exports.isValidObject = function(obj) {
+        return obj != null && typeof obj === "object" && !Array.isArray(obj);
+      };
+      exports.belongToTypes = function(obj, types) {
+        return (types || []).some(function(Type) {
+          return obj instanceof Type;
+        });
+      };
+    }
+  });
+  var require_lowercase_keys_object = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/extends/lowercase-keys-object/index.js"(exports) {
+      "use strict";
+      var __spreadArrays = exports && exports.__spreadArrays || function() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+          s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+          for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+        return r;
+      };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var utils_1 = require_utils();
+      function lowerKeys(obj, opt) {
+        if (opt === void 0) {
+          opt = utils_1.DefaultOption;
+        }
+        if (!utils_1.isValidObject(obj))
+          return null;
+        opt = utils_1.validateOptions(opt);
+        var res = {};
+        Object.keys(obj).forEach(function(key) {
+          var value = obj[key];
+          var nkey = key.toLowerCase();
+          if (opt.recursive) {
+            if (utils_1.isValidObject(value)) {
+              if (!utils_1.belongToTypes(value, opt.keepTypesOnRecursion)) {
+                value = lowerKeys(value, opt);
+              }
+            } else if (opt.recursiveInArray && utils_1.isArrayObject(value)) {
+              value = __spreadArrays(value).map(function(v) {
+                var ret = v;
+                if (utils_1.isValidObject(v)) {
+                  if (!utils_1.belongToTypes(ret, opt.keepTypesOnRecursion)) {
+                    ret = lowerKeys(v, opt);
+                  }
+                } else if (utils_1.isArrayObject(v)) {
+                  var temp = lowerKeys({ key: v }, opt);
+                  ret = temp.key;
+                }
+                return ret;
+              });
+            }
+          }
+          res[nkey] = value;
+        });
+        return res;
+      }
+      exports.default = lowerKeys;
+    }
+  });
+  var require_uppercase_keys_object = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/extends/uppercase-keys-object/index.js"(exports) {
+      "use strict";
+      var __spreadArrays = exports && exports.__spreadArrays || function() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+          s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+          for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+        return r;
+      };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var utils_1 = require_utils();
+      function upperKeys(obj, opt) {
+        if (opt === void 0) {
+          opt = utils_1.DefaultOption;
+        }
+        if (!utils_1.isValidObject(obj))
+          return null;
+        opt = utils_1.validateOptions(opt);
+        var res = {};
+        Object.keys(obj).forEach(function(key) {
+          var value = obj[key];
+          var nkey = key.toUpperCase();
+          if (opt.recursive) {
+            if (utils_1.isValidObject(value)) {
+              if (!utils_1.belongToTypes(value, opt.keepTypesOnRecursion)) {
+                value = upperKeys(value, opt);
+              }
+            } else if (opt.recursiveInArray && utils_1.isArrayObject(value)) {
+              value = __spreadArrays(value).map(function(v) {
+                var ret = v;
+                if (utils_1.isValidObject(v)) {
+                  if (!utils_1.belongToTypes(ret, opt.keepTypesOnRecursion)) {
+                    ret = upperKeys(v, opt);
+                  }
+                } else if (utils_1.isArrayObject(v)) {
+                  var temp = upperKeys({ key: v }, opt);
+                  ret = temp.key;
+                }
+                return ret;
+              });
+            }
+          }
+          res[nkey] = value;
+        });
+        return res;
+      }
+      exports.default = upperKeys;
+    }
+  });
+  var require_camelcase_keys_object = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/extends/camelcase-keys-object/index.js"(exports) {
+      "use strict";
+      var __spreadArrays = exports && exports.__spreadArrays || function() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+          s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+          for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+        return r;
+      };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var utils_1 = require_utils();
+      var js_camelcase_1 = require_js_camelcase();
+      function camelKeys(obj, opt) {
+        if (opt === void 0) {
+          opt = utils_1.DefaultOption;
+        }
+        if (!utils_1.isValidObject(obj))
+          return null;
+        opt = utils_1.validateOptions(opt);
+        var res = {};
+        Object.keys(obj).forEach(function(key) {
+          var value = obj[key];
+          var nkey = js_camelcase_1.default(key);
+          if (opt.recursive) {
+            if (utils_1.isValidObject(value)) {
+              if (!utils_1.belongToTypes(value, opt.keepTypesOnRecursion)) {
+                value = camelKeys(value, opt);
+              }
+            } else if (opt.recursiveInArray && utils_1.isArrayObject(value)) {
+              value = __spreadArrays(value).map(function(v) {
+                var ret = v;
+                if (utils_1.isValidObject(v)) {
+                  if (!utils_1.belongToTypes(ret, opt.keepTypesOnRecursion)) {
+                    ret = camelKeys(v, opt);
+                  }
+                } else if (utils_1.isArrayObject(v)) {
+                  var temp = camelKeys({ key: v }, opt);
+                  ret = temp.key;
+                }
+                return ret;
+              });
+            }
+          }
+          res[nkey] = value;
+        });
+        return res;
+      }
+      exports.default = camelKeys;
+    }
+  });
+  var require_snakecase_keys_object = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/extends/snakecase-keys-object/index.js"(exports) {
+      "use strict";
+      var __spreadArrays = exports && exports.__spreadArrays || function() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+          s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+          for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+        return r;
+      };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var utils_1 = require_utils();
+      var js_snakecase_1 = require_js_snakecase();
+      function snakeKeys(obj, opt) {
+        if (opt === void 0) {
+          opt = utils_1.DefaultOption;
+        }
+        if (!utils_1.isValidObject(obj))
+          return null;
+        opt = utils_1.validateOptions(opt);
+        var res = {};
+        Object.keys(obj).forEach(function(key) {
+          var value = obj[key];
+          var nkey = js_snakecase_1.default(key);
+          if (opt.recursive) {
+            if (utils_1.isValidObject(value)) {
+              if (!utils_1.belongToTypes(value, opt.keepTypesOnRecursion)) {
+                value = snakeKeys(value, opt);
+              }
+            } else if (opt.recursiveInArray && utils_1.isArrayObject(value)) {
+              value = __spreadArrays(value).map(function(v) {
+                var ret = v;
+                if (utils_1.isValidObject(v)) {
+                  if (!utils_1.belongToTypes(ret, opt.keepTypesOnRecursion)) {
+                    ret = snakeKeys(v, opt);
+                  }
+                } else if (utils_1.isArrayObject(v)) {
+                  var temp = snakeKeys({ key: v }, opt);
+                  ret = temp.key;
+                }
+                return ret;
+              });
+            }
+          }
+          res[nkey] = value;
+        });
+        return res;
+      }
+      exports.default = snakeKeys;
+    }
+  });
+  var require_pascalcase_keys_object = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/extends/pascalcase-keys-object/index.js"(exports) {
+      "use strict";
+      var __spreadArrays = exports && exports.__spreadArrays || function() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+          s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+          for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+        return r;
+      };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var utils_1 = require_utils();
+      var js_pascalcase_1 = require_js_pascalcase();
+      function pascalKeys(obj, opt) {
+        if (opt === void 0) {
+          opt = utils_1.DefaultOption;
+        }
+        if (!utils_1.isValidObject(obj))
+          return null;
+        opt = utils_1.validateOptions(opt);
+        var res = {};
+        Object.keys(obj).forEach(function(key) {
+          var value = obj[key];
+          var nkey = js_pascalcase_1.default(key);
+          if (opt.recursive) {
+            if (utils_1.isValidObject(value)) {
+              if (!utils_1.belongToTypes(value, opt.keepTypesOnRecursion)) {
+                value = pascalKeys(value, opt);
+              }
+            } else if (opt.recursiveInArray && utils_1.isArrayObject(value)) {
+              value = __spreadArrays(value).map(function(v) {
+                var ret = v;
+                if (utils_1.isValidObject(v)) {
+                  if (!utils_1.belongToTypes(ret, opt.keepTypesOnRecursion)) {
+                    ret = pascalKeys(v, opt);
+                  }
+                } else if (utils_1.isArrayObject(v)) {
+                  var temp = pascalKeys({ key: v }, opt);
+                  ret = temp.key;
+                }
+                return ret;
+              });
+            }
+          }
+          res[nkey] = value;
+        });
+        return res;
+      }
+      exports.default = pascalKeys;
+    }
+  });
+  var require_kebabcase_keys_object = __commonJS2({
+    "../../node_modules/js-convert-case/lib/modules/extends/kebabcase-keys-object/index.js"(exports) {
+      "use strict";
+      var __spreadArrays = exports && exports.__spreadArrays || function() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+          s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+          for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+        return r;
+      };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var utils_1 = require_utils();
+      var js_kebabcase_1 = require_js_kebabcase();
+      function kebabKeys(obj, opt) {
+        if (opt === void 0) {
+          opt = utils_1.DefaultOption;
+        }
+        if (!utils_1.isValidObject(obj))
+          return null;
+        opt = utils_1.validateOptions(opt);
+        var res = {};
+        Object.keys(obj).forEach(function(key) {
+          var value = obj[key];
+          var nkey = js_kebabcase_1.default(key);
+          if (opt.recursive) {
+            if (utils_1.isValidObject(value)) {
+              if (!utils_1.belongToTypes(value, opt.keepTypesOnRecursion)) {
+                value = kebabKeys(value, opt);
+              }
+            } else if (opt.recursiveInArray && utils_1.isArrayObject(value)) {
+              value = __spreadArrays(value).map(function(v) {
+                var ret = v;
+                if (utils_1.isValidObject(v)) {
+                  if (!utils_1.belongToTypes(ret, opt.keepTypesOnRecursion)) {
+                    ret = kebabKeys(v, opt);
+                  }
+                } else if (utils_1.isArrayObject(v)) {
+                  var temp = kebabKeys({ key: v }, opt);
+                  ret = temp.key;
+                }
+                return ret;
+              });
+            }
+          }
+          res[nkey] = value;
+        });
+        return res;
+      }
+      exports.default = kebabKeys;
+    }
+  });
+  var require_lib = __commonJS2({
+    "../../node_modules/js-convert-case/lib/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.kebabKeys = exports.pascalKeys = exports.snakeKeys = exports.camelKeys = exports.upperKeys = exports.lowerKeys = exports.toLowerCase = exports.toUpperCase = exports.toKebabCase = exports.toHeaderCase = exports.toSentenceCase = exports.toTextCase = exports.toPathCase = exports.toDotCase = exports.toPascalCase = exports.toSnakeCase = exports.toCamelCase = void 0;
+      var js_camelcase_1 = require_js_camelcase();
+      exports.toCamelCase = js_camelcase_1.default;
+      var js_snakecase_1 = require_js_snakecase();
+      exports.toSnakeCase = js_snakecase_1.default;
+      var js_pascalcase_1 = require_js_pascalcase();
+      exports.toPascalCase = js_pascalcase_1.default;
+      var js_dotcase_1 = require_js_dotcase();
+      exports.toDotCase = js_dotcase_1.default;
+      var js_pathcase_1 = require_js_pathcase();
+      exports.toPathCase = js_pathcase_1.default;
+      var js_textcase_1 = require_js_textcase();
+      exports.toTextCase = js_textcase_1.default;
+      var js_sentencecase_1 = require_js_sentencecase();
+      exports.toSentenceCase = js_sentencecase_1.default;
+      var js_headercase_1 = require_js_headercase();
+      exports.toHeaderCase = js_headercase_1.default;
+      var js_kebabcase_1 = require_js_kebabcase();
+      exports.toKebabCase = js_kebabcase_1.default;
+      var lowercase_keys_object_1 = require_lowercase_keys_object();
+      exports.lowerKeys = lowercase_keys_object_1.default;
+      var uppercase_keys_object_1 = require_uppercase_keys_object();
+      exports.upperKeys = uppercase_keys_object_1.default;
+      var camelcase_keys_object_1 = require_camelcase_keys_object();
+      exports.camelKeys = camelcase_keys_object_1.default;
+      var snakecase_keys_object_1 = require_snakecase_keys_object();
+      exports.snakeKeys = snakecase_keys_object_1.default;
+      var pascalcase_keys_object_1 = require_pascalcase_keys_object();
+      exports.pascalKeys = pascalcase_keys_object_1.default;
+      var kebabcase_keys_object_1 = require_kebabcase_keys_object();
+      exports.kebabKeys = kebabcase_keys_object_1.default;
+      var toLowerCase = function(str) {
+        return String(str || "").toLowerCase();
+      };
+      exports.toLowerCase = toLowerCase;
+      var toUpperCase = function(str) {
+        return String(str || "").toUpperCase();
+      };
+      exports.toUpperCase = toUpperCase;
+      var jsConvert = {
+        toCamelCase: js_camelcase_1.default,
+        toSnakeCase: js_snakecase_1.default,
+        toPascalCase: js_pascalcase_1.default,
+        toDotCase: js_dotcase_1.default,
+        toPathCase: js_pathcase_1.default,
+        toTextCase: js_textcase_1.default,
+        toSentenceCase: js_sentencecase_1.default,
+        toHeaderCase: js_headercase_1.default,
+        toKebabCase: js_kebabcase_1.default,
+        toUpperCase,
+        toLowerCase,
+        lowerKeys: lowercase_keys_object_1.default,
+        upperKeys: uppercase_keys_object_1.default,
+        camelKeys: camelcase_keys_object_1.default,
+        snakeKeys: snakecase_keys_object_1.default,
+        pascalKeys: pascalcase_keys_object_1.default,
+        kebabKeys: kebabcase_keys_object_1.default
+      };
+      exports.default = jsConvert;
+    }
+  });
+  var require_js_convert_case = __commonJS2({
+    "../../node_modules/js-convert-case/index.js"(exports, module) {
+      module.exports = require_lib();
+    }
+  });
   var getRandomValues;
   var rnds8 = new Uint8Array(16);
   function rng() {
@@ -2100,6 +2674,7 @@ ${concatenatedMessages}
     return derivedReactive;
   }
   var derive_default = derive;
+  var import_js_convert_case = __toESM2(require_js_convert_case());
   var TybaltContextEvent = class extends Event {
     #context;
     #callback;
@@ -2329,7 +2904,7 @@ ${concatenatedMessages}
        */
       #updateProps() {
         for (const [key, value] of Object.entries(this.#props)) {
-          const attributeValue = this.getAttribute(key);
+          const attributeValue = this.getAttribute((0, import_js_convert_case.toKebabCase)(key));
           const usingDefault = attributeValue === null && value.value;
           const areDifferent = attributeValue !== value.value;
           if (!usingDefault && areDifferent) {
