@@ -21,7 +21,7 @@
         "@typescript-eslint/utils": "^6.11.0"
     },
     "devDependencies": {
-        "@types/node": "^20.10.7",
+        "@types/node": "^20.11.3",
         "@typescript-eslint/eslint-plugin": "^6.7.4",
         "@typescript-eslint/parser": "^6.17.0",
         "@typescript-eslint/rule-tester": "^6.18.0",
