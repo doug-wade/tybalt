@@ -1,5 +1,7 @@
 import fs from 'node:fs';
-import { findUp, findUpStop } from 'find-up';
+import pkg from 'find-up';
+
+const { findUp, findUpStop } = pkg;
 
 let rootDir;
 
