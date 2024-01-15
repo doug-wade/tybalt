@@ -37,7 +37,7 @@ const execAsync = async (command: string, opts = {}) => {
 // We want to run npm i as few times as possible so that npm spends as little time calculating
 // the ideal dependency closure as possible, and can parallelize as much as possible.
 const dependencies = ['@tybalt/core', '@tybalt/validator'];
-const devDependencies = ['@tybalt/esbuild-plugin', 'esbuild'];
+const devDependencies = ['@tybalt/cli', '@tybalt/esbuild-plugin', 'esbuild'];
 const scripts: { [property: string]: { script: string; description: string } } = {};
 
 // Installs all the dependencies
