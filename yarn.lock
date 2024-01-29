@@ -2974,7 +2974,7 @@ __metadata:
     "@types/jest": "npm:^29.5.11"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
-    lit: "npm:^3.1.0"
+    lit: "npm:^3.1.1"
     rimraf: "npm:^5.0.5"
     typescript: "npm:^5.3.3"
   languageName: unknown
@@ -9638,14 +9638,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "lit@npm:3.1.0"
+"lit@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "lit@npm:3.1.1"
   dependencies:
     "@lit/reactive-element": "npm:^2.0.0"
     lit-element: "npm:^4.0.0"
     lit-html: "npm:^3.1.0"
-  checksum: cf46959d909a5dce2ac4bff3d9f8aa942be223c30ce1d4e86e66eda55d53f2886e4ae6092f9ab825c1a26d56d1a57c360981040cb579d53a73869d07ec04bad9
+  checksum: 9194acc073c9dd5635ae173f255c58af54c4400d50573e77ebda2b2d6f689aee091835c1c513e4c02cb7e2dd58fcbd2a20b85128be97be339eb9b05f42dd5680
   languageName: node
   linkType: hard
 
