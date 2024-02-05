@@ -2814,7 +2814,7 @@ __metadata:
     "@types/node": "npm:^20.11.5"
     browser-sync: "npm:^3.0.2"
     chalk: "npm:^5.2.0"
-    commander: "npm:^11.0.0"
+    commander: "npm:^12.0.0"
     esbuild: "npm:^0.19.10"
     eslint: "npm:^8.56.0"
     find-up: "npm:^7.0.0"
@@ -5087,10 +5087,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "commander@npm:11.0.0"
-  checksum: 71cf453771c15d4e94afdd76a1e9bb31597dbc5f33130a1d399a4a7bc14eac765ebca7f0e077f347e5119087f6faa0017fd5e3cb6e4fc5c453853334c26162bc
+"commander@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "commander@npm:12.0.0"
+  checksum: 62062e2ffe6abd5aa42a551e62fd5eb9b2620f6ac4299382b2aa9fb02f95cda0242d7e84acb890479bd6491edb805f7f91aecb5b4f5c70dc57df49ed7f02ef14
   languageName: node
   linkType: hard
 
