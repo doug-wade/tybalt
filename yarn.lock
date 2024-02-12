@@ -2336,19 +2336,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lit-labs/ssr-dom-shim@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@lit-labs/ssr-dom-shim@npm:1.1.2"
-  checksum: a930f7de57b952dc21317a5754aa0411e000bb4991053cde771c111b7792c4a4cdc896922f0353c832215bed71400431c5ab5a6252c8f4f70bb9ce0b37fe4752
+"@lit-labs/ssr-dom-shim@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@lit-labs/ssr-dom-shim@npm:1.2.0"
+  checksum: 33679defe08538ac6fb612854e7d32b4ea1e787cceba2c3373d26fd56baa9833881887da7bade3930a176ba518dc00bb42ce95d82ddb6af6b05b8fbe1fc3169f
   languageName: node
   linkType: hard
 
-"@lit/reactive-element@npm:^2.0.0":
-  version: 2.0.2
-  resolution: "@lit/reactive-element@npm:2.0.2"
+"@lit/reactive-element@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@lit/reactive-element@npm:2.0.4"
   dependencies:
-    "@lit-labs/ssr-dom-shim": "npm:^1.1.2"
-  checksum: 2b74234f041740a8e0ab65980e2ac949533f067e43a6a512171a2b5f8ecd2116996f728776adc8ab94c1dddb679235cceb463a9c9ceb0f34a00fe95966646eff
+    "@lit-labs/ssr-dom-shim": "npm:^1.2.0"
+  checksum: 16aa5a8d917bce24d6c7cb5979f0a978e91f6205b4d9a8ebea2baf965e7a8215dab581b83b331123b04190612f4992ecc7b219cf00cf9b82f53403b08b1b6d49
   languageName: node
   linkType: hard
 
@@ -2963,7 +2963,7 @@ __metadata:
     "@types/jest": "npm:^29.5.11"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
-    lit: "npm:^3.1.1"
+    lit: "npm:^3.1.2"
     rimraf: "npm:^5.0.5"
     typescript: "npm:^5.3.3"
   languageName: unknown
@@ -9588,34 +9588,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit-element@npm:^4.0.0":
-  version: 4.0.2
-  resolution: "lit-element@npm:4.0.2"
+"lit-element@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "lit-element@npm:4.0.4"
   dependencies:
-    "@lit-labs/ssr-dom-shim": "npm:^1.1.2"
-    "@lit/reactive-element": "npm:^2.0.0"
-    lit-html: "npm:^3.1.0"
-  checksum: 185e8b916516c87d337d0491e572af412a3f7c60f751b5432d2f671ab1615f515683c49f2a28aeae81264072a8d6f80cfdcf39ca9521b2a6dd96d2f83e929bf6
+    "@lit-labs/ssr-dom-shim": "npm:^1.2.0"
+    "@lit/reactive-element": "npm:^2.0.4"
+    lit-html: "npm:^3.1.2"
+  checksum: d5afc94e5517713585ae66b87efe808791dd32b7918a096bb23471d022e6f3696524155f78645cd7483465693dffed39d0fef68e1106ad9e51f4d7944b69e7b3
   languageName: node
   linkType: hard
 
-"lit-html@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "lit-html@npm:3.1.0"
+"lit-html@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "lit-html@npm:3.1.2"
   dependencies:
     "@types/trusted-types": "npm:^2.0.2"
-  checksum: 2831f48e82bc75a27e329a844faf0b0324f006c004e2bbc2c5cc8632429ec79a5401aae31866fba9befae7861bf40c7513a7a39227ceafe2dc7a069f617ef875
+  checksum: 601388faae8a40167906c20736645233db4c36819a2f727c5eb1926e00a17d96da7768f5b41bed31bfdcc42887e4b52881e21b9caee170b1bc9a82f96b510644
   languageName: node
   linkType: hard
 
-"lit@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "lit@npm:3.1.1"
+"lit@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "lit@npm:3.1.2"
   dependencies:
-    "@lit/reactive-element": "npm:^2.0.0"
-    lit-element: "npm:^4.0.0"
-    lit-html: "npm:^3.1.0"
-  checksum: 9194acc073c9dd5635ae173f255c58af54c4400d50573e77ebda2b2d6f689aee091835c1c513e4c02cb7e2dd58fcbd2a20b85128be97be339eb9b05f42dd5680
+    "@lit/reactive-element": "npm:^2.0.4"
+    lit-element: "npm:^4.0.4"
+    lit-html: "npm:^3.1.2"
+  checksum: 50e543a68b0ba748471426436a3fbba72d5384a62e1a99a2ff8b3b868e4e29a11f89e24028e5f51c3c2c0d744c048a7d8fc59e456a6cc9426b2c772ecf2aea61
   languageName: node
   linkType: hard
 
