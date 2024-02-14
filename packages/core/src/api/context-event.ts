@@ -1,12 +1,12 @@
 import type { Context, ContextCallback, ContextEvent, ContextType, UnknownContext } from '../types';
 
 class TybaltContextEvent<T> extends Event implements ContextEvent<T extends UnknownContext ? any : any> {
-    #context: Context<T>;
+    #context: Context<unknown, T>;
     #callback: ContextCallback<ContextType<T extends UnknownContext ? any : any>>;
     #subscribe: boolean;
 
     constructor(
-        context: Context<T>,
+        context: Context<unknown, T>,
         callback: ContextCallback<ContextType<T extends UnknownContext ? any : any>>,
         options: {
             bubbles?: boolean;
@@ -23,7 +23,7 @@ class TybaltContextEvent<T> extends Event implements ContextEvent<T extends Unkn
             target?: EventTarget | null;
             timeStamp?: number;
             type?: string;
-        },
+        } = {},
     ) {
         super('context-request');
 

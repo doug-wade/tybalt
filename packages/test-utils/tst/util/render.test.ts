@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import render from '../../src/util/render';
 
 describe('render', () => {
@@ -18,5 +18,22 @@ describe('render', () => {
         const actual = await render({ elementName: 'mock-web-component', slot: 'mock slot content' });
 
         expect(actual.outerHTML).toBe(`<mock-web-component>mock slot content</mock-web-component>`);
+    });
+
+    it('should render contexts correctly', async () => {
+        const mockContextName = 'mock-context';
+        const mockContextValue = 'foo';
+        const mockContext = { name: mockContextName, initialValue: mockContextValue };
+
+        let actual;
+        const wrapper = await render({ elementName: 'mock-web-component', contexts: { mockContext } });
+        wrapper.dispatchEvent(new CustomEvent('context-request', { 
+            detail: {
+                callback: (context) => { actual = context; },
+                name: mockContextName,
+            }
+        }));
+
+        expect(actual).toBe(mockContextValue);
     });
 });

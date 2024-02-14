@@ -43,13 +43,7 @@ export type SetupContext = {
 };
 
 // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
-/**
- * A Context object defines an optional initial value for a Context, as well as a name identifier for debugging purposes.
- */
-export type Context<T> = {
-    name: string;
-    initialValue?: T;
-};
+export type Context<KeyType, ValueType> = KeyType & {__context__: ValueType};
 
 /**
  * An unknown context type

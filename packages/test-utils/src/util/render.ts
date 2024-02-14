@@ -1,21 +1,33 @@
 import { toKebabCase } from 'js-convert-case';
 import { v4 as uuidV4 } from 'uuid';
 
-import type { AttributeObject } from '../types';
+import type { ContextEvent } from '@tybalt/core';
+
+import type { AttributeObject, ContextsObject } from '../types';
 
 const ATTRIBUTE_NAME = 'data-tybalt-id';
 const WRAPPER_ELEMENT_TAG = 'div';
+
+function isContextEvent<T>(evt: Event | ContextEvent<T>): evt is ContextEvent<T> {
+    return (evt as ContextEvent<T>).callback !== undefined;
+}
 
 export default async ({
     elementName,
     attributes = new Map(),
     slot = '',
+    contexts = {},
 }: {
     elementName: string;
     attributes?: AttributeObject;
     slot?: string;
+    contexts?: ContextsObject;
 }): Promise<Element> => {
     const id = uuidV4();
+
+    Object.values(contexts).forEach(context =>
+        provideContext(document.body, context);
+    );
 
     let attributeString = '';
     for (const [key, value] of Object.entries(attributes)) {

@@ -1,25 +1,28 @@
-import defineComponent from '../../src/api/define-component';
 import createContext from '../../src/api/create-context';
+import defineComponent from '../../src/api/define-component';
+import html from '../../src/api/html';
 import { mount } from '@tybalt/test-utils';
 
 describe('contexts', () => {
     it('passes contexts to setup', async () => {
-        const mockContextName = 'context';
-        const mockContextValue = 'hello world';
-        const context = createContext(mockContextName, mockContextValue);
+        const name = 'context';
+        const expected = 'hello world';
 
-        let actual: any = {};
+        const context = createContext(name);
         const component = defineComponent({
             name: 'passes-contexts-to-setup',
-            setup({ example }) {
-                actual = example;
-            },
             contexts: { example: context },
+            render({ example }) {
+                return html`<p>${example}</p>`;
+            }
+        });
+        const wrapper = await mount(component, {
+            contexts: { 
+                [name]: expected,
+            }
         });
 
-        await mount(component);
-
-        expect(actual.value).toStrictEqual(mockContextValue);
+        expect(wrapper.html()).toContain(`<p>${expected}</p>`);
     });
 
     it('emits a warning if there is a collision', async () => {
@@ -39,22 +42,34 @@ describe('contexts', () => {
         expect(jestSpy.mock.calls[0][0]).toBe('Collision detected between context and prop: example');
     });
 
-    it('is not re-wrapped during setup', async () => {
-        const mockContextName = 'context';
-        const mockContextValue = 'hello world';
-        const context = createContext(mockContextName, mockContextValue);
+    it('is updateable', async () => {
+        const name = 'context';
+        const expected = 'hello world';
 
-        let actual: any = {};
+        const context = createContext(name);
         const component = defineComponent({
             name: 'context-not-rewrapped',
-            render({ example }) {
-                actual = example;
-            },
             contexts: { example: context },
+            setup({ example }) {
+                const clickHandler = () => {
+                    example.update(expected);
+                };
+
+                return { 
+                    clickHandler,
+                    example, 
+                };
+            },
+            render({ clickHandler, example }) {
+                return html`
+                    <p>${example}</p>
+                    <button @click=${clickHandler}></button>
+                `;
+            }
         });
+        const wrapper = await mount(component);
+        wrapper.find('button').click();
 
-        await mount(component);
-
-        expect(actual.value).toStrictEqual(mockContextValue);
+        expect(wrapper.find('p').text()).toStrictEqual(expected);
     });
 });

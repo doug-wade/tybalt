@@ -1,4 +1,5 @@
 export type AttributeObject = NonNullable<string, number | string>;
+export type ContextsObject = { [key: string]: any; };
 
 type DOMTokenListOrBoolean<T> = T extends string ? boolean | null : Array<string>;
 type NamedNodeMapOrString<T> = T extends string ? string | null | never : NonNullable<unknown>;
@@ -22,6 +23,7 @@ export interface Wrapper {
 export type MountOptions = {
     attributes?: AttributeObject;
     slot?: string;
+    contexts?: ContextsObject;
 };
 
 export type FlushPromisesOptions = {
