@@ -1,8 +1,3 @@
 import type { Context } from '../types';
 
-export default function createContext<T>(name: string, initialValue?: T): Readonly<Context<T>> {
-    return {
-        name,
-        initialValue,
-    };
-}
+export default <ValueType>(key: unknown) => key as Context<typeof key, ValueType>;

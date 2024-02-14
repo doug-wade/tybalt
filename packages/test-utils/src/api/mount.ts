@@ -6,7 +6,7 @@ import type { MountOptions } from '../types';
 
 export default async (
     definition: CustomElementConstructor,
-    { attributes, slot }: MountOptions = { attributes: {} },
+    { attributes, slot, contexts }: MountOptions = { attributes: {} },
 ) => {
     const elementName = getElementName({ definition });
     const stringifiedAttributes = Object.fromEntries(
@@ -16,7 +16,7 @@ export default async (
         ]),
     );
 
-    const element = await render({ attributes: stringifiedAttributes, elementName, slot });
+    const element = await render({ attributes: stringifiedAttributes, elementName, slot, contexts });
 
     return new Wrapper({ element });
 };

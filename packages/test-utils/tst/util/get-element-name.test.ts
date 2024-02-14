@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import getElementName from '../../src/util/get-element-name';
 
 describe('get-element-name', () => {
