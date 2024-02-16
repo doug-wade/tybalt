@@ -17,12 +17,12 @@
         <link href="/css/base.css" rel="stylesheet">
 
         <!-- Sentry tag -->
-        <script crossorigin="anonymous" src="development"></script>
+        <script crossorigin="anonymous" src="https://js.sentry-cdn.com/f38aa2d076cc4a8ba6c06493fea3ff7a.min.js"></script>
         <script>
             Sentry.init({
-                release: "@tybalt/website@0.1.9+f427b4208427dbe2af347e2f50fb81c9ea86d73c",
+                release: "@tybalt/website@0.1.9+f7f06627fed4742f5fa46e0bc65223ac62016d6a",
                 environment: "development",
-                dsn: "development",
+                dsn: "https://f38aa2d076cc4a8ba6c06493fea3ff7a@o4506661698535424.ingest.sentry.io/4506661707710464",
                 tracesSampleRate: 1.0,
                 tracePropagationTargets: ["localhost", /^https:\/\/tybalt\.org/],
                 replaysSessionSampleRate: 0.1,
