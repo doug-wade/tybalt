@@ -11,3 +11,4 @@ coverage-final.json
 .yarn/
 _site/
 *.tgz
+.env

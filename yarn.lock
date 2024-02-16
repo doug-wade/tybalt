@@ -3006,6 +3006,7 @@ __metadata:
     "@tybalt/core": "workspace:^"
     "@tybalt/eleventy-plugin": "workspace:^"
     chokidar-cli: "npm:^3.0.0"
+    dotenv: "npm:^16.4.4"
     eleventy-plugin-pwa-v2: "npm:^1.0.1"
     prism-themes: "npm:^1.9.0"
     prismjs: "npm:^1.29.0"
@@ -5801,6 +5802,13 @@ __metadata:
   dependencies:
     is-obj: "npm:^2.0.0"
   checksum: 10/33b2561617bd5c73cf9305368ba4638871c5dbf9c8100c8335acd2e2d590a81ec0e75c11cfaea5cc3cf8c2f668cad4beddb52c11856d0c9e666348eee1baf57a
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^16.4.4":
+  version: 16.4.4
+  resolution: "dotenv@npm:16.4.4"
+  checksum: 10/ddf43ede209d5f54c9da688e93326162eb0fc367ad1869909568cb15571ab8c87a0fab4e1d4af9860be0571c707a8b4aefa060a4f1b0bb14298a81e0ccf0017d
   languageName: node
   linkType: hard
 

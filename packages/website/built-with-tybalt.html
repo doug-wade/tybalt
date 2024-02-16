@@ -20,6 +20,21 @@
         <link href="{{ '/css/index.css' | url }}" rel="stylesheet" />
         <link href="{{ '/css/base.css' | url }}" rel="stylesheet" />
 
+        <!-- Sentry tag -->
+        <script crossorigin="anonymous" src="{{sentry.url}}"></script>
+        <script>
+            Sentry.init({
+                release: "{{sentry.release}}",
+                environment: "{{sentry.environment}}",
+                dsn: "{{sentry.dsn}}",
+                tracesSampleRate: 1.0,
+                tracePropagationTargets: ["localhost", /^https:\/\/tybalt\.org/],
+                replaysSessionSampleRate: 0.1,
+                replaysOnErrorSampleRate: 1.0,
+            });
+        </script>
+
+        <!-- Service Worker -->
         <script>
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/service-worker.js');
