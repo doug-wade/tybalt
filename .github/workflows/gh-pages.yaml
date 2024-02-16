@@ -23,7 +23,7 @@ jobs:
               env:
                 SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
                 SENTRY_URL: ${{ secrets.SENTRY_URL }}
-                SENTRY_ENVIRONMENT: production
+                SENTRY_ENVIRONMENT: ${{ vars.SENTRY_ENVIRONMENT }}
               run: yarn build
 
             - name: Deploy
