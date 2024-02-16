@@ -15,6 +15,21 @@
         <link href="/css/index.css" rel="stylesheet">
         <link href="/css/base.css" rel="stylesheet">
 
+        <!-- Sentry tag -->
+        <script crossorigin="anonymous" src="development"></script>
+        <script>
+            Sentry.init({
+                release: "@tybalt/website@0.1.9+f427b4208427dbe2af347e2f50fb81c9ea86d73c",
+                environment: "development",
+                dsn: "development",
+                tracesSampleRate: 1.0,
+                tracePropagationTargets: ["localhost", /^https:\/\/tybalt\.org/],
+                replaysSessionSampleRate: 0.1,
+                replaysOnErrorSampleRate: 1.0,
+            });
+        </script>
+
+        <!-- Service Worker -->
         <script>
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/service-worker.js');

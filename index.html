@@ -16,6 +16,21 @@
         <link href="/css/index.css" rel="stylesheet">
         <link href="/css/base.css" rel="stylesheet">
 
+        <!-- Sentry tag -->
+        <script crossorigin="anonymous" src="development"></script>
+        <script>
+            Sentry.init({
+                release: "@tybalt/website@0.1.9+f427b4208427dbe2af347e2f50fb81c9ea86d73c",
+                environment: "development",
+                dsn: "development",
+                tracesSampleRate: 1.0,
+                tracePropagationTargets: ["localhost", /^https:\/\/tybalt\.org/],
+                replaysSessionSampleRate: 0.1,
+                replaysOnErrorSampleRate: 1.0,
+            });
+        </script>
+
+        <!-- Service Worker -->
         <script>
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/service-worker.js');
@@ -34,16 +49,5 @@
     
     <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-90R0R9Y7VG');
-    </script>
 
 <script src="/tybalt-out.js"></script></body></html>
