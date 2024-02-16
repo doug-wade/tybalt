@@ -20,6 +20,10 @@ jobs:
               run: yarn install
 
             - name: Build website
+              env:
+                SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+                SENTRY_URL: ${{ secrets.SENTRY_URL }}
+                SENTRY_ENVIRONMENT: ${{ secrets.SENTRY_ENVIRONMENT }}
               run: yarn build
 
             - name: Deploy
