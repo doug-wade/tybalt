@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/parser",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "An library for parsing strings into other types",
     "main": "dist/index.js",
     "scripts": {
