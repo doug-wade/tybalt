@@ -1,6 +1,6 @@
 {
     "name": "@tybalt/test-utils",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "A set of utilities for unit testing web components",
     "module": "dist/mjs/index.mjs",
     "main": "dist/cjs/index.js",
