@@ -16,12 +16,12 @@
         <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
 
         <!-- Sentry tag -->
-        <script crossorigin="anonymous" src="https://js.sentry-cdn.com/f38aa2d076cc4a8ba6c06493fea3ff7a.min.js"></script>
+        <script crossorigin="anonymous" src="https://js.sentry-cdn.com/93129628db91d6ba5031c0453b456533.min.js"></script>
         <script>
             Sentry.init({
-                release: "@tybalt/website@0.1.9+71089d39ba9be503f6d5a292e3b0ea6ed7673bd9",
+                release: "@tybalt/website@0.1.9+68730e6ca98a2e40a9bea4aa9eec349c7ef54708",
                 environment: "staging",
-                dsn: "https://f38aa2d076cc4a8ba6c06493fea3ff7a@o4506661698535424.ingest.sentry.io/4506661707710464",
+                dsn: "https://93129628db91d6ba5031c0453b456533@o4506661698535424.ingest.sentry.io/4506758769737728",
                 tracesSampleRate: 1.0,
                 tracePropagationTargets: ["localhost", /^https:\/\/tybalt\.org/],
                 replaysSessionSampleRate: 0.1,
@@ -59,7 +59,7 @@
             <div id="content">
                 <tybalt-sidebar></tybalt-sidebar>
                 <div class="tybalt-main"><h1>@tybalt/parser</h1>
-<p>Tybalt's package for parsing web component attributes</p>
+<p>Tybalt's package for parsing web component attributes.</p>
 <h2>Motivation</h2>
 <p>All web component attribute values are strings, because that's how html works. However, this is inconvenient sometimes for programming, where it can be easier to work with more complex data types, like objects.</p>
 <p>Tybalt does its best to parse what it thinks you intend to pass using the <code>standard</code> parser. If you pass the string <code>true</code> or <code>false</code>, it will assume that you intend to pass a boolean, rather than a string. This can be problematic, for instance when you do want to pass the string "true" or "false". To handle these cases, the parser package exports a variety of parsers to match common data types that are passed in attributes between custom elements.</p>
