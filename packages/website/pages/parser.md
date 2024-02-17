@@ -5,7 +5,7 @@ title: Tybalt parser
 
 # @tybalt/parser
 
-Tybalt's package for parsing web component attributes
+Tybalt's package for parsing web component attributes.
 
 ## Motivation
 
