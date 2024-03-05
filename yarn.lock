@@ -2901,7 +2901,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^7.1.0"
     "@typescript-eslint/parser": "npm:^7.1.1"
     "@typescript-eslint/rule-tester": "npm:^7.1.0"
-    "@typescript-eslint/utils": "npm:^7.1.0"
+    "@typescript-eslint/utils": "npm:^7.1.1"
     esbuild: "npm:^0.20.1"
     esbuild-jest: "npm:^0.5.0"
     eslint: "npm:^8.56.0"
@@ -3498,7 +3498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:7.1.0, @typescript-eslint/utils@npm:^7.1.0":
+"@typescript-eslint/utils@npm:7.1.0":
   version: 7.1.0
   resolution: "@typescript-eslint/utils@npm:7.1.0"
   dependencies:
@@ -3512,6 +3512,23 @@ __metadata:
   peerDependencies:
     eslint: ^8.56.0
   checksum: 10/26d64094d8b828ce6cfea660c95cdbd4d0193d338646fc773312093388bc781653fc1ca16977b3be5288579fe43f14c7108fc431da66dd95b6ed680ad44712a0
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/utils@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "@typescript-eslint/utils@npm:7.1.1"
+  dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.4.0"
+    "@types/json-schema": "npm:^7.0.12"
+    "@types/semver": "npm:^7.5.0"
+    "@typescript-eslint/scope-manager": "npm:7.1.1"
+    "@typescript-eslint/types": "npm:7.1.1"
+    "@typescript-eslint/typescript-estree": "npm:7.1.1"
+    semver: "npm:^7.5.4"
+  peerDependencies:
+    eslint: ^8.56.0
+  checksum: 10/da8daae269ce15360ed91508f7c430b37d2e877321a91f437f611f9b643cc563c4aefe3d6b3983fadbb1bed389c82a4ceac95bbfeb015b62830fdb9ceea40e5a
   languageName: node
   linkType: hard
 
