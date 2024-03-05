@@ -1,7 +1,7 @@
 import { toKebabCase } from 'js-convert-case';
 import { v4 as uuidV4 } from 'uuid';
 
-import type { ContextEvent } from '@tybalt/core';
+import type { Context, ContextEvent } from '@tybalt/core';
 
 import type { AttributeObject, ContextsObject } from '../types';
 
@@ -25,10 +25,6 @@ export default async ({
 }): Promise<Element> => {
     const id = uuidV4();
 
-    Object.values(contexts).forEach(context =>
-        provideContext(document.body, context);
-    );
-
     let attributeString = '';
     for (const [key, value] of Object.entries(attributes)) {
         const stringifiedValue = typeof value === 'string' ? value : JSON.stringify(value);
@@ -47,6 +43,9 @@ export default async ({
         const requestComponent = () => {
             const element = document.querySelector(selector);
             if (element) {
+                Object.values(contexts).forEach(context =>
+                    provideContext(element, context)
+                );
                 resolve(element);
             } else {
                 window.requestAnimationFrame(requestComponent);
@@ -56,3 +55,11 @@ export default async ({
         requestComponent();
     });
 };
+
+function provideContext<T>(element: Element, context: Context<T>): void {
+    element.addEventListener('context-request', (evt) => {
+        if (isContextEvent(evt) && evt.context === context) {
+            evt.callback(context.initialValue);
+        }
+    });
+}

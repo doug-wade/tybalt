@@ -106,12 +106,13 @@ export default ({
             );
 
             for (const [contextName, context] of Object.entries(contexts)) {
-                const contextReactive = reactive(context.initialValue);
+                const contextReactive = reactive(context);
 
                 this.dispatchEvent(
                     new ContextEvent(
                         context,
-                        (value, unsubscribe) => {
+                        (value, unsubscribe, update) => {
+                            console.log('got context event response')
                             const contextState = this.#contexts.get(context) || {
                                 value: undefined,
                                 unsubscribe: undefined,
@@ -124,6 +125,11 @@ export default ({
                             }
 
                             contextReactive.value = value;
+                            contextReactive.addListener((value: any) => {
+                                if (update) {
+                                    update(value);
+                                }
+                            });
 
                             this.#contexts.set(contextName, { unsubscribe, reactive: contextReactive });
                         },

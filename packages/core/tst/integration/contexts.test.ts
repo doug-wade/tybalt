@@ -8,7 +8,7 @@ describe('contexts', () => {
         const name = 'context';
         const expected = 'hello world';
 
-        const context = createContext(name);
+        const context = createContext(expected);
         const component = defineComponent({
             name: 'passes-contexts-to-setup',
             contexts: { example: context },
@@ -18,7 +18,7 @@ describe('contexts', () => {
         });
         const wrapper = await mount(component, {
             contexts: { 
-                [name]: expected,
+                [name]: context,
             }
         });
 
@@ -43,16 +43,15 @@ describe('contexts', () => {
     });
 
     it('is updateable', async () => {
-        const name = 'context';
         const expected = 'hello world';
 
-        const context = createContext(name);
+        const context = createContext('initial value');
         const component = defineComponent({
             name: 'context-not-rewrapped',
             contexts: { example: context },
             setup({ example }) {
                 const clickHandler = () => {
-                    example.update(expected);
+                    example.value = expected;
                 };
 
                 return { 
@@ -63,12 +62,12 @@ describe('contexts', () => {
             render({ clickHandler, example }) {
                 return html`
                     <p>${example}</p>
-                    <button @click=${clickHandler}></button>
+                    <button @click="${clickHandler}"></button>
                 `;
             }
         });
         const wrapper = await mount(component);
-        wrapper.find('button').click();
+        wrapper.find('button').trigger('click');
 
         expect(wrapper.find('p').text()).toStrictEqual(expected);
     });

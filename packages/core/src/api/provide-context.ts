@@ -25,7 +25,16 @@ const provideContext = <T, U>({ elem, context, initialValue }: { elem: HTMLEleme
                 }
             };
         }
-        event.callback(value, unsubscribe);
+
+        const update = (newValue: U) => {
+            value = newValue;
+
+            listeners.forEach(listener => {
+                listener(newValue);
+            });
+        }
+
+        event.callback(value, unsubscribe, update);
     });
 
     const update = (newValue: U) => {

@@ -37,7 +37,7 @@ const renderToString = (
         }
 
         // Is this a bug? Does this ever result in us leaving `<my-component my-attribute>`,
-        // indicating truthiness rather than falsiness?Q
+        // indicating truthiness rather than falsiness
         if (key === undefined || key === null) {
             return `${prev}${curr}`;
         }
@@ -95,6 +95,10 @@ const renderToString = (
         }
 
         if (key?.addListener) {
+            if (key.value === undefined) {
+                return `${prev}${curr}`;
+            }
+
             if (key?.value.strings && key?.value.keys) {
                 return `${prev}${curr}${renderToString(key, eventPlaceholders, setAttributePlaceholders)}`;
             }

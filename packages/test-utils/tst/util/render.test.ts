@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import render from '../../src/util/render';
+import { ContextEvent } from '@tybalt/core';
 
 describe('render', () => {
     it('should create a dom element', async () => {
@@ -26,13 +27,17 @@ describe('render', () => {
         const mockContext = { name: mockContextName, initialValue: mockContextValue };
 
         let actual;
-        const wrapper = await render({ elementName: 'mock-web-component', contexts: { mockContext } });
-        wrapper.dispatchEvent(new CustomEvent('context-request', { 
-            detail: {
-                callback: (context) => { actual = context; },
-                name: mockContextName,
-            }
-        }));
+        const wrapper = await render({
+            elementName: 'mock-web-component',
+            contexts: { mockContext }
+        });
+        wrapper.dispatchEvent(
+            new ContextEvent(
+                mockContext,
+                (context: any) => { actual = context; },
+                {}
+            )
+        );
 
         expect(actual).toBe(mockContextValue);
     });

@@ -1,6 +1,6 @@
-import type { SetupContext, RenderContext, PropsStateMap } from './types';
+import type { Context, SetupContext, RenderContext, PropsStateMap } from './types';
 
-export { SetupContext, RenderContext, PropsStateMap };
+export { Context, SetupContext, RenderContext, PropsStateMap };
 
 export { default as defineComponent } from './api/define-component';
 export { default as forceRerenderOnUpdate } from './api/force-rerender-on-update';
