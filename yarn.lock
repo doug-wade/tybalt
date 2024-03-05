@@ -2900,7 +2900,7 @@ __metadata:
     "@types/node": "npm:^20.11.24"
     "@typescript-eslint/eslint-plugin": "npm:^7.1.0"
     "@typescript-eslint/parser": "npm:^7.1.1"
-    "@typescript-eslint/rule-tester": "npm:^7.1.0"
+    "@typescript-eslint/rule-tester": "npm:^7.1.1"
     "@typescript-eslint/utils": "npm:^7.1.1"
     esbuild: "npm:^0.20.1"
     esbuild-jest: "npm:^0.5.0"
@@ -3393,19 +3393,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/rule-tester@npm:^7.1.0":
-  version: 7.1.0
-  resolution: "@typescript-eslint/rule-tester@npm:7.1.0"
+"@typescript-eslint/rule-tester@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "@typescript-eslint/rule-tester@npm:7.1.1"
   dependencies:
-    "@typescript-eslint/typescript-estree": "npm:7.1.0"
-    "@typescript-eslint/utils": "npm:7.1.0"
+    "@typescript-eslint/typescript-estree": "npm:7.1.1"
+    "@typescript-eslint/utils": "npm:7.1.1"
     ajv: "npm:^6.10.0"
     lodash.merge: "npm:4.6.2"
     semver: "npm:^7.5.4"
   peerDependencies:
     "@eslint/eslintrc": ">=2"
     eslint: ^8.56.0
-  checksum: 10/2f182f6fe03465e03c394aaad1d26158b79924b24653d049bb3d999b8a377a78ca088a9e025750686f172b1ff2095def8480da06c5e0495c49acfece9b874a0e
+  checksum: 10/02961161e10e4e30224c5efe5b77f3696759489e4bf11b5a14c2a4471ad821abd22004032102e19a35db2a8b087e2689e16f74dcf525ddc12d4f96eae8ff890a
   languageName: node
   linkType: hard
 
@@ -3515,7 +3515,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:^7.1.1":
+"@typescript-eslint/utils@npm:7.1.1, @typescript-eslint/utils@npm:^7.1.1":
   version: 7.1.1
   resolution: "@typescript-eslint/utils@npm:7.1.1"
   dependencies:
