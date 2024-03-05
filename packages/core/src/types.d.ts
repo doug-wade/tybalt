@@ -59,7 +59,7 @@ export type ContextType<T extends UnknownContext> = T extends Context<infer Y> ?
  * A callback which is provided by a context requester and is called with the value satisfying the request.
  * This callback can be called multiple times by context providers as the requested value is changed.
  */
-export type ContextCallback<ValueType> = (value: ValueType, unsubscribe?: () => void) => void;
+export type ContextCallback<ValueType> = (value: ValueType, unsubscribe?: () => void, update?: (newValue: ValueType) => void) => void;
 
 /**
  * An event fired by a context requester to signal it desires a named context.
