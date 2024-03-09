@@ -5,7 +5,7 @@
         <meta property="og:description" content="A framework for writing web components.">
         <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
 
-        <title>Linting</title>
+        <title>Tybalt core</title>
         <link rel="manifest" href="manifest.json">
         <link rel="shortcut icon" type="image/png" href="img/favico.png">
         <link href="/css/base.css" rel="stylesheet">
@@ -60,44 +60,8 @@
             <tybalt-header></tybalt-header>
             <div id="content">
                 <tybalt-sidebar></tybalt-sidebar>
-                <div class="tybalt-main"><h1>Linting</h1>
-<h2>Using the tybalt cli</h2>
-<p>The easiest way to get set up with linting your project is using the Tybalt cli. You can use <a href="https://docs.npmjs.com/cli/v8/commands/npx">npx</a> to lint your files</p>
-<pre><code class="language-shell">npx @tybalt/cli lint
-</code></pre>
-<p>However, if you will have many collaborators on a project, you'll likely want to standardize your lint step, especially if you have to set flags or options when building your project.</p>
-<p>First, install the cli</p>
-<pre><code class="language-shell">yarn add -D @tybalt/cli
-</code></pre>
-<p>You can also add a new script to your package.json</p>
-<pre><code class="language-json">{
-    "scripts": {
-        "lint": "tybalt lint"
-    }
-}
-</code></pre>
-<p>Now you can run the linter using your package manager's script runner, for instance <code>yarn run lint</code> or <code>npm run lint</code>.</p>
-<p>You can see the <a href="/pages/cli">cli documentation</a> for more details on setting up linting using the cli, like how to provide a pattern of files to lint.</p>
-<h2>Using @tybalt/eslint-plugin</h2>
-<p>For more complex projects, you'll likely need to do customization to your linting setup that is more complex than is available with the tybalt cli. For these cases, you'll want to use the eslint plugin.</p>
-<p>To get started, install the plugin and associated dependencies</p>
-<pre><code class="language-shell">yarn add -D eslint @tybalt/eslint-plugin
-</code></pre>
-<p>Then create an <code>.eslintrc.js</code> file that contains, at a minimum</p>
-<pre><code class="language-javascript">module.exports = {
-    extends: ['plugin:@tybalt/eslint-plugin/ts-recommended'],
-    plugins: ['@tybalt/eslint-plugin'],
-};
-</code></pre>
-<p>And finally add a script to your <code>package.json</code></p>
-<pre><code class="language-json">{
-    "scripts": {
-        "lint": "tybalt lint"
-    }
-}
-</code></pre>
-<p>And now you can run <code>npm run lint</code> to lint your code!</p>
-<p>You can see the <a href="/pages/eslint-plugin">eslint plugin documentation</a> and the <a href="https://eslint.org/docs/latest/use/configure/">eslint documentation</a> for more details on setting up linting using the eslint plugin.</p>
+                <div class="tybalt-main"><h1>@tybalt/context</h1>
+<p>This package exports the <a href="https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md">Web Components Working Group's context protocol</a> for use with Tybalt.</p>
 </div>
             </div>
             <tybalt-footer></tybalt-footer>

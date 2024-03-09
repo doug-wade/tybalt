@@ -1,0 +1,201 @@
+<!doctype html><html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tybalt">
+        <meta property="og:description" content="A framework for writing web components.">
+        <meta property="og:image" content="https://doug-wade.github.io/tybalt/img/favico.png">
+
+        <title>Contexts</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" type="image/png" href="img/favico.png">
+        <link href="/css/base.css" rel="stylesheet">
+        <link href="/css/page.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" rel="stylesheet">
+
+        <!-- Sentry tag -->
+        <script crossorigin="anonymous" src="https://js.sentry-cdn.com/93129628db91d6ba5031c0453b456533.min.js"></script>
+        <script>
+            if (window.Sentry) {
+                Sentry.init({
+                    release: "@tybalt/website@0.1.9+a99f0fd24341dea560fc8f462d63faa49c6ce2c7",
+                    environment: "staging",
+                    dsn: "https://93129628db91d6ba5031c0453b456533@o4506661698535424.ingest.sentry.io/4506758769737728",
+                    tracesSampleRate: 1.0,
+                    tracePropagationTargets: ["localhost", /^https:\/\/tybalt\.org/],
+                    replaysSessionSampleRate: 0.1,
+                    replaysOnErrorSampleRate: 1.0,
+                });
+            }
+        </script>
+
+        <!-- Service Worker -->
+        <script>
+            if ("serviceWorker" in navigator) {
+              navigator.serviceWorker
+                .register("/service-worker.js")
+                .then((registration) => {
+                  registration.addEventListener("updatefound", () => {
+                    const newWorker = registration.installing;
+                    newWorker.addEventListener("statechange", () => {
+                      if (newWorker.state === "installed") {
+                        if (navigator.serviceWorker.controller) {
+                          // New service worker installed and registered, we reload the page
+                          window.location.reload();
+                        }
+                      }
+                    });
+                  });
+                })
+                .catch((error) => {
+                  console.error("Service Worker registration failed:", error);
+                });
+            }
+          </script>
+    </head>
+    <body>
+        <div id="app">
+            <tybalt-header></tybalt-header>
+            <div id="content">
+                <tybalt-sidebar></tybalt-sidebar>
+                <div class="tybalt-main"><h1>Contexts</h1>
+<p>Contexts are used to share state that can change over time that is to be shared between multiple web components. The advantage of using contexts over other solutions, such as a store, is that the implementation is a standard, and should/will/is supported by other web component frameworks.</p>
+<h2>Creating a new context</h2>
+<p>For this example, we've decided to distribute our theme via a context. We've decided to store contexts one per file, in a directory called <code>contexts</code> that is a sibling of our <code>components</code> directory.</p>
+<p>To create our new context, we'll use the <code>createContext</code> method from <a href="/pages/core#createContext">core</a>, and add it to a new file called <code>contexts/theme.ts</code></p>
+<pre><code class="language-typescript">import { createContext } from '@tybalt/context';
+
+export default createContext('theme', { 
+    brandColor: 'rebeccapurple', 
+    // Put other tokens here as needed
+});
+</code></pre>
+<h2>Using a context in a component</h2>
+<p>The <code>context</code> that is created can then be passed to the <code>contexts</code> argument on <code>defineComponent</code> from <a href="/pages/core#defineComponent">core</a>. So, we can create new components and update our old components to request the context when they are mounted</p>
+<pre><code class="language-typescript">import { defineComponent } from '@tybalt/core';
+import theme from '../contexts/'
+
+export default defineComponent({
+    contexts: { theme },
+    render({ theme }) {
+        return html`
+            &lt;style&gt;
+                button {
+                    background-color: ${theme.brandColor};
+                }
+            &lt;/style&gt;
+            &lt;button&gt;&lt;/button&gt;
+        `;
+    }
+});
+</code></pre>
+<h2>Updating a context value</h2>
+<p>Now, we are going to add theme toggling, for instance between light and dark mode.</p>
+<p>The context exposes a method, <code>update</code>, that allows the value to be updated.</p>
+<pre><code class="language-typescript">import { defineComponent, html } from '@tybalt/core';
+import theme from '../contexts/theme';
+
+import { dark, light } from '../tokens';
+
+export default defineComponent({
+    contexts: { theme },
+    setUp({ theme }) {
+        const clickHandler = () =&gt; {
+            theme.update(theme.value === dark ? light : dark);
+        };
+
+        return { clickHandler };
+    },
+    render({ clickHandler }) {
+        return html`
+            &lt;button @click="${clickHandler}"&gt;Change theme&lt;/button&gt;
+        `;
+    }
+});
+</code></pre>
+<h2>Unit testing with contexts</h2>
+<p>The <code>mount</code> method takes a context as a key on the second argument, <code>options</code>. If you would like to have a more integration-testing-style approach, you can import and provide the same context you use in production.</p>
+<pre><code class="language-typescript">import { mount } from '@tybalt/test-utils';
+import theme from '../contexts/theme';
+
+it('should render a css variable', () =&gt; {
+    const wrapper = mount(MyComponent, { contexts: { theme } });
+    const style = wrapper.find('style');
+
+    expect(style.html()).toContain('var(--brand-cover)');
+});
+</code></pre>
+<p>Alternatively, you can mock your context and assert that methods were called as expected, in more the style of a unit test.</p>
+<pre><code class="language-typescript">import { mount } from '@tybalt/test-utils';
+
+it('should update the context', () =&gt; {
+    const mockContext = {
+        name: 'theme',
+        update: jest.fn(),
+    };
+
+    const wrapper = mount(MyComponent, { contexts: { theme: mockContext } });
+    const button = wrapper.find('button');
+    button.click();
+
+    expect(mockContext).toHaveBeenCalledOnce();
+});
+</code></pre>
+<h2>Sharing contexts with external stylesheets</h2>
+<p>If you have a value from a context that you want to share with an external stylesheet, your best bet is to use a css variable.</p>
+<p>First, add a <code>style</code> tag that defines your variable in your component file</p>
+<pre><code class="language-typescript">import { defineComponent } from '@tybalt/core';
+import theme from '../contexts/'
+
+export default defineComponent({
+    props: { 
+        variant: { 
+            default: 'primary', 
+            validator: oneOf(['primary', 'secondary']) 
+        } 
+    },
+    contexts: { theme },
+    render({ theme, variant }) {
+        return html`
+            &lt;style&gt;
+                button {
+                    --primary-color: ${theme.brandColor};
+                    --secondary-color: ${theme.secondaryColor};
+                }
+            &lt;/style&gt;
+            &lt;button class="btn-${variant}"&gt;&lt;/button&gt;
+        `;
+    }
+})
+</code></pre>
+<p>And then set the properties in your external stylesheet to the value of that css variable</p>
+<pre><code class="language-css">.btn-primary {
+    background-color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+}
+</code></pre>
+</div>
+            </div>
+            <tybalt-footer></tybalt-footer>
+        </div>
+        <script src="https://unpkg.com/prismjs@v1.x/components/prism-core.min.js"></script>
+        <script src="https://unpkg.com/prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-90R0R9Y7VG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-90R0R9Y7VG');
+        </script>
+    
+
+<script src="/tybalt-out.js"></script></body></html>

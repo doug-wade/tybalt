@@ -1500,249 +1500,6 @@
     isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target,
     mod
   ));
-  var require_boolean = __commonJS2({
-    "../parser/dist/api/boolean.js"(exports, module) {
-      "use strict";
-      var __defProp22 = Object.defineProperty;
-      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
-      var __getOwnPropNames22 = Object.getOwnPropertyNames;
-      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
-      var __export = (target, all) => {
-        for (var name in all)
-          __defProp22(target, name, { get: all[name], enumerable: true });
-      };
-      var __copyProps22 = (to, from, except, desc) => {
-        if (from && typeof from === "object" || typeof from === "function") {
-          for (let key of __getOwnPropNames22(from))
-            if (!__hasOwnProp22.call(to, key) && key !== except)
-              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
-        }
-        return to;
-      };
-      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
-      var boolean_exports = {};
-      __export(boolean_exports, {
-        default: () => boolean_default
-      });
-      module.exports = __toCommonJS(boolean_exports);
-      var boolean_default = {
-        parse(str) {
-          if (str === "true") {
-            return true;
-          }
-          if (str === "false") {
-            return false;
-          }
-          return null;
-        }
-      };
-    }
-  });
-  var require_json = __commonJS2({
-    "../parser/dist/api/json.js"(exports, module) {
-      "use strict";
-      var __defProp22 = Object.defineProperty;
-      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
-      var __getOwnPropNames22 = Object.getOwnPropertyNames;
-      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
-      var __export = (target, all) => {
-        for (var name in all)
-          __defProp22(target, name, { get: all[name], enumerable: true });
-      };
-      var __copyProps22 = (to, from, except, desc) => {
-        if (from && typeof from === "object" || typeof from === "function") {
-          for (let key of __getOwnPropNames22(from))
-            if (!__hasOwnProp22.call(to, key) && key !== except)
-              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
-        }
-        return to;
-      };
-      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
-      var json_exports = {};
-      __export(json_exports, {
-        default: () => json_default
-      });
-      module.exports = __toCommonJS(json_exports);
-      var json_default = {
-        parse(str) {
-          return JSON.parse(str);
-        }
-      };
-    }
-  });
-  var require_string = __commonJS2({
-    "../parser/dist/api/string.js"(exports, module) {
-      "use strict";
-      var __defProp22 = Object.defineProperty;
-      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
-      var __getOwnPropNames22 = Object.getOwnPropertyNames;
-      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
-      var __export = (target, all) => {
-        for (var name in all)
-          __defProp22(target, name, { get: all[name], enumerable: true });
-      };
-      var __copyProps22 = (to, from, except, desc) => {
-        if (from && typeof from === "object" || typeof from === "function") {
-          for (let key of __getOwnPropNames22(from))
-            if (!__hasOwnProp22.call(to, key) && key !== except)
-              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
-        }
-        return to;
-      };
-      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
-      var string_exports = {};
-      __export(string_exports, {
-        default: () => string_default2
-      });
-      module.exports = __toCommonJS(string_exports);
-      var string_default2 = {
-        parse(str) {
-          if (str instanceof String) {
-            return str;
-          }
-          return `${str}`;
-        }
-      };
-    }
-  });
-  var require_number = __commonJS2({
-    "../parser/dist/api/number.js"(exports, module) {
-      "use strict";
-      var __defProp22 = Object.defineProperty;
-      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
-      var __getOwnPropNames22 = Object.getOwnPropertyNames;
-      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
-      var __export = (target, all) => {
-        for (var name in all)
-          __defProp22(target, name, { get: all[name], enumerable: true });
-      };
-      var __copyProps22 = (to, from, except, desc) => {
-        if (from && typeof from === "object" || typeof from === "function") {
-          for (let key of __getOwnPropNames22(from))
-            if (!__hasOwnProp22.call(to, key) && key !== except)
-              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
-        }
-        return to;
-      };
-      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
-      var number_exports = {};
-      __export(number_exports, {
-        default: () => number_default
-      });
-      module.exports = __toCommonJS(number_exports);
-      var number_default = {
-        parse(str) {
-          return Number(str);
-        }
-      };
-    }
-  });
-  var require_standard = __commonJS2({
-    "../parser/dist/api/standard.js"(exports, module) {
-      "use strict";
-      var __defProp22 = Object.defineProperty;
-      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
-      var __getOwnPropNames22 = Object.getOwnPropertyNames;
-      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
-      var __export = (target, all) => {
-        for (var name in all)
-          __defProp22(target, name, { get: all[name], enumerable: true });
-      };
-      var __copyProps22 = (to, from, except, desc) => {
-        if (from && typeof from === "object" || typeof from === "function") {
-          for (let key of __getOwnPropNames22(from))
-            if (!__hasOwnProp22.call(to, key) && key !== except)
-              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
-        }
-        return to;
-      };
-      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
-      var standard_exports = {};
-      __export(standard_exports, {
-        default: () => standard_default
-      });
-      module.exports = __toCommonJS(standard_exports);
-      var standard_default = {
-        parse(str) {
-          if (str === void 0 || str === "undefined") {
-            return void 0;
-          }
-          if (str === null || str === "null") {
-            return null;
-          }
-          if (str === "true" || str === true) {
-            return true;
-          }
-          if (str === "false" || str === false) {
-            return false;
-          }
-          if (Array.isArray(str) || typeof str === "object") {
-            return str;
-          }
-          if (str[0] === "{" || str[0] === "[") {
-            try {
-              return JSON.parse(str);
-            } catch (e) {
-            }
-          }
-          try {
-            const parsed = Number(str);
-            if (!Number.isNaN(parsed)) {
-              return parsed;
-            }
-          } catch (e) {
-          }
-          return str;
-        }
-      };
-    }
-  });
-  var require_dist = __commonJS2({
-    "../parser/dist/index.js"(exports, module) {
-      "use strict";
-      var __create22 = Object.create;
-      var __defProp22 = Object.defineProperty;
-      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
-      var __getOwnPropNames22 = Object.getOwnPropertyNames;
-      var __getProtoOf22 = Object.getPrototypeOf;
-      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
-      var __export = (target, all) => {
-        for (var name in all)
-          __defProp22(target, name, { get: all[name], enumerable: true });
-      };
-      var __copyProps22 = (to, from, except, desc) => {
-        if (from && typeof from === "object" || typeof from === "function") {
-          for (let key of __getOwnPropNames22(from))
-            if (!__hasOwnProp22.call(to, key) && key !== except)
-              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
-        }
-        return to;
-      };
-      var __toESM22 = (mod, isNodeMode, target) => (target = mod != null ? __create22(__getProtoOf22(mod)) : {}, __copyProps22(
-        // If the importer is in node compatibility mode or this is not an ESM
-        // file that has been converted to a CommonJS file using a Babel-
-        // compatible transform (i.e. "__esModule" has not been set), then set
-        // "default" to the CommonJS "module.exports" for node compatibility.
-        isNodeMode || !mod || !mod.__esModule ? __defProp22(target, "default", { value: mod, enumerable: true }) : target,
-        mod
-      ));
-      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
-      var src_exports = {};
-      __export(src_exports, {
-        boolean: () => import_boolean.default,
-        json: () => import_json.default,
-        number: () => import_number.default,
-        standard: () => import_standard.default,
-        string: () => import_string.default
-      });
-      module.exports = __toCommonJS(src_exports);
-      var import_boolean = __toESM22(require_boolean());
-      var import_json = __toESM22(require_json());
-      var import_string = __toESM22(require_string());
-      var import_number = __toESM22(require_number());
-      var import_standard = __toESM22(require_standard());
-    }
-  });
   var require_js_camelcase = __commonJS2({
     "../../node_modules/js-convert-case/lib/modules/js-camelcase/index.js"(exports) {
       "use strict";
@@ -2317,150 +2074,250 @@
       module.exports = require_lib();
     }
   });
-  var getRandomValues;
-  var rnds8 = new Uint8Array(16);
-  function rng() {
-    if (!getRandomValues) {
-      getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
-      if (!getRandomValues) {
-        throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
-      }
-    }
-    return getRandomValues(rnds8);
-  }
-  var byteToHex = [];
-  for (let i = 0; i < 256; ++i) {
-    byteToHex.push((i + 256).toString(16).slice(1));
-  }
-  function unsafeStringify(arr, offset = 0) {
-    return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
-  }
-  var randomUUID = typeof crypto !== "undefined" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
-  var native_default = {
-    randomUUID
-  };
-  function v4(options, buf, offset) {
-    if (native_default.randomUUID && !buf && !options) {
-      return native_default.randomUUID();
-    }
-    options = options || {};
-    const rnds = options.random || (options.rng || rng)();
-    rnds[6] = rnds[6] & 15 | 64;
-    rnds[8] = rnds[8] & 63 | 128;
-    if (buf) {
-      offset = offset || 0;
-      for (let i = 0; i < 16; ++i) {
-        buf[offset + i] = rnds[i];
-      }
-      return buf;
-    }
-    return unsafeStringify(rnds);
-  }
-  var v4_default = v4;
-  function forceRerenderOnUpdate(reactive2) {
-    reactive2.isForcingRerenderOnUpdate = true;
-    return reactive2;
-  }
-  var TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE = "data-tybalt-event-placeholder";
-  var TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE = "data-tybalt-set-attribute-placeholder";
-  var EVENT_LISTENER_REGEX = /\s+@\w+="/;
-  var HTML_ATTRIBUTE_REGEX = /\s+(\w|-)+="[^"]*$/;
-  var extractEventName = (str) => str.replace("@", "").split("=")[0];
-  var prevAttribute = false;
-  var renderToString = ({ strings, keys }, eventPlaceholders, setAttributePlaceholders) => {
-    return strings.reduce((prev, current, i) => {
-      let curr = current;
-      const key = keys[i];
-      if (prevAttribute) {
-        const temp = curr.split('"');
-        temp.shift();
-        curr = temp.join('"');
-        prevAttribute = false;
-      }
-      if (key === void 0 || key === null) {
-        return `${prev}${curr}`;
-      }
-      if (HTML_ATTRIBUTE_REGEX.test(curr) && typeof key.addListener === "function") {
-        const attributeChunks = curr.split('="');
-        const attributePrefix = attributeChunks.pop();
-        const htmlErrata = attributeChunks.join('="');
-        const placeholder = v4_default();
-        let suffix = "";
-        if (!strings[i + 1].includes('"')) {
-          throw new Error("Tybalt currently only supports one reactive per attribute. Please consolidate.");
-        } else if (!strings[i + 1].startsWith('"')) {
-          suffix = strings[i + 1].split('"')[0];
+  var require_boolean = __commonJS2({
+    "../parser/dist/api/boolean.js"(exports, module) {
+      "use strict";
+      var __defProp22 = Object.defineProperty;
+      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames22 = Object.getOwnPropertyNames;
+      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp22(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps22 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames22(from))
+            if (!__hasOwnProp22.call(to, key) && key !== except)
+              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
         }
-        const chunks = htmlErrata.split(/\s+/);
-        const attributeName = chunks[chunks.length - 1];
-        setAttributePlaceholders.set(placeholder, {
-          prefix: attributePrefix || "",
-          reactive: key,
-          suffix,
-          attributeName
-        });
-        prevAttribute = true;
-        return `${prev}${htmlErrata}="${attributePrefix}${key.value}${suffix}" ${TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"`;
-      }
-      if (typeof key.addListener === "function") {
-        forceRerenderOnUpdate(key);
-      }
-      if (EVENT_LISTENER_REGEX.test(curr)) {
-        const [preAt, postAt] = curr.split("@");
-        const eventName = extractEventName(postAt);
-        const placeholder = v4_default();
-        eventPlaceholders.set(placeholder, { eventName, listener: key });
-        return `${prev}${preAt}${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true`;
-      }
-      if (Array.isArray(key)) {
-        const children = key.map((key2) => renderToString(key2, eventPlaceholders, setAttributePlaceholders)).join("");
-        return `${prev}${curr}${children}`;
-      }
-      if (key?.addListener) {
-        if (key?.value.strings && key?.value.keys) {
-          return `${prev}${curr}${renderToString(key, eventPlaceholders, setAttributePlaceholders)}`;
-        }
-        if (Array.isArray(key.value)) {
-          const children = key.value.map((templ) => renderToString(templ, eventPlaceholders, setAttributePlaceholders)).join("");
-          return `${prev}${curr}${children}`;
-        }
-        return `${prev}${curr}${key.value}`;
-      }
-      if (key?.strings && key?.keys) {
-        return `${prev}${curr}${renderToString(key, eventPlaceholders, setAttributePlaceholders)}`;
-      }
-      return `${prev}${curr}${key}`;
-    }, "");
-  };
-  var render_default = (template) => {
-    const mountPoint = document.createElement("div");
-    const eventPlaceholders = /* @__PURE__ */ new Map();
-    const setAttributePlaceholders = /* @__PURE__ */ new Map();
-    mountPoint.innerHTML = renderToString(template, eventPlaceholders, setAttributePlaceholders);
-    for (const [placeholder, { listener, eventName }] of eventPlaceholders.entries()) {
-      const selector = `[${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"]`;
-      const placeheld = mountPoint.querySelector(selector);
-      if (placeheld === null) {
-        console.warn(`expected to find element with selector ${selector}`);
-        continue;
-      }
-      placeheld.addEventListener(eventName, listener);
-      placeheld.removeAttribute(`${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}`);
-    }
-    for (const [placeholder, { reactive: reactive2, attributeName, prefix, suffix }] of setAttributePlaceholders.entries()) {
-      const selector = `[${TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"]`;
-      const placeheld = mountPoint.querySelector(selector);
-      if (placeheld === null) {
-        console.warn(`expected to find element with selector ${selector}`);
-        continue;
-      }
-      reactive2.addListener((value) => {
-        placeheld.setAttribute(attributeName, `${prefix}${value}${suffix}`);
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
+      var boolean_exports = {};
+      __export(boolean_exports, {
+        default: () => boolean_default
       });
-      placeheld.removeAttribute(`${TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE}-${placeholder}`);
+      module.exports = __toCommonJS(boolean_exports);
+      var boolean_default = {
+        parse(str) {
+          if (str === "true") {
+            return true;
+          }
+          if (str === "false") {
+            return false;
+          }
+          return null;
+        }
+      };
     }
-    return mountPoint.children;
-  };
+  });
+  var require_json = __commonJS2({
+    "../parser/dist/api/json.js"(exports, module) {
+      "use strict";
+      var __defProp22 = Object.defineProperty;
+      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames22 = Object.getOwnPropertyNames;
+      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp22(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps22 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames22(from))
+            if (!__hasOwnProp22.call(to, key) && key !== except)
+              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
+      var json_exports = {};
+      __export(json_exports, {
+        default: () => json_default
+      });
+      module.exports = __toCommonJS(json_exports);
+      var json_default = {
+        parse(str) {
+          return JSON.parse(str);
+        }
+      };
+    }
+  });
+  var require_string = __commonJS2({
+    "../parser/dist/api/string.js"(exports, module) {
+      "use strict";
+      var __defProp22 = Object.defineProperty;
+      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames22 = Object.getOwnPropertyNames;
+      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp22(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps22 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames22(from))
+            if (!__hasOwnProp22.call(to, key) && key !== except)
+              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
+      var string_exports = {};
+      __export(string_exports, {
+        default: () => string_default2
+      });
+      module.exports = __toCommonJS(string_exports);
+      var string_default2 = {
+        parse(str) {
+          if (str instanceof String) {
+            return str;
+          }
+          return `${str}`;
+        }
+      };
+    }
+  });
+  var require_number = __commonJS2({
+    "../parser/dist/api/number.js"(exports, module) {
+      "use strict";
+      var __defProp22 = Object.defineProperty;
+      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames22 = Object.getOwnPropertyNames;
+      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp22(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps22 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames22(from))
+            if (!__hasOwnProp22.call(to, key) && key !== except)
+              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
+      var number_exports = {};
+      __export(number_exports, {
+        default: () => number_default
+      });
+      module.exports = __toCommonJS(number_exports);
+      var number_default = {
+        parse(str) {
+          return Number(str);
+        }
+      };
+    }
+  });
+  var require_standard = __commonJS2({
+    "../parser/dist/api/standard.js"(exports, module) {
+      "use strict";
+      var __defProp22 = Object.defineProperty;
+      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames22 = Object.getOwnPropertyNames;
+      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp22(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps22 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames22(from))
+            if (!__hasOwnProp22.call(to, key) && key !== except)
+              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
+      var standard_exports = {};
+      __export(standard_exports, {
+        default: () => standard_default
+      });
+      module.exports = __toCommonJS(standard_exports);
+      var standard_default = {
+        parse(str) {
+          if (str === void 0 || str === "undefined") {
+            return void 0;
+          }
+          if (str === null || str === "null") {
+            return null;
+          }
+          if (str === "true" || str === true) {
+            return true;
+          }
+          if (str === "false" || str === false) {
+            return false;
+          }
+          if (Array.isArray(str) || typeof str === "object") {
+            return str;
+          }
+          if (str[0] === "{" || str[0] === "[") {
+            try {
+              return JSON.parse(str);
+            } catch (e) {
+            }
+          }
+          try {
+            const parsed = Number(str);
+            if (!Number.isNaN(parsed)) {
+              return parsed;
+            }
+          } catch (e) {
+          }
+          return str;
+        }
+      };
+    }
+  });
+  var require_dist = __commonJS2({
+    "../parser/dist/index.js"(exports, module) {
+      "use strict";
+      var __create22 = Object.create;
+      var __defProp22 = Object.defineProperty;
+      var __getOwnPropDesc22 = Object.getOwnPropertyDescriptor;
+      var __getOwnPropNames22 = Object.getOwnPropertyNames;
+      var __getProtoOf22 = Object.getPrototypeOf;
+      var __hasOwnProp22 = Object.prototype.hasOwnProperty;
+      var __export = (target, all) => {
+        for (var name in all)
+          __defProp22(target, name, { get: all[name], enumerable: true });
+      };
+      var __copyProps22 = (to, from, except, desc) => {
+        if (from && typeof from === "object" || typeof from === "function") {
+          for (let key of __getOwnPropNames22(from))
+            if (!__hasOwnProp22.call(to, key) && key !== except)
+              __defProp22(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc22(from, key)) || desc.enumerable });
+        }
+        return to;
+      };
+      var __toESM22 = (mod, isNodeMode, target) => (target = mod != null ? __create22(__getProtoOf22(mod)) : {}, __copyProps22(
+        // If the importer is in node compatibility mode or this is not an ESM
+        // file that has been converted to a CommonJS file using a Babel-
+        // compatible transform (i.e. "__esModule" has not been set), then set
+        // "default" to the CommonJS "module.exports" for node compatibility.
+        isNodeMode || !mod || !mod.__esModule ? __defProp22(target, "default", { value: mod, enumerable: true }) : target,
+        mod
+      ));
+      var __toCommonJS = (mod) => __copyProps22(__defProp22({}, "__esModule", { value: true }), mod);
+      var src_exports = {};
+      __export(src_exports, {
+        boolean: () => import_boolean.default,
+        json: () => import_json.default,
+        number: () => import_number.default,
+        standard: () => import_standard.default,
+        string: () => import_string.default
+      });
+      module.exports = __toCommonJS(src_exports);
+      var import_boolean = __toESM22(require_boolean());
+      var import_json = __toESM22(require_json());
+      var import_string = __toESM22(require_string());
+      var import_number = __toESM22(require_number());
+      var import_standard = __toESM22(require_standard());
+    }
+  });
+  var import_js_convert_case = __toESM2(require_js_convert_case());
   var validator_default = (cb) => {
     return {
       async validate(value) {
@@ -2674,28 +2531,161 @@ ${concatenatedMessages}
     return derivedReactive;
   }
   var derive_default = derive;
-  var import_js_convert_case = __toESM2(require_js_convert_case());
-  var TybaltContextEvent = class extends Event {
-    #context;
-    #callback;
-    #subscribe;
-    constructor(context, callback, options) {
-      super("context-request");
-      this.#context = context;
-      this.#callback = callback;
-      this.#subscribe = options?.subscribe || false;
-    }
-    get context() {
-      return this.#context;
-    }
-    get callback() {
-      return this.#callback;
-    }
-    get subscribe() {
-      return this.#subscribe;
+  var ContextEvent = class extends Event {
+    constructor(context, callback, subscribe) {
+      super("context-request", { bubbles: true, composed: true });
+      this.context = context;
+      this.callback = callback;
+      this.subscribe = subscribe;
     }
   };
-  var context_event_default = TybaltContextEvent;
+  var getRandomValues;
+  var rnds8 = new Uint8Array(16);
+  function rng() {
+    if (!getRandomValues) {
+      getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
+      if (!getRandomValues) {
+        throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
+      }
+    }
+    return getRandomValues(rnds8);
+  }
+  var byteToHex = [];
+  for (let i = 0; i < 256; ++i) {
+    byteToHex.push((i + 256).toString(16).slice(1));
+  }
+  function unsafeStringify(arr, offset = 0) {
+    return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
+  }
+  var randomUUID = typeof crypto !== "undefined" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
+  var native_default = {
+    randomUUID
+  };
+  function v4(options, buf, offset) {
+    if (native_default.randomUUID && !buf && !options) {
+      return native_default.randomUUID();
+    }
+    options = options || {};
+    const rnds = options.random || (options.rng || rng)();
+    rnds[6] = rnds[6] & 15 | 64;
+    rnds[8] = rnds[8] & 63 | 128;
+    if (buf) {
+      offset = offset || 0;
+      for (let i = 0; i < 16; ++i) {
+        buf[offset + i] = rnds[i];
+      }
+      return buf;
+    }
+    return unsafeStringify(rnds);
+  }
+  var v4_default = v4;
+  function forceRerenderOnUpdate(reactive2) {
+    reactive2.isForcingRerenderOnUpdate = true;
+    return reactive2;
+  }
+  var TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE = "data-tybalt-event-placeholder";
+  var TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE = "data-tybalt-set-attribute-placeholder";
+  var EVENT_LISTENER_REGEX = /\s+@\w+="/;
+  var HTML_ATTRIBUTE_REGEX = /\s+(\w|-)+="[^"]*$/;
+  var extractEventName = (str) => str.replace("@", "").split("=")[0];
+  var prevAttribute = false;
+  var renderToString = ({ strings, keys }, eventPlaceholders, setAttributePlaceholders) => {
+    return strings.reduce((prev, current, i) => {
+      let curr = current;
+      const key = keys[i];
+      if (prevAttribute) {
+        const temp = curr.split('"');
+        temp.shift();
+        curr = temp.join('"');
+        prevAttribute = false;
+      }
+      if (key === void 0 || key === null) {
+        return `${prev}${curr}`;
+      }
+      if (HTML_ATTRIBUTE_REGEX.test(curr) && typeof key.addListener === "function") {
+        const attributeChunks = curr.split('="');
+        const attributePrefix = attributeChunks.pop();
+        const htmlErrata = attributeChunks.join('="');
+        const placeholder = v4_default();
+        let suffix = "";
+        if (!strings[i + 1].includes('"')) {
+          throw new Error("Tybalt currently only supports one reactive per attribute. Please consolidate.");
+        } else if (!strings[i + 1].startsWith('"')) {
+          suffix = strings[i + 1].split('"')[0];
+        }
+        const chunks = htmlErrata.split(/\s+/);
+        const attributeName = chunks[chunks.length - 1];
+        setAttributePlaceholders.set(placeholder, {
+          prefix: attributePrefix || "",
+          reactive: key,
+          suffix,
+          attributeName
+        });
+        prevAttribute = true;
+        return `${prev}${htmlErrata}="${attributePrefix}${key.value}${suffix}" ${TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"`;
+      }
+      if (typeof key.addListener === "function") {
+        forceRerenderOnUpdate(key);
+      }
+      if (EVENT_LISTENER_REGEX.test(curr)) {
+        const [preAt, postAt] = curr.split("@");
+        const eventName = extractEventName(postAt);
+        const placeholder = v4_default();
+        eventPlaceholders.set(placeholder, { eventName, listener: key });
+        return `${prev}${preAt}${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true`;
+      }
+      if (Array.isArray(key)) {
+        const children = key.map((key2) => renderToString(key2, eventPlaceholders, setAttributePlaceholders)).join("");
+        return `${prev}${curr}${children}`;
+      }
+      if (key?.addListener) {
+        if (key.value === void 0) {
+          return `${prev}${curr}`;
+        }
+        if (key?.value.strings && key?.value.keys) {
+          return `${prev}${curr}${renderToString(key, eventPlaceholders, setAttributePlaceholders)}`;
+        }
+        if (Array.isArray(key.value)) {
+          const children = key.value.map((templ) => renderToString(templ, eventPlaceholders, setAttributePlaceholders)).join("");
+          return `${prev}${curr}${children}`;
+        }
+        return `${prev}${curr}${key.value}`;
+      }
+      if (key?.strings && key?.keys) {
+        return `${prev}${curr}${renderToString(key, eventPlaceholders, setAttributePlaceholders)}`;
+      }
+      return `${prev}${curr}${key}`;
+    }, "");
+  };
+  var render_default = (template) => {
+    const mountPoint = document.createElement("div");
+    const eventPlaceholders = /* @__PURE__ */ new Map();
+    const setAttributePlaceholders = /* @__PURE__ */ new Map();
+    mountPoint.innerHTML = renderToString(template, eventPlaceholders, setAttributePlaceholders);
+    for (const [placeholder, { listener, eventName }] of eventPlaceholders.entries()) {
+      const selector = `[${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"]`;
+      const placeheld = mountPoint.querySelector(selector);
+      if (placeheld === null) {
+        console.warn(`expected to find element with selector ${selector}`);
+        continue;
+      }
+      placeheld.addEventListener(eventName, listener);
+      placeheld.removeAttribute(`${TYBALT_EVENT_PLACEHOLDER_ATTRIBUTE}-${placeholder}`);
+    }
+    for (const [placeholder, { reactive: reactive2, attributeName, prefix, suffix }] of setAttributePlaceholders.entries()) {
+      const selector = `[${TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE}-${placeholder}="true"]`;
+      const placeheld = mountPoint.querySelector(selector);
+      if (placeheld === null) {
+        console.warn(`expected to find element with selector ${selector}`);
+        continue;
+      }
+      reactive2.addListener((value) => {
+        placeheld.setAttribute(attributeName, `${prefix}${value}${suffix}`);
+      });
+      placeheld.removeAttribute(`${TYBALT_SET_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE}-${placeholder}`);
+    }
+    return mountPoint.children;
+  };
   var nameValidator = should_throw_default(
     with_message_default(
       compose_default(required_default(), matches_pattern_default(/.*-.*/)),
@@ -2762,9 +2752,9 @@ ${concatenatedMessages}
           {}
         );
         for (const [contextName, context] of Object.entries(contexts)) {
-          const contextReactive = reactive_default(context.initialValue);
+          const contextReactive = reactive_default(context);
           this.dispatchEvent(
-            new context_event_default(
+            new ContextEvent(
               context,
               (value, unsubscribe) => {
                 const contextState = this.#contexts.get(context) || {
@@ -2773,16 +2763,15 @@ ${concatenatedMessages}
                 };
                 if (unsubscribe !== contextState.unsubscribe) {
                   contextState.unsubscribe?.();
+                  contextState.unsubscribe = unsubscribe;
                 }
                 contextReactive.value = value;
-                this.#contexts.set(contextName, { unsubscribe, reactive: contextReactive });
+                this.#contexts.set(context, { unsubscribe, reactive: contextReactive });
               },
-              {
-                subscribe: true
-              }
+              true
             )
           );
-          this.#contexts.set(contextName, { reactive: contextReactive });
+          this.#contexts.set(context, { reactive: contextReactive });
           if (!this.#props[contextName]) {
             this.#renderState.set(contextName, contextReactive);
           } else {
@@ -2826,6 +2815,7 @@ ${concatenatedMessages}
       connectedCallback() {
         this.#isConnected = true;
         connectedCallback?.apply(this);
+        this.#updateContexts();
         this.#updateProps();
         this.#doRender();
       }
@@ -2913,6 +2903,33 @@ ${concatenatedMessages}
           }
         }
       }
+      /**
+       * Once we connect to the dom, we need to update the context reactives with the
+       * current value of the context. This is called on connectedCallback.
+       * 
+       * Similar to #updateProps, but for contexts.
+       */
+      #updateContexts() {
+        for (const [context, { reactive: reactive2 }] of this.#contexts.entries()) {
+          this.dispatchEvent(
+            new ContextEvent(
+              context,
+              (value, unsubscribe) => {
+                const contextState = this.#contexts.get(context) || {
+                  value: void 0,
+                  unsubscribe: void 0
+                };
+                if (unsubscribe !== contextState.unsubscribe) {
+                  contextState.unsubscribe?.();
+                  contextState.unsubscribe = unsubscribe;
+                }
+                reactive2.value = value;
+              },
+              true
+            )
+          );
+        }
+      }
     };
     try {
       customElements.define(name, clazz);
@@ -2978,6 +2995,7 @@ ${concatenatedMessages}
   // components/sidebar/sidebar.component.ts
   var PACKAGES = [
     "cli",
+    "context",
     "core",
     "eleventy-plugin",
     "esbuild-plugin",
@@ -2997,7 +3015,8 @@ ${concatenatedMessages}
     "custom-validator",
     "data-fetching",
     "linting",
-    "building"
+    "building",
+    "contexts"
   ];
   var sidebar_component_default = define_component_default({
     name: "tybalt-sidebar",
