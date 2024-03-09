@@ -10,7 +10,6 @@ import type { Reactive } from '@tybalt/reactive';
 import render from './render';
 
 import type { DefineComponentsOptions, SetupContext } from '../types';
-import provideContext from './provide-context';
 
 const nameValidator = shouldThrow(
     withMessage(
