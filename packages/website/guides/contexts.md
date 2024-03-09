@@ -14,7 +14,7 @@ For this example, we've decided to distribute our theme via a context. We've dec
 To create our new context, we'll use the `createContext` method from [core](/pages/core#createContext), and add it to a new file called `contexts/theme.ts`
 
 ```typescript
-import { createContext } from '@tybalt/core';
+import { createContext } from '@tybalt/context';
 
 export default createContext('theme', { 
     brandColor: 'rebeccapurple', 

@@ -1,15 +1,15 @@
 import { toKebabCase } from 'js-convert-case';
 import { v4 as uuidV4 } from 'uuid';
 
-import type { Context, ContextEvent } from '@tybalt/core';
+import type { Context, ContextEvent, UnknownContext } from '@tybalt/context';
 
 import type { AttributeObject, ContextsObject } from '../types';
 
 const ATTRIBUTE_NAME = 'data-tybalt-id';
 const WRAPPER_ELEMENT_TAG = 'div';
 
-function isContextEvent<T>(evt: Event | ContextEvent<T>): evt is ContextEvent<T> {
-    return (evt as ContextEvent<T>).callback !== undefined;
+function isContextEvent(evt: Event | ContextEvent<UnknownContext>): evt is ContextEvent<UnknownContext> {
+    return (evt as ContextEvent<UnknownContext>).callback !== undefined && (evt as ContextEvent<UnknownContext>).context !== undefined;
 }
 
 export default async ({
@@ -35,6 +35,9 @@ export default async ({
     rootElement.setAttribute(ATTRIBUTE_NAME, id);
     rootElement.innerHTML = `<${elementName} ${attributeString}>${slot}</${elementName}>`;
 
+    Object.values(contexts).forEach(context => {
+        provideContext(document.body, context)
+    });
     document.body.appendChild(rootElement);
 
     return new Promise((resolve) => {
@@ -43,9 +46,6 @@ export default async ({
         const requestComponent = () => {
             const element = document.querySelector(selector);
             if (element) {
-                Object.values(contexts).forEach(context =>
-                    provideContext(element, context)
-                );
                 resolve(element);
             } else {
                 window.requestAnimationFrame(requestComponent);
@@ -58,8 +58,10 @@ export default async ({
 
 function provideContext<T>(element: Element, context: Context<T>): void {
     element.addEventListener('context-request', (evt) => {
-        if (isContextEvent(evt) && evt.context === context) {
-            evt.callback(context.initialValue);
+        if (isContextEvent(evt)) {
+            if (evt.context.name === context.name) {
+                evt.callback(context.initialValue);
+            }
         }
     });
 }

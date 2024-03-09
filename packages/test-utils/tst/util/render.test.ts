@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import render from '../../src/util/render';
-import { ContextEvent } from '@tybalt/core';
+import { ContextEvent } from '@tybalt/context';
 
 describe('render', () => {
     it('should create a dom element', async () => {
@@ -34,8 +34,7 @@ describe('render', () => {
         wrapper.dispatchEvent(
             new ContextEvent(
                 mockContext,
-                (context: any) => { actual = context; },
-                {}
+                (context: any) => { actual = context; }
             )
         );
 

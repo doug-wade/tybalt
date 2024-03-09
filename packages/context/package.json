@@ -1,7 +1,7 @@
 {
-    "name": "@tybalt/core",
+    "name": "@tybalt/context",
     "version": "0.1.9",
-    "description": "A library for writing web components",
+    "description": "A package for using contexts with web components.",
     "module": "dist/mjs/index.mjs",
     "main": "dist/cjs/index.js",
     "types": "dist/types/index.d.ts",
@@ -29,35 +29,31 @@
     },
     "keywords": [
         "tybalt",
-        "web component"
+        "web component",
+        "context"
     ],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT",
-    "dependencies": {
-        "@tybalt/context": "workspace:^",
-        "@tybalt/reactive": "workspace:^",
-        "@tybalt/validator": "workspace:^"
-    },
     "devDependencies": {
         "concurrently": "^8.2.2",
         "esbuild": "^0.20.1",
         "esbuild-jest": "^0.5.0",
         "jest": "^29.7.0",
         "rimraf": "^5.0.5",
-        "typescript": "^5.3.3"
+        "typescript": "^5.3.2"
     },
     "files": [
-        "dist/**/*",
+        "types.d.ts",
         "package.json",
         "README.md"
     ],
     "bugs": {
-        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Acore"
+        "url": "https://github.com/doug-wade/tybalt/issues?q=is%3Aissue+is%3Aopen+label%3Acontext"
     },
-    "homepage": "https://tybalt.org/pages/core",
+    "homepage": "https://tybalt.org/pages/context",
     "repository": {
         "type": "git",
         "url": "https://github.com/doug-wade/tybalt.git",
-        "directory": "packages/core"
+        "directory": "packages/context"
     }
 }
