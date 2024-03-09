@@ -2834,10 +2834,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@tybalt/context@workspace:^, @tybalt/context@workspace:packages/context":
+  version: 0.0.0-use.local
+  resolution: "@tybalt/context@workspace:packages/context"
+  dependencies:
+    concurrently: "npm:^8.2.2"
+    esbuild: "npm:^0.20.1"
+    esbuild-jest: "npm:^0.5.0"
+    jest: "npm:^29.7.0"
+    rimraf: "npm:^5.0.5"
+    typescript: "npm:^5.3.2"
+  languageName: unknown
+  linkType: soft
+
 "@tybalt/core@workspace:^, @tybalt/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@tybalt/core@workspace:packages/core"
   dependencies:
+    "@tybalt/context": "workspace:^"
     "@tybalt/reactive": "workspace:^"
     "@tybalt/validator": "workspace:^"
     concurrently: "npm:^8.2.2"
@@ -2973,6 +2987,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tybalt/test-utils@workspace:packages/test-utils"
   dependencies:
+    "@tybalt/context": "workspace:^"
     "@types/uuid": "npm:^9.0.8"
     concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.20.1"

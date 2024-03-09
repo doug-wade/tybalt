@@ -34,6 +34,7 @@
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT",
     "dependencies": {
+        "@tybalt/context": "workspace:^",
         "js-convert-case": "^4.2.0",
         "uuid": "^9.0.1"
     },

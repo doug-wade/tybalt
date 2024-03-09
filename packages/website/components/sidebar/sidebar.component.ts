@@ -2,6 +2,7 @@ import { defineComponent, html } from '@tybalt/core';
 
 const PACKAGES = [
     'cli',
+    'context',
     'core',
     'eleventy-plugin',
     'esbuild-plugin',
@@ -22,6 +23,7 @@ const GUIDES = [
     'data-fetching',
     'linting',
     'building',
+    'contexts',
 ];
 
 export default defineComponent({

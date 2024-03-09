@@ -1,21 +1,22 @@
-import createContext from '../../src/api/create-context';
+import { createContext } from '@tybalt/context';
 import defineComponent from '../../src/api/define-component';
 import html from '../../src/api/html';
 import { mount } from '@tybalt/test-utils';
 
 describe('contexts', () => {
-    it('passes contexts to setup', async () => {
+    it('passes contexts to render', async () => {
         const name = 'context';
-        const expected = 'hello world';
+        const expected = 'foo bar';
+        const context = createContext(name, expected);
 
-        const context = createContext(expected);
         const component = defineComponent({
-            name: 'passes-contexts-to-setup',
+            name: 'passes-contexts-to-render',
             contexts: { example: context },
             render({ example }) {
-                return html`<p>${example}</p>`;
+                return html`<p>${example?.value}</p>`;
             }
         });
+        
         const wrapper = await mount(component, {
             contexts: { 
                 [name]: context,
@@ -23,6 +24,29 @@ describe('contexts', () => {
         });
 
         expect(wrapper.html()).toContain(`<p>${expected}</p>`);
+    });
+
+    it('passes contexts to setup', async () => {
+        const name = 'context';
+        const expected = 'baz quux';
+        const context = createContext(name, expected);
+
+        let actual = null;
+        const component = defineComponent({
+            name: 'passes-contexts-to-setup',
+            contexts: { example: context },
+            setup({ example }) {
+                actual = example
+            }
+        });
+
+        await mount(component, {
+            contexts: { 
+                [name]: context,
+            }
+        });
+
+        expect(actual).toBe(undefined);
     });
 
     it('emits a warning if there is a collision', async () => {
@@ -40,35 +64,5 @@ describe('contexts', () => {
         );
 
         expect(jestSpy.mock.calls[0][0]).toBe('Collision detected between context and prop: example');
-    });
-
-    it('is updateable', async () => {
-        const expected = 'hello world';
-
-        const context = createContext('initial value');
-        const component = defineComponent({
-            name: 'context-not-rewrapped',
-            contexts: { example: context },
-            setup({ example }) {
-                const clickHandler = () => {
-                    example.value = expected;
-                };
-
-                return { 
-                    clickHandler,
-                    example, 
-                };
-            },
-            render({ clickHandler, example }) {
-                return html`
-                    <p>${example}</p>
-                    <button @click="${clickHandler}"></button>
-                `;
-            }
-        });
-        const wrapper = await mount(component);
-        wrapper.find('button').trigger('click');
-
-        expect(wrapper.find('p').text()).toStrictEqual(expected);
     });
 });

@@ -1,4 +1,4 @@
-import { createContext } from '@tybalt/core';
+import { createContext } from '@tybalt/context';
 
 export const theme = createContext('theme', {
     primaryColor: 'rebeccapurple',

@@ -228,7 +228,7 @@ when implementing theming.
 To create a new context, call `createContext`
 
 ```javascript
-import { createContext } from '@tybalt/core';
+import { createContext } from '@tybalt/context';
 
 export const theme = createContext('theme', {
     primaryColor: 'rebeccapurple',

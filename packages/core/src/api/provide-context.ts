@@ -1,20 +1,20 @@
-import { Context, ContextEvent } from "src/types";
+import { Context, ContextEvent, UnknownContext } from "@tybalt/context";
 
-const provideContext = <T, U>({ elem, context, initialValue }: { elem: HTMLElement, context: Context<T, U>, initialValue: U }) => {
+const provideContext = <T extends (newVal: T) => void, U>({ elem, context, initialValue }: { elem: HTMLElement, context: Context<T>, initialValue: T }) => {
     const listeners: { (newVal: U): void }[] = [];
     let value = initialValue;
-    elem.addEventListener('context-request', (event: ContextEvent<Context<T, U>>) => {
-        if (event.context !== context) {
+    elem.addEventListener('context-request', (event: ContextEvent<UnknownContext>) => {
+        // Another context is being requested, and another listener will handle it
+        if (event.context.name !== context.name) {
             return
         }
 
-        // Propogation should be stopped already in case the callback throws
+        // Propagation should be stopped in case the callback throws
         event.stopPropagation();
 
-        let listener: { (newVal: U): void };
         let unsubscribe = () => {};
         if (event.subscribe) {
-            listener = (newValue: U) => { event.callback(newValue); };
+            const listener = (newValue: unknown) => { event.callback(newValue); };
             listeners.push(listener);
 
             unsubscribe = () => {
@@ -26,23 +26,13 @@ const provideContext = <T, U>({ elem, context, initialValue }: { elem: HTMLEleme
             };
         }
 
-        const update = (newValue: U) => {
-            value = newValue;
-
-            listeners.forEach(listener => {
-                listener(newValue);
-            });
-        }
-
-        event.callback(value, unsubscribe, update);
+        event.callback(value, unsubscribe);
     });
 
-    const update = (newValue: U) => {
+    const update = (newValue: T) => {
         value = newValue;
 
-        listeners.forEach(listener => {
-            listener(value);
-        });
+        listeners.forEach(listener => listener(value as any));
     };
 
     return {

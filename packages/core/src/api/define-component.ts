@@ -1,15 +1,16 @@
-import render from './render';
+import { toKebabCase } from 'js-convert-case';
+
 import { compose, required, matchesPattern, shouldThrow, withMessage } from '@tybalt/validator';
 import { standard } from '@tybalt/parser';
 import { derive, reactive } from '@tybalt/reactive';
-
-import { toKebabCase } from 'js-convert-case';
+import { Context, ContextEvent } from '@tybalt/context';
 
 import type { Reactive } from '@tybalt/reactive';
 
-import ContextEvent from './context-event';
+import render from './render';
 
 import type { DefineComponentsOptions, SetupContext } from '../types';
+import provideContext from './provide-context';
 
 const nameValidator = shouldThrow(
     withMessage(
@@ -68,7 +69,7 @@ export default ({
 
         // All of the contexts to connect to
         // https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md
-        #contexts = new Map<string, { reactive: Reactive<any>; unsubscribe?: () => void }>();
+        #contexts = new Map<Context<unknown>, { reactive: Reactive<any>; unsubscribe?: () => void }>();
         contextState: any = undefined;
 
         constructor() {
@@ -111,8 +112,7 @@ export default ({
                 this.dispatchEvent(
                     new ContextEvent(
                         context,
-                        (value, unsubscribe, update) => {
-                            console.log('got context event response')
+                        (value, unsubscribe) => {
                             const contextState = this.#contexts.get(context) || {
                                 value: undefined,
                                 unsubscribe: undefined,
@@ -122,24 +122,18 @@ export default ({
                             // changed. This probably means we have a new provider.
                             if (unsubscribe !== contextState.unsubscribe) {
                                 contextState.unsubscribe?.();
+                                contextState.unsubscribe = unsubscribe;
                             }
 
                             contextReactive.value = value;
-                            contextReactive.addListener((value: any) => {
-                                if (update) {
-                                    update(value);
-                                }
-                            });
 
-                            this.#contexts.set(contextName, { unsubscribe, reactive: contextReactive });
+                            this.#contexts.set(context, { unsubscribe, reactive: contextReactive });
                         },
-                        {
-                            subscribe: true,
-                        },
+                        true,
                     ),
                 );
 
-                this.#contexts.set(contextName, { reactive: contextReactive });
+                this.#contexts.set(context, { reactive: contextReactive });
 
                 /**
                  * We want to make prop values and contexts available in the render function without needing to
@@ -210,6 +204,7 @@ export default ({
             this.#isConnected = true;
             connectedCallback?.apply(this);
 
+            this.#updateContexts();
             this.#updateProps();
             this.#doRender();
         }
@@ -345,6 +340,38 @@ export default ({
                     const nextValue = value.parser.parse(attributeValue);
                     value.reactive.value = nextValue;
                 }
+            }
+        }
+
+        /**
+         * Once we connect to the dom, we need to update the context reactives with the
+         * current value of the context. This is called on connectedCallback.
+         * 
+         * Similar to #updateProps, but for contexts.
+         */
+        #updateContexts() {
+            for (const [context, { reactive }] of this.#contexts.entries()) {
+                this.dispatchEvent(
+                    new ContextEvent(
+                        context,
+                        (value, unsubscribe) => {
+                            const contextState = this.#contexts.get(context) || {
+                                value: undefined,
+                                unsubscribe: undefined,
+                            };
+
+                            // Call the old unsubscribe callback if the unsubscribe call has
+                            // changed. This probably means we have a new provider.
+                            if (unsubscribe !== contextState.unsubscribe) {
+                                contextState.unsubscribe?.();
+                                contextState.unsubscribe = unsubscribe;
+                            }
+
+                            reactive.value = value;
+                        },
+                        true,
+                    ),
+                );
             }
         }
     };
