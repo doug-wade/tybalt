@@ -23,7 +23,7 @@
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "@chialab/esbuild-plugin-html": "^0.18.0",
+        "@chialab/esbuild-plugin-html": "^0.18.2",
         "@swc/core": "^1.3.103",
         "@tybalt/esbuild-plugin": "workspace:^",
         "@tybalt/eslint-plugin": "workspace:^",
