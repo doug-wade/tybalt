@@ -40,7 +40,7 @@
         "esbuild-jest": "^0.5.0",
         "jest": "^29.7.0",
         "rimraf": "^5.0.5",
-        "typescript": "^5.3.2"
+        "typescript": "^5.4.3"
     },
     "files": [
         "types.d.ts",
