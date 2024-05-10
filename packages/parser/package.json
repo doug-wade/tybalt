@@ -18,7 +18,7 @@
     ],
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "devDependencies": {
-        "esbuild": "^0.20.1",
+        "esbuild": "^0.21.1",
         "esbuild-jest": "^0.5.0",
         "eslint": "^8.57.0",
         "jest": "^29.7.0",

@@ -27,7 +27,7 @@
     },
     "devDependencies": {
         "concurrently": "^8.2.2",
-        "esbuild": "^0.20.1",
+        "esbuild": "^0.21.1",
         "rimraf": "^5.0.5",
         "typescript": "^5.4.3"
     },
