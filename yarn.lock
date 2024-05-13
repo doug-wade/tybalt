@@ -2829,7 +2829,7 @@ __metadata:
     jest-environment-jsdom: "npm:^29.7.0"
     js-convert-case: "npm:^4.2.0"
     mkdirp: "npm:^3.0.1"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     ts-jest: "npm:^29.1.2"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.4.3"
@@ -2846,7 +2846,7 @@ __metadata:
     esbuild: "npm:^0.21.1"
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -2862,7 +2862,7 @@ __metadata:
     esbuild: "npm:^0.21.1"
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -2874,7 +2874,7 @@ __metadata:
     "@cypress-audit/lighthouse": "npm:^1.4.2"
     esbuild: "npm:^0.21.1"
     eslint-plugin-cypress: "npm:^2.15.1"
-    rimraf: "npm:^5.0.1"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -2885,7 +2885,7 @@ __metadata:
   dependencies:
     "@11ty/eleventy": "npm:^2.0.1"
     "@tybalt/esbuild-plugin": "workspace:^"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
   languageName: unknown
   linkType: soft
 
@@ -2906,7 +2906,7 @@ __metadata:
   dependencies:
     concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.21.1"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -2925,7 +2925,7 @@ __metadata:
     eslint: "npm:^8.57.0"
     jest: "npm:^29.7.0"
     js-convert-case: "npm:^4.2.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -2941,7 +2941,7 @@ __metadata:
     browser-sync: "npm:^3.0.2"
     esbuild: "npm:^0.21.1"
     esbuild-jest: "npm:^0.5.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
   languageName: unknown
   linkType: soft
 
@@ -2953,7 +2953,7 @@ __metadata:
     esbuild-jest: "npm:^0.5.0"
     eslint: "npm:^8.57.0"
     jest: "npm:^29.7.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -2966,7 +2966,7 @@ __metadata:
     esbuild: "npm:^0.21.1"
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -2982,7 +2982,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
     lit: "npm:^3.1.2"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -2998,7 +2998,7 @@ __metadata:
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
     js-convert-case: "npm:^4.2.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
     uuid: "npm:^9.0.1"
   languageName: unknown
@@ -3011,7 +3011,7 @@ __metadata:
     concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.21.1"
     jest: "npm:^29.7.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
     typescript: "npm:^5.4.3"
   languageName: unknown
   linkType: soft
@@ -3029,7 +3029,7 @@ __metadata:
     eleventy-plugin-pwa-v2: "npm:^1.0.1"
     prism-themes: "npm:^1.9.0"
     prismjs: "npm:^1.29.0"
-    rimraf: "npm:^5.0.5"
+    rimraf: "npm:^5.0.7"
   languageName: unknown
   linkType: soft
 
@@ -11695,14 +11695,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^5.0.1, rimraf@npm:^5.0.5":
-  version: 5.0.5
-  resolution: "rimraf@npm:5.0.5"
+"rimraf@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "rimraf@npm:5.0.7"
   dependencies:
     glob: "npm:^10.3.7"
   bin:
     rimraf: dist/esm/bin.mjs
-  checksum: 10/a612c7184f96258b7d1328c486b12ca7b60aa30e04229a08bbfa7e964486deb1e9a1b52d917809311bdc39a808a4055c0f950c0280fba194ba0a09e6f0d404f6
+  checksum: 10/1e3cecfe59ee2383dfd9ba5373caeed48ed941318a0360119419b7dffc63115661408b9427f67e1f66b5bbb8855a3953db09e55a7362b3df904a44453dfa22fb
   languageName: node
   linkType: hard
 
