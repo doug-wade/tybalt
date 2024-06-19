@@ -28,6 +28,7 @@
         "./packages/eleventy-plugin",
         "./packages/eleventy-plugin-vanilla-example",
         "./packages/esbuild-plugin",
+        "./packages/eslint-config",
         "./packages/eslint-plugin",
         "./packages/example",
         "./packages/parser",
@@ -38,9 +39,10 @@
         "./packages/website"
     ],
     "devDependencies": {
+        "@tybalt/eslint-config": "workspace:^",
         "@tybalt/eslint-plugin": "workspace:^",
         "cypress": "^12.17.3",
-        "eslint": "^8.57.0",
+        "eslint": "^9.5.0",
         "istanbul-merge": "^2.0.0",
         "jest": "^29.7.0",
         "jest-fail-on-console": "^3.3.0",
