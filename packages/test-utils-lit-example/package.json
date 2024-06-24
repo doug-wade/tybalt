@@ -13,7 +13,7 @@
     "author": "Douglas Wade <douglas.b.wade@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "@swc/core": "^1.5.25",
+        "@swc/core": "^1.6.5",
         "@swc/jest": "^0.2.36",
         "@tybalt/test-utils": "workspace:^",
         "@types/jest": "^29.5.12",
