@@ -16,7 +16,7 @@
     "devDependencies": {
         "@cypress-audit/lighthouse": "^1.4.2",
         "esbuild": "^0.21.1",
-        "eslint-plugin-cypress": "^2.15.1",
+        "eslint-plugin-cypress": "^3.3.0",
         "rimraf": "^5.0.7",
         "typescript": "^5.5.3"
     }
