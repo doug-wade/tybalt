@@ -2863,7 +2863,7 @@ __metadata:
   dependencies:
     "@cypress-audit/lighthouse": "npm:^1.4.2"
     esbuild: "npm:^0.21.1"
-    eslint-plugin-cypress: "npm:^2.15.1"
+    eslint-plugin-cypress: "npm:^3.4.0"
     rimraf: "npm:^5.0.7"
     typescript: "npm:^5.5.3"
   languageName: unknown
@@ -6261,14 +6261,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-cypress@npm:^2.15.1":
-  version: 2.15.1
-  resolution: "eslint-plugin-cypress@npm:2.15.1"
+"eslint-plugin-cypress@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "eslint-plugin-cypress@npm:3.4.0"
   dependencies:
     globals: "npm:^13.20.0"
   peerDependencies:
-    eslint: ">= 3.2.1"
-  checksum: 10/46344892f26e4f2c905a98e9d391bf1f930aa95e79f6678a1ca75ff466a6ca277fd51cde650fbcbc828068659acbad60601d239481402f443d177a1ef5934190
+    eslint: ">=7"
+  checksum: 10/cbf96406717a0b83a87a968d9f7c7ac35449e93876085b1aec182f271adcb2900abb598f7d011f937bba7fe64bc7db3e0cfd026a96ef3d2b37b040bb1b36418a
   languageName: node
   linkType: hard
 
