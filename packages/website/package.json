@@ -19,7 +19,7 @@
         "@11ty/eleventy": "^2.0.1",
         "chokidar-cli": "^3.0.0",
         "dotenv": "^16.4.5",
-        "eleventy-plugin-pwa-v2": "^1.0.1",
+        "eleventy-plugin-pwa-v2": "^1.0.2",
         "rimraf": "^5.0.7"
     },
     "dependencies": {
