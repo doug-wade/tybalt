@@ -2822,7 +2822,7 @@ __metadata:
     rimraf: "npm:^5.0.7"
     ts-jest: "npm:^29.2.5"
     ts-node: "npm:^10.9.2"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   bin:
     tybalt: dist/index.js
   languageName: unknown
@@ -2837,7 +2837,7 @@ __metadata:
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -2853,7 +2853,7 @@ __metadata:
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -2865,7 +2865,7 @@ __metadata:
     esbuild: "npm:^0.21.1"
     eslint-plugin-cypress: "npm:^4.0.0"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -2897,7 +2897,7 @@ __metadata:
     concurrently: "npm:^8.2.2"
     esbuild: "npm:^0.21.1"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -2916,7 +2916,7 @@ __metadata:
     jest: "npm:^29.7.0"
     js-convert-case: "npm:^4.2.0"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -2944,7 +2944,7 @@ __metadata:
     eslint: "npm:^8.57.0"
     jest: "npm:^29.7.0"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -2957,7 +2957,7 @@ __metadata:
     esbuild-jest: "npm:^0.5.0"
     jest: "npm:^29.7.0"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -2973,7 +2973,7 @@ __metadata:
     jest-environment-jsdom: "npm:^29.7.0"
     lit: "npm:^3.1.4"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -2989,7 +2989,7 @@ __metadata:
     jest: "npm:^29.7.0"
     js-convert-case: "npm:^4.2.0"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
     uuid: "npm:^9.0.1"
   languageName: unknown
   linkType: soft
@@ -3002,7 +3002,7 @@ __metadata:
     esbuild: "npm:^0.21.1"
     jest: "npm:^29.7.0"
     rimraf: "npm:^5.0.7"
-    typescript: "npm:^5.5.3"
+    typescript: "npm:^5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -13340,23 +13340,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.5.3":
-  version: 5.5.3
-  resolution: "typescript@npm:5.5.3"
+"typescript@npm:^5.6.3":
+  version: 5.6.3
+  resolution: "typescript@npm:5.6.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/11a867312419ed497929aafd2f1d28b2cd41810a5eb6c6e9e169559112e9ea073d681c121a29102e67cd4478d0a4ae37a306a5800f3717f59c4337e6a9bd5e8d
+  checksum: 10/c328e418e124b500908781d9f7b9b93cf08b66bf5936d94332b463822eea2f4e62973bfb3b8a745fdc038785cb66cf59d1092bac3ec2ac6a3e5854687f7833f1
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.5.3#optional!builtin<compat/typescript>":
-  version: 5.5.3
-  resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=5adc0c"
+"typescript@patch:typescript@npm%3A^5.6.3#optional!builtin<compat/typescript>":
+  version: 5.6.3
+  resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/b61b8bb4b4d6a8a00f9d5f931f8c67070eed6ad11feabf4c41744a326987080bfc806a621596c70fbf2e5974eca3ed65bafeeeb22a078071bdfb51d8abd7c013
+  checksum: 10/dc4bec403cd33a204b655b1152a096a08e7bad2c931cb59ef8ff26b6f2aa541bf98f09fc157958a60c921b1983a8dde9a85b692f9de60fa8f574fd131e3ae4dd
   languageName: node
   linkType: hard
 

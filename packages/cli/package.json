@@ -42,7 +42,7 @@
         "mkdirp": "^3.0.1",
         "rimraf": "^5.0.7",
         "ts-jest": "^29.2.5",
-        "typescript": "^5.5.3"
+        "typescript": "^5.6.3"
     },
     "devDependencies": {
         "@types/browser-sync": "^2.29.0",
